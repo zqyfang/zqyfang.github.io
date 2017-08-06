@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>进程和通信 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="进程12345678910111213141516//获得所以进程         Process[] pros = Process.GetProcesses();         foreach (var item in pros)         &amp;#123;             //item.Kill(); 杀死进程             Console.WriteLine(item)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程和通信">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/CSharp线程和通信/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="进程12345678910111213141516//获得所以进程         Process[] pros = Process.GetProcesses();         foreach (var item in pros)         &amp;#123;             //item.Kill(); 杀死进程             Console.WriteLine(item)">
+<meta property="og:updated_time" content="2017-07-19T12:18:09.370Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="进程和通信">
+<meta name="twitter:description" content="进程12345678910111213141516//获得所以进程         Process[] pros = Process.GetProcesses();         foreach (var item in pros)         &amp;#123;             //item.Kill(); 杀死进程             Console.WriteLine(item)">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-CSharp线程和通信" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/CSharp线程和通信/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.560Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Net/">.Net</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      进程和通信
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//获得所以进程</div><div class="line">         Process[] pros = Process.GetProcesses();</div><div class="line">         foreach (var item in pros)</div><div class="line">         &#123;</div><div class="line">             //item.Kill(); 杀死进程</div><div class="line">             Console.WriteLine(item);</div><div class="line">         &#125;</div><div class="line">         //打开指定应用程序</div><div class="line">         Process.Start(&quot;calc&quot;);//计算器</div><div class="line">         Process.Start(&quot;chrome&quot;, &quot;http://www.baidu.com&quot;);</div><div class="line">         Console.ReadKey();</div><div class="line">         //打开文件</div><div class="line">         Process p1 = new Process();</div><div class="line">         ProcessStartInfo psi = new ProcessStartInfo(@&quot;文件路径&quot;);</div><div class="line">         p1.StartInfo = psi;</div><div class="line">         p1.Start();</div></pre></td></tr></table></figure>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><hr>
+<pre><code>前台线程：只有所有的前台线程都关闭了才能完成程序关闭
+后台线程: 只要所有的前台线程结束，后台线程自动结束。
+默认创建的线程是前台线程
+</code></pre><h2 id="—"><a href="#—" class="headerlink" title="—"></a>—</h2><pre><code>方法：
+Thread.CurrentThread: 获取当前线程引用
+Name  线程名
+Thread.Sleep(毫秒值) 线程睡眠
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">Thread t;</div><div class="line">        private void button1_Click(object sender, EventArgs e)</div><div class="line">        &#123;</div><div class="line">            t = new Thread(Test);</div><div class="line">            t.IsBackground = true;//标记为后台线程</div><div class="line">            //并不是启动线程，具体执行时间，cpu决定</div><div class="line">            t.Start();//线程准备就绪</div><div class="line">        &#125;</div><div class="line">        public void Test()</div><div class="line">        &#123;</div><div class="line">            for (int i = 0; i &lt; 10000; i++)</div><div class="line">            &#123;</div><div class="line">                textBox1.Text = i.ToString();</div><div class="line">                //Console.WriteLine(i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        /// &lt;summary&gt;</div><div class="line">        /// 窗体加载时候就 执行</div><div class="line">        /// &lt;/summary&gt;</div><div class="line">        /// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;</div><div class="line">        /// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;</div><div class="line">        private void Form1Load(object sender, EventArgs e)</div><div class="line">        &#123;</div><div class="line">            //取消跨线程访问检查</div><div class="line">            //因为默认.net不允许跨线程访问，例如，在子线程更新</div><div class="line">            //主线程创建的texbox内部内容，就属于跨线程访问，如下</div><div class="line">            //设置，就不会报错</div><div class="line">            Control.CheckForIllegalCrossThreadCalls = false;</div><div class="line">        &#125;</div><div class="line">        /// &lt;summary&gt;</div><div class="line">        /// 点击窗体的x正要关闭窗体的时候</div><div class="line">        /// &lt;/summary&gt;</div><div class="line">        /// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;</div><div class="line">        /// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;</div><div class="line">        private void FormClosing(object sender, FormClosingEventArgs e)</div><div class="line">        &#123;</div><div class="line">            //如果不关闭，则此时子线程还在试图更新textbox的内容</div><div class="line">            //但实际上，主线程创建的窗体已经关闭。</div><div class="line">            //不关闭线程，(有可能)造成异常</div><div class="line">            t.Abort();//终止线程</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h1 id="socket通信"><a href="#socket通信" class="headerlink" title="socket通信"></a>socket通信</h1><hr>
+<pre><code>TCP：三次握手(客户端：你有空吗  服务端：我有空，客户端：我知道了)，三次握手成功之后才通信
+UDP：快速，效率高，但是容易数据丢失
+</code></pre><hr>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line">private void btnStart_Click(object sender, EventArgs e)</div><div class="line">        &#123;</div><div class="line">            try</div><div class="line">            &#123;</div><div class="line">                //当点击开始监听的时候 在服务器端创建一个负责监IP地址跟端口号的Socket</div><div class="line">                //AddressFamily.InterNetwork ：ipv4</div><div class="line">                Socket socketWatch = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);</div><div class="line">                IPAddress ip = IPAddress.Any;//IPAddress.Parse(txtServer.Text);</div><div class="line">                //创建端口号对象</div><div class="line">                IPEndPoint point = new IPEndPoint(ip, Convert.ToInt32(txtPort.Text));</div><div class="line">                //监听，如果端口被占用，则程序会出错</div><div class="line">                socketWatch.Bind(point);</div><div class="line">                //最大同时连接10个，后面的排队</div><div class="line">                /*</div><div class="line">                *给出的说明是：max length of the pending client connections queue;</div><div class="line">                也就是，悬挂的最大客户端连接数。我的理解是，在没有与客户端连接的时候，</div><div class="line">                那么潜在的可以响应的最大客户端连接数是10。但是如果已经有一个连接了，</div><div class="line">                那么潜在的最大客户端连接数还是10。为什么呢，因为一经响应连接，即socket.Accept()成功，</div><div class="line">                那么就会生成新的socket与已连接的客户端通信。那么这个已连接的客户端就不会再占用原来的socket</div><div class="line">                ，相当于腾空了，因此，原socket响应连接的能力还是10。同理，已经连接了10个客户端，</div><div class="line">                那么潜在的可响应的连接依然是10个</div><div class="line">                */</div><div class="line">                socketWatch.Listen(10);</div><div class="line"></div><div class="line">                Thread th = new Thread(Listen);</div><div class="line">                th.IsBackground = true;//线程随着程序结束而结束</div><div class="line">                //之所以服务端要在此处开启子线程，而客户端不用，是因为tcp要等待连接，会阻塞，而客户端不会</div><div class="line">                th.Start(socketWatch);</div><div class="line">            &#125;</div><div class="line">            catch</div><div class="line">            &#123; &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        /// &lt;summary&gt;</div><div class="line">        /// 等待客户端的连接 并且创建与之通信用的Socket</div><div class="line">        /// &lt;/summary&gt;</div><div class="line">        /// </div><div class="line">        Socket socketSend;</div><div class="line">        void Listen(object o)</div><div class="line">        &#123;</div><div class="line">            Socket socketWatch = o as Socket;</div><div class="line">            //等待客户端的连接 并且创建一个负责通信的Socket</div><div class="line">            while (true)</div><div class="line">            &#123;</div><div class="line">                try</div><div class="line">                &#123;</div><div class="line">                    //负责跟客户端通信的Socket</div><div class="line">                    //之所以要多次得到不同的socket对象，是因为此处有一个连接就专门建立一个</div><div class="line">                    //其对应的socket</div><div class="line">                    socketSend = socketWatch.Accept();</div><div class="line">                    //将远程连接的客户端的IP地址和Socket存入集合中</div><div class="line">                    dicSocket.Add(socketSend.RemoteEndPoint.ToString(), socketSend);</div><div class="line">                    //将远程连接的客户端的IP地址和端口号存储下拉框中</div><div class="line">                    cboUsers.Items.Add(socketSend.RemoteEndPoint.ToString());</div><div class="line">                    //192.168.11.78：连接成功</div><div class="line">                    ShowMsg(socketSend.RemoteEndPoint.ToString() + &quot;:&quot; + &quot;连接成功&quot;);</div><div class="line">                    //开启 一个新线程不停的接受客户端发送过来的消息</div><div class="line">                    Thread th = new Thread(Recive);</div><div class="line">                    th.IsBackground = true;</div><div class="line">                    th.Start(socketSend);</div><div class="line">                &#125;</div><div class="line">                catch</div><div class="line">                &#123; &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        /// &lt;summary&gt;</div><div class="line">        /// 服务器端不停的接受客户端发送过来的消息</div><div class="line">        /// &lt;/summary&gt;</div><div class="line">        /// &lt;param name=&quot;o&quot;&gt;&lt;/param&gt;</div><div class="line">        void Recive(object o)</div><div class="line">        &#123;</div><div class="line">            Socket socketSend = o as Socket;</div><div class="line">            while (true)</div><div class="line">            &#123;</div><div class="line">                try</div><div class="line">                &#123;</div><div class="line">                    //客户端连接成功后，服务器应该接受客户端发来的消息</div><div class="line">                    byte[] buffer = new byte[1024 * 1024 * 2];</div><div class="line">                    //实际接受到的有效字节数</div><div class="line">                    int r = socketSend.Receive(buffer);</div><div class="line">                    if (r == 0)</div><div class="line">                    &#123;</div><div class="line">                        break;</div><div class="line">                    &#125;</div><div class="line">                    string str = Encoding.UTF8.GetString(buffer, 0, r);</div><div class="line">                    ShowMsg(socketSend.RemoteEndPoint + &quot;:&quot; + str);</div><div class="line">                &#125;</div><div class="line">                catch</div><div class="line">                &#123; &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line"> private void Form1_Load(object sender, EventArgs e)</div><div class="line">        &#123;</div><div class="line">            //取消跨线程监检查</div><div class="line">            Control.CheckForIllegalCrossThreadCalls = false;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>```<br>Socket socketSend;<br>        private void btnStart_Click(object sender, EventArgs e)<br>        {<br>            try<br>            {<br>                //创建负责通信的Socket<br>                socketSend = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);<br>                IPAddress ip = IPAddress.Parse(txtServer.Text);<br>                IPEndPoint point = new IPEndPoint(ip, Convert.ToInt32(txtPort.Text));<br>                //获得要连接的远程服务器应用程序的IP地址和端口号<br>                socketSend.Connect(point);<br>                ShowMsg(“连接成功”);</p>
+<pre><code>        //开启一个新的线程不停的接收服务端发来的消息
+        Thread th = new Thread(Recive);
+        th.IsBackground = true;
+        th.Start();
+    }
+    catch
+    { }
+}
+</code></pre><p> /// <summary><br>        /// 客户端给服务器发送消息<br>        /// </summary><br>        /// <param name="sender"><br>        /// <param name="e"><br>        private void btnSend_Click(object sender, EventArgs e)<br>        {<br>            string str = txtMsg.Text.Trim();<br>            byte[] buffer = System.Text.Encoding.UTF8.GetBytes(str);<br>            socketSend.Send(buffer);<br>        }</p>
+<pre><code>private void Form1_Load(object sender, EventArgs e)
+{
+    Control.CheckForIllegalCrossThreadCalls = false;
+}
+</code></pre><p>``</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/CSharp线程和通信/" data-id="cj60seea1000460nk757ihznv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/06/Android版本DSBridge使用规则/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JsBridge</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

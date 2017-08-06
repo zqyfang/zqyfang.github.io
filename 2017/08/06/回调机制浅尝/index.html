@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>回调机制浅尝 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="回调机制浅尝回调处于同步和异步之间，回调是异步的基础 回调使用场景：简单说来，延时操作，例如写完代码，运行模拟器测试，运行之后，你可以去干其他事情，当运行完毕，弹出提示运行完毕，这时候在可以去看结果显示。  案例说明： 小王有作业，计算数学题目，但是他有别的事情，他打电话给小明,让小明计算，而他自己去忙别的事情，等计算完成之后，小明在打电话回来告诉小王答案。  代码说明： 回调函数接口：  123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回调机制浅尝">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/回调机制浅尝/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="回调机制浅尝回调处于同步和异步之间，回调是异步的基础 回调使用场景：简单说来，延时操作，例如写完代码，运行模拟器测试，运行之后，你可以去干其他事情，当运行完毕，弹出提示运行完毕，这时候在可以去看结果显示。  案例说明： 小王有作业，计算数学题目，但是他有别的事情，他打电话给小明,让小明计算，而他自己去忙别的事情，等计算完成之后，小明在打电话回来告诉小王答案。  代码说明： 回调函数接口：  123">
+<meta property="og:updated_time" content="2017-07-09T06:19:23.497Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="回调机制浅尝">
+<meta name="twitter:description" content="回调机制浅尝回调处于同步和异步之间，回调是异步的基础 回调使用场景：简单说来，延时操作，例如写完代码，运行模拟器测试，运行之后，你可以去干其他事情，当运行完毕，弹出提示运行完毕，这时候在可以去看结果显示。  案例说明： 小王有作业，计算数学题目，但是他有别的事情，他打电话给小明,让小明计算，而他自己去忙别的事情，等计算完成之后，小明在打电话回来告诉小王答案。  代码说明： 回调函数接口：  123">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-回调机制浅尝" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/回调机制浅尝/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.545Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      回调机制浅尝
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="回调机制浅尝"><a href="#回调机制浅尝" class="headerlink" title="回调机制浅尝"></a>回调机制浅尝</h1><h2 id="回调处于同步和异步之间，回调是异步的基础"><a href="#回调处于同步和异步之间，回调是异步的基础" class="headerlink" title="回调处于同步和异步之间，回调是异步的基础"></a>回调处于同步和异步之间，回调是异步的基础</h2><blockquote>
+<p>回调使用场景：简单说来，延时操作，例如写完代码，运行模拟器测试，运行之后，你可以去干其他事情，当运行完毕，弹出提示运行完毕，这时候在可以去看结果显示。</p>
+</blockquote>
+<h2 id="案例说明："><a href="#案例说明：" class="headerlink" title="案例说明："></a>案例说明：</h2><blockquote>
+<p>小王有作业，计算数学题目，但是他有别的事情，他打电话给小明,让小明计算，而他自己去忙别的事情，等计算完成之后，小明在打电话回来告诉小王答案。</p>
+</blockquote>
+<h2 id="代码说明："><a href="#代码说明：" class="headerlink" title="代码说明："></a>代码说明：</h2><blockquote>
+<p>回调函数接口：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface CallBack &#123;</div><div class="line">	void sayResult(int str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>定义小王：也就是调用者，其内部有回调函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public class Wang implements CallBack&#123;</div><div class="line">	private Li li;</div><div class="line">	public Wang (Li li) &#123;</div><div class="line">		this.li=li;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	//小王调用小明的计算方法（此处十分重要，必须开子线程）</div><div class="line">	//回掉使用就是为了延时操作，如果不单开线程则li调用的对应方法耗时的时候，wnag这边也会阻塞在这，也就是说wang想出去玩是不可能的，所以单开线程，使之异步，则小王后面干吗还是不影响的，同时小李也在运算。</div><div class="line">	public void sendToLi() &#123;</div><div class="line">		new Thread(new Runnable() &#123;  </div><div class="line">            @Override  </div><div class="line">            public void run() &#123;   </div><div class="line">              li.addMethod(Wang.this,101);</div><div class="line">            &#125;  </div><div class="line">        &#125;).start();  </div><div class="line">	&#125;</div><div class="line">	//此处就是回调函数</div><div class="line">		public void sayResult(int result) &#123;</div><div class="line">			System.out.println(&quot;计算结果是：&quot;+result);</div><div class="line">		&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>解析：要实现回调函数接口，要有被调用者的引用，此时就是li</p>
+<hr>
+<blockquote>
+<p>定义小明：也就是被调用者</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Li &#123;</div><div class="line">	//计算方法</div><div class="line">	public void addMethod(Wang wang, int num) &#123;</div><div class="line">		int sum=0;</div><div class="line">		for (int i = 0; i &lt; num; i++) &#123;</div><div class="line">			sum+=num;</div><div class="line">		&#125;</div><div class="line">		//调用回调函数，把答案回传回去</div><div class="line">		wang.sayResult(sum);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>测试主函数：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		Li li=new Li();</div><div class="line">		Wang wang=new Wang(li);</div><div class="line">		wang.sendToLi();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>总结：回调，就是调用者（有被调用者的引用）有两个函数，一个是调用被调用者的方法，一个是回调函数。调用者（有调用者的引用），有真正的执行方法，执行完毕之后，通过调用者的引用然后回调调用者的回调方法。</p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/回调机制浅尝/" data-id="cj60seed9002c60nk9t7gif5k" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/基于Gulp的自动化工作流/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          基于Gulp的自动化工作流
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/Vue文档初读（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vue文档初读（一）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

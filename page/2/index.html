@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Vue文档初读（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Vue文档初读（二）/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.541Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Vue文档初读（二）/">Vue文档初读（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="组件化构建"><a href="#组件化构建" class="headerlink" title="组件化构建"></a><strong>组件化构建</strong></h1><hr>
+<pre><code>Vue提供了非常方便的组件化构建方案，可以用独立可复用的小组件来构建大型应用。
+一个组件其实就是一个预定义的Vue实例。
+</code></pre><hr>
+<blockquote>
+<p>下面来写一个类似于Vue提供的自动循环的无序列表</p>
+</blockquote>
+<h2 id="自定义组件"><a href="#自定义组件" class="headerlink" title="自定义组件"></a><strong>自定义组件</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Vue.component(&apos;todo-item&apos;, &#123;</div><div class="line">	props:[&apos;todo&apos;],</div><div class="line">  template: &apos;&lt;li&gt;&#123;&#123;todo.text&#125;&#125;&lt;/li&gt;&apos;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><em>解析：component组件的意思，template模板的意思，都是Vue固定的命名方案,props代表传入的参数，此时传入todo参数，下面todo.text引用</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;ol&gt;</div><div class="line">  &lt;todo-item v-bind:todo=&quot;item&quot; v-for=&quot;item in todos&quot;&gt;&lt;/todo-item&gt;</div><div class="line">&lt;/ol&gt;</div></pre></td></tr></table></figure></p>
+<p><em>简单使用即可，注意名字和上面component一致。毕竟是自定义，所以要先绑定todo（可变，自定命名，只要和props传入一致即可）item,然后才能在v-for循环指令中使用item,使其对应上todo的数据</em></p>
+<h2 id="代码实例"><a href="#代码实例" class="headerlink" title="代码实例"></a><strong>代码实例</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</div><div class="line">  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</div><div class="line">  &lt;title&gt;Document&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">  &lt;div class=&quot;app&quot;&gt;</div><div class="line">    &lt;ol&gt;</div><div class="line">      &lt;todo-item v-bind:todo=&quot;item&quot; v-for=&quot;item in todos&quot;&gt;&lt;/todo-item&gt;</div><div class="line">    &lt;/ol&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">&lt;script src=&quot;./src/vue.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">  Vue.component(&apos;todo-item&apos;,&#123;</div><div class="line">    props:[&apos;todo&apos;],</div><div class="line">    template:&apos;&lt;li&gt;&#123;&#123;todo.text&#125;&#125;&lt;/li&gt;&apos;</div><div class="line">  &#125;)</div><div class="line">  var app=new Vue(&#123;</div><div class="line">    el:&apos;.app&apos;,</div><div class="line">    data:&#123;</div><div class="line">    todos:[</div><div class="line">      &#123;text:&apos;a&apos;&#125;,</div><div class="line">      &#123;text:&apos;&apos;&#125;,</div><div class="line">      &#123;text:&apos;c&apos;&#125;</div><div class="line">    ]</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Vue文档初读（二）/" data-id="cj60seed0002360nkxfxul1mg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Ubuntu命令/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.539Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/杂类/">杂类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Ubuntu命令/">Ubuntu命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>ctrl+shift+加：放大终端</li>
+<li>ctrl+减：缩小终端</li>
+<li>ls；显示当前路径的文件以及文件夹</li>
+</ul>
+<hr>
+<pre><code>延伸：ls / 显示根目录内容
+   同理，还可以ls /bin等等
+   ls -a:显示所有文件，包括隐藏文件
+   ls -l:以列表形式显示内容
+   ls -h:只这样使用和ls没区别，但是ls -l -h这样时候
+   会显示文件大小(格式化后的文件大小)
+   ls -a -h -l：等效于 ls -alh（无顺序之分）
+   ls 2*:通配符*，此时表示显示2开头的文件或文件夹。
+   ls 2?；通配符?,此时表示2开头且后面只有一位的文件或文件夹，例如23，25.
+   ls 2[123]3:此时显示 213，223，233名称的文件，还可以这么写 2[1-3]3等效。
+</code></pre><hr>
+<ul>
+<li>pwd:显示当前路径</li>
+<li>touch 文件名：创建文件 如果文件名以.开头则是隐藏文件。</li>
+<li>mkdir 文件夹名称：创建文件夹</li>
+</ul>
+<hr>
+<pre><code>延伸：mkdir a/b/c/d -p:不加-p不能创建多级目录，因为不会自动创建，比如c目录没有
+    d就没法创建，但是加上-p之后，就会自动创建。
+</code></pre><hr>
+<ul>
+<li>clear：清空终端</li>
+<li>–help：帮助文档，例如ls –help等效于 man ls</li>
+<li>cat 文件名：查看文件内容</li>
+<li>history：历史命令，刚刚执行过的命令</li>
+<li>rm 文件或文件夹名称:删除文件或文件夹，可使用*通配符删除对应文件</li>
+</ul>
+<hr>
+<pre><code>延伸：如果文件夹非空，不能直接删除
+    rm 文件夹名称 -r:可以删除非空(和空)文件夹。
+</code></pre><hr>
+<ul>
+<li>more 文件名:分屏显示内容，按F往下一屏，按B往上一屏，q退出。</li>
+<li>ls -lah /bin |more:把对应路径下分屏显示。</li>
+</ul>
+<blockquote>
+<p>注意：ll相当于 ls -la<br>|意思是把前面的执行内容，拿到|后面显示，|可以理解为一个管道。</p>
+</blockquote>
+<hr>
+<pre><code>路径：两次tab可以显示当前能补全的所有内容
+    cd /home/python/laowang:进入绝对路径
+    相对路径：从当前目录开始算起
+    绝对路径：从根目录(/)开始算起
+    cd ..:返回上一级路径
+    cd ./A:进入当前路径下的A文件夹里面
+    cd ~：返回家目录，也就是此时的home/python
+    cd -:返回上一次操作时候的目录。
+写了很多命令不想执行，删除太麻烦：ctrl+c不执行
+</code></pre><hr>
+<ul>
+<li>tree:以目录树方式显示</li>
+</ul>
+<hr>
+<pre><code>重定向：
+例如：ls &gt;xx.txt就会把本来ls输出的内容全部输入到当前目录的xx.txt文件中。
+还有ls &gt;&gt;xx.txt是追加内容到原来文件的末尾的意思。一个&gt;会清空原来内容。
+</code></pre><hr>
+<hr>
+<pre><code>链接：类似快捷方式
+mv 原文件名 新文件名：重命名
+    延伸：mv还可以移动文件 mv 111.txt laowang  ：把111.txt移动到laowang文件夹。
+
+ln -s 原文件名 链接名称：创建软链接
+ln 原文件名 链接名称：创建硬链接，相当于又创建一个文件名(类似于同一个文件鼬多个指向的入口)
+所以删除原文件后，只是删除一个入口，例如链接还可以打开文件内容。
+如何彻底删除硬链接文件：当删除所有硬链接个数时候，才会真正删除文件
+查询文件硬链接数：当ls -lh时候，紧紧跟着文件名称的后面一个数字就是硬链接数。
+</code></pre><hr>
+<hr>
+<pre><code>复制文件：
+首先说明，cat可以一次查询不同文件内容，分行显示
+如果 cat 1.txt 2.txt &gt;xxx.txt:就相当于把1，2两个文件内容复制到xxx.txt文件中。 
+
+grep &quot;ntfs&quot; 1.txt:去1.txt中查找ntfs
+grep &quot;^ntfs&quot; 1.txt:去1.txt中查找ntfs开头的内容
+grep &quot;ntfs$&quot; 1.txt:去1.txt中查找ntfs结尾的内容
+grep -n &quot;ntfs&quot; 1.txt:去1.txt中查找ntfs在哪一行
+grep -v &quot;ntfs&quot; 1.txt:去1.txt中查找不包含ntfs的内容
+
+cp:copy文本  cp 要复制的文件名称 新文件名称
+如果拷贝的是文件夹，直接这样是不能copy的，加上-r就可以了，一般牵扯到文件夹然后失败的
+加上-r一般都可以解决。其中-r放到前面后面都可行。
+</code></pre><hr>
+<hr>
+<pre><code>find；
+搜索文件：
+find / -name &quot;*name*&quot;:在根目录下查找名称包含name的文件
+find / -name &quot;.sh&quot;:根目录下查找后缀.sh结尾的文件
+find / -name &quot;[A-Z]*&quot;:查找根目录下大写字母开头的文件。
+find / -size 2M:查找根目录下文件大小为2m的文件
+find / -size +2M:查找根目录下文件大于2m的文件
+find / -size -2M:查找根目录下文件小于为2m的文件
+find ./ -size+4K -size +2M:查找根目录下文件大于4k小于2m的文件
+find ./ -perm 777 查找当前目录权限为77的文件或目录(注意此处还包括目录)
+</code></pre><hr>
+<hr>
+<pre><code>tar:注意打包不会压缩，大小不变
+打包：tar -cvf test.tar *.py 把当前目录的所有py结尾文件打包
+解包：tar -xvf test.tar
+压缩解压一：相对比压缩二会更小
+压缩：tar -zcvf test.tar.gz *.py 把当前目录py文件压缩打包
+解压：tar -zxvf test.tat.gz
+压缩方式二：相对比压缩三更小
+压缩：tar -jcvf test.tar.bz2 *.py
+解压：tar -jxvf test.tar.bz2
+注意：只要是tar情况下，tar -zxvf test.tat.gz -C laowang/
+这意思是-大写的c，解压到指定文件夹，bz2和gz都可以使用
+
+压缩方式三：
+压缩：zip test.zip *.py
+解压：unzip test.zip
+zip情况下，解压到指定位置通过-d指定
+</code></pre><hr>
+<ul>
+<li>which：<blockquote>
+<p>例如：which ls:查看ls（当前命令，用的到底是bin文件夹下面的哪个文件，因为linux下命令<br>都是bin目录下的某个命令）</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<pre><code>cal：列表形式打印出当天所在月整月日历
+cal -y 2008:打印出2008年整年的日历
+date:查看当前时间
+date &quot;+%Y====%m====%d&quot;；输出2017====06====10
+ps -aux:当前ubuntu正在开启的进程，输出完毕之后停止
+top:显示当前ubuntu进程运行情况，且不停止
+htop:显示更加人性化
+kill pid数字:杀进程
+kill -9 pid数字:强制杀进程，一定会被杀掉。
+重启：reboot/init6
+关机：shutdown -h/init0  立刻关机
+shutdown -h +10:十分钟之后关机
+shutdown -h 20:20:今晚八点二十关机
+df：检查磁盘空间 可以使用df -h
+du:当前路径所占用空间大小 可使用 du -h
+</code></pre><hr>
+<ul>
+<li>ifconfig:查看当前电脑网络信息<blockquote>
+<p>修改网卡地址：sudo ifconfig ens33 192.168.220.129<br>其中ens33就是其中一个网卡的名字，可以通过ifconfig查询出所有网卡名字</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<pre><code>用户相关命令
+useradd 账户名称：添加账户，需要权限，加sudo
+但是这样没有设置密码是不能切换账户到新添加的用户的，此时
+需要通过passwd 账户名然后先后输入两次密码，设置密码，没有权限则加上sudo
+passwd不但可以创建密码，只要密码设置过，再次使用该命令，就是修改密码。
+useradd 账户名 -m:会创建用户名同时创建家目录
+
+su 账户名称：切换账户，类似于注销后登录。需要输入要切换到的用户的密码
+whoami；显示当前账户名
+who:当前登录的用户，有ip就是远程连接，没ip就是本机登录
+exit：退出当前账户
+远程登录电脑：ssh python@192.168.8.1
+其中python是用户名，后面跟着的是电脑的ip。
+在同一个终端开启多个标签：ctrl+shift+t
+快速切换标签：alt+数字
+uerdel 用户名:删除用户
+userdel -r 用户名：删除用户名同时，删除对应的家目录
+注意：切换目录时候，对比，su qiangge 和su - qiangge的区别
+su qiangge :然后输入pwd:/home/python/Desktop
+su - qiangge :然后输入pwd :/home/qiangge
+也就是说加上-会切换到对应账户的家目录里面
+cat /etc/passwd：查询用户详细信息。
+切换到超级管理员:sudo -s(ubuntu中使用，其他linux是su root切换超级管理员)
+groupadd 组名：创建组
+可以进入group文件查看：cat /etc/group
+groupdel 组名：删除组
+还可以通过groupmod然后多按几次tab键显示所有组。
+为普通用户加入sudo权限（超级管理员权限，不然sudo -s无效），
+通过cat /etc/group |grep adm查询那些用户可以切换到超级管理员，
+如果没有当前用户，可以通过命令添加进去(必须通过本来就有切换到超级管理员权限的用户名来操作).
+sudo usermod -a -G adm 用户名
+sudo usermod -a -G sudo 用户名
+chown:修改文件所有者(也就是用户，可以通过ll查看)，chown 组名 文件名
+chgrp:修改文件所属的组，chgrp 组名 文件名。
+</code></pre><hr>
+<h2 id="修改文件权限："><a href="#修改文件权限：" class="headerlink" title="- 修改文件权限："></a>- 修改文件权限：</h2><pre><code>d rwx  --x r--: d代表是否是文件夹(d代表是文件夹) 
+后面三个一组，共三组(分别是文件拥有者的权限，同组的权限，其他人权限)
+r:可读 w:可写  x:可执行(其中r可当作4，w为2，x为1)
+u:文件拥有者 g:同组 o:其他人
+字符法修改权限:chmod u=rwx 2.py
+chmod u=r,g=r,o= 2.py
+数字法修改权限：chmod 41 2.py代表修改拥有者权限为可读，同组权限为可执行，其他人无权限
+</code></pre><hr>
+<ul>
+<li>vim相关编辑器：</li>
+</ul>
+<hr>
+<pre><code>vi/vim 文件名称：创建文件(如果文件存在也是打开该文件)
+i:vi进入编辑模式，按下i才能进行编辑，会光标前面插入字符
+a:vi进入编辑模式，按下a会在光标后插入字符
+o:在编辑模式下，输入字母o是下一行。
+I：行首添加
+A：行尾添加
+O：上一行添加
+yy:复制光标所在行
+p:粘贴
+dd:剪切光标所在行
+4yy：光标所在行，开始向下复制的4行
+2dd:光标所在行，开始向下删除两行
+命令模式下上下左右的光标是无效:
+h l 分别为左右移动光标，j k分别是下上
+可见区域：快速定位
+M：中间
+L：最下面
+H：最顶端
+
+ctrl+f:下一页
+ctrl+b:上一页
+ctrl+u:向上翻半屏
+ctrl+d:向下翻半屏
+30G:快速定位到第30行
+G：快速定位到整个代码最后一行
+gg：快速回到整个代码的第一行
+
+w:向后跳一个单词的长度，跳到下一个单词开始处
+b:向前跳一个单词的长度，上i一个单词的开始处
+D：从当前光标开始剪切，一直到行末
+d0:从当前光标开始剪切，一直到行首
+dw:删除当前光标的一个单词
+u:撤销刚刚的操作
+ctrl+r；反撤销
+x:删除当前的光标位置，每次只会删除一个
+X:删除光标前一个位置，每次只删除一个
+v 加上下键选中多行或一行，然后两个&gt;&gt;:选中代码整体右移动，同理还有左移
+V同v操作：区别在于，V选中是正行操作，而v是选择部分被操作
+但是一直按下&gt;&gt;会很累，只需要在上面操作之后，按下.就是重复操作了
+(：跳到上一片代码的开头
+): 跳到下一片代码的开头
+r:（替换先要进入编辑模式修改，太麻烦，次命令在命令模式下直接修改）
+替换当前光标字符，只能替换一个
+R:从当前光标开始，替换以及后面的字符
+/：然后输入要搜索的内容，如果想取消搜索的颜色提示(难看)
+可是在搜索一个不存在的即可。
+N：搜索出来的情况下，调到上一个被搜索到的内容
+n:搜索出来的情况下，调到下一个被搜索到的内容
+
+末行模式：
+整片替换：首先进入末行模式(:)，然后输入%s/要被替换内容/新内容/g
+11，16s/要被替换内容/新内容/g：替换指定行到哪一行的内容
+q!:不保存强制退出
+w:保存
+q:退出
+shift+zz:相当于wq
+</code></pre><hr>
+<blockquote>
+<p>进入末行模式然后保存文件：首先必须按下esc从编辑模式退回到<br>命令模式。然后在命令模式下输入:，然后输入wq即可保存文件<br>这其中任何情况下不想保存了，都可以esc退回到命令行模式</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Ubuntu命令/" data-id="cj60seecy002060nku4szrt48" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-TCP及UDP小结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/TCP及UDP小结/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.537Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/TCP及UDP小结/">Socket通信小结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TCP及UDP小结"><a href="#TCP及UDP小结" class="headerlink" title="TCP及UDP小结"></a>TCP及UDP小结</h1><h2 id="UDP双向发送"><a href="#UDP双向发送" class="headerlink" title="UDP双向发送"></a>UDP双向发送</h2><hr>
+<p>udp是面向无连接的，所以不关心发送接收成功与否，双方都无应答，但是扔要建立连接只是没有三次握手的<br>过程，故而udp也可以设置建立连接超时时间：socket.setSoTimeout(time);<br>udp虽然也可以绑定端口号，但是不是说绑定之后，就按照绑定的端口发送数据，而是绑定端口其实就成了监听广播了。<br>jdk文档如下：<br>示例：DatagramSocket s = new DatagramSocket(null); s.bind(new InetSocketAddress(8888)); 这等价于：DatagramSocket s = new DatagramSocket(8888); 两个例子都能创建能够在 UDP 8888 端口上接收广播的 DatagramSocket。<br>故而udp无法绑定端口作为发送端，端口为系统自动分配然后作为监听端口的。</p>
+<hr>
+<h3 id="需要先运行的java类"><a href="#需要先运行的java类" class="headerlink" title="需要先运行的java类"></a>需要先运行的java类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">两个java文件都各自有发送端和服务端，案例如下</div><div class="line">public class UdpServer &#123;</div><div class="line">    public static void main(String[] args) throws IOException &#123;</div><div class="line">        DatagramSocket ds=new DatagramSocket(9090);</div><div class="line">        byte[] b=new byte[1024];</div><div class="line">        DatagramPacket dp=new DatagramPacket(b,b.length);</div><div class="line">        ds.receive(dp);</div><div class="line">        String string=new String(b,0,dp.getLength());</div><div class="line">        System.out.println(string);</div><div class="line">        ds.close();</div><div class="line"></div><div class="line"></div><div class="line">        DatagramSocket ds1=new DatagramSocket();</div><div class="line">        String info=&quot;udpserver发送的数据&quot;;</div><div class="line">        Inet4Address i4= (Inet4Address) Inet4Address.getByName(&quot;127.0.0.1&quot;);</div><div class="line">        DatagramPacket dp1=new DatagramPacket(info.getBytes(),info.getBytes().length,i4,10086);</div><div class="line">        ds1.send(dp1);</div><div class="line">        ds1.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>DatagramSocket不加端口号就是客户端，加上就是服务端（监听该端口号）</p>
+</blockquote>
+<h4 id="服务端创建步骤"><a href="#服务端创建步骤" class="headerlink" title="服务端创建步骤"></a>服务端创建步骤</h4><ul>
+<li>创建DatagramSocket并监听本机某端口，服务器端无需指定ip，因为其本身就是监听状态</li>
+<li>创建DatagramPacket，内部参数分别为byte数组，和其长度</li>
+<li>然后ds接受dp，并把dp当做receive参数</li>
+<li>最后关闭DatagramSocket</li>
+</ul>
+<h4 id="发送端创建步骤"><a href="#发送端创建步骤" class="headerlink" title="发送端创建步骤"></a>发送端创建步骤</h4><ul>
+<li>创建DatagramSocket</li>
+<li>创建DatagramPacket，参数分别为，byte类型数据，该byte的长度，通过Inet4Address得到的代表ip值，端口号</li>
+<li>发送数据，参数为dp</li>
+<li>关闭DatagramSocket</li>
+</ul>
+<h3 id="后运行的java类"><a href="#后运行的java类" class="headerlink" title="后运行的java类"></a>后运行的java类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public class UdpUtils &#123;</div><div class="line">    public static void main(String[] args) throws IOException &#123;</div><div class="line">        DatagramSocket ds=new DatagramSocket();</div><div class="line">        String info=&quot;udpclient发送的数据&quot;;</div><div class="line">        Inet4Address i4= (Inet4Address) Inet4Address.getByName(&quot;127.0.0.1&quot;);</div><div class="line">        DatagramPacket dp=new DatagramPacket(info.getBytes(),info.getBytes().length,i4,9090);</div><div class="line">        ds.send(dp);</div><div class="line">        ds.close();</div><div class="line"></div><div class="line">        DatagramSocket ds1=new DatagramSocket(10086);</div><div class="line">        byte[] b=new byte[1024];</div><div class="line">        DatagramPacket dp1=new DatagramPacket(b,b.length);</div><div class="line">        ds1.receive(dp1);</div><div class="line">        String str=new String(b,0,dp1.getLength());</div><div class="line">        System.out.println(str);</div><div class="line">        ds1.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>之所以后执行，是因为java阻塞代码，先执行接受端，此时两个文件都有发送和接收，而且端口号不一样<br>可知，这是一个，a&gt;b而后b&gt;a的过程，其中是a发送到b的9090端口，b接收到数据后，回数据给a的10086端口。而不一定是a发送给b，b就回数据到a发送数据的端口。</p>
+</blockquote>
+<h2 id="tcp代码案例："><a href="#tcp代码案例：" class="headerlink" title="tcp代码案例："></a>tcp代码案例：</h2><blockquote>
+<p>tcp绑定方法是用场景：ServerSocket 有一个不带参数的默认构造方法。通过该方法创建的 ServerSocket 不与任何端口绑定，接下来还需要通过 bind()方法与特定端口绑定。这个默认构造方法的用途是，允许服务器在绑定到特定端口之前，先设置ServerSocket 的一些选项。因为一旦服务器与特定端口绑定，有些选项就不能再改变了。不过一般情况下，直接使用常用方法即可。<br>例如：<br>ServerSocket serverSocket=new ServerSocket();<br>serverSocket.setReuseAddress(true); //设置 ServerSocket 的选项<br>serverSocket.bind(new InetSocketAddress(8080)); //与 8080 端口绑定</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">tcp客户端案例：</div><div class="line">public class TcpUtil &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) throws IOException &#123;</div><div class="line">        Socket s=new Socket(&quot;127.0.0.1&quot;,10086);</div><div class="line">        s.setSoTimeout(1000);</div><div class="line">        System.out.println(s.getPort());//连接的服务器端端口号，此时为10086</div><div class="line">        System.out.println(s.getLocalPort());//系统为客户端自动分配的端口号</div><div class="line">        System.out.println(s.getRemoteSocketAddress());//获取服务端的ip和端口号</div><div class="line">        System.out.println(s.getInetAddress());//获取服务器端ip</div><div class="line">        OutputStream os=s.getOutputStream();</div><div class="line">        os.write(&quot;客户端发送的信息&quot;.getBytes());</div><div class="line">        os.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">tcp服务端案例：</div><div class="line">public class TcpServer &#123;</div><div class="line">    public static void main(String[] args) throws IOException &#123;</div><div class="line">        ServerSocket ss=new ServerSocket(10086);</div><div class="line">        Socket s=ss.accept();</div><div class="line">        InputStream is=s.getInputStream();</div><div class="line">        byte[] b=new byte[1024];</div><div class="line">        int len=is.read(b);</div><div class="line">        String str=new String(b,0,len);</div><div class="line">        System.out.println(str+&quot;发送数据的ip：&quot;+s.getInetAddress());//获取客户端ip地址</div><div class="line">        System.out.println(str+&quot;发送数据的完整地址：&quot;+s.getRemoteSocketAddress());//获取客户端的完整地址，ip和端口号</div><div class="line">        System.out.println(s.getPort());//客户端的端口号</div><div class="line">        System.out.println(s.getLocalPort());//服务端监听端口，也即服务端端口，此时为10086</div><div class="line">        s.close();</div><div class="line">        ss.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>总结：相关方法tcp，udp通用，但是调用对象可能不同，例如udp服务端为datagrampacket<br>而tcp客户端就是socket调用，udp客户端时datagramsocket调用，tcp服务端时serversocket调用。</p>
+<p>getPort():获取对方端口号，服务端则得到客户端端口号，客户端则得到服务端端口号<br>getLocalPort():获取本地端口号，例如，服务端获取就是服务端监听也即服务端端口号<br>getInetAddress():获取对方ip地址<br>getRemoteSocketAddress()：获取对方完整地址，包括ip和端口号<br>getLocalAddress():获取本地ip地址</p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/TCP及UDP小结/" data-id="cj60seecs001w60nk7dhuklsg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Python知识点(一)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Python知识点(一)/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.535Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Python知识点(一)/">Python知识点(一)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><hr>
+<pre><code>单行注释：# 我是注释
+多行注释：,,, 我是多行注释 ,,, （还可以用三个双引号）
+py2：为了支持中文
+# coding=utf-8  或者 #-*- coding:utf-8 -*-
+</code></pre><hr>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><blockquote>
+<p>num=10 #定义变量，python会自动推导类型</p>
+<h1 id="input"><a href="#input" class="headerlink" title="input"></a>input</h1><hr>
+<pre><code>high=input(&quot;请输入你的身高：&quot;) #接收输入内容
+age=18
+print(&quot;age的值是%d&quot;%age) # %s是字符串占位符
+在py3中input接收到内容当作字符串赋值给前面变量
+在py2中input接收到内容当作代码执行后赋值给变量
+说明：比如说input在py2下输入是laowang，最后就是value=laowang
+会报错，代码赋值给value这肯定错了
+py2下input接受1+1，则value值是2，当作代码执行了
+py2下面实现py3接受字符串效果，使用raw_input()即可。
+</code></pre></blockquote>
+<hr>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><hr>
+<pre><code>数字：int(有符号整型) long(长整形，也可以代表八进制，十六进制)
+float(浮点型) complex(复数)
+布尔型：True,False
+字符串：String
+List:列表
+Tuple:元组
+Dictionary；字典
+</code></pre><hr>
+<h1 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h1><blockquote>
+<p>字母，数字，下划线，且数字不能开头。</p>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><hr>
+<pre><code>在python中可以用字符串乘以数字，输出就是数字个该字符串
+幂运算符：**
+一次输出多个变量：
+print(&quot;字符串%s,......整型值%d....&quot;,%(name,age));
+python字符串比较可以直接使用==.
+</code></pre></blockquote>
+<hr>
+<h1 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">not:</div><div class="line">a=int(input(&quot;请输入数字&quot;))</div><div class="line">if not(a&gt;10):</div><div class="line">    print(&quot;不是大于10&quot;)</div></pre></td></tr></table></figure>
+<h1 id="补充点"><a href="#补充点" class="headerlink" title="补充点"></a>补充点</h1><hr>
+<pre><code>python中没有do while
+print打印默认换行，print(&quot;*&quot;,end=&quot;&quot;)这样就不换行了
+python中只有j+=1,没有j++
+</code></pre><hr>
+<h1 id="for"><a href="#for" class="headerlink" title="for"></a>for</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">for循环可以直接遍历字符串</div><div class="line">for item in name：</div></pre></td></tr></table></figure>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">组合字符串：两种方式</div><div class="line">+：如果是字符串相加即时组合，如果是数字+就是计算</div><div class="line">f=&quot;======%s=======&quot;%(a+b)</div><div class="line">下标和切片：</div><div class="line">name=“&quot;qiang&quot;;</div><div class="line">name[1]</div><div class="line">name[-1]//最后一个元素</div><div class="line">len(name)  字符串长度</div><div class="line">name[1:3] 切片，包左不包右</div><div class="line">name[-2:] 取最后两个</div><div class="line">name[1:5:2] 每隔2(步长)取</div><div class="line">name[-1:0]这样写是什么也取不出来的</div><div class="line">name[-1:0:-1]这样是逆序取字符串，但是这样取不出来最开始的字符</div><div class="line">name[-1::-1]完整的逆序取字符串，等效于name[::-1]</div><div class="line">mystr.find(&quot;world&quot;) 返回从左边开始的匹配的字符串中第一个字符的下标(此时是w)</div><div class="line">如果没找到返回-1</div><div class="line">mystr.rfind(&quot;world&quot;) 返回从右开始的下标，注意此时返回的是右边开始的第一个匹配的</div><div class="line">字符串world中w字符的下标(下标还是从左往右数的数字)</div><div class="line"></div><div class="line">mystr.index(&quot;world&quot;)如果该字符存在，则和find效果等同，但是如果没找到，则程序直接报错，同理也有rindex</div><div class="line">mystr.count(&quot;world&quot;)查询出现次数，不存在则返回0</div><div class="line">mytsr.replace(&quot;world&quot;,&quot;WORLD&quot;)  替换字符串中小写world变为大写，返回新字符串，原字符串不变</div><div class="line">数字字符串元组是不可变类型，所以相关操作，一般都是返回新的，本身不变</div><div class="line">mytsr.replace(&quot;world&quot;,&quot;WORLD&quot;，1)如果字符串有多个小写的world，那么此时只替换第一个，如果不写参数三，则全部替换</div><div class="line">mystr.split(&quot; &quot;)把字符串mystr按照空格切割(被切割的部分已经没有了，此时空格就没有了)，并返回一个列表[]</div><div class="line"> mystr.capitalize()首字母大写</div><div class="line">mystr.title() 每个单词首字母都大写</div><div class="line">mystr.startswith() 是否已什么开头，返回布尔值</div><div class="line">mystr.endswith()</div><div class="line">mystr.lower()</div><div class="line">mystr.upper()</div><div class="line">mystr.ljust(10)   &apos;hello     &apos; 左对齐并空格填充</div><div class="line">mystr.rjust(10)   &apos;     hello&apos;</div><div class="line">mystr.center(10)  &apos;   hello  &apos;</div><div class="line">mystr.lstrip()删除字符串左边空格</div><div class="line">mystr.rstrip()删除字符串右边空格</div><div class="line">mystr.strip()删除字符串两边空格</div><div class="line">mystr.partition(&quot;itcast&quot;)以参数字符串为中心，分割字符串为三部分  </div><div class="line">返回：(hello itcast  qiang)元组</div><div class="line">mystr.rpartition(&quot;itcast&quot;) 从右边开始找，进行分割</div><div class="line">mystr.splitlines() 把字符串(内部有\n)按照换行进行切割，并返回列表list</div><div class="line">mystr.isalpha() 所有字符都是字母，返回布尔值</div><div class="line">mystr.isdigit 字符串只包含数字，返回布尔值</div><div class="line">mystr.isalnum 字符串是否只包含数字和字母，返回布尔值</div><div class="line">mystr.isspace 字符串是否只包含空格，返回布尔值</div><div class="line">mystr.join(str)每个字符后面插入str，构造出一个新的字符串</div><div class="line">li=[&quot;my&quot;,&quot;name&quot;,&quot;is&quot;,&quot;qiang&quot;]</div><div class="line">str=&quot; &quot;</div><div class="line">str.join(li)  &apos;my name is qiang&apos;</div><div class="line">str=&quot;-&quot;</div><div class="line">str.join(li) &apos;my-name-is-qiang&apos;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>面试题：切割字符串中的空格或\td等空白字符
+解析：直接使用result=mystr.split（）默认不加参数，就是直接去除这类空白字符，都会进行切割。返回的是列表
+然后利用join方法在拼接成字符串
+&quot;&quot;.join(result)，这样不加空格的字符串&quot;&quot;，使用join就可拼接列表中字符
+</code></pre><hr>
+<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><hr>
+<pre><code>python中列表可以存储不同数据类型
+name=[1,&apos;a&apos;,&quot;afba&quot;,3.14]
+添加：name.append(&quot;强&quot;)  如果append是添加的是可迭代对象，例如列表会整体添加进去，区别于
+extentd。例如:[1,2,3,[4,5]]
+补充案例：
+a=[1,2,3]
+b=[4,5]
+a=a.append(b)
+输出a结果是None，因为右边没有返回值
+
+
+插入：name.insert(1,&quot;heh&quot;)
+连接列表：1.使用+（此时变化的是新的name2=name+name1而不是name） 2. name.extend(name1) 把name1列表添加到name列表，此时name变化,注意，extentd内部只能放入可迭代对象，不能是单一数字这种。
+删除：
+name.pop() 删除name最后一个元素并返回删除的元素
+name.remove(&quot;曾&quot;) 删除指定元素，如果存在多个相同元素，则只删除从左开始第一个，无返回值
+del name[1]删除指定索引的元素
+取出：name[2:5]同字符串的切片，包左不包右
+替换：name[0]=&quot;强&quot;
+&quot;强&quot; in name: 判断字符串&quot;强&quot;是否在name列表中，同理还有not in
+</code></pre><hr>
+<h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">person=&#123;&quot;age&quot;:19,&quot;name&quot;:qiang&#125;</div><div class="line">增加：person[&quot;没有的key&quot;]=value</div><div class="line">删除：del person[key]  无返回值</div><div class="line">查找：1. person[key]  没有的的话会程序崩溃  2.person.get(key) 没有key也不会报错</div><div class="line">修改：person[key]=新value</div><div class="line"></div><div class="line">python特有的遍历：</div><div class="line">for item in name:</div><div class="line">	pass</div><div class="line">else:</div><div class="line">	pass</div><div class="line">这种else是不论怎么样都会执行了除非在for内部加判断然后break了</div><div class="line"></div><div class="line">字典相关操作：</div><div class="line">len():字典的长度</div><div class="line">keys():字典所有key的列表 dict_keys([&apos;name&apos;, &apos;age&apos;])</div><div class="line">values():字典所有value的列表   dict_values([&apos;qiang&apos;, 13])</div><div class="line">items():字典(键值)元组的列表   dict_items([(&apos;name&apos;, &apos;qiang&apos;), (&apos;age&apos;, 13)])</div><div class="line">注意：上面三个返回值，都是py3的返回，在py2中，返回就是元组，外面没有dict_...包裹</div><div class="line"></div><div class="line"></div><div class="line">拆包：</div><div class="line">a=(11,22)</div><div class="line">b,c=a</div><div class="line">则b=11   c=22</div></pre></td></tr></table></figure>
+<h2 id="元组-tuple"><a href="#元组-tuple" class="headerlink" title="元组(tuple)"></a>元组(tuple)</h2><blockquote>
+<p>元组和列表类似，列表使用方括号，元组使用小括号，元组的元素不能修改<br>name=(1,2,3)</p>
+</blockquote>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">def 函数名():</div><div class="line">	pass</div><div class="line"></div><div class="line">函数返回值：</div><div class="line">def test():</div><div class="line">	a=1</div><div class="line">	b=2</div><div class="line">	c=3</div><div class="line">	return a,b,c  #等效于return(a,b,c)</div><div class="line">说明：函数一次性返回多个值，默认会被封装成元组返回，当然也可以手动封装成列表等返回</div></pre></td></tr></table></figure>
+<h1 id="变量："><a href="#变量：" class="headerlink" title="变量："></a>变量：</h1><hr>
+<pre><code>定义全局变量之后，如果内部有同名的局部变量
+但是如果还是想使用全局变量，可以内部用global修饰，这样就是指明使用的是全局变量
+全局变量，必须放在函数调用之前即可（重要）
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">函数：</div><div class="line">num =10</div><div class="line">def test():</div><div class="line">	global num</div><div class="line">    num=num+1</div><div class="line">    return num</div><div class="line">说明：函数使用全局变量的时候，如果不在函数内部加以声明，会报错，这点和java</div><div class="line">不同，另外，如果使用全局的字典，列表，则global xx这个函数内声明可省略。</div><div class="line"></div><div class="line">缺省参数：</div><div class="line">def test(a,b=33,c=44):  b ,c  被称为缺省参数</div><div class="line">	return a+b</div><div class="line"></div><div class="line">test(a,c=55) c被称为命名参数</div><div class="line"></div><div class="line">不定长参数：</div><div class="line">def test(a,b,*args):</div><div class="line">   sum=0</div><div class="line">   sum+=(a+b)</div><div class="line">   for item in args:</div><div class="line">        sum+=item</div><div class="line">   return sum</div><div class="line">print(test(1,2,3,4,5,6))</div><div class="line">输出21 ，*args会被封装成一个元组此时为(3,4,5,6),注意可变参数一定要放到参数最后一个。</div><div class="line"></div><div class="line">案例：</div><div class="line">  1 def test(a,b,c=33,*args,**kwargs):</div><div class="line">  2     print(a,b)</div><div class="line">  3     print(c)</div><div class="line">  4     print(args)</div><div class="line">  5     print(kwargs)</div><div class="line">  6 test(1,2,44,1,44,d=&quot;qiang&quot;,e=&quot;zeng&quot;)</div><div class="line">输出：</div><div class="line">1 2</div><div class="line">44</div><div class="line">(1, 44)</div><div class="line">&#123;&apos;d&apos;: &apos;qiang&apos;, &apos;e&apos;: &apos;zeng&apos;&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注意：传入的key=value形式的参数，如果位于最后，会被封装成字典形式
+另外此种形式，不能在44位置，写c=44，因为后面有**kwargs。如此会造成
+识别误区，因为会被当成封装进入字典的一部分，但是规定字典那部分必须放在最后
+同时，不能出现a=&quot;&quot;这样的，因为也会出现识别错误，因为前面参数有a。
+</code></pre><hr>
+<h2 id="拆包："><a href="#拆包：" class="headerlink" title="拆包："></a>拆包：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">  1 def test(a,b,c=33,*args,**kwargs):</div><div class="line">  2     print(a,b)</div><div class="line">  3     print(c)</div><div class="line">  4     print(args)</div><div class="line">  5     print(kwargs)</div><div class="line">  6</div><div class="line">  7 A=(7,8,9)</div><div class="line">  8 B=&#123;&quot;d&quot;:&quot;qiang&quot;,&quot;e&quot;:&quot;zeng&quot;&#125;</div><div class="line">  9 test(1,2,44,*A,**B)</div><div class="line"></div><div class="line">  输出：</div><div class="line">	1 2</div><div class="line">	44</div><div class="line">	(7, 8, 9)</div><div class="line">	&#123;&apos;e&apos;: &apos;zeng&apos;, &apos;d&apos;: &apos;qiang&apos;&#125;</div><div class="line">注意：即使B里面也不能出现和前面形参名称相同的key，例如此时的a,b</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">案例一：</div><div class="line">  1 def test(a,b,c=33,*args,**kwargs):</div><div class="line">  2     print(a,b)</div><div class="line">  3     print(c)</div><div class="line">  4     print(args)</div><div class="line">  5     print(kwargs)</div><div class="line">  6</div><div class="line">  7 A=(7,8,9)</div><div class="line">  8 B=&#123;&quot;d&quot;:&quot;qiang&quot;,&quot;e&quot;:&quot;zeng&quot;&#125;</div><div class="line">  9 test(1,2,44,A,B)</div><div class="line"></div><div class="line"></div><div class="line">输出：</div><div class="line">1 2</div><div class="line">44</div><div class="line">((7, 8, 9), &#123;&apos;e&apos;: &apos;zeng&apos;, &apos;d&apos;: &apos;qiang&apos;&#125;)</div><div class="line">&#123;&#125;</div></pre></td></tr></table></figure>
+<h2 id="引用："><a href="#引用：" class="headerlink" title="引用："></a>引用：</h2><hr>
+<pre><code>id(a)；变量a在内存中的地址
+变量名称1=变量名称2：统统都是地址传递(引用)，注意是变量名赋值
+例如：a=10   b=a  此时a,b都指向10 此时修改a=11，则b还是10，指向不变，a已经变化为11.
+所谓的引用传递，指的是全都是引用传递，不论什么类型，理论上都可以修改，但是不可变类型是不可修改的。
+
+不可变类型：数字，字符串，元组
+字典的key只能是不可变类型，因为取出value的值的时候，是通过key计算出来对应的内存地址的，key固定通过哈希算法才能计算出唯一的不变地址索引，才能正确的
+修改，查询对应的value值。
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Python知识点(一)/" data-id="cj60seeco001v60nkqtwmp2tv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-OC语言笔记_04md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/OC语言笔记_04md/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.534Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Object-C/">Object C</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/OC语言笔记_04md/">OC语言笔记_04</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NSArray"><a href="#NSArray" class="headerlink" title="NSArray"></a>NSArray</h1><blockquote>
+<p>C语言数组的弊端：<br>int array[4]={10,89,27,76};<br>只能存放一种类型的数据<br>不能动态添加数组元素，不能方便的动态删除数组元素(长度固定)</p>
+</blockquote>
+<hr>
+<pre><code>NSArray注意：
+只能存放任意oc对象，并且是有顺序的
+不能存放非oc对象，比如int/float/struct等
+它是不可变的，一旦初始化完成，里面内容固定，不能删除里面的元素，也不能追加元素
+</code></pre><hr>
+<blockquote>
+<p>数组初始化方法：<br>   NSArray <em>arr=[NSArray arrayWithObject:&lt;#(nonnull id)#&gt;]  传入一个对象<br>   NSArray </em>arr=[NSArray arrayWithObjects:&lt;#(nonnull id), …#&gt;, nil] 传入多个对象，注意：数组中的nil是结束符</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">    Person *p=[Person new];</div><div class="line">    NSObject *obj=[NSObject new];</div><div class="line">    NSArray *array=[NSArray arrayWithObjects:@&quot;lnj&quot;,p,obj, nil];</div><div class="line">    说明：可以把其他类型转换为对象，存放到数组中。</div><div class="line">    [array count]:获取数组长度</div><div class="line">    [array lastObject]:获取数组最后一个元素</div><div class="line">    [array firstObject]:获取数组第一个元素</div><div class="line">    [array objectAtIndex:&lt;#(NSUInteger)#&gt;]:获取指定位置的元素</div><div class="line">    [array containsObject:&lt;#(nonnull id)#&gt;]：是否包含某一个元素</div><div class="line">简写方法：</div><div class="line">NSArray *arr=@[@&quot;lnj&quot;,@&quot;lmj&quot;];</div><div class="line">arr[0];</div><div class="line">1.1遍历数组</div><div class="line">NSArray *arr=@[@&quot;lnj&quot;,@&quot;lmj&quot;];</div><div class="line">for (NSObject *val in arr) &#123;</div><div class="line">    NSLog(@&quot;%@&quot;,val);</div><div class="line">&#125;</div><div class="line">迭代器遍历</div><div class="line">[arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) &#123;</div><div class="line">        //obj：当前对象，idx：当前索引，stop：控制什么时候停止，可以赋值YES则停止遍历</div><div class="line">    &#125;];</div></pre></td></tr></table></figure>
+<h2 id="调用数组保存的对象中的方法"><a href="#调用数组保存的对象中的方法" class="headerlink" title="调用数组保存的对象中的方法"></a>调用数组保存的对象中的方法</h2><hr>
+<pre><code>方式一：遍历数组，取出对象，然后通过对象调用方法
+方式二：
+调用show方法
+[arr makeObjectsPerformSelector:@selector(show)];
+传递参数：
+[arr makeObjectsPerformSelector:&lt;#(nonnull SEL)#&gt; withObject:&lt;#(nullable id)#&gt;]
+1.3：数组排序
+[arr sortedArrayUsingSelector:@selector(compare:)];
+排序后，返回一个新数组(默认conpare：是升序排序)
+想使用compare：进行排序必须是Foundation中的对象，不能是自定义对象(例如person)
+</code></pre><hr>
+<blockquote>
+<p>如果想对非Foundation中的对象进行排序，则可以使用下面方法，如下代码就是把person的age按照升序排序(默认就是按照升序排序)<br>NSArray <em>new=[arr sorted ArrayWithOptions:NSSortStableusingComparator:^NSComparisonResult(Person </em>obj1,Person *obj2)]{<br>    return obj1.age&gt;obj2.age;//改成小于就是降序排序<br>}];</p>
+</blockquote>
+<h2 id="数组和字符串转换"><a href="#数组和字符串转换" class="headerlink" title="数组和字符串转换"></a>数组和字符串转换</h2><blockquote>
+<p>[arr componentsJoinedByString:@”-“]; 把arr每个元素遍历出来并用-链接成字符串返回<br>[str componentsSeparatedByString:@”<strong>“];：按照</strong>把字符串分割成数组并返回</p>
+</blockquote>
+<h2 id="数组读写"><a href="#数组读写" class="headerlink" title="数组读写"></a>数组读写</h2><hr>
+<pre><code>此方法只能写入Foundation中的对象
+[arr writeToFile:&lt;#(nonnull NSString *)#&gt; atomically:&lt;#(BOOL)#&gt;]
+写入文件，参数一：是路径，参数二是否在写入成功的时候才生成文件
+此方法是生成xml文件，一般会将xml文件的扩展名保存为plist
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">读取文件到数组：</div><div class="line">[NSArray arrayWithContentsOfFile:&lt;#(nonnull NSString *)#&gt;]//绝地址</div><div class="line">[NSArray arrayWithContentsOfURL:&lt;#(nonnull NSURL *)#&gt;]//url</div></pre></td></tr></table></figure>
+<h1 id="NSMutableArray"><a href="#NSMutableArray" class="headerlink" title="NSMutableArray"></a>NSMutableArray</h1><blockquote>
+<p>注意：不可以通过@[]来创建NSMutableArray数组，因为创建出来的是不可变数组。</p>
+</blockquote>
+<hr>
+<pre><code>是NSArray的子类，是可变的，可以添加修改删除元素
+[arr addObject:@&quot;lnj&quot;];//此方法也可以直接添加一个数组进去，但是不推荐
+将指定数组中的元素都取出来，放到arr中(注意不是把整个数组放进去)
+[arr addObjectsFromArray:@[@&quot;lnj&quot;,@&quot;lmj&quot;]];
+插入元素：
+指定位置插入元素
+[arr insertObject:&lt;#(nonnull id)#&gt; atIndex:&lt;#(NSUInteger)#&gt;]
+指定一个元素，指定数组需要插入的位置，和插入多少个
+[arr insertObjects:&lt;#(nonnull NSArray *)#&gt; atIndexes:&lt;#(nonnull NSIndexSet *)#&gt;]
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">    NSMutableArray *arr=[NSMutableArray array];</div><div class="line">    NSRange range=NSMakeRange(2, 2);//头一个2(索引)是插入的位置，第二个2指的是插入个数，如果下面不足2个会报错</div><div class="line">    NSIndexSet *set=[NSIndexSet indexSetWithIndexesInRange:range];</div><div class="line">    [arr insertObjects:@[@&quot;a&quot;,@&quot;b&quot;] atIndexes:set];</div><div class="line"></div><div class="line">删除元素：</div><div class="line">[arr removeObjectAtIndex:1]; 删除指定位置的元素</div><div class="line">[arr removeAllObjects] 清空数组</div><div class="line">[arr removeLastObject]:删除最后一个元素</div><div class="line">[arr removeObject:@&quot;a&quot;]; 删除指定元素</div><div class="line"></div><div class="line">替换元素：</div><div class="line">[arr replaceObjectAtIndex:1 withObject:@&quot;a&quot;]; 用替换数组索引为1的元素</div><div class="line">arr[1]=@&quot;a&quot;; 等效</div><div class="line">获取元素：</div><div class="line">[arr objectAtIndex:1]:获取索引1处的元素</div><div class="line">arr[1]:等效</div></pre></td></tr></table></figure>
+<h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><hr>
+<pre><code>字典中保存数据是无序的
+基本使用
+NSDictionary *dict=[NSDictionary dictionaryWithObject:@&quot;lnj&quot; forKey:@&quot;name&quot;];
+NSString *name=[dict objectForKey:@&quot;name&quot;];
+多个key和value：
+NSDictionary *dict=[NSDictionary dictionaryWithObjects:@[@&quot;lnj&quot;,@&quot;30&quot;,@&quot;1.75&quot;] forKeys:@[@&quot;name&quot;,@&quot;age&quot;,@&quot;height&quot;]];
+简单方式：
+NSDictionary *dict1=@{@&quot;name&quot;:@&quot;lnj&quot;};
+dict1[@&quot;name&quot;];
+</code></pre><hr>
+<h2 id="字典遍历"><a href="#字典遍历" class="headerlink" title="字典遍历"></a>字典遍历</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">获取键值对的个数:[dict count];</div><div class="line">获取所有key:[dict allKeys];</div><div class="line">for (NSString *obj in dict) &#123;</div><div class="line">        //obj就是key</div><div class="line">        //dict[obj]获取value</div><div class="line">&#125;</div><div class="line">其他方式：</div><div class="line">[dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) &#123;</div><div class="line">&#125;]</div></pre></td></tr></table></figure>
+<h2 id="读写文件"><a href="#读写文件" class="headerlink" title="读写文件"></a>读写文件</h2><hr>
+<pre><code>写入文件：[dict writeToFile:&lt;#(nonnull NSString *)#&gt; atomically:&lt;#(BOOL)#&gt;]
+生成也是xml文件，扩展名最好也修改为plist
+读取文件
+[NSDictionary dictionaryWithContentsOfURL:&lt;#(nonnull NSURL *)#&gt;]
+[NSDictionary dictionaryWithContentsOfFile:&lt;#(nonnull NSString *)#&gt;]
+</code></pre><hr>
+<h1 id="NSMutableDictionary"><a href="#NSMutableDictionary" class="headerlink" title="NSMutableDictionary"></a>NSMutableDictionary</h1><hr>
+<pre><code>//创建空字典
+NSMutableDictionary *dict=[NSMutableDictionary dictionary];
+添加：
+[dict setObject:&lt;#(nonnull id)#&gt; forKey:&lt;#(nonnull id&lt;NSCopying&gt;)#&gt;]
+会将传入字典中所有键值对取出来，依次放入新字典中
+[dict setValuesForKeysWithDictionary:@{@&quot;age&quot;:@&quot;30&quot;,@&quot;height&quot;:@&quot;1.75&quot;}];
+删除：
+[dict removeObjectForKey:&lt;#(nonnull id)#&gt;]
+[dict removeObjectsForKeys:&lt;#(nonnull NSArray *)#&gt;]
+[dict removeAllObjects]
+修改：
+[dict setObject:&lt;#(nonnull id)#&gt; forKey:&lt;#(nonnull id&lt;NSCopying&gt;)#&gt;]
+dict[@&quot;name&quot;]=@&quot;lmj&quot;;
+</code></pre><hr>
+<blockquote>
+<p>注意：不可以通过@{}创建可变字典<br>如果是不可变字典，那么key不能相同，相同key后面的key值不会被保存<br>如果是可变字典，相同key，后面key会覆盖前面key的value</p>
+</blockquote>
+<h1 id="常用结构体"><a href="#常用结构体" class="headerlink" title="常用结构体"></a>常用结构体</h1><hr>
+<pre><code>NSPoint和CGPoint：二维平面的一个点
+    可使用CGMakePoint和NSMakePoint函数创建CGPoint
+    CGPoint point=NSMakePoint(10,20)；
+NSSize和CGSize:保存尺寸
+    创建结构体都是NSMakexxx
+NSRect和CGRect：保存坐标和尺寸,其实就是上两个的结合体
+    CGRect rect=NSMakeRect(10,20,100,50);先是坐标，后是尺寸
+苹果推荐使用CG开头的
+
+注意：这前后两个都是分别等效的(别名而已)
+</code></pre><hr>
+<h1 id="NSNumber"><a href="#NSNumber" class="headerlink" title="NSNumber"></a>NSNumber</h1><hr>
+<pre><code>将基本数据类型转化为对象类型，这样数组和字典就能存储了
+NSNumber *number=[NSNumber numberWithBool:&lt;#(BOOL)#&gt;]
+NSNumber *number=[NSNumber numberWithInt:&lt;#(int)#&gt;]
+还有很多numberWithXXX
+将对象转换为基本数据类型
+double temp=[number doubleValue];
+基本数据类型转对象类型简写：
+NSNumber *temp=@(age);
+注意：如果传入的是变量，必须在@后面写上(),如果传入常量，那么@()可省略
+</code></pre><hr>
+<h1 id="NSValue"><a href="#NSValue" class="headerlink" title="NSValue"></a>NSValue</h1><blockquote>
+<p>可以包装任意类型（包装过后就可以存入数组，字典了）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">    CGPoint point =NSMakePoint(10, 20);</div><div class="line">    NSValue *value=[NSValue valueWithPoint:point];</div><div class="line">    NSArray *arr=@[value];</div><div class="line">包装自定义结构体</div><div class="line"> typedef struct&#123;</div><div class="line">        int gae;</div><div class="line">        char *name;</div><div class="line">        double height;</div><div class="line">    &#125;Person;</div><div class="line">    Person p=&#123;30,&quot;lnj&quot;,1.75&#125;;</div><div class="line">    //valueWithBytes：接受一个指针，需要传递需要包装的结构体的变量的地址</div><div class="line">    //objCType:需要传递需要包装的数据类型</div><div class="line">    NSValue *value=[NSValue valueWithBytes:&amp;p objCType:@encode(Person)];</div><div class="line">    NSArray *arr=@[value];</div><div class="line">     //取出值</div><div class="line">    Person res;</div><div class="line">    [value getValue:&amp;res];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：之所以要传入一个res参数，是因为getValue方法没有返回值，信息存储在传入的参数的地址里面，故而可以通过该地址取出相关信息。</p>
+</blockquote>
+<h1 id="NSDate"><a href="#NSDate" class="headerlink" title="NSDate"></a>NSDate</h1><hr>
+<pre><code>时间对象
+ //只要创建，则now就会存储当前时间
+    NSDate *now=[NSDate date];
+    //在now基础上追加多少秒
+    NSDate *date=[now dateByAddingTimeInterval:10]//追加10秒,因为是不可变的，所以返回新的
+获取当前时区的时间（因为默认获取的可能不是当前时区的时间）：
+int main(int argc, const char * argv[]) {
+    NSDate *now=[NSDate date];
+    //获取当前所处时区
+    NSTimeZone *zone=[NSTimeZone systemTimeZone];
+    //获取当前时区和指定时间的时间差
+    NSInteger seconds=[zone secondsFromGMTForDate:now];
+    NSDate *date=[now dateByAddingTimeInterval:seconds];
+    return 0;
+}
+</code></pre><hr>
+<h2 id="时间格式化"><a href="#时间格式化" class="headerlink" title="时间格式化"></a>时间格式化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">案例：获取xxx年xxx月...这种格式化后的时间</div><div class="line">    NSDate *now=[NSDate date];</div><div class="line">    //创建一个时间格式化的对象</div><div class="line">    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];</div><div class="line">    //利用时间格式化对象对时间进行格式化</div><div class="line">    NSString *res=[formatter stringFromDate:now];</div><div class="line">上面案例是只能生成固定格式时间，下面是类似自定义格式：</div><div class="line">    NSDate *now=[NSDate date];</div><div class="line">    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];</div><div class="line">    formatter.dateFormat=@&quot;yyyy年MM月dd日HH时mm分ss秒&quot;;</div><div class="line">    NSString *res=[formatter stringFromDate:now];</div><div class="line">字符串转时间：</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    NSString *time=@&quot;2015-06-29 09:05:26&quot;;</div><div class="line">    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];</div><div class="line">    formatter.dateFormat=@&quot;yyyy年MM月dd日HH时mm分ss秒&quot;;</div><div class="line">    NSDate *date=[formatter dateFromString:time];</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="NSCalender"><a href="#NSCalender" class="headerlink" title="NSCalender"></a>NSCalender</h1><blockquote>
+<p>NSCalendar *cal=[NSCalendar currentCalendar];<br>说明：这个是单例的，不论获取多少次，都是同一个</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">案例：通过日历，获取传入时间对象的对应信息</div><div class="line">     NSDate *now=[NSDate date];</div><div class="line">    NSCalendar *cal=[NSCalendar currentCalendar];</div><div class="line">    NSDateComponents *cmps=[cal components:NSCalendarUnitYear fromDate:now];//获取年</div><div class="line">如果想获取多个：</div><div class="line">    int main(int argc, const char * argv[]) &#123;</div><div class="line">    NSDate *now=[NSDate date];</div><div class="line">    NSCalendar *cal=[NSCalendar currentCalendar];</div><div class="line">    //一个参数是一个枚举，可以通过|连接多个枚举值</div><div class="line">    NSCalendarUnit type=NSCalendarUnitYear|NSCalendarUnitDay;</div><div class="line">    NSDateComponents *cmps=[cal components:type fromDate:now];</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">比较两个时间之间的差值：</div><div class="line">过去的一个时间</div><div class="line">NSString *time=@&quot;2015-06-29 09:05:26&quot;;</div><div class="line">NSDateFormatter *formatter=[[NSDateFormatter alloc]init];</div><div class="line">formatter.dateFormat=@&quot;yyyy年MM月dd日HH时mm分ss秒&quot;;</div><div class="line"> NSDate *date=[formatter dateFromString:time];</div><div class="line">当前时间</div><div class="line">NSDate *now=[NSDate now];</div><div class="line">比较时间</div><div class="line">NSCalendar *cal=[NSCalendar currentCalendar];</div><div class="line">NSCalendarUnit type=NSCalendarUnitYear|NSCalendarUnitDay;</div><div class="line">NSDateComponents *cmps=[cal components:type fromDate:time toDate:now options:0];//0是按照系统默认处理</div></pre></td></tr></table></figure>
+<h1 id="NSFileManager"><a href="#NSFileManager" class="headerlink" title="NSFileManager"></a>NSFileManager</h1><hr>
+<pre><code>管理文件：也是单例模式
+NSFileManager *manager=[NSFileManager defaultManager];
+判断一个文件或者文件夹是否存在
+BOOL flag=[manager fileExistsAtPath:@&quot;绝对路径&quot;];
+判断一个文件是否存在，并且判断是否是一个文件夹
+BOOL dir=NO;
+BOOL flag=[manager fileExistsAtPath:@&quot;绝对路径&quot; isDirectory:&amp;dir];
+说明：第二个参数是用来保存判断结果的，如果是一个目录，那么会赋值为YES，如果不是就赋值为NO
+</code></pre><hr>
+<h2 id="获取文件或文件夹的属性"><a href="#获取文件或文件夹的属性" class="headerlink" title="获取文件或文件夹的属性"></a>获取文件或文件夹的属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSFileManager *manager=[NSFileManager defaultManager];</div><div class="line">NSDictionary *dict=[manager attributesOfItemAtPath:@&quot;路径&quot; error:nil];</div></pre></td></tr></table></figure>
+<h2 id="获取文件夹所有文件"><a href="#获取文件夹所有文件" class="headerlink" title="获取文件夹所有文件"></a>获取文件夹所有文件</h2><hr>
+<pre><code>[manager contentsOfDirectoryAtPath:&lt;#(nonnull NSString *)#&gt; error:nil] 返回值是数组
+弊端：只能获取当前文件下的文件，不能获取子文件夹下面的文件
+
+获取包括子文件夹在内的所有文件：
+[manager subpathsAtPath:&lt;#(nonnull NSString *)#&gt;]
+[manager subpathsOfDirectoryAtPath:&lt;#(nonnull NSString *)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]
+
+拷贝文件：
+[manager copyItemAtPath:&lt;#(nonnull NSString *)#&gt; toPath:&lt;#(nonnull NSString *)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]
+移动文件：
+[manager moveItemAtPath:&lt;#(nonnull NSString *)#&gt; toPath:&lt;#(nonnull NSString *)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]
+删除文件：
+[manager removeItemAtPath:&lt;#(nonnull NSString *)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]
+创建文件夹：
+[manager createDirectoryAtPath:&lt;#(nonnull NSString *)#&gt; withIntermediateDirectories:&lt;#(BOOL)#&gt; attributes:&lt;#(nullable NSDictionary&lt;NSString *,id&gt; *)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]
+</code></pre><hr>
+<blockquote>
+<p>说明：createDirectoryAtPath：创建文件夹的位置<br>withIntermediateDirectories：如果值得文件中有一些文件夹不存在，是否自动创建不存在的文件夹，多级文件夹时候，前面文件夹不存在，是否自动创建(布尔值)<br>attributes：指定创建出来的文件夹的属性（可读，可写，可读写）</p>
+</blockquote>
+<hr>
+<pre><code>创建文件夹：
+[manager createFileAtPath:&lt;#(nonnull NSString *)#&gt; contents:&lt;#(nullable NSData *)#&gt; attributes:&lt;#(nullable NSDictionary&lt;NSString *,id&gt; *)#&gt;]
+说明：
+createFileAtPath;文件创建的路径
+contents：文件内容
+attributes：文件属性
+
+注意：NSDate：二进制数据
+</code></pre><hr>
+<h1 id="Copy"><a href="#Copy" class="headerlink" title="Copy"></a>Copy</h1><hr>
+<pre><code>利用源对象产生一个新的对象
+copy:创建的是不可变副本(NSString,NSArray等)
+mutableCopy：创建的是可变副本(NSMutableArray等)
+实现对应协议(copy或mutableCopy)，然后实现copytWithZone/mutableCopyWithZone
+oc中自带类几乎都实现了上面协议，可以直接使用（如果是自定义类型，需要自己实现）
+ NSString *str=@&quot;lnj&quot;;
+ NSMutableString *str1=[str mutableCopy];
+ 说明：
+copy和mutableCopy也不是一定生成新对象，oc会进行优化，只要满足，新对象和老对象修改
+都互不影响即可，如果copy和之前都是不可变对象，则这样没必要生成新对象了，这属于oc的自动优化。
+浅拷贝：不会产生新的对象
+深拷贝：会产生新的对象
+</code></pre><hr>
+<h2 id="copy和property"><a href="#copy和property" class="headerlink" title="copy和property"></a>copy和property</h2><blockquote>
+<p>以后防止外面可以修改内部字符串，都是用下面写法<br>@property(nonatomic,copy)NSString *name;//不在使用以前的retain</p>
+</blockquote>
+<hr>
+<pre><code>补充：Block_copy(myBlock);
+使用该方法进行block拷贝，不会进行copy而是把block从栈中转移到堆内存中
+这样可以避免，要使用的外界对象已经释放了。
+</code></pre><hr>
+<h2 id="自定义类实现copy"><a href="#自定义类实现copy" class="headerlink" title="自定义类实现copy"></a>自定义类实现copy</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-(id) copyWithZone:(NSZone *)zone&#123;</div><div class="line">    //创建一个新的对象</div><div class="line">    Person *p=[[[self class] allocWithZone:zone]init];</div><div class="line">    //设置当前对象的内容给新的对象</div><div class="line">    p.age=_age;</div><div class="line">    p.name=_name;</div><div class="line">    //返回新的对象</div><div class="line">    return p;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>说明：如果是mutableCopy内部代码是一抹一样的
+理论上子类会继承父类的copy，但是有可能子类有的属性父类没有，所以一般也要重写。
+内部代码如下：
+id obj=[super copyWithZone:zone];
+[obj setHeight:_height];
+return obj;
+说明：已经实现的使用父类即可，没有的子类在加上就行
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/OC语言笔记_04md/" data-id="cj60seecm001s60nk1at35h7s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-OC语言笔记_01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/OC语言笔记_01/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.532Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Object-C/">Object C</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/OC语言笔记_01/">OC语言笔记_01</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="oc与c对比"><a href="#oc与c对比" class="headerlink" title="oc与c对比"></a>oc与c对比</h1><hr>
+<pre><code>oc增加：
+布尔类型
+block类型：代码块数据类型
+指针类型中增加：id类型（动态对象类型，万能指针）和类类型
+SEL:选择器数据类型
+oc增加了增强for循环 for in
+</code></pre><hr>
+<h2 id="杂乱知识点"><a href="#杂乱知识点" class="headerlink" title="杂乱知识点"></a>杂乱知识点</h2><blockquote>
+<p>oc的输出语句：NSLog(@”Hello ,World!”);<br>    特点：<br>    自动加换行<br>    会自动附加一些系统信息<br>    和printf接收参数不一样，printf接收的是oc的字符串类型<br>import和include区别：import(自动防止重复拷贝)自动实现头文件卫士，避免程序员无技术含量重复操作。</p>
+</blockquote>
+<h2 id="oc的类（基本定义）"><a href="#oc的类（基本定义）" class="headerlink" title="oc的类（基本定义）"></a>oc的类（基本定义）</h2><blockquote>
+<p>注意：对象方法和类方法可以相互调用<br>    对象方法调用类方法：直接用类调用即可<br>    类方法调用对象方法：在对应方法内部先创建对象，在调用方法(后期也可以不用先创建对象就可以直接调用self)(不建议使用类方法调用对象方法)<br>    类方法中也可以调用类方法<br>    对象方法也可以调用对象方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">案例说明：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">//类的声明：类名首字母大写</div><div class="line">//类的声明：以@interface开始，@end结尾</div><div class="line">@interface Iphone:NSObject</div><div class="line">//oc类声明中，属性只能写在大括号当中，否则报错，另外建议属性名称前加上_</div><div class="line">&#123;</div><div class="line">    //默认oc中类的属性是不能直接访问的,需要加上@public</div><div class="line">    @public</div><div class="line">    float _model;</div><div class="line">    int _cpu;</div><div class="line">    double _size;</div><div class="line">&#125;</div><div class="line">//行为</div><div class="line">//注意：oc中方法如果没有形参，不需要写圆括号</div><div class="line">//因为oc方法中的()有特殊用途，用来扩住数据类型的，所以所有返回值类型都要用()包裹，包括void</div><div class="line">//oc方法：类方法(只能用类名调用,+表示)，对象方法(只能用对象调用,-表示)</div><div class="line">-(void) about;</div><div class="line">+(char *)getMessage;</div><div class="line">//注意：此时有参数的方法的方法名为call:(包括:)</div><div class="line">-(int)call:(int) num;</div><div class="line">//多参数的对象方法,此时方法名称就是show::</div><div class="line">+(int)show:(int) num1 :(int)num2;</div><div class="line">//其中canshu2是第二个参数的标签，此时方法名就是show:canshu2:</div><div class="line">+(int)show:(int) num1 canshu2:(int)num2;</div><div class="line">@end</div><div class="line">//类的实现：必须和类声明的时候名称相同</div><div class="line">//类的实现：以@implementation开始，@end结束</div><div class="line">@implementation Iphone</div><div class="line">//行为的实现</div><div class="line">//类方法:不会被重复开启内存空间，当多次使用且不适用类的属性的时候，可以使用类方法，类方法效率高(相比于对象方法)</div><div class="line">//类方法：一般用于定义工具方法，因为对象方法会多次开辟内存，所以不适合做工具方法，一方面资源消耗，一方面修改之后对象不同，不能同步更改。</div><div class="line"></div><div class="line">+(char *)getMessage&#123;</div><div class="line">    return &quot;get message&quot;;</div><div class="line">&#125;</div><div class="line">+(int)show:(int) num1 :(int)num2&#123;</div><div class="line">    return num1+num2;</div><div class="line">&#125;</div><div class="line">//对象方法：对象方法可以直接访问属性(成员变量)</div><div class="line">-(int)call:(int) num&#123;//只需要扩住数据类型，oc中圆括号仅仅扩住数据类型,而且在参数数据类型前面必须加上:</div><div class="line">    return num;</div><div class="line">&#125;</div><div class="line">-(void) about&#123;</div><div class="line">    NSLog(@&quot;打印本机信息&quot;);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line"></div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    //通过类创建对象，必须给类发送一个消息，类似于c中调用方法</div><div class="line">    //如果发送消息 [类名/对象名称 方法名称]；</div><div class="line">    //[Iphone new];//但是直接调用new方法没有定义这个方法，此时需要Ipone继承NSObject</div><div class="line">    //[Iphone new];返回的是创建出来对象对应的地址</div><div class="line">    Iphone *p=[Iphone new];//p就被称为iPhone的对象</div><div class="line">    //oc的类本质就是一个结构体，所以p这个指针指向一个结构体</div><div class="line">    p-&gt;_cpu=20;</div><div class="line">    p-&gt;_model=10.1;</div><div class="line">    p-&gt;_size=20.0;</div><div class="line">    NSLog(@&quot;cpu=%i&quot;,p-&gt;_cpu);</div><div class="line">    //调用方法</div><div class="line">    [p about];</div><div class="line">    //oc中的nslog对C语言支持不好，如果返回中文字符串可能输出乱码或不输出，所以后期使用oc字符串</div><div class="line">    char *c=[Iphone getMessage];</div><div class="line">    NSLog(@&quot;%s&quot;,c);</div><div class="line">    int num=[p call:(10086)];</div><div class="line">    NSLog(@&quot;%d&quot;,num);</div><div class="line">    int result=[Iphone show:1 :2];</div><div class="line">    NSLog(@&quot;%d&quot;,result);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="内存说明"><a href="#内存说明" class="headerlink" title="内存说明"></a>内存说明</h2><hr>
+<pre><code> 开辟内存空间，通过new方法创建对象，会在堆内存中开辟空间
+ 初始化属性，也在堆内存中
+ 返回指针地址，指针是变量，在栈中开辟内存空间
+ 创建对象返回的是第0个元素的地址，但是此时不是编写的第一个属性的地址，而是继承NSobject时候系统
+在内部自动添加一个叫isa属性，而且isa是一个指针，占据八个字节。isa会指向创建这个类的那个类（类其
+实也是一个对象），创建对象就是通过一个类对象(系统创建，保存了当前对象的所有方法)去创建了一个对象
+（实例对象），isa指针也就指向这个类对象。
+ 所以创建对象，会在堆内存中开辟一段类对象空间，一段实例对象空间，对象变量指向实例对象的地址，实力
+对象中isa属性指向类对象地址，其中，实例对象空间只存储了自定义属性和isa属性，想要调用方法，需要isa
+属性指向类对象空间，类对象空间有方法列表，从而调用方法，而类方法调用时候直接去找类对象空间，执行对
+应方法，所以效率高。
+</code></pre><hr>
+<h2 id="成员变量和局部变量"><a href="#成员变量和局部变量" class="headerlink" title="成员变量和局部变量"></a>成员变量和局部变量</h2><hr>
+<pre><code>写在类声明的大括号中的变量，称之为成员变量，成员变量不能再定义同事进行初始化，
+成员变量只能通过对象访问，存储在堆内存(当前对象对应的堆内存存储空间)中，不会自动释放，需要手动释放
+局部变量全局变量都类似于C语言的情况，在栈内存中，作用域结束会自动释放。
+</code></pre><hr>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">方式一：NSString*  name=@&quot;lmj&quot;;</div><div class="line">方式二：NSString*  name=[NSString stringWithFormat:@&quot;age=%i,height=%f\n&quot;,30,1.75];</div><div class="line">案例：</div><div class="line">@interface Iphone : NSObject</div><div class="line">-(NSString *)showMessage;</div><div class="line">@end</div><div class="line">@implementation Iphone</div><div class="line"></div><div class="line">-(NSString*)showMessage&#123;</div><div class="line">    return @&quot;返回的信息&quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Iphone *ip=[Iphone new];</div><div class="line">    NSString* info=[ip showMessage];</div><div class="line">    NSLog(@&quot;%@&quot;,info);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">说明 ：oc中字符串是一个对象（所以接收也是利用指针），c语言中是数据类型，oc中利用%@输出对象类型。</div></pre></td></tr></table></figure>
+<h2 id="如何计算字符串长度"><a href="#如何计算字符串长度" class="headerlink" title="如何计算字符串长度"></a>如何计算字符串长度</h2><hr>
+<pre><code>c语言（返回的都是占据多少字节数）：strlen
+                                sizeof
+   oc（计算出来的是个数，而不是字节数）:
+        main(int argc, const char * argv[]) {
+        NSString *str=@&quot;曾强&quot;;
+       NSUInteger ni=[str length];
+       NSLog(@&quot;%lu&quot;,ni);//2,  NSUInteger是unsigned long的别名，翻看源码可知
+</code></pre><hr>
+<h1 id="结构体作为对象属性"><a href="#结构体作为对象属性" class="headerlink" title="结构体作为对象属性"></a>结构体作为对象属性</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">typedef struct&#123;</div><div class="line">    int year;</div><div class="line">    int day;</div><div class="line">&#125; Date;</div><div class="line">@interface  Student: NSObject</div><div class="line">&#123;</div><div class="line">    @public</div><div class="line">    Date d;</div><div class="line">    NSString *name;</div><div class="line">&#125;</div><div class="line">-(void) showInfo;</div><div class="line">@end</div><div class="line">@implementation Student</div><div class="line">-(void) showInfo&#123;</div><div class="line">    NSLog(@&quot;%i&quot;,d.day);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Student *s=[Student new];</div><div class="line">//    s-&gt;d.day=50;这种逐个初始化也可以</div><div class="line">    /*结构体在定义之后，不能一次性初始化，所以</div><div class="line">     s-&gt;d=&#123;30,20&#125;;是错误的，而强制转date类型，是相当于copy(修改不影响原来的值)一份结构体</div><div class="line">     然后赋值过去，此时复制的过程中有了一个定义和初始化一起的过程，所以不报错。</div><div class="line">     */</div><div class="line">    s-&gt;d=(Date)&#123;30,20&#125;;</div><div class="line">    [s showInfo];</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="对象作为方法参数"><a href="#对象作为方法参数" class="headerlink" title="对象作为方法参数"></a>对象作为方法参数</h1><hr>
+<pre><code>此处只写上最基本调用处
+Soldier *sp=[Soldier new];
+Gun *gp=[Gun new];
+[sp fire:gp];
+-(void) fire:(id)gun{
+    //id 类型是一个独特的数据类型。在概念上，类似Java 的Object 类，可以转换为任何数据类型
+    [gun shoot];
+}
+</code></pre><hr>
+<h1 id="pragma的使用"><a href="#pragma的使用" class="headerlink" title="pragma的使用"></a>pragma的使用</h1><blockquote>
+<p>当类比较多的时候(查找类不方便)，在类定义时候，加上#pragma mark - 学生,可以再xcode上面十分明确的出现该类的说明。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">#pragma mark - 学生</div><div class="line">@interface  Student: NSObject</div><div class="line">&#123;</div><div class="line">    @public</div><div class="line">    Date d;</div><div class="line">    NSString *name;</div><div class="line">&#125;</div><div class="line">-(void) showInfo;</div><div class="line">@end</div><div class="line">#pragma mark - 程序入口</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Student *s=[Student new];</div><div class="line">    s-&gt;d=(Date)&#123;30,20&#125;;</div><div class="line">    [s showInfo];</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h1><blockquote>
+<p>在.h和.m文件之间切换快捷键：control+command+向上</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    //1.有名字对象</div><div class="line">    Person *p=[Person new];</div><div class="line">    p-&gt;_age=20;</div><div class="line">    p-&gt;_name=@&quot;lmj&quot;;</div><div class="line">    [p say];//name=lmj,age=20</div><div class="line">    //2.没有名字对象</div><div class="line">    //每次new都会开辟新的存储空间</div><div class="line">    [Person new]-&gt;_age=30;</div><div class="line">    [Person new]-&gt;_name=@&quot;lmj&quot;;</div><div class="line">    [[Person new ] say];//name=(null),age=0</div><div class="line">    //当对象只使用一次的时候，可以使用匿名对象</div><div class="line">    //比如说只是调用一个输出就可以使用匿名对象</div><div class="line">    [[Person new] say];</div><div class="line">    //3.匿名对象作为方法参数</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Gun *g=[Gun new];</div><div class="line">    [g setBullet:200];</div><div class="line">    [g shoot];</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">————————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Gun : NSObject</div><div class="line">&#123;</div><div class="line">    int _bullet;//子弹数量</div><div class="line">&#125;</div><div class="line">-(void)shoot;</div><div class="line">//提供成员方法设置值</div><div class="line">-(void)setBullet:(int) count;</div><div class="line">@end</div><div class="line">——————————————</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line">@implementation Gun</div><div class="line">-(void)shoot&#123;</div><div class="line">    _bullet--;</div><div class="line">    NSLog(@&quot;%i&quot;,_bullet);</div><div class="line">&#125;</div><div class="line">-(void)setBullet:(int)count&#123;</div><div class="line">    _bullet=count;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<h2 id="setter和getter"><a href="#setter和getter" class="headerlink" title="setter和getter"></a>setter和getter</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">只是一个规范：set+属性名称即可</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Gun *g=[Gun new];</div><div class="line">    [g setBullet:300];</div><div class="line">    NSLog(@&quot;%i&quot;,[g getBullet]);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">————————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Gun : NSObject</div><div class="line">&#123;</div><div class="line">    int _bullet;</div><div class="line">&#125;</div><div class="line">-(void)setBullet:(int) count;</div><div class="line">-(int)getBullet;</div><div class="line">@end</div><div class="line">————————————</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line"></div><div class="line">@implementation Gun</div><div class="line">-(void)setBullet:(int)count&#123;</div><div class="line">    _bullet=count;</div><div class="line">&#125;</div><div class="line">-(int)getBullet&#123;</div><div class="line">    return _bullet;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">补充：点语法,如果set和get语句如下书写可以直接点语法取值和赋值</div><div class="line">点语法一般是给属性取值赋值，其他一般不推荐</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Gun *g=[Gun new];</div><div class="line">    g.bullet=30;</div><div class="line">    NSLog(@&quot;%i&quot;,g.bullet);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">————————————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Gun : NSObject</div><div class="line">&#123;</div><div class="line">    int _bullet;</div><div class="line">&#125;</div><div class="line">-(void)setBullet:(int) bullet;</div><div class="line">-(int)bullet;//注意此处get语句没有get直接属性名称即可</div><div class="line"></div><div class="line">@end</div><div class="line">——————————————————</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line"></div><div class="line">@implementation Gun</div><div class="line"></div><div class="line">-(void)setBullet:(int)bullet&#123;</div><div class="line">    _bullet=bullet;</div><div class="line">&#125;</div><div class="line">-(int)bullet&#123;</div><div class="line">    return _bullet;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<h2 id="self关键字"><a href="#self关键字" class="headerlink" title="self关键字"></a>self关键字</h2><hr>
+<pre><code>self不能离开类，离开类没有任何意义
+self可以调用对象方法和类方法
+self如果在对象方法中，就代表当前对象，所以可以调用对象方法
+self如果在类方法中，就代表调用当前类方法的那个类，所以可以调用类方法
+[self 方法名]==[Iphon 方法名]
+类方法不可以直接调用对象方法
+注意点：
+self会自动区分类方法和对象方法，如果在类方法中使用self调用对象方法会报错。
+如果在对象方法中调用类方法也会报错。
+所以如果在方法中使用self调用自身，会形成死循环
+</code></pre><hr>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><blockquote>
+<p>继承：会具有父类的所有属性和方法(对象方法和类方法)<br>继承中父类的方法可以重写，但是属性不能重写(会报重复定义的错误)。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Student.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Student *s=[Student new];</div><div class="line">    s.age=30;</div><div class="line">    NSLog(@&quot;%i&quot;,s.age);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">————————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">@interface Student : Person</div><div class="line"></div><div class="line">@end</div><div class="line">————————————</div><div class="line">#import &quot;Student.h&quot;</div><div class="line">@implementation Student</div><div class="line"></div><div class="line">@end</div><div class="line">————————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">&#123;</div><div class="line">    int _age;</div><div class="line">&#125;</div><div class="line">-(void)setAge:(int)age;</div><div class="line">-(int)age;</div><div class="line">@end</div><div class="line">————————————</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line"></div><div class="line">-(void)setAge:(int) age&#123;</div><div class="line">    _age=age;</div><div class="line">&#125;</div><div class="line">-(int)age&#123;</div><div class="line">    return _age;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<h2 id="super"><a href="#super" class="headerlink" title="super"></a>super</h2><hr>
+<pre><code>super和self一样不是关键字，只是编译器的一个指令符号
+[super 方法名]：会去调用父类的方法，即使当前类有同名方法
+super在对象方法中调用父类的对象方法
+super在类方法中调用父类的类方法
+[self 方法名]：会先在本类找，找不到才去父类找。
+</code></pre><hr>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><hr>
+<pre><code>父类指针指向子类对象
+Animal *a1=[Dog d];
+多态中，如果想调用子类特有的方法必须强制类型转换为子类才能调用
+Dog *d1=(Dog*)a1;
+[d1 kanjia];
+</code></pre><hr>
+<h1 id="变量修饰符"><a href="#变量修饰符" class="headerlink" title="变量修饰符"></a>变量修饰符</h1><hr>
+<pre><code>@public：
+本类，子类，其他类都可以访问
+@private:
+不可以在其他类访问被private修饰的成员变量
+可以再本类访问被private修饰的成员变量
+不可以在子类中访问父类中被private修饰的成员变量
+@protected(默认)
+不可以在其他类访问被protected修饰的成员变量
+本类可以访问
+子类可以访问父类被protected访问的成员变量
+@package
+介于public和private之间
+如果在其他包访问就是private
+在其他包访问就是public
+
+作用域：实例变量修饰符作用域，从出现的地位开始，到下一个修饰符出现的，如果没有下一个修饰符，就会修饰后面所有变量
+</code></pre><hr>
+<h1 id="description方法"><a href="#description方法" class="headerlink" title="description方法"></a>description方法</h1><blockquote>
+<p>[Person class]:返回person类的类对象<br>利用%@打印对象，系统会默认调用父类description方法,返回一个字符串<br>字符串默认格式&lt;类名：对象地址&gt;<br>所以可以重写父类的方法，从而实现打印对象所有属性，而不是写一堆占位符一点点输出</p>
+</blockquote>
+<hr>
+<pre><code>案例说明：
+#import &lt;Foundation/Foundation.h&gt;
+#import &quot;Student.h&quot;
+int main(int argc, const char * argv[]) {
+    Student *s=[Student new];
+    s.age=30;
+    NSLog(@&quot;%@&quot;,s);//本来应该输出&lt;Student,0x123612376（地址）&gt;
+    //但是重写了description方法就会输出age=30
+    return 0;
+}
+————————————
+#import &quot;Person.h&quot;
+
+@implementation Person
+
+-(void)setAge:(int) age{
+    _age=age;
+}
+-(int)age{
+    return _age;
+}
+-(NSString *)description{
+    NSString *str=[NSString stringWithFormat:@&quot;age=%i&quot;,_age];
+    return str;
+}
+@end
+</code></pre><hr>
+<hr>
+<pre><code>注意：此处重写了description方法（对象方法）还有一个+description方法
+（类方法），也可以重写，当调用输出[Person class]时候输出的就是+description方法对应的返回值。
+注意点：在description方法方法中不要使用self获取成员变量，如果一不小心写成@&quot;%@&quot;,self的话，输出self会造成死循环。
+因为self代表当前实例对象(如果在对象方法中)，self==实例对象，而%@输出实例对象，会默认调用description方法，然后
+形成死循环。(所以是不推荐在description方法中使用self，如果写成%@输出self会形成死循环)，所以不是一定不能使用，
+开发中不推荐使用self。
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/OC语言笔记_01/" data-id="cj60seecj001q60nky2ai72jg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-OC笔记_03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/OC笔记_03/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.531Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Object-C/">Object C</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/OC笔记_03/">OC语言笔记_03</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="autoreleasepool"><a href="#autoreleasepool" class="headerlink" title="autoreleasepool"></a>autoreleasepool</h1><hr>
+<pre><code> ARC下用 @autoreleasepool {}主要还是为了避免内存峰值。
+ 用@autoreleasepool是有用的。正常情况下，你创建的变量会在超出其作用域的时候被释放掉。
+ 而如果你的函数写的很长，在你函数运行过程中出现很多中间变量，占据了大量的内存，怎么办？
+ 用@autoreleasepool。在@autoreleasepool中创建的变量，会在@autoreleasepool结束的时候执行一次release，进行释放。
+ 其实@autoreleasepool就相当于一层作用域。
+其他使用场景：写了子线程的时候。
+</code></pre><hr>
+<h1 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h1><hr>
+<pre><code>是一个编译器特性，而不是运行时特性
+不是其他语言的垃圾回收
+    //强指针，默认情况下都是强指针
+    __strong Person *p=[[Person alloc] init];
+    //弱指针
+    __weak Person *p=[[Person alloc] init];
+注意：在arc模式下，只有没有(强指针)指向对象，则对象就会被回收。
+可以通过p=nil实现回收。//单个对象的内存管理
+在开发中不要使用弱指针保存刚刚创建的对象，不然刚创建就会被释放，而强指针，如果没有
+直接使用nil，则会到作用域一般是大括号结尾处才销毁强指针，也就是释放对象。
+</code></pre><hr>
+<h2 id="对多个对象的内存管理"><a href="#对多个对象的内存管理" class="headerlink" title="对多个对象的内存管理"></a>对多个对象的内存管理</h2><hr>
+<pre><code>arARC模式下，a对象想拥有b对象，那么就需要用一个强指针指向B对象
+@property(nonatomic,strong)Dog *dog;
+此时在person类中声明dog类对象，如果想强制a(person)对象拥有b(dog)对象
+那么必须用strong修饰。这样在person没有被销毁的情况下，dog也不会被销毁
+</code></pre><hr>
+<blockquote>
+<p>在使用的地方代码如下：<br>Dog *d=[Dog new];<br>p.dog=d;<br>注意点：assign是专门用于保存基本数据类型的，如果保存对象用weak。<br>总结：<br>ARC下@property参数<br>strong：用于oc对象，相当于mrc中的retain<br>weak：用于oc对象，相当于mrc中的assign<br>assign：用于基本数据类型，相当于mrc中的assign一样</p>
+</blockquote>
+<h1 id="category"><a href="#category" class="headerlink" title="category"></a>category</h1><blockquote>
+<p>可以再原来类的基础上，为一个类扩充方法<br>一个庞大的类可以分模块开发<br>一个庞大的类可以由多个人来编写，利于团队合作</p>
+</blockquote>
+<h2 id="分类的格式"><a href="#分类的格式" class="headerlink" title="分类的格式"></a>分类的格式</h2><hr>
+<pre><code>分类的声明：
+@interface ClassName (CategoryName)
+NewMethod;//在类别中添加方法
+//不允许在类别中添加变量
+@end
+ClassName:需要给那个类扩充方法
+CategoryName：分类的名称
+分类的实现：
+@implementtation ClassName(CategoryName)
+NewMethod
+@end
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">例子：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">#import &quot;Person+ZQ.h&quot;//需要导入对应头文件</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Person *p=[[Person alloc] init];</div><div class="line">    p.age=30;</div><div class="line">    [p say];</div><div class="line">    [p play];//扩充的方法</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">_______________</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">@property(nonatomic,assign) int age;</div><div class="line">-(void)say;</div><div class="line">@end</div><div class="line">_______________</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">-(void)say&#123;</div><div class="line">    NSLog(@&quot;%d&quot;,_age);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">_______________</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@interface Person (ZQ)</div><div class="line">-(void)play;</div><div class="line">@end</div><div class="line">_______________</div><div class="line">#import &quot;Person+ZQ.h&quot;</div><div class="line"></div><div class="line">@implementation Person (ZQ)</div><div class="line">-(void)play&#123;</div><div class="line">    NSLog(@&quot;%s&quot;,__func__);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">_______________</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>创建category文件，直接选中oc文件，然后输入category名称，选择category，然后选择要扩充的类
+注意事项：
+只能添加方法，不能添加属性
+分类中@property,只会生成setter/getter方法的声明，不会生成实现以及私有的成员变量。
+可以在分类中访问原有类中.h的属性（.m的属性是私有的，其他类不能访问）
+如果分类中有和原有类同名的方法，会调用分类中的方法
+如果多个分类都有和原有类同名方法，会执行编译器最后编译的分类的方法（结果不一定）
+</code></pre><hr>
+<h2 id="匿名分类（类扩展）"><a href="#匿名分类（类扩展）" class="headerlink" title="匿名分类（类扩展）"></a>匿名分类（类扩展）</h2><hr>
+<pre><code>可以为某个类扩充一些私有的成员变量和方法
+写在.m文件中，英文名是Class Extension
+以前写私有变量和方法，就是在.h文件中不声明变量和方法（因为声明的都是公开的变量或方法）
+然后在.m文件直接写方法实现，和定义变量，才能生成私有的方法或变量，但是通过匿名分类
+可以在.m文件中直接书写私有变量和方法
+</code></pre><hr>
+<hr>
+<pre><code>下面代码就是在person的.m文件中
+#import &quot;Person.h&quot;
+@interface Person(){
+    int _num;
+}
+-(void) show;
+@end//这个地方就是匿名分类
+————————————————
+
+@implementation Person
+-(void)say{
+    NSLog(@&quot;%d&quot;,_age);
+}
+@end
+补充：取出指定位置的字符[str characterAtIndex:1],取出1位置的字符
+使用场景：比如说给NSString扩展方法
+</code></pre><hr>
+<h1 id="Block"><a href="#Block" class="headerlink" title="Block"></a>Block</h1><blockquote>
+<p>比较特殊的数据类型<br>作用：保存一段代码，可以再恰当的时间再取出调用，功能类似函数和方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">void printRose()&#123;</div><div class="line">    printf(&quot;   &#123;@&#125; \n&quot;);</div><div class="line">    printf(&quot;   \\|/  \n&quot;);</div><div class="line">    printf(&quot;    |  \n&quot;);</div><div class="line">&#125;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    /*</div><div class="line">     void代表指向的函数没有返回值</div><div class="line">     ()代表指向的函数没有形参</div><div class="line">     (*roseP)代表roseP是一个指向函数的指针</div><div class="line">     */</div><div class="line">    void(*roseP)();</div><div class="line">    roseP=printRose;</div><div class="line">    roseP();</div><div class="line">    //定义一个block变量，block和函数一样，可以没有返回值也没有形参</div><div class="line">    void(^roseBlock)();</div><div class="line">    /*</div><div class="line">     void代表block将来保存的代码没有返回值</div><div class="line">     ()代表block将来保存的代码没有形参</div><div class="line">     (^roseBlock)是一个block变量，可以用于保存一段block代码</div><div class="line">     */</div><div class="line">    roseBlock=^()&#123;//没有参数可以省略()</div><div class="line">        printf(&quot;   &#123;@&#125; \n&quot;);</div><div class="line">        printf(&quot;   \\|/  \n&quot;);</div><div class="line">        printf(&quot;    |  \n&quot;);</div><div class="line">    &#125;;</div><div class="line">    roseBlock();</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">此案例对比了函数指针和block的使用。</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>有参数案例：
+ void(^roseBlock)(int);
+    roseBlock=^(int num){
+        for (int a=0; a&lt;num; a++) {
+            printf(&quot;   {@} \n&quot;);
+            printf(&quot;   \\|/  \n&quot;);
+            printf(&quot;    |  \n&quot;);
+        }
+    };
+roseBlock(10);
+也可以定义同时初始化，直接把下面一部分踢到上面即可。
+</code></pre><hr>
+<h2 id="block和typedef"><a href="#block和typedef" class="headerlink" title="block和typedef"></a>block和typedef</h2><hr>
+<pre><code>利用typedef给block起别名，和指向函数的指针一样，block变量的名称就是别名
+typedef int (^calcAdd)(int ,int);
+int main(int argc, const char * argv[]) {
+    calcAdd add=^(int v1,int v2){
+        return v1+v2;
+    };
+    NSLog(@&quot;%d&quot;,add(1,2));
+    return 0;
+}
+说明：这是以后的推荐写法，此时calcAdd就是一个数据类型了。
+</code></pre><hr>
+<h2 id="block使用场景"><a href="#block使用场景" class="headerlink" title="block使用场景"></a>block使用场景</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">当发现代码的前面和后面都一样的时候，就可以使用block了</div><div class="line">void geToWork(void(^workBlock)())&#123;</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    workBlock();</div><div class="line">//因为block是数据类型，所以可以当做参数传递。</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注意事项：
+在block中可以访问外部变量
+blocck中可以和外界同名的变量，至于使用，也是就近原则
+默认情况下，不可以在block修改外界的变量，因为block中访问外界变量时候，block会将该变量
+copy一份到堆内存中（不是同一个）。
+如果想在block中修改外界的变量的值，必须在外界变量前面加上__block。
+如果加上__block其实就是地址传递，所以可以修改外界变量的值（不加的话就是值传递）。
+block可以存在堆或栈，默认是存储在栈中，如果对block是进行一个copy操作，block会转移到堆中。
+</code></pre><hr>
+<h1 id="协议protocol"><a href="#协议protocol" class="headerlink" title="协议protocol"></a>协议protocol</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">在java中类似接口</div><div class="line">protocol可以声明一些必须实现的方法和选择实现的方法，这个和java不同</div><div class="line">也就是说protocol是由一系列方法声明组成</div><div class="line">定义：</div><div class="line">@protocol 协议名称</div><div class="line">//方法声明列表</div><div class="line">@end</div><div class="line">使用</div><div class="line">@interface 类名：父类&lt;协议名称1，协议名称2&gt;</div><div class="line">@end</div><div class="line">案例：</div><div class="line">文件名： PersonInterface.h</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@protocol PersonInterface &lt;NSObject&gt;</div><div class="line">-(void)show;</div><div class="line">@end</div><div class="line">文件名：Person.h</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;PersonInterface.h&quot;</div><div class="line">@interface Person : NSObject&lt;PersonInterface&gt;</div><div class="line">@end</div><div class="line">文件名：person.m</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">-(void)show&#123;</div><div class="line">    NSLog(@&quot;%s&quot;,__func__);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">文件名：main.m</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Person *p=[[Person alloc] init];</div><div class="line">    [p show];</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注意点：
+协议只能声明方法，不能声明属性
+子类也会拥有父类协议的方法声明
+协议的协议又可以租售其他协议，只要遵守了其他协议，那么这个协议就会包含其他协议的声明
+@required和@optional关键字：加在方法的上面
+@required：这个方法必须被实现（默认）
+@optional：这个方法不一定被实现
+</code></pre><hr>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><hr>
+<pre><code>Person *p=[Person new];
+//可以将协议卸载数据类型的右边，明确的标注如果想给该变量赋值，那么该对象必须遵守某个协议
+//如果没有实现方法，会报警告
+Wife&lt;WifeConditon&gt; *w=[Wife new];
+p.wife=w;
+_______________
+@property(nonatomic,strong)Wife&lt;WifeConditon&gt; *wife;
+注意：虽然在接受某一个对象，对这个对象类型进行了限定（限定它必须实现某个协议），但是
+并不意味就真正实现了该方法，如果调用对象协议方法时候要进行一次验证。
+if([self.wife respondsToSelector:@selector(cooking)]){
+        [self.wife.cooking];
+}
+</code></pre><hr>
+<h1 id="oc字符串"><a href="#oc字符串" class="headerlink" title="oc字符串"></a>oc字符串</h1><hr>
+<pre><code>//如何创建字符串对象
+     //1.通过字符串常量创建,存储在常量区中，此种方式创建多个字符串对象（字符串常量一致），指向同一块内存空间
+    NSString *str1=@&quot;lnj&quot;;
+    //2.通过alloc init创建，存储在堆中，在mac平台上(其他平台不一定)，会自动优化(字符串常量一致，会指向同一块内存空间)
+    NSString *str2=[[NSString alloc] initWithFormat:@&quot;lnj&quot;];
+    //3.通过类工厂方法/string WithFormat，存储在堆中，在mac平台上(其他平台(ios)不一定)，会自动优化(字符串常量一致，会指向同一块内存空间)
+    //内部就是封装了[NSString alloc] init
+    NSString *str3=[NSString stringWithFormat:@&quot;lnj&quot;];
+</code></pre><hr>
+<hr>
+<pre><code>注意：一般情况下，只要通过alloc或者通过类工厂方法创建的对象，每次都会在堆内存中开辟一块
+内存空间，但是如果是通过alloc的initWithString方法除外，因为这个方法是通过copy返回一个
+字符串对象给我们。
+而copy分为浅拷贝和深拷贝，深拷贝会创建一个新的对象，如果是浅拷贝不会创建一个新的对象，而是直接返回被拷贝对象的地址给我们。
+而initWithString正好是浅拷贝，所以不论是什么平台，什么编译器都会指向同一块存储空间。
+</code></pre><hr>
+<h2 id="字符串的读写"><a href="#字符串的读写" class="headerlink" title="字符串的读写"></a>字符串的读写</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">读取文件的内容到字符</div><div class="line">  NSString *info=[NSString stringWithContentsOfFile:&lt;#(nonnull NSString *)#&gt; encoding:&lt;#(NSStringEncoding)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>参数一：是文件的绝对路径
+参数二：NSStringEncoding没有*通过翻看源码可知就是enum枚举类型
+参数三：是读取出错，信息保存在这，成功的时候是nil,此时是指针的指针，所有参数传递如下面代码，是指针的地址
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    NSError *error=nil;</div><div class="line">    NSString *info=[NSString stringWithContentsOfFile:@&quot;/Users/tjsmc/Desktop/mac快捷键.txt&quot; encoding:NSUTF8StringEncoding error:&amp;error];</div><div class="line">    if (error==nil) &#123;</div><div class="line">      NSLog(@&quot;%@&quot;,info);</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果文件不存在等错误，则error直接打印是很多无用信息，需要通过[error localizedDescription]</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">写入文本：</div><div class="line">案例：</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    NSString *info=@&quot;这个是生成的文本&quot;;</div><div class="line">    //atomically:如果是yes，则字符串写入文件过程中没有写入完毕，不生成文件</div><div class="line">    //no:则字符串写入文件过程中没有写入完毕，生成文件</div><div class="line">    BOOL flag=[info writeToFile:@&quot;/Users/tjsmc/Desktop/abc.txt &quot; atomically:YES encoding:NSUTF8StringEncoding error:nil];</div><div class="line">    NSLog(@&quot;%i&quot;,flag);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">开发中常用的读写字符串</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    //1.创建url:注意如果访问的是本级文件，地址192.168.0.112可省略</div><div class="line">    NSString *path=@&quot;file://192.168.0.112/Users/tjsmc/Desktop/1.txt&quot;;</div><div class="line">   // NSString *path=@&quot;http://www.baidu.com&quot;;</div><div class="line">    NSURL *url=[NSURL URLWithString:path];</div><div class="line">    //2.根据url加载文件中的字符串</div><div class="line">    NSError *error=nil;</div><div class="line">    NSString *str=[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&amp;error];</div><div class="line">    NSLog(@&quot;%@&quot;,str);</div><div class="line">    NSLog(@&quot;%@&quot;,[error localizedDescription]);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>其他方式：
+注意：在开发中，读取本机资源，如果直接使用url如果路径包中文，会读取不出来文件内容
+但是如果使用fileURLWithPath就可以系统内部进行处理，依然可以读取出来。
+如果非要使用url中文直接读取文件
+需要：path=[path stringByAddingPercentEscapesUsingEncoding];
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    //1.创建url</div><div class="line">    NSString *path=@&quot;/Users/tjsmc/Desktop/1.txt&quot;;</div><div class="line">    //注意：使用fileURLWithPath方法的时候，系统会自动加上消息头，如果path前面加上file://会报错</div><div class="line">    NSURL *url=[NSURL fileURLWithPath:path];</div><div class="line">    //2.根据url加载文件中的字符串</div><div class="line">    NSError *error=nil;</div><div class="line">    NSString *str=[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&amp;error];</div><div class="line">    NSLog(@&quot;%@&quot;,str);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">_______________</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">   NSString *str=@&quot;呵呵呵撒很骄傲和解放初步额e&quot;;</div><div class="line">    NSURL *url=[NSURL URLWithString:@&quot;/Users/tjsmc/Desktop/1.txt&quot;];</div><div class="line">    BOOL flag=[str writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:nil];</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">注意：多次写入文件，后一次会覆盖前一次的</div></pre></td></tr></table></figure>
+<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">isEqualToString:比较两个字符串内容是否相同</div><div class="line"> NSString *str1=@&quot;lnj&quot;;</div><div class="line">    NSString *str2=@&quot;lnj&quot;;</div><div class="line">    BOOL flag=[str1 isEqualToString:str2];</div><div class="line">    NSLog(@&quot;%i&quot;,flag);//1</div><div class="line">注意：str1==str2比较的是字符串的地址</div><div class="line">比较字符串大小</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">   NSString *str1=@&quot;lnj&quot;;</div><div class="line">    NSString *str2=@&quot;lnj&quot;;</div><div class="line">    switch ([str1 compare:str2]) &#123;</div><div class="line">        case NSOrderedAscending://前面小于后面的</div><div class="line">            </div><div class="line">            break;</div><div class="line">        case NSOrderedSame://前面等于后面的</div><div class="line">            </div><div class="line">            break;</div><div class="line">        case NSOrderedDescending://前面大于后面的</div><div class="line">            </div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">忽略大小写进行比较：[str1 caseInsensitiveCompare:str2]</div></pre></td></tr></table></figure>
+<h2 id="字符串搜索"><a href="#字符串搜索" class="headerlink" title="字符串搜索"></a>字符串搜索</h2><hr>
+<pre><code>hasPrefix:字符串是否已什么开头
+    NSString *str=@&quot;http://www.baidu.com&quot;;
+    BOOL falg= [str hasPrefix:@&quot;http&quot;];
+    NSLog(@&quot;%i&quot;,falg);//1
+
+ hasSuffix:是否是什么结尾
+ rangeOfString：是否包含什么,返回值类型NSRange，其实就是一个结构体（是两个lu类型）一个是起始位置，一个是长度
+ 如果没有找到需要查找到字符串，返回的range的length=0,location=NSNotFound
+</code></pre><hr>
+<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"> 案例：</div><div class="line"> int main(int argc, const char * argv[]) &#123;</div><div class="line">  NSString *str=@&quot;&lt;head&gt;小码哥&lt;/head&gt;&quot;;</div><div class="line">    //NSRange;位置、长度</div><div class="line">//    NSRange range=&#123;6,3&#125;;</div><div class="line">    //只要是oc提供的结构体，一般都可以使用NSMakexxx来创建</div><div class="line">//    NSRange range=NSMakeRange(6, 3);//开发中常用</div><div class="line">    //但是上面是写死的，实际开发中，需要动态获取</div><div class="line">    NSUInteger location=[str rangeOfString:@&quot;&gt;&quot;].location+1;//获取第一个&gt;位置</div><div class="line">    NSUInteger length=[str rangeOfString:@&quot;&lt;&quot; options:NSBackwardsSearch].location-location;//从后往前找&lt;</div><div class="line">    NSRange range;</div><div class="line">    range.location=location;</div><div class="line">    range.length=length;</div><div class="line">    NSString *new=[str substringWithRange:range];</div><div class="line">    NSLog(@&quot;%@&quot;,new);//小码哥</div><div class="line">    //注意：生成新字符串，以前字符串不变</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">案例：</div><div class="line"> //从什么地方开始截取，一直截取到最后</div><div class="line">[str substringFromIndex:str1];</div><div class="line">//从开头开始，一直截取到什么位置</div><div class="line">[str substringToIndex:st1];</div></pre></td></tr></table></figure>
+<h2 id="字符串替换"><a href="#字符串替换" class="headerlink" title="字符串替换"></a>字符串替换</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">  NSString *str=@&quot;&lt;head&gt;小码哥&lt;/head&gt;&quot;;</div><div class="line">    NSString *new=[str stringByReplacingOccurrencesOfString:@&quot;小码哥&quot; withString:@&quot;强哥&quot;];</div><div class="line">    NSLog(@&quot;%@&quot;,new);</div><div class="line">    //注意：此方法可以通过替换的方式去除空格</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">去除首尾的空格：</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">  NSString *str=@&quot;   &lt;head&gt;小码哥&lt;/head&gt;&quot;;</div><div class="line">    NSCharacterSet *set=[NSCharacterSet whitespaceCharacterSet];</div><div class="line">    NSString *new=[str stringByTrimmingCharactersInSet:set];</div><div class="line">    NSLog(@&quot;%@&quot;,new);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">去除首尾的大写：</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">  NSString *str=@&quot;   &lt;head&gt;小码哥&lt;/head&gt;&quot;;</div><div class="line">    NSCharacterSet *set=[NSCharacterSet uppercaseLetterCharacterSet];//此处修改还可以去除小写等等</div><div class="line">    NSString *new=[str stringByTrimmingCharactersInSet:set];</div><div class="line">    NSLog(@&quot;%@&quot;,new);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="字符串和路径"><a href="#字符串和路径" class="headerlink" title="字符串和路径"></a>字符串和路径</h2><hr>
+<pre><code>isAbsolutePath：判断是否是绝对路径，本质就是判断字符串是否以/开头
+int main(int argc, const char * argv[]) {
+  NSString *str=@&quot;/Users/tjsmc/Desktop/1.txt &quot;;
+    BOOL flag=[ str isAbsolutePath];
+    NSLog(@&quot;%i&quot;,flag);//1
+       return 0;
+}
+获取文件路径中的最后一个目录：[str lastPathComponent]
+删除文件路径中的最后一个目录：[str stringByDeletingLastPathComponent]
+给文件路径添加一个目录：[str stringByAppendingPathComponent:@&quot;abc&quot;]
+获取路径中文件的扩展名：[str pathExtension]
+删除路径中文件的扩展名：[str stringByDeletingPathExtension]
+给文件路径添加一个扩展名：[str stringByAppendingPathExtension:@&quot;jpg&quot;]
+</code></pre><hr>
+<h2 id="字符串转换"><a href="#字符串转换" class="headerlink" title="字符串转换"></a>字符串转换</h2><blockquote>
+<p>字符串转小写:[str lowercaseString]<br>字符串转大写：[str uppercaseString]<br>字符串首字母转大写：[str capitalizedString]</p>
+</blockquote>
+<h3 id="字符串和基本数据类型的转换"><a href="#字符串和基本数据类型的转换" class="headerlink" title="字符串和基本数据类型的转换"></a>字符串和基本数据类型的转换</h3><hr>
+<pre><code>字符串转数字：
+    NSString *str1=@&quot;110&quot;;
+    int v1=[str1 intValue];
+c语言字符串和oc字符串之间的转换
+char *cStr=&quot;lnj&quot;;
+NSString *ocStr=[NSString stringWithUTF8String:cStr];
+_______________
+ NSString *ocStr=@&quot;lnj&quot;;
+char *cStr=[ocStr UTF8String];
+</code></pre><hr>
+<h1 id="NSMutableString-是NSString的子类，是可变字符串"><a href="#NSMutableString-是NSString的子类，是可变字符串" class="headerlink" title="NSMutableString:是NSString的子类，是可变字符串"></a>NSMutableString:是NSString的子类，是可变字符串</h1><hr>
+<pre><code>因为是可变字符串，所以修改都是本身，没有返回值
+ //创建一个空字符串
+    NSMutableString *str=[NSMutableString string];
+    [str appendString:@&quot;lnj&quot;];
+    NSLog(@&quot;%@&quot;,str);
+//开发中常用方式：NSMutableString str=[NSMutableString stringWithFormat:@&quot;lnj&quot;];
+</code></pre><hr>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><hr>
+<pre><code>添加：
+[str appendString:@&quot;lnj&quot;];
+[str appendFormat:@&quot;%i&quot;,10];
+删除路径中文件的扩展名：
+[str deleteCharactersInRange:&lt;#(NSRange)#&gt;]
+在某字符前面插入某某字符串
+[str insertString:&lt;#(nonnull NSString *)#&gt; atIndex:&lt;#(NSUInteger)#&gt;]
+替换：此方法返回值是NSUItnger，代表替换了多少个字符串
+[str replaceOccurrencesOfString:&lt;#(nonnull NSString *)#&gt; withString:&lt;#(nonnull NSString *)#&gt; options:&lt;#(NSStringCompareOptions)#&gt; range:&lt;#(NSRange)#&gt;]
+参数分别为：套替换的字符串，新字符串，0（如果枚举参数用不上，传入0即可，代表使用系统默认处理方式），范围。
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/OC笔记_03/" data-id="cj60seech001n60nkm066yv9s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-OC笔记_02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/OC笔记_02/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.529Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Object-C/">Object C</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/OC笔记_02/">OC语言笔记_02</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="oc的私有变量和方法"><a href="#oc的私有变量和方法" class="headerlink" title="oc的私有变量和方法"></a>oc的私有变量和方法</h1><hr>
+<pre><code>注意：属性(成员变量)名称和方法(针对所有方法）不要以new开头，有可能引发未知错误
+私有变量
+在@interface中声明的变量，默认是protected的，但是被@interface修饰的变量不论能不能访问，使用的时候代码都会提示所有
+变量，而@implementation也可以声明变量，但是默认是private的，而且和private不太一样，因为不会有代码提示。
+也就是说@implementation(不论用什么修饰)中定义的变量，只能在本类中使用。
+私有方法
+如果只有方法的实现，没有方法的声明，那么该方法就是私有方法，也就是oc中没有真正的私有方法
+因为如果是私有方法[p show]不能访问这个show私有方法，但是可以通过[p performSelector:@selector(show)]
+</code></pre><hr>
+<h1 id="property"><a href="#property" class="headerlink" title="property"></a>property</h1><blockquote>
+<p>编译器指令：生成get和set方法的声明（注意只是声明）<br>@property int age;<br>相当于：get和set的方法声明<br>-（void）setAge:(int)age;<br>-(int)age:<br>注意：虽然成员变量声明的时候为_age；但是property中不要加下划线</p>
+</blockquote>
+<h2 id="property增强"><a href="#property增强" class="headerlink" title="property增强"></a>property增强</h2><hr>
+<pre><code>在最新版xcode中，只写上@property即可生成set和get的声明以及定义
+注意点：property默认会把传入的属性赋值给_开头的成员。
+弊端：不会对数据进行过滤，比如age=-88;
+如果相对数据过滤，还是需要重写get和set方法
+注意：如果重写了set或者get方法中一个，那么property只会生成另外一个方法，如果两个都写了，那么property
+不会帮我们自动生成(_开头)私有的成员变量(如果没有声明成员变量的情况下)。
+如果不声明成员变量，系统会自动的给我们生成一个_开头的成员变量，例如@property int age;就会自动生成_age。
+</code></pre><hr>
+<h2 id="property修饰符"><a href="#property修饰符" class="headerlink" title="property修饰符"></a>property修饰符</h2><hr>
+<pre><code>readonly:只生成get方法 写法：property(readonly) int age;
+readwriter:get和set都声称，默认就是这个 写法：property(readwriter) int age;
+@property(getter=abc) int age:则生成的get方法名就是abc了，同理也有(setter=abc)
+</code></pre><hr>
+<h1 id="synthesize"><a href="#synthesize" class="headerlink" title="synthesize"></a>synthesize</h1><hr>
+<pre><code>编译器指令：get和set的方法定义
+@synthesize age
+注意：age必须和property相同
+但是只是生成空方法，返回值没有
+所以完整写法是@synthesize age=_age;
+</code></pre><hr>
+<h1 id="动态数据类型-id"><a href="#动态数据类型-id" class="headerlink" title="动态数据类型(id)"></a>动态数据类型(id)</h1><hr>
+<pre><code>类似于java中的object类型
+动态数据类型只有在运行时才知道真实的数据类型
+id==NSObject *万能指针
+id和NSObject *区别：id是动态数据类型，NSObject *是静态数据类型
+</code></pre><hr>
+<hr>
+<pre><code>例子：
+id obj=[Person new];
+[obj sleep];
+静态数据类型定义的变量，不能调用子类特有的方法
+动态数据类型定义的变量，可以调用子类特有方法
+注意：id可以调用私有方法(只有实现，没有声明)
+应用场景：一般用在多态，避免调用子类特有方法还需要强制转换的情况，减少代码
+弊端：id可以调用任意类方法，所以可能在运行时发出方法没有找到的错误提示。
+所以为了避免上面的错误，一般在使用之前，先判断当前变量是否能够调用这个方法
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">if([obj isKindOfClass:[Student class]])&#123;</div><div class="line">    //使用</div><div class="line">&#125;</div><div class="line">isKindOfClass：判断指定的对象是否是一个类，或者某个类的子类。</div><div class="line">类似的还有：</div><div class="line">if([obj isMemberOfClass:[Student class]])&#123;</div><div class="line">    //isMemberOfClass:判断指定的对象是否是当前指定类的实例</div><div class="line">&#125;</div><div class="line">if([obj isSubclassOfClass:[Student class]])&#123;</div><div class="line">    //isSubclassOfClass:判断指定的对象是否是当前类的子类</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>补充：new的内部原理
+new :1.开辟存储空间(alloc) 2.初始化所有的属性(成员变量)（init方法）3.返回对象的地址
+alloc：1.开辟内存空间 2.将所有属性设置为0 3.返回当前实例对象的地址
+init:1:初始化成员变量，但是默认情况下init的实现是什么也没有做，2.返回初始化后的实例对象地址
+注意：alloc和init返回的地址是同一个地址
+[Person new]==[[Person alloc] init]=Person *p
+</code></pre><hr>
+<h1 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h1><blockquote>
+<p>init开头的方法被称为构造方法：用于初始化一个对象，在这个对象一创建就拥有某些属性和值<br>重写init方法，在init方法中初始化成员变量</p>
+</blockquote>
+<hr>
+<pre><code>说明：
+    必须先初始化父类，在初始化子类
+    必须判断父类是否初始化成功，只有父类初始化成功才能继续初始化子类
+    返回当前对象的地址
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">格式：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">@property int age;</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">- (instancetype)init //instancetype也是和id类似也是万能指针</div><div class="line">&#123;</div><div class="line">    //初始化父类，只要初始化父类成功就会返回对应的地址，如果初始化失败，就会返回nil==0==假</div><div class="line">    self = [super init];</div><div class="line">    //判断父类是否初始化成功</div><div class="line">    if (self) &#123;</div><div class="line">        //初始化子类</div><div class="line">        _age=60;</div><div class="line">    &#125;</div><div class="line">    //返回子类</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">——————————</div></pre></td></tr></table></figure>
+<h2 id="instancetype和id的区别："><a href="#instancetype和id的区别：" class="headerlink" title="instancetype和id的区别："></a>instancetype和id的区别：</h2><blockquote>
+<p>都是万能指针<br>id在编译时候不能判断对象真实类型，instancetype可以在编译时候判断对象真实类型<br>instancetype可以把运行时错误提前到编译时<br>id可以用于定义变量，形参，返回值<br>instancetype只能当做返回值</p>
+</blockquote>
+<h2 id="自定义构造方法"><a href="#自定义构造方法" class="headerlink" title="自定义构造方法"></a>自定义构造方法</h2><hr>
+<pre><code>使用场景：解析网络传递的数据
+ 一定是对象方法
+ 一定返回id/instancetype
+ 方法名称一定以init开头
+ 例子：
+ @implementation Person
+- (instancetype)initWithAge:(int)age
+{
+    self = [super init];
+    if (self) {
+        _age=age;
+    }
+    return self;
+}
+@end
+——————————
+Person *p=[[Person alloc] initWithAge:20];
+注意：init重写的时候不需要再头文件声明，但是其他自定义构造方法必须在头文件声明
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">例子：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Person *p=[[Person alloc] initWithAge:300];</div><div class="line">    NSLog(@&quot;%d&quot;,p.age);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">——————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">@property int age;</div><div class="line">-(instancetype)initWithAge:(int)age;</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">- (instancetype)initWithAge:(int)age</div><div class="line">&#123;</div><div class="line">    self = [super init];</div><div class="line">    if (self) &#123;</div><div class="line">        _age=age;</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">注意；自定义构造方法可以有多个参数(和方法多个参数一样)</div></pre></td></tr></table></figure>
+<h2 id="自定义构造方法在继承上面的使用"><a href="#自定义构造方法在继承上面的使用" class="headerlink" title="自定义构造方法在继承上面的使用"></a>自定义构造方法在继承上面的使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">@property int age;</div><div class="line">-(instancetype)initWithAge:(int)age;//注意with中的w一定要大写</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">- (instancetype)initWithAge:(int)age</div><div class="line">&#123;</div><div class="line">    self = [super init];</div><div class="line">    if (self) &#123;</div><div class="line">        _age=age;</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">@interface Student :Person</div><div class="line">@property NSString *name;</div><div class="line">-(instancetype)initWithAge:(int)age addName:(NSString*)name;</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &quot;Student.h&quot;</div><div class="line"></div><div class="line">@implementation Student</div><div class="line">-(instancetype)initWithAge:(int)age addName:(NSString*)name&#123;</div><div class="line">    //之所以这样写，是因为age是父类的，自己事情自己干，所以直接super即可</div><div class="line">    if (self=[super initWithAge:300]) &#123;</div><div class="line">        _name=name;</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">#import &quot;Student.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Student *s=[[Student alloc] initWithAge:300 addName:@&quot;xiaoming&quot;];</div><div class="line">    NSLog(@&quot;%d----%@&quot;,s.age,s.name);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="类工厂方法"><a href="#类工厂方法" class="headerlink" title="类工厂方法"></a>类工厂方法</h1><blockquote>
+<p>是一种用于分配，初始化实例并返回一个它自己的实例的类方法，例如new<br>快速创建对象的类方法，给对象分配存储空间和初始化这块存储空间</p>
+</blockquote>
+<hr>
+<pre><code>说明：
+    一定以+开头(类方法)
+    方法名称以类名称开头，首字母小写
+    一定有返回值id/instancetype
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">@interface Person : NSObject</div><div class="line">+(instancetype)person;//定义类工厂方法</div><div class="line">@end</div><div class="line">——————————</div><div class="line">@implementation Person</div><div class="line">+(instancetype)person&#123;</div><div class="line">    Person *p=[Person alloc];</div><div class="line">    Person *p1=[p init];</div><div class="line">    return p1;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line"></div><div class="line">使用：Person *p=[Person person];</div><div class="line">上面只是简略说明：这样使用和new没区别，真实使用如下。</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Person *p=[Person personWithAge:300];</div><div class="line">    NSLog(@&quot;%d&quot;,p.age);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">——————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">@property int age;</div><div class="line">+(instancetype)personWithAge:(int)age;//定义类工厂方法</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">+(instancetype)personWithAge:(int)age&#123;</div><div class="line">    Person *p=[[Person alloc]init];</div><div class="line">    p.age=age;</div><div class="line">    return p;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<h2 id="类工厂方法的继承"><a href="#类工厂方法的继承" class="headerlink" title="类工厂方法的继承"></a>类工厂方法的继承</h2><hr>
+<pre><code>案例：
+Student *s=[Student person];
+
+@implementation Person
++(instancetype)personWithAge:(int)age{
+    Person *p=[[Person alloc]init];
+    p.age=age;
+    return p;
+}
+@end
+注意这样会报错，因为[Student person]中student继承于person，[Student person]等价于[[Person alloc]init]
+所以如果利用s去操作student的数据，会找不到。
+解决办法:
+@implementation Person
++(instancetype)personWithAge:(int)age{
+    Person *p=[[self alloc]init];//替换为self即可
+    p.age=age;
+    return p;
+}
+</code></pre><hr>
+<h1 id="类对象"><a href="#类对象" class="headerlink" title="类对象"></a>类对象</h1><hr>
+<pre><code>获取类对象：
+Person *p=[[Person alloc]init];
+Person *p1=[[Person alloc]init];
+Class *c=[Person class];//这种也可以获取类对象
+Class *c=[p class];
+说明：c就是类对象，一个类在内存中只有一份类对象(所以p和p1,p2的类对象是一个)
+应用场景：
+用于创建实例对象
+Person *p3=[[c alloc] init]
+用于调用类方法
+[c test];
+</code></pre><hr>
+<h1 id="类的启动过程"><a href="#类的启动过程" class="headerlink" title="类的启动过程"></a>类的启动过程</h1><hr>
+<pre><code>只要程序启动就会将所有类的代码加载到内存中，放到代码区
+load方法会在当前类被加载到内存的时候调用，只调用一次
+如果存在继承关系，先调用父类的load再调用子类的load方法
++(void){
+
+}
+当当前类第一次被使用的时候会调用（创建类对象）initialize,只会被执行一次，因为类对象只有一个
+如果存在继承关系，先调用父类的initialize再调用子类的initialize方法
++(void)initialize{
+
+}
+</code></pre><hr>
+<h1 id="SEL类型"><a href="#SEL类型" class="headerlink" title="SEL类型"></a>SEL类型</h1><blockquote>
+<p>代表着方法的签名，在类对象的方法列表中存储着该签名与方法代码的对应关系<br>每个类的方法列表都存储在类对象中<br>每个方法都有一个与之对应的sel类型的对象<br>本剧一个sel对象就可以找到方法的地址，进而调用方法</p>
+</blockquote>
+<h2 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h2><h3 id="配合对象-类来检查对象-类中有没有实现某一个方法"><a href="#配合对象-类来检查对象-类中有没有实现某一个方法" class="headerlink" title="配合对象/类来检查对象/类中有没有实现某一个方法"></a>配合对象/类来检查对象/类中有没有实现某一个方法</h3><hr>
+<pre><code>SEL sel=@selector(setAge:);//setAge是方法名
+Person *p=[Person new];
+BOOL flag=[p respondsToSelector:sel];
+respondsToSelector：通过对象调用，判断对象p中有没有实现-号开头的setAge：方法，返回布尔值
+通过类调用，判断该类中有没有实现+号开头的setAge：方法，返回布尔值
+</code></pre><hr>
+<hr>
+<pre><code>配合对象/类来调用某一个sel方法
+SEL sel=@selector(show);//把show方法包装成sel类型对象
+Person *p=[Person new];
+[p performSelector:sel];
+performSelector:调用p对象中sel类型的的show方法
+如果包装的方法有参数
+SEL sel=@selector(show:);
+使用performSelector withObject方法
+[p performSelector:sel withObject:(id)]//其中（id）输入参数即可
+注意：此方法接受参数必须是对象类型，因为withObject只能传递对象（int不行，NSString可行）
+如果两个参数就选performSelector withObject withObject这个方法
+performSelector一些类方法，最多只能传递两个参数
+</code></pre><hr>
+<h3 id="配合对象将SEL类型作为方法的形参"><a href="#配合对象将SEL类型作为方法的形参" class="headerlink" title="配合对象将SEL类型作为方法的形参"></a>配合对象将SEL类型作为方法的形参</h3><pre><code>Car *car=[Car new];
+SEL sel=@selector(run);
+Person *p=[Person new];
+[p makeObject:c andSel:sel];//会执行run方法
+</code></pre><blockquote>
+<p>解析：p中有个方法makeObject所需第二个参数就是sel类型</p>
+</blockquote>
+<h1 id="class"><a href="#class" class="headerlink" title="@class"></a>@class</h1><hr>
+<pre><code>作用：简单的引用一个类，提升编译效率
+@class Dog;//注意加上;
+具体使用：
+    在.h文件中更实用@class引用一个类
+    在.m文件中使用#import包含这个类的.h文件
+@class 名称：仅仅告诉编译器名称是一个类，不会做任何copy操作。
+#import导入的文件，一但某个文件发生变化，那么这个变化文件的import也会重新copy
+重新编译，而且如果互相引用，会进入copy的死循环，而@class不会进行任何copy，仅仅只是
+告诉编译器这是一个类，而且不会进入死循环。
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/OC笔记_02/" data-id="cj60seecf001l60nkudeohdpa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Node知识点(一)md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Node知识点(一)md/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.527Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Node知识点(一)md/">Node知识点(一)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><blockquote>
+<p>global:全局对象<br>process:表示node所处的当前进程，可以从此取出相应数据。<br>Buffer():用于操作二进制数据。</p>
+</blockquote>
+<hr>
+<pre><code>__filename:当前运行的脚本文件名。
+//C:\Users\Administrator\Desktop\Demo\a.js
+__dirname:当前运行的脚本所在的目录。
+//C:\Users\Administrator\Desktop\Demo
+如果有package.json文件会根据main对应进行加载，如果没有，则加载index.js或index.node.
+</code></pre><hr>
+<h2 id="主要模块："><a href="#主要模块：" class="headerlink" title="主要模块："></a>主要模块：</h2><blockquote>
+<p>http:提供http服务功能。<br>url:解析URL。<br>fs：文件系统。<br>querystring :解析URL的查询字符串。<br>util:实用小工具。<br>path:处理文件路径。<br>cryto:加密解密。<br>module.exports:对外输出，供引用。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">var a=&#123;&#125;;</div><div class="line">function method(name) &#123;</div><div class="line">  console.log(name);</div><div class="line">&#125;</div><div class="line">a.show=method;</div><div class="line">module.exports=a;</div><div class="line">把对象a的show属性指向method函数。</div><div class="line">调用：</div><div class="line">var m=require(&apos;./test.js&apos;);</div><div class="line">m.show(&quot;呵呵&quot;);</div></pre></td></tr></table></figure>
+<h2 id="异常处理："><a href="#异常处理：" class="headerlink" title="异常处理："></a><strong>异常处理：</strong></h2><ul>
+<li>A：throw抛出错误对象。</li>
+<li>B:回调负责发出错误。</li>
+<li>C:通过EventEmitter接口，发出error事件。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">C案例：</div><div class="line">var EventEmitter=require(&apos;events&apos;).EventEmitter;</div><div class="line">var emitter=new EventEmitter();</div><div class="line">emitter.emit(&apos;error&apos;,new Error(&apos;something do help&apos;));</div><div class="line">emitter.on(&apos;error&apos;,function (err) &#123;</div><div class="line">  console.log(err.message);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>补充：当如果出现异常未捕获时候，则可以使用uncaughtException，同时退出node进程。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">process.on(&apos;uncaughtException&apos;,function(err) &#123;</div><div class="line">  console.error(err);</div><div class="line">  process.exit(1);//退出</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="二、module对象"><a href="#二、module对象" class="headerlink" title="二、module对象"></a>二、module对象</h1><hr>
+<pre><code>node.js都是模块性质，所以函数变量都是私有性质，
+虽然可以通过global.x这种方式设置为全局，但是不推荐。
+module:代表当前模块，module有个属性exports，是对外的接口。
+加载模块其实就是加载该模块的module.exports属性。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">test.js:</div><div class="line">var EventEmitter=require(&apos;events&apos;).EventEmitter;</div><div class="line">var emitter=new EventEmitter();</div><div class="line">module.exports=emitter;</div><div class="line">setTimeout(function () &#123;</div><div class="line">  emitter.emit(&apos;ready&apos;);</div><div class="line">&#125;,1000);</div><div class="line"></div><div class="line">a.js:</div><div class="line">var test=require(&apos;./test.js&apos;);</div><div class="line">test.on(&apos;ready&apos;,function () &#123;</div><div class="line">  console.log(&apos;接收到了&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注意：module.exports可以直接module.exports=fun(){},
+也可以module.exports.x=.....;但是按照第一种，只能输出一个的情况下试用。
+require.resolve():将模块名解析到一个绝对路径.
+</code></pre><hr>
+<h1 id="三、fs模块"><a href="#三、fs模块" class="headerlink" title="三、fs模块"></a>三、fs模块</h1><blockquote>
+<p>根据系统来判断行结尾</p>
+</blockquote>
+<hr>
+<pre><code>windows系统下面：process.platform，输出win32.
+使用：var a=(process.platform===&apos;win32&apos;?&apos;\r\n&apos; : &apos;\n&apos;);
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.readFile(&apos;./快捷键.txt&apos;,(err,data)=&gt;&#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  console.log(data);</div><div class="line">&#125;);</div><div class="line">fs.writeFile(&apos;./test.js&apos;,&apos;hello world&apos;,&apos;utf-8&apos;,function (err) &#123;</div><div class="line">  console.log(err);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>创建删除文件夹：如果文件夹存在则报错，同理删除时候如果不存在也会报错。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.mkdir(&apos;./hehe&apos;,0777,function (err) &#123;//0777是权限值</div><div class="line">  console.log(err);</div><div class="line">&#125;);</div><div class="line">fs.rmdir(&apos;./hahaa&apos;,function(err) &#123;</div><div class="line">  console.log(err);</div><div class="line">&#125;);</div><div class="line">读取文件：var fs=require(&apos;fs&apos;);</div><div class="line">fs.readFile(&apos;./test.js&apos;,function (err,data) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  console.log(data.toString(&apos;utf-8&apos;));//注意data此时是buffer对象.在toString(&apos;utf-8&apos;);记得传入编码格式。</div><div class="line">&#125;);</div><div class="line">补充：process.cwd()；</div><div class="line">输出：C:\Users\Administrator\Desktop\Demo</div><div class="line">读取目录：readdir();</div><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.readdir(process.cwd(),function (err,files) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    console.log(err);</div><div class="line">    return;</div><div class="line">  &#125;</div><div class="line">  files.forEach(function (file) &#123;</div><div class="line">    console.log(typeof file);//全是string</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line">status:参数是文件或目录，判断到底是文件还是文件夹</div></pre></td></tr></table></figure>
+<blockquote>
+<p>案例：判断一个目录内到底是文件还是文件夹。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.readdir(&apos;./&apos;,function (err,files) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  files.forEach(function (file) &#123;</div><div class="line">  //注意此处还要+file,这样才算传入了要查询状态的文件或目录名称。</div><div class="line">    fs.stat(&apos;./&apos;+file,function (err,status) &#123;</div><div class="line">      if (err) &#123;throw err;&#125;</div><div class="line">      if (status.isFile()) &#123;</div><div class="line">        console.log(file+&quot;我是文件&quot;);</div><div class="line">      &#125; else &#123;</div><div class="line">        console.log(file+&quot;我是文件夹&quot;);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>监听文件：watchFile()</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.watchFile(&apos;./笔记/笔记2.txt&apos;,function (curr,pre) &#123;</div><div class="line">  console.log(&apos;当前时间&apos;+curr.mtime);</div><div class="line">  console.log(&apos;上次修改时间&apos;+pre.mtime);</div><div class="line">&#125;);</div><div class="line">fs.writeFile(&apos;./笔记/笔记2.txt&apos;,&quot;changed&quot;,function (err) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  console.log(&apos;file write complete&apos;);</div><div class="line">&#125;);</div><div class="line">unwatchfile方法用于解除对文件的监听.</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>createReadStream:打开大文件创建读取操作数据流。
+如果多的话，会按照多个data发送多次。
+其中发送之后触发data事件，发送结束后触发end事件。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">var input=fs.createReadStream(&apos;./test.js&apos;);</div><div class="line">input.on(&apos;data&apos;,function (data) &#123;</div><div class="line">  console.log(data.toString(&apos;utf-8&apos;));</div><div class="line">&#125;);</div><div class="line">input.on(&apos;end&apos;,function () &#123;</div><div class="line">  console.log(&apos;结束了&apos;);</div><div class="line">&#125;);</div><div class="line">createWriteStream:创建一个写入数据流对象。</div><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">var input=fs.createReadStream(&apos;./笔记/阮一峰 01.txt&apos;);</div><div class="line">var output=fs.createWriteStream(&apos;./和.txt&apos;);</div><div class="line">input.on(&apos;data&apos;,function (data) &#123;</div><div class="line">  output.write(data);</div><div class="line">&#125;);</div><div class="line">input.on(&apos;error&apos;,function (err) &#123;</div><div class="line">  throw err;</div><div class="line">&#125;);</div><div class="line">input.on(&apos;end&apos;,function () &#123;</div><div class="line">  console.log(&apos;结束了&apos;);</div><div class="line">  output.end();//关闭写入流对象</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="四、path模块"><a href="#四、path模块" class="headerlink" title="四、path模块"></a>四、path模块</h1><blockquote>
+<p>join:按照系统添加路径分隔符。windows是’\’.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var path=require(&apos;path&apos;);</div><div class="line">var dir=path.join(__dirname,&apos;foo&apos;);</div><div class="line">console.log(dir);</div><div class="line">//C:\Users\Administrator\Desktop\Demo\foo</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>path.resolve():将相对路径转化为绝对路径
+该方法可以传入多个字符串参数（必须是字符串，不然无效），如果没给具体路径，以当前路径为参考。
+var path=require(&apos;path&apos;);
+var he=path.resolve(&apos;../&apos;,&apos;a/b&apos;,&apos;c&apos;,&apos;../d&apos;);
+console.log(he);
+//当前目录是：C:\Users\Administrator\Desktop\Demo
+输出：C:\Users\Administrator\Desktop\a\b\d
+</code></pre><hr>
+<blockquote>
+<p>path.relative方法接受两个参数，这两个参数都应该是绝对路径。<br>该方法返回第二个路径相对于第一个路径的那个相对路径。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">path.relative(&apos;/data/orandea/test/aaa&apos;, &apos;/data/orandea/impl/bbb&apos;)</div><div class="line">// &apos;../../impl/bbb&apos;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>path.parse():可以返回路径各部分的信息。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var path=require(&apos;path&apos;);</div><div class="line">var myFilePath=&apos;./someDir/someDir.json&apos;;</div><div class="line">var parse=path.parse(myFilePath);</div><div class="line">console.log(parse.base);//文件全称：someDir.json</div><div class="line">console.log(parse.name);//文件名字someDir</div><div class="line">console.log(parse.ext);//后缀json</div><div class="line">等于说：base等于name+ext。</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Node知识点(一)md/" data-id="cj60seec6001d60nkcgiixm9h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Node相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Node相关/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.526Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Node相关/">Node相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="流行框架第一天：构建前端自动化工作流环境"><a href="#流行框架第一天：构建前端自动化工作流环境" class="headerlink" title="流行框架第一天：构建前端自动化工作流环境"></a>流行框架第一天：构建前端自动化工作流环境</h1><h2 id="兩個問題"><a href="#兩個問題" class="headerlink" title="兩個問題"></a>兩個問題</h2><h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
+<li>了解什么是Node，什么是NPM；（Node.js）</li>
+<li>掌握Bower的使用；</li>
+<li>熟练使用Less/Sass；</li>
+<li>搭建一个自己的自动化工作流环境；<ul>
+<li>自动编译</li>
+<li>自动合并</li>
+<li>自动刷新</li>
+<li>自动部署</li>
+</ul>
+</li>
+<li>GIT 与 GITHUB<ul>
+<li>master 托管源文件</li>
+<li>gh-pages 托管部署文件</li>
+<li>在github搭建自己的blog</li>
+</ul>
+</li>
+</ul>
+<h2 id="为什么要有自动化的流程"><a href="#为什么要有自动化的流程" class="headerlink" title="为什么要有自动化的流程"></a>为什么要有自动化的流程</h2><ul>
+<li>在我们的开发过程中有大量的重复操作</li>
+<li>DRY  Don’t repeat yourself</li>
+<li><p>开发人员的精力应放在哪？创造，新的一切</p>
+</li>
+<li><p>前端开发的编译操作</p>
+</li>
+</ul>
+<h2 id="1-Node环境"><a href="#1-Node环境" class="headerlink" title="1.Node环境"></a>1.Node环境</h2><h3 id="1-1-什么是Node"><a href="#1-1-什么是Node" class="headerlink" title="1.1.什么是Node"></a>1.1.什么是Node</h3><ul>
+<li>Node.js 可能类似jquery.js</li>
+<li>不是JS文件，也不是一个JS框架（）</li>
+<li>而是Server side Javascript runtime, 服务端的一个JS运行时</li>
+<li>我们可以在NODE运行JS代码</li>
+<li>alert();ECMAScript  JS- ES  BOM  DOM</li>
+<li>node中只能运行ECMAScript，无法使用 BOM 和 DOM</li>
+<li>目前我们的JS是运行在浏览器内核中</li>
+<li>PHP是什么？是一门脚本语言也是一个运行环境</li>
+<li><p>为什么Node选中了JS，</p>
+</li>
+<li><p>说到底就是一个JS运行环境</p>
+</li>
+<li><p>目前有两个分支</p>
+<ul>
+<li>Node.js 0.12.7 官方版本 要求尽善尽美</li>
+<li>IO.js 是社区的产物，不是官方的东西，io.js有很多新特性，迭代非常快，社区推进非常快</li>
+<li>15年两者合并，发布node第一个正式版 4.0， 迭代速度又慢了</li>
+<li>node 5.x == io.js</li>
+<li>node 4.0 == node</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-Node环境搭建"><a href="#1-2-Node环境搭建" class="headerlink" title="1.2.Node环境搭建"></a>1.2.Node环境搭建</h3><h4 id="1-2-1-Mac"><a href="#1-2-1-Mac" class="headerlink" title="1.2.1.Mac"></a>1.2.1.Mac</h4><ul>
+<li>安装包的方式<ul>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0.pkg" target="_blank" rel="external">pkg</a></li>
+</ul>
+</li>
+<li><p>NVM（Node Version Manager）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'. ~/.nvm/nvm.sh'</span> &gt;&gt; .bash_profile</div><div class="line">$ nvm install stable</div><div class="line">$ nvm <span class="built_in">alias</span> default stable</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="1-2-2-Windows"><a href="#1-2-2-Windows" class="headerlink" title="1.2.2.Windows"></a>1.2.2.Windows</h4><ul>
+<li>安装包的方式<ul>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0-x64.msi" target="_blank" rel="external">msi_x64</a></li>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0-x86.msi" target="_blank" rel="external">msi_x86</a></li>
+</ul>
+</li>
+<li>NVM（Node Version Manager）</li>
+<li>nvm(node version manager)</li>
+<li>因为NODE版本比较多，开发人员可能依赖很多版本</li>
+<li><p>通过NVM，可以轻松切换于不同的版本之间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>NVM_HOME=C:\Develop\nvm</p>
+<p>NVM_SYMLINK=C:\Develop\nodejs</p>
+<p>NPM_HOME=C:\Develop\nvm\npm</p>
+<p>PATH=%NVM_HOME%;%NVM_SYMLINK%;%NPM_HOME%</p>
+<h4 id="1-2-3-环境变量"><a href="#1-2-3-环境变量" class="headerlink" title="1.2.3.环境变量"></a>1.2.3.环境变量</h4><ul>
+<li><p>环境变量就是操作系统提供的系统级别用于存储变量的地方</p>
+</li>
+<li><p>系统变量和用户变量</p>
+</li>
+<li>系统变量指的是所用当前系统用户共享的变量</li>
+<li>自己的电脑一般只有一个用户</li>
+<li><p>建议将自己配置的环境变量放在用户变量中，用户变量比较干净</p>
+</li>
+<li><p>环境变量的变量名是不区分大小写的</p>
+</li>
+<li><p>变量间运行相互引用</p>
+</li>
+<li><p>特殊值：</p>
+</li>
+<li>PATH变量（不区分大小写）</li>
+<li>PATH 相当于一个路径的引用</li>
+<li><p>只要添加到PATH变量中的路径，都可以在任何目录下搜索</p>
+</li>
+<li><p>命令行</p>
+</li>
+<li>可以用来执行当前目录下的文件</li>
+<li>命令</li>
+</ul>
+<p>cd :change directory</p>
+<ul>
+<li>Node.js是一个轻内核（本身没有什么功能）的东东，所有的功能都要功能包提供</li>
+<li>node官方提供了一些最基础的包</li>
+</ul>
+<h3 id="1-3-Node用途"><a href="#1-3-Node用途" class="headerlink" title="1.3.Node用途"></a>1.3.Node用途</h3><h4 id="REPL环境（控制台环境）"><a href="#REPL环境（控制台环境）" class="headerlink" title="REPL环境（控制台环境）"></a>REPL环境（控制台环境）</h4><h4 id="1-3-1-开发Web应用程序"><a href="#1-3-1-开发Web应用程序" class="headerlink" title="1.3.1.开发Web应用程序"></a>1.3.1.开发Web应用程序</h4><ul>
+<li>做动态网站</li>
+<li>开发提供数据的服务端API</li>
+</ul>
+<h4 id="1-3-2-前端开发工具基础"><a href="#1-3-2-前端开发工具基础" class="headerlink" title="1.3.2.前端开发工具基础"></a>1.3.2.前端开发工具基础</h4><ul>
+<li>Node.js给前端乃至整个开发行业带来一场工业革命</li>
+<li>刀跟火种</li>
+</ul>
+<h3 id="1-4-Node开发Web应用Demo"><a href="#1-4-Node开发Web应用Demo" class="headerlink" title="1.4.Node开发Web应用Demo"></a>1.4.Node开发Web应用Demo</h3><h4 id="1-4-1-复习请求与响应"><a href="#1-4-1-复习请求与响应" class="headerlink" title="1.4.1.复习请求与响应"></a>1.4.1.复习请求与响应</h4><p>客户端发送到服务端的东西称之为请求报文<br>服务端返回给客户端的东西称之为响应报文</p>
+<h3 id="1-5-NPM"><a href="#1-5-NPM" class="headerlink" title="1.5.NPM"></a>1.5.NPM</h3><h4 id="1-5-1-什么是NPM"><a href="#1-5-1-什么是NPM" class="headerlink" title="1.5.1.什么是NPM"></a>1.5.1.什么是NPM</h4><p><a href="https://www.npmjs.com/" target="_blank" rel="external">https://www.npmjs.com/</a></p>
+<ul>
+<li>Node Package Manager</li>
+<li>Node应用程序依赖包的管理工具</li>
+<li>安装卸载更新之类的操作</li>
+</ul>
+<h4 id="1-5-2-为什么使用NPM"><a href="#1-5-2-为什么使用NPM" class="headerlink" title="1.5.2.为什么使用NPM"></a>1.5.2.为什么使用NPM</h4><ul>
+<li>包很多</li>
+<li>场景：我需要用一个A，A依赖B，B依赖C</li>
+<li>常见的包管理工具都有循环依赖的功能</li>
+<li>你只需记住你要什么东西</li>
+</ul>
+<h4 id="1-5-3-常见的NPM操作"><a href="#1-5-3-常见的NPM操作" class="headerlink" title="1.5.3.常见的NPM操作"></a>1.5.3.常见的NPM操作</h4><p>// 安装一个包，默认安装最新稳定版本<br>npm install package_name<br>// –save<br>// 初始化操作，给项目添加一个配置文件<br>npm init<br>// –yes参数走默认配置</p>
+<ul>
+<li>如果官方数据源太慢使用</li>
+<li><a href="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a></li>
+</ul>
+<hr>
+<h2 id="2-Bower"><a href="#2-Bower" class="headerlink" title="2.Bower"></a>2.Bower</h2><h3 id="2-1-什么是Bower"><a href="#2-1-什么是Bower" class="headerlink" title="2.1.什么是Bower"></a>2.1.什么是Bower</h3><ul>
+<li><a href="http://bower.io/" target="_blank" rel="external">官网</a></li>
+<li>web应用程序依赖项管理工具</li>
+</ul>
+<h3 id="2-2-为什么使用Bower"><a href="#2-2-为什么使用Bower" class="headerlink" title="2.2.为什么使用Bower"></a>2.2.为什么使用Bower</h3><ul>
+<li>方便便捷的方式管理包，zhuangbi</li>
+</ul>
+<h3 id="2-3-Bower实践"><a href="#2-3-Bower实践" class="headerlink" title="2.3.Bower实践"></a>2.3.Bower实践</h3><ul>
+<li><p>npm install -g bower // -g:global</p>
+</li>
+<li><p>修改npm全局路径，就是在用户目录下添加.npmrc文件</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-Sass-LESS"><a href="#3-Sass-LESS" class="headerlink" title="3.Sass/LESS"></a>3.Sass/LESS</h2><hr>
+<h2 id="4-Gulp"><a href="#4-Gulp" class="headerlink" title="4.Gulp"></a>4.Gulp</h2><h3 id="4-1-Gulp简介"><a href="#4-1-Gulp简介" class="headerlink" title="4.1.Gulp简介"></a>4.1.Gulp简介</h3><ul>
+<li>链接：<ul>
+<li><a href="http://gulpjs.com/" target="_blank" rel="external">官网</a></li>
+<li><a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">中文网</a></li>
+</ul>
+</li>
+<li>就是用来机械化的完成重复性质的工作</li>
+<li>gulp的机制就是将重复工作抽象成一个个的任务，</li>
+</ul>
+<h3 id="4-2-Gulp准备工作"><a href="#4-2-Gulp准备工作" class="headerlink" title="4.2.Gulp准备工作"></a>4.2.Gulp准备工作</h3><ul>
+<li>安装Node.js</li>
+<li>安装 gulp 命令行工具<ul>
+<li><code>npm install -g gulp</code></li>
+</ul>
+</li>
+<li>初始化 gulp 项目</li>
+<li>创建任务 - gulpfile.js</li>
+</ul>
+<h3 id="4-3-基本使用"><a href="#4-3-基本使用" class="headerlink" title="4.3.基本使用"></a>4.3.基本使用</h3><h3 id="4-4-常用插件"><a href="#4-4-常用插件" class="headerlink" title="4.4.常用插件"></a>4.4.常用插件</h3><ul>
+<li><a href="https://www.npmjs.com/package/gulp-less" target="_blank" rel="external">编译 Less：gulp-less</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-connect" target="_blank" rel="external">创建本地服务器：gulp-connect</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-concat" target="_blank" rel="external">合并文件：gulp-concat</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-uglify" target="_blank" rel="external">最小化 js 文件：gulp-uglify</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-rename" target="_blank" rel="external">重命名文件：gulp-rename</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-minify-css" target="_blank" rel="external">最小化 css 文件：gulp-minify-css</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-minify-html" target="_blank" rel="external">压缩html文件 gulp-minify-html</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-imagemin" target="_blank" rel="external">最小化图像：gulp-imagemin</a></li>
+</ul>
+<hr>
+<h2 id="5-Git"><a href="#5-Git" class="headerlink" title="5.Git"></a>5.Git</h2><h3 id="5-1-什么是GIT，什么是GITHUB"><a href="#5-1-什么是GIT，什么是GITHUB" class="headerlink" title="5.1.什么是GIT，什么是GITHUB"></a>5.1.什么是GIT，什么是GITHUB</h3><ul>
+<li>GIT</li>
+<li>GITHUB</li>
+</ul>
+<h3 id="5-2-环境安装"><a href="#5-2-环境安装" class="headerlink" title="5.2.环境安装"></a>5.2.环境安装</h3><h3 id="5-3-GIT常用命令"><a href="#5-3-GIT常用命令" class="headerlink" title="5.3.GIT常用命令"></a>5.3.GIT常用命令</h3><hr>
+<h2 id="6-Markdown"><a href="#6-Markdown" class="headerlink" title="6.Markdown"></a>6.Markdown</h2><p><a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="external">https://guides.github.com/features/mastering-markdown/</a><br><a href="https://help.github.com/articles/github-flavored-markdown/" target="_blank" rel="external">https://help.github.com/articles/github-flavored-markdown/</a><br><a href="https://help.github.com/articles/markdown-basics/" target="_blank" rel="external">https://help.github.com/articles/markdown-basics/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Node相关/" data-id="cj60seec3001b60nk79tkmo69" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

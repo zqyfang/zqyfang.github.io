@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Python知识点(一) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="注释 单行注释：# 我是注释 多行注释：,,, 我是多行注释 ,,, （还可以用三个双引号） py2：为了支持中文 # coding=utf-8  或者 #-*- coding:utf-8 -*-  变量 num=10 #定义变量，python会自动推导类型 input high=input(&amp;quot;请输入你的身高：&amp;quot;) #接收输入内容 age=18 print(&amp;quot;age的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python知识点(一)">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/Python知识点(一)/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="注释 单行注释：# 我是注释 多行注释：,,, 我是多行注释 ,,, （还可以用三个双引号） py2：为了支持中文 # coding=utf-8  或者 #-*- coding:utf-8 -*-  变量 num=10 #定义变量，python会自动推导类型 input high=input(&amp;quot;请输入你的身高：&amp;quot;) #接收输入内容 age=18 print(&amp;quot;age的">
+<meta property="og:updated_time" content="2017-08-06T13:30:50.745Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python知识点(一)">
+<meta name="twitter:description" content="注释 单行注释：# 我是注释 多行注释：,,, 我是多行注释 ,,, （还可以用三个双引号） py2：为了支持中文 # coding=utf-8  或者 #-*- coding:utf-8 -*-  变量 num=10 #定义变量，python会自动推导类型 input high=input(&amp;quot;请输入你的身高：&amp;quot;) #接收输入内容 age=18 print(&amp;quot;age的">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Python知识点(一)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Python知识点(一)/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.535Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python知识点(一)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><hr>
+<pre><code>单行注释：# 我是注释
+多行注释：,,, 我是多行注释 ,,, （还可以用三个双引号）
+py2：为了支持中文
+# coding=utf-8  或者 #-*- coding:utf-8 -*-
+</code></pre><hr>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><blockquote>
+<p>num=10 #定义变量，python会自动推导类型</p>
+<h1 id="input"><a href="#input" class="headerlink" title="input"></a>input</h1><hr>
+<pre><code>high=input(&quot;请输入你的身高：&quot;) #接收输入内容
+age=18
+print(&quot;age的值是%d&quot;%age) # %s是字符串占位符
+在py3中input接收到内容当作字符串赋值给前面变量
+在py2中input接收到内容当作代码执行后赋值给变量
+说明：比如说input在py2下输入是laowang，最后就是value=laowang
+会报错，代码赋值给value这肯定错了
+py2下input接受1+1，则value值是2，当作代码执行了
+py2下面实现py3接受字符串效果，使用raw_input()即可。
+</code></pre></blockquote>
+<hr>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><hr>
+<pre><code>数字：int(有符号整型) long(长整形，也可以代表八进制，十六进制)
+float(浮点型) complex(复数)
+布尔型：True,False
+字符串：String
+List:列表
+Tuple:元组
+Dictionary；字典
+</code></pre><hr>
+<h1 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h1><blockquote>
+<p>字母，数字，下划线，且数字不能开头。</p>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><hr>
+<pre><code>在python中可以用字符串乘以数字，输出就是数字个该字符串
+幂运算符：**
+一次输出多个变量：
+print(&quot;字符串%s,......整型值%d....&quot;,%(name,age));
+python字符串比较可以直接使用==.
+</code></pre></blockquote>
+<hr>
+<h1 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">not:</div><div class="line">a=int(input(&quot;请输入数字&quot;))</div><div class="line">if not(a&gt;10):</div><div class="line">    print(&quot;不是大于10&quot;)</div></pre></td></tr></table></figure>
+<h1 id="补充点"><a href="#补充点" class="headerlink" title="补充点"></a>补充点</h1><hr>
+<pre><code>python中没有do while
+print打印默认换行，print(&quot;*&quot;,end=&quot;&quot;)这样就不换行了
+python中只有j+=1,没有j++
+</code></pre><hr>
+<h1 id="for"><a href="#for" class="headerlink" title="for"></a>for</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">for循环可以直接遍历字符串</div><div class="line">for item in name：</div></pre></td></tr></table></figure>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line">组合字符串：两种方式</div><div class="line">+：如果是字符串相加即时组合，如果是数字+就是计算</div><div class="line">f=&quot;======%s=======&quot;%(a+b)</div><div class="line">下标和切片：</div><div class="line">name=“&quot;qiang&quot;;</div><div class="line">name[1]</div><div class="line">name[-1]//最后一个元素</div><div class="line">len(name)  字符串长度</div><div class="line">name[1:3] 切片，包左不包右</div><div class="line">name[-2:] 取最后两个</div><div class="line">name[1:5:2] 每隔2(步长)取</div><div class="line">name[-1:0]这样写是什么也取不出来的</div><div class="line">name[-1:0:-1]这样是逆序取字符串，但是这样取不出来最开始的字符</div><div class="line">name[-1::-1]完整的逆序取字符串，等效于name[::-1]</div><div class="line">mystr.find(&quot;world&quot;) 返回从左边开始的匹配的字符串中第一个字符的下标(此时是w)</div><div class="line">如果没找到返回-1</div><div class="line">mystr.rfind(&quot;world&quot;) 返回从右开始的下标，注意此时返回的是右边开始的第一个匹配的</div><div class="line">字符串world中w字符的下标(下标还是从左往右数的数字)</div><div class="line"></div><div class="line">mystr.index(&quot;world&quot;)如果该字符存在，则和find效果等同，但是如果没找到，则程序直接报错，同理也有rindex</div><div class="line">mystr.count(&quot;world&quot;)查询出现次数，不存在则返回0</div><div class="line">mytsr.replace(&quot;world&quot;,&quot;WORLD&quot;)  替换字符串中小写world变为大写，返回新字符串，原字符串不变</div><div class="line">数字字符串元组是不可变类型，所以相关操作，一般都是返回新的，本身不变</div><div class="line">mytsr.replace(&quot;world&quot;,&quot;WORLD&quot;，1)如果字符串有多个小写的world，那么此时只替换第一个，如果不写参数三，则全部替换</div><div class="line">mystr.split(&quot; &quot;)把字符串mystr按照空格切割(被切割的部分已经没有了，此时空格就没有了)，并返回一个列表[]</div><div class="line"> mystr.capitalize()首字母大写</div><div class="line">mystr.title() 每个单词首字母都大写</div><div class="line">mystr.startswith() 是否已什么开头，返回布尔值</div><div class="line">mystr.endswith()</div><div class="line">mystr.lower()</div><div class="line">mystr.upper()</div><div class="line">mystr.ljust(10)   &apos;hello     &apos; 左对齐并空格填充</div><div class="line">mystr.rjust(10)   &apos;     hello&apos;</div><div class="line">mystr.center(10)  &apos;   hello  &apos;</div><div class="line">mystr.lstrip()删除字符串左边空格</div><div class="line">mystr.rstrip()删除字符串右边空格</div><div class="line">mystr.strip()删除字符串两边空格</div><div class="line">mystr.partition(&quot;itcast&quot;)以参数字符串为中心，分割字符串为三部分  </div><div class="line">返回：(hello itcast  qiang)元组</div><div class="line">mystr.rpartition(&quot;itcast&quot;) 从右边开始找，进行分割</div><div class="line">mystr.splitlines() 把字符串(内部有\n)按照换行进行切割，并返回列表list</div><div class="line">mystr.isalpha() 所有字符都是字母，返回布尔值</div><div class="line">mystr.isdigit 字符串只包含数字，返回布尔值</div><div class="line">mystr.isalnum 字符串是否只包含数字和字母，返回布尔值</div><div class="line">mystr.isspace 字符串是否只包含空格，返回布尔值</div><div class="line">mystr.join(str)每个字符后面插入str，构造出一个新的字符串</div><div class="line">li=[&quot;my&quot;,&quot;name&quot;,&quot;is&quot;,&quot;qiang&quot;]</div><div class="line">str=&quot; &quot;</div><div class="line">str.join(li)  &apos;my name is qiang&apos;</div><div class="line">str=&quot;-&quot;</div><div class="line">str.join(li) &apos;my-name-is-qiang&apos;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>面试题：切割字符串中的空格或\td等空白字符
+解析：直接使用result=mystr.split（）默认不加参数，就是直接去除这类空白字符，都会进行切割。返回的是列表
+然后利用join方法在拼接成字符串
+&quot;&quot;.join(result)，这样不加空格的字符串&quot;&quot;，使用join就可拼接列表中字符
+</code></pre><hr>
+<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><hr>
+<pre><code>python中列表可以存储不同数据类型
+name=[1,&apos;a&apos;,&quot;afba&quot;,3.14]
+添加：name.append(&quot;强&quot;)  如果append是添加的是可迭代对象，例如列表会整体添加进去，区别于
+extentd。例如:[1,2,3,[4,5]]
+补充案例：
+a=[1,2,3]
+b=[4,5]
+a=a.append(b)
+输出a结果是None，因为右边没有返回值
+
+
+插入：name.insert(1,&quot;heh&quot;)
+连接列表：1.使用+（此时变化的是新的name2=name+name1而不是name） 2. name.extend(name1) 把name1列表添加到name列表，此时name变化,注意，extentd内部只能放入可迭代对象，不能是单一数字这种。
+删除：
+name.pop() 删除name最后一个元素并返回删除的元素
+name.remove(&quot;曾&quot;) 删除指定元素，如果存在多个相同元素，则只删除从左开始第一个，无返回值
+del name[1]删除指定索引的元素
+取出：name[2:5]同字符串的切片，包左不包右
+替换：name[0]=&quot;强&quot;
+&quot;强&quot; in name: 判断字符串&quot;强&quot;是否在name列表中，同理还有not in
+</code></pre><hr>
+<h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">person=&#123;&quot;age&quot;:19,&quot;name&quot;:qiang&#125;</div><div class="line">增加：person[&quot;没有的key&quot;]=value</div><div class="line">删除：del person[key]  无返回值</div><div class="line">查找：1. person[key]  没有的的话会程序崩溃  2.person.get(key) 没有key也不会报错</div><div class="line">修改：person[key]=新value</div><div class="line"></div><div class="line">python特有的遍历：</div><div class="line">for item in name:</div><div class="line">	pass</div><div class="line">else:</div><div class="line">	pass</div><div class="line">这种else是不论怎么样都会执行了除非在for内部加判断然后break了</div><div class="line"></div><div class="line">字典相关操作：</div><div class="line">len():字典的长度</div><div class="line">keys():字典所有key的列表 dict_keys([&apos;name&apos;, &apos;age&apos;])</div><div class="line">values():字典所有value的列表   dict_values([&apos;qiang&apos;, 13])</div><div class="line">items():字典(键值)元组的列表   dict_items([(&apos;name&apos;, &apos;qiang&apos;), (&apos;age&apos;, 13)])</div><div class="line">注意：上面三个返回值，都是py3的返回，在py2中，返回就是元组，外面没有dict_...包裹</div><div class="line"></div><div class="line"></div><div class="line">拆包：</div><div class="line">a=(11,22)</div><div class="line">b,c=a</div><div class="line">则b=11   c=22</div></pre></td></tr></table></figure>
+<h2 id="元组-tuple"><a href="#元组-tuple" class="headerlink" title="元组(tuple)"></a>元组(tuple)</h2><blockquote>
+<p>元组和列表类似，列表使用方括号，元组使用小括号，元组的元素不能修改<br>name=(1,2,3)</p>
+</blockquote>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">def 函数名():</div><div class="line">	pass</div><div class="line"></div><div class="line">函数返回值：</div><div class="line">def test():</div><div class="line">	a=1</div><div class="line">	b=2</div><div class="line">	c=3</div><div class="line">	return a,b,c  #等效于return(a,b,c)</div><div class="line">说明：函数一次性返回多个值，默认会被封装成元组返回，当然也可以手动封装成列表等返回</div></pre></td></tr></table></figure>
+<h1 id="变量："><a href="#变量：" class="headerlink" title="变量："></a>变量：</h1><hr>
+<pre><code>定义全局变量之后，如果内部有同名的局部变量
+但是如果还是想使用全局变量，可以内部用global修饰，这样就是指明使用的是全局变量
+全局变量，必须放在函数调用之前即可（重要）
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">函数：</div><div class="line">num =10</div><div class="line">def test():</div><div class="line">	global num</div><div class="line">    num=num+1</div><div class="line">    return num</div><div class="line">说明：函数使用全局变量的时候，如果不在函数内部加以声明，会报错，这点和java</div><div class="line">不同，另外，如果使用全局的字典，列表，则global xx这个函数内声明可省略。</div><div class="line"></div><div class="line">缺省参数：</div><div class="line">def test(a,b=33,c=44):  b ,c  被称为缺省参数</div><div class="line">	return a+b</div><div class="line"></div><div class="line">test(a,c=55) c被称为命名参数</div><div class="line"></div><div class="line">不定长参数：</div><div class="line">def test(a,b,*args):</div><div class="line">   sum=0</div><div class="line">   sum+=(a+b)</div><div class="line">   for item in args:</div><div class="line">        sum+=item</div><div class="line">   return sum</div><div class="line">print(test(1,2,3,4,5,6))</div><div class="line">输出21 ，*args会被封装成一个元组此时为(3,4,5,6),注意可变参数一定要放到参数最后一个。</div><div class="line"></div><div class="line">案例：</div><div class="line">  1 def test(a,b,c=33,*args,**kwargs):</div><div class="line">  2     print(a,b)</div><div class="line">  3     print(c)</div><div class="line">  4     print(args)</div><div class="line">  5     print(kwargs)</div><div class="line">  6 test(1,2,44,1,44,d=&quot;qiang&quot;,e=&quot;zeng&quot;)</div><div class="line">输出：</div><div class="line">1 2</div><div class="line">44</div><div class="line">(1, 44)</div><div class="line">&#123;&apos;d&apos;: &apos;qiang&apos;, &apos;e&apos;: &apos;zeng&apos;&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注意：传入的key=value形式的参数，如果位于最后，会被封装成字典形式
+另外此种形式，不能在44位置，写c=44，因为后面有**kwargs。如此会造成
+识别误区，因为会被当成封装进入字典的一部分，但是规定字典那部分必须放在最后
+同时，不能出现a=&quot;&quot;这样的，因为也会出现识别错误，因为前面参数有a。
+</code></pre><hr>
+<h2 id="拆包："><a href="#拆包：" class="headerlink" title="拆包："></a>拆包：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">  1 def test(a,b,c=33,*args,**kwargs):</div><div class="line">  2     print(a,b)</div><div class="line">  3     print(c)</div><div class="line">  4     print(args)</div><div class="line">  5     print(kwargs)</div><div class="line">  6</div><div class="line">  7 A=(7,8,9)</div><div class="line">  8 B=&#123;&quot;d&quot;:&quot;qiang&quot;,&quot;e&quot;:&quot;zeng&quot;&#125;</div><div class="line">  9 test(1,2,44,*A,**B)</div><div class="line"></div><div class="line">  输出：</div><div class="line">	1 2</div><div class="line">	44</div><div class="line">	(7, 8, 9)</div><div class="line">	&#123;&apos;e&apos;: &apos;zeng&apos;, &apos;d&apos;: &apos;qiang&apos;&#125;</div><div class="line">注意：即使B里面也不能出现和前面形参名称相同的key，例如此时的a,b</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">案例一：</div><div class="line">  1 def test(a,b,c=33,*args,**kwargs):</div><div class="line">  2     print(a,b)</div><div class="line">  3     print(c)</div><div class="line">  4     print(args)</div><div class="line">  5     print(kwargs)</div><div class="line">  6</div><div class="line">  7 A=(7,8,9)</div><div class="line">  8 B=&#123;&quot;d&quot;:&quot;qiang&quot;,&quot;e&quot;:&quot;zeng&quot;&#125;</div><div class="line">  9 test(1,2,44,A,B)</div><div class="line"></div><div class="line"></div><div class="line">输出：</div><div class="line">1 2</div><div class="line">44</div><div class="line">((7, 8, 9), &#123;&apos;e&apos;: &apos;zeng&apos;, &apos;d&apos;: &apos;qiang&apos;&#125;)</div><div class="line">&#123;&#125;</div></pre></td></tr></table></figure>
+<h2 id="引用："><a href="#引用：" class="headerlink" title="引用："></a>引用：</h2><hr>
+<pre><code>id(a)；变量a在内存中的地址
+变量名称1=变量名称2：统统都是地址传递(引用)，注意是变量名赋值
+例如：a=10   b=a  此时a,b都指向10 此时修改a=11，则b还是10，指向不变，a已经变化为11.
+所谓的引用传递，指的是全都是引用传递，不论什么类型，理论上都可以修改，但是不可变类型是不可修改的。
+
+不可变类型：数字，字符串，元组
+字典的key只能是不可变类型，因为取出value的值的时候，是通过key计算出来对应的内存地址的，key固定通过哈希算法才能计算出唯一的不变地址索引，才能正确的
+修改，查询对应的value值。
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Python知识点(一)/" data-id="cj60seeco001v60nkqtwmp2tv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/TCP及UDP小结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Socket通信小结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/OC语言笔记_04md/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">OC语言笔记_04</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

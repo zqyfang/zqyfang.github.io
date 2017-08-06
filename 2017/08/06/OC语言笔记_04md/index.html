@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>OC语言笔记_04 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="NSArray C语言数组的弊端：int array[4]={10,89,27,76};只能存放一种类型的数据不能动态添加数组元素，不能方便的动态删除数组元素(长度固定)   NSArray注意： 只能存放任意oc对象，并且是有顺序的 不能存放非oc对象，比如int/float/struct等 它是不可变的，一旦初始化完成，里面内容固定，不能删除里面的元素，也不能追加元素   数组初始化方法：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC语言笔记_04">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/OC语言笔记_04md/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="NSArray C语言数组的弊端：int array[4]={10,89,27,76};只能存放一种类型的数据不能动态添加数组元素，不能方便的动态删除数组元素(长度固定)   NSArray注意： 只能存放任意oc对象，并且是有顺序的 不能存放非oc对象，比如int/float/struct等 它是不可变的，一旦初始化完成，里面内容固定，不能删除里面的元素，也不能追加元素   数组初始化方法：">
+<meta property="og:updated_time" content="2017-07-09T06:21:31.110Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OC语言笔记_04">
+<meta name="twitter:description" content="NSArray C语言数组的弊端：int array[4]={10,89,27,76};只能存放一种类型的数据不能动态添加数组元素，不能方便的动态删除数组元素(长度固定)   NSArray注意： 只能存放任意oc对象，并且是有顺序的 不能存放非oc对象，比如int/float/struct等 它是不可变的，一旦初始化完成，里面内容固定，不能删除里面的元素，也不能追加元素   数组初始化方法：">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-OC语言笔记_04md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/OC语言笔记_04md/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.534Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Object-C/">Object C</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OC语言笔记_04
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NSArray"><a href="#NSArray" class="headerlink" title="NSArray"></a>NSArray</h1><blockquote>
+<p>C语言数组的弊端：<br>int array[4]={10,89,27,76};<br>只能存放一种类型的数据<br>不能动态添加数组元素，不能方便的动态删除数组元素(长度固定)</p>
+</blockquote>
+<hr>
+<pre><code>NSArray注意：
+只能存放任意oc对象，并且是有顺序的
+不能存放非oc对象，比如int/float/struct等
+它是不可变的，一旦初始化完成，里面内容固定，不能删除里面的元素，也不能追加元素
+</code></pre><hr>
+<blockquote>
+<p>数组初始化方法：<br>   NSArray <em>arr=[NSArray arrayWithObject:&lt;#(nonnull id)#&gt;]  传入一个对象<br>   NSArray </em>arr=[NSArray arrayWithObjects:&lt;#(nonnull id), …#&gt;, nil] 传入多个对象，注意：数组中的nil是结束符</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">    Person *p=[Person new];</div><div class="line">    NSObject *obj=[NSObject new];</div><div class="line">    NSArray *array=[NSArray arrayWithObjects:@&quot;lnj&quot;,p,obj, nil];</div><div class="line">    说明：可以把其他类型转换为对象，存放到数组中。</div><div class="line">    [array count]:获取数组长度</div><div class="line">    [array lastObject]:获取数组最后一个元素</div><div class="line">    [array firstObject]:获取数组第一个元素</div><div class="line">    [array objectAtIndex:&lt;#(NSUInteger)#&gt;]:获取指定位置的元素</div><div class="line">    [array containsObject:&lt;#(nonnull id)#&gt;]：是否包含某一个元素</div><div class="line">简写方法：</div><div class="line">NSArray *arr=@[@&quot;lnj&quot;,@&quot;lmj&quot;];</div><div class="line">arr[0];</div><div class="line">1.1遍历数组</div><div class="line">NSArray *arr=@[@&quot;lnj&quot;,@&quot;lmj&quot;];</div><div class="line">for (NSObject *val in arr) &#123;</div><div class="line">    NSLog(@&quot;%@&quot;,val);</div><div class="line">&#125;</div><div class="line">迭代器遍历</div><div class="line">[arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) &#123;</div><div class="line">        //obj：当前对象，idx：当前索引，stop：控制什么时候停止，可以赋值YES则停止遍历</div><div class="line">    &#125;];</div></pre></td></tr></table></figure>
+<h2 id="调用数组保存的对象中的方法"><a href="#调用数组保存的对象中的方法" class="headerlink" title="调用数组保存的对象中的方法"></a>调用数组保存的对象中的方法</h2><hr>
+<pre><code>方式一：遍历数组，取出对象，然后通过对象调用方法
+方式二：
+调用show方法
+[arr makeObjectsPerformSelector:@selector(show)];
+传递参数：
+[arr makeObjectsPerformSelector:&lt;#(nonnull SEL)#&gt; withObject:&lt;#(nullable id)#&gt;]
+1.3：数组排序
+[arr sortedArrayUsingSelector:@selector(compare:)];
+排序后，返回一个新数组(默认conpare：是升序排序)
+想使用compare：进行排序必须是Foundation中的对象，不能是自定义对象(例如person)
+</code></pre><hr>
+<blockquote>
+<p>如果想对非Foundation中的对象进行排序，则可以使用下面方法，如下代码就是把person的age按照升序排序(默认就是按照升序排序)<br>NSArray <em>new=[arr sorted ArrayWithOptions:NSSortStableusingComparator:^NSComparisonResult(Person </em>obj1,Person *obj2)]{<br>    return obj1.age&gt;obj2.age;//改成小于就是降序排序<br>}];</p>
+</blockquote>
+<h2 id="数组和字符串转换"><a href="#数组和字符串转换" class="headerlink" title="数组和字符串转换"></a>数组和字符串转换</h2><blockquote>
+<p>[arr componentsJoinedByString:@”-“]; 把arr每个元素遍历出来并用-链接成字符串返回<br>[str componentsSeparatedByString:@”<strong>“];：按照</strong>把字符串分割成数组并返回</p>
+</blockquote>
+<h2 id="数组读写"><a href="#数组读写" class="headerlink" title="数组读写"></a>数组读写</h2><hr>
+<pre><code>此方法只能写入Foundation中的对象
+[arr writeToFile:&lt;#(nonnull NSString *)#&gt; atomically:&lt;#(BOOL)#&gt;]
+写入文件，参数一：是路径，参数二是否在写入成功的时候才生成文件
+此方法是生成xml文件，一般会将xml文件的扩展名保存为plist
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">读取文件到数组：</div><div class="line">[NSArray arrayWithContentsOfFile:&lt;#(nonnull NSString *)#&gt;]//绝地址</div><div class="line">[NSArray arrayWithContentsOfURL:&lt;#(nonnull NSURL *)#&gt;]//url</div></pre></td></tr></table></figure>
+<h1 id="NSMutableArray"><a href="#NSMutableArray" class="headerlink" title="NSMutableArray"></a>NSMutableArray</h1><blockquote>
+<p>注意：不可以通过@[]来创建NSMutableArray数组，因为创建出来的是不可变数组。</p>
+</blockquote>
+<hr>
+<pre><code>是NSArray的子类，是可变的，可以添加修改删除元素
+[arr addObject:@&quot;lnj&quot;];//此方法也可以直接添加一个数组进去，但是不推荐
+将指定数组中的元素都取出来，放到arr中(注意不是把整个数组放进去)
+[arr addObjectsFromArray:@[@&quot;lnj&quot;,@&quot;lmj&quot;]];
+插入元素：
+指定位置插入元素
+[arr insertObject:&lt;#(nonnull id)#&gt; atIndex:&lt;#(NSUInteger)#&gt;]
+指定一个元素，指定数组需要插入的位置，和插入多少个
+[arr insertObjects:&lt;#(nonnull NSArray *)#&gt; atIndexes:&lt;#(nonnull NSIndexSet *)#&gt;]
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">    NSMutableArray *arr=[NSMutableArray array];</div><div class="line">    NSRange range=NSMakeRange(2, 2);//头一个2(索引)是插入的位置，第二个2指的是插入个数，如果下面不足2个会报错</div><div class="line">    NSIndexSet *set=[NSIndexSet indexSetWithIndexesInRange:range];</div><div class="line">    [arr insertObjects:@[@&quot;a&quot;,@&quot;b&quot;] atIndexes:set];</div><div class="line"></div><div class="line">删除元素：</div><div class="line">[arr removeObjectAtIndex:1]; 删除指定位置的元素</div><div class="line">[arr removeAllObjects] 清空数组</div><div class="line">[arr removeLastObject]:删除最后一个元素</div><div class="line">[arr removeObject:@&quot;a&quot;]; 删除指定元素</div><div class="line"></div><div class="line">替换元素：</div><div class="line">[arr replaceObjectAtIndex:1 withObject:@&quot;a&quot;]; 用替换数组索引为1的元素</div><div class="line">arr[1]=@&quot;a&quot;; 等效</div><div class="line">获取元素：</div><div class="line">[arr objectAtIndex:1]:获取索引1处的元素</div><div class="line">arr[1]:等效</div></pre></td></tr></table></figure>
+<h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><hr>
+<pre><code>字典中保存数据是无序的
+基本使用
+NSDictionary *dict=[NSDictionary dictionaryWithObject:@&quot;lnj&quot; forKey:@&quot;name&quot;];
+NSString *name=[dict objectForKey:@&quot;name&quot;];
+多个key和value：
+NSDictionary *dict=[NSDictionary dictionaryWithObjects:@[@&quot;lnj&quot;,@&quot;30&quot;,@&quot;1.75&quot;] forKeys:@[@&quot;name&quot;,@&quot;age&quot;,@&quot;height&quot;]];
+简单方式：
+NSDictionary *dict1=@{@&quot;name&quot;:@&quot;lnj&quot;};
+dict1[@&quot;name&quot;];
+</code></pre><hr>
+<h2 id="字典遍历"><a href="#字典遍历" class="headerlink" title="字典遍历"></a>字典遍历</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">获取键值对的个数:[dict count];</div><div class="line">获取所有key:[dict allKeys];</div><div class="line">for (NSString *obj in dict) &#123;</div><div class="line">        //obj就是key</div><div class="line">        //dict[obj]获取value</div><div class="line">&#125;</div><div class="line">其他方式：</div><div class="line">[dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) &#123;</div><div class="line">&#125;]</div></pre></td></tr></table></figure>
+<h2 id="读写文件"><a href="#读写文件" class="headerlink" title="读写文件"></a>读写文件</h2><hr>
+<pre><code>写入文件：[dict writeToFile:&lt;#(nonnull NSString *)#&gt; atomically:&lt;#(BOOL)#&gt;]
+生成也是xml文件，扩展名最好也修改为plist
+读取文件
+[NSDictionary dictionaryWithContentsOfURL:&lt;#(nonnull NSURL *)#&gt;]
+[NSDictionary dictionaryWithContentsOfFile:&lt;#(nonnull NSString *)#&gt;]
+</code></pre><hr>
+<h1 id="NSMutableDictionary"><a href="#NSMutableDictionary" class="headerlink" title="NSMutableDictionary"></a>NSMutableDictionary</h1><hr>
+<pre><code>//创建空字典
+NSMutableDictionary *dict=[NSMutableDictionary dictionary];
+添加：
+[dict setObject:&lt;#(nonnull id)#&gt; forKey:&lt;#(nonnull id&lt;NSCopying&gt;)#&gt;]
+会将传入字典中所有键值对取出来，依次放入新字典中
+[dict setValuesForKeysWithDictionary:@{@&quot;age&quot;:@&quot;30&quot;,@&quot;height&quot;:@&quot;1.75&quot;}];
+删除：
+[dict removeObjectForKey:&lt;#(nonnull id)#&gt;]
+[dict removeObjectsForKeys:&lt;#(nonnull NSArray *)#&gt;]
+[dict removeAllObjects]
+修改：
+[dict setObject:&lt;#(nonnull id)#&gt; forKey:&lt;#(nonnull id&lt;NSCopying&gt;)#&gt;]
+dict[@&quot;name&quot;]=@&quot;lmj&quot;;
+</code></pre><hr>
+<blockquote>
+<p>注意：不可以通过@{}创建可变字典<br>如果是不可变字典，那么key不能相同，相同key后面的key值不会被保存<br>如果是可变字典，相同key，后面key会覆盖前面key的value</p>
+</blockquote>
+<h1 id="常用结构体"><a href="#常用结构体" class="headerlink" title="常用结构体"></a>常用结构体</h1><hr>
+<pre><code>NSPoint和CGPoint：二维平面的一个点
+    可使用CGMakePoint和NSMakePoint函数创建CGPoint
+    CGPoint point=NSMakePoint(10,20)；
+NSSize和CGSize:保存尺寸
+    创建结构体都是NSMakexxx
+NSRect和CGRect：保存坐标和尺寸,其实就是上两个的结合体
+    CGRect rect=NSMakeRect(10,20,100,50);先是坐标，后是尺寸
+苹果推荐使用CG开头的
+
+注意：这前后两个都是分别等效的(别名而已)
+</code></pre><hr>
+<h1 id="NSNumber"><a href="#NSNumber" class="headerlink" title="NSNumber"></a>NSNumber</h1><hr>
+<pre><code>将基本数据类型转化为对象类型，这样数组和字典就能存储了
+NSNumber *number=[NSNumber numberWithBool:&lt;#(BOOL)#&gt;]
+NSNumber *number=[NSNumber numberWithInt:&lt;#(int)#&gt;]
+还有很多numberWithXXX
+将对象转换为基本数据类型
+double temp=[number doubleValue];
+基本数据类型转对象类型简写：
+NSNumber *temp=@(age);
+注意：如果传入的是变量，必须在@后面写上(),如果传入常量，那么@()可省略
+</code></pre><hr>
+<h1 id="NSValue"><a href="#NSValue" class="headerlink" title="NSValue"></a>NSValue</h1><blockquote>
+<p>可以包装任意类型（包装过后就可以存入数组，字典了）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">    CGPoint point =NSMakePoint(10, 20);</div><div class="line">    NSValue *value=[NSValue valueWithPoint:point];</div><div class="line">    NSArray *arr=@[value];</div><div class="line">包装自定义结构体</div><div class="line"> typedef struct&#123;</div><div class="line">        int gae;</div><div class="line">        char *name;</div><div class="line">        double height;</div><div class="line">    &#125;Person;</div><div class="line">    Person p=&#123;30,&quot;lnj&quot;,1.75&#125;;</div><div class="line">    //valueWithBytes：接受一个指针，需要传递需要包装的结构体的变量的地址</div><div class="line">    //objCType:需要传递需要包装的数据类型</div><div class="line">    NSValue *value=[NSValue valueWithBytes:&amp;p objCType:@encode(Person)];</div><div class="line">    NSArray *arr=@[value];</div><div class="line">     //取出值</div><div class="line">    Person res;</div><div class="line">    [value getValue:&amp;res];</div></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：之所以要传入一个res参数，是因为getValue方法没有返回值，信息存储在传入的参数的地址里面，故而可以通过该地址取出相关信息。</p>
+</blockquote>
+<h1 id="NSDate"><a href="#NSDate" class="headerlink" title="NSDate"></a>NSDate</h1><hr>
+<pre><code>时间对象
+ //只要创建，则now就会存储当前时间
+    NSDate *now=[NSDate date];
+    //在now基础上追加多少秒
+    NSDate *date=[now dateByAddingTimeInterval:10]//追加10秒,因为是不可变的，所以返回新的
+获取当前时区的时间（因为默认获取的可能不是当前时区的时间）：
+int main(int argc, const char * argv[]) {
+    NSDate *now=[NSDate date];
+    //获取当前所处时区
+    NSTimeZone *zone=[NSTimeZone systemTimeZone];
+    //获取当前时区和指定时间的时间差
+    NSInteger seconds=[zone secondsFromGMTForDate:now];
+    NSDate *date=[now dateByAddingTimeInterval:seconds];
+    return 0;
+}
+</code></pre><hr>
+<h2 id="时间格式化"><a href="#时间格式化" class="headerlink" title="时间格式化"></a>时间格式化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">案例：获取xxx年xxx月...这种格式化后的时间</div><div class="line">    NSDate *now=[NSDate date];</div><div class="line">    //创建一个时间格式化的对象</div><div class="line">    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];</div><div class="line">    //利用时间格式化对象对时间进行格式化</div><div class="line">    NSString *res=[formatter stringFromDate:now];</div><div class="line">上面案例是只能生成固定格式时间，下面是类似自定义格式：</div><div class="line">    NSDate *now=[NSDate date];</div><div class="line">    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];</div><div class="line">    formatter.dateFormat=@&quot;yyyy年MM月dd日HH时mm分ss秒&quot;;</div><div class="line">    NSString *res=[formatter stringFromDate:now];</div><div class="line">字符串转时间：</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    NSString *time=@&quot;2015-06-29 09:05:26&quot;;</div><div class="line">    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];</div><div class="line">    formatter.dateFormat=@&quot;yyyy年MM月dd日HH时mm分ss秒&quot;;</div><div class="line">    NSDate *date=[formatter dateFromString:time];</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="NSCalender"><a href="#NSCalender" class="headerlink" title="NSCalender"></a>NSCalender</h1><blockquote>
+<p>NSCalendar *cal=[NSCalendar currentCalendar];<br>说明：这个是单例的，不论获取多少次，都是同一个</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">案例：通过日历，获取传入时间对象的对应信息</div><div class="line">     NSDate *now=[NSDate date];</div><div class="line">    NSCalendar *cal=[NSCalendar currentCalendar];</div><div class="line">    NSDateComponents *cmps=[cal components:NSCalendarUnitYear fromDate:now];//获取年</div><div class="line">如果想获取多个：</div><div class="line">    int main(int argc, const char * argv[]) &#123;</div><div class="line">    NSDate *now=[NSDate date];</div><div class="line">    NSCalendar *cal=[NSCalendar currentCalendar];</div><div class="line">    //一个参数是一个枚举，可以通过|连接多个枚举值</div><div class="line">    NSCalendarUnit type=NSCalendarUnitYear|NSCalendarUnitDay;</div><div class="line">    NSDateComponents *cmps=[cal components:type fromDate:now];</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">比较两个时间之间的差值：</div><div class="line">过去的一个时间</div><div class="line">NSString *time=@&quot;2015-06-29 09:05:26&quot;;</div><div class="line">NSDateFormatter *formatter=[[NSDateFormatter alloc]init];</div><div class="line">formatter.dateFormat=@&quot;yyyy年MM月dd日HH时mm分ss秒&quot;;</div><div class="line"> NSDate *date=[formatter dateFromString:time];</div><div class="line">当前时间</div><div class="line">NSDate *now=[NSDate now];</div><div class="line">比较时间</div><div class="line">NSCalendar *cal=[NSCalendar currentCalendar];</div><div class="line">NSCalendarUnit type=NSCalendarUnitYear|NSCalendarUnitDay;</div><div class="line">NSDateComponents *cmps=[cal components:type fromDate:time toDate:now options:0];//0是按照系统默认处理</div></pre></td></tr></table></figure>
+<h1 id="NSFileManager"><a href="#NSFileManager" class="headerlink" title="NSFileManager"></a>NSFileManager</h1><hr>
+<pre><code>管理文件：也是单例模式
+NSFileManager *manager=[NSFileManager defaultManager];
+判断一个文件或者文件夹是否存在
+BOOL flag=[manager fileExistsAtPath:@&quot;绝对路径&quot;];
+判断一个文件是否存在，并且判断是否是一个文件夹
+BOOL dir=NO;
+BOOL flag=[manager fileExistsAtPath:@&quot;绝对路径&quot; isDirectory:&amp;dir];
+说明：第二个参数是用来保存判断结果的，如果是一个目录，那么会赋值为YES，如果不是就赋值为NO
+</code></pre><hr>
+<h2 id="获取文件或文件夹的属性"><a href="#获取文件或文件夹的属性" class="headerlink" title="获取文件或文件夹的属性"></a>获取文件或文件夹的属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSFileManager *manager=[NSFileManager defaultManager];</div><div class="line">NSDictionary *dict=[manager attributesOfItemAtPath:@&quot;路径&quot; error:nil];</div></pre></td></tr></table></figure>
+<h2 id="获取文件夹所有文件"><a href="#获取文件夹所有文件" class="headerlink" title="获取文件夹所有文件"></a>获取文件夹所有文件</h2><hr>
+<pre><code>[manager contentsOfDirectoryAtPath:&lt;#(nonnull NSString *)#&gt; error:nil] 返回值是数组
+弊端：只能获取当前文件下的文件，不能获取子文件夹下面的文件
+
+获取包括子文件夹在内的所有文件：
+[manager subpathsAtPath:&lt;#(nonnull NSString *)#&gt;]
+[manager subpathsOfDirectoryAtPath:&lt;#(nonnull NSString *)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]
+
+拷贝文件：
+[manager copyItemAtPath:&lt;#(nonnull NSString *)#&gt; toPath:&lt;#(nonnull NSString *)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]
+移动文件：
+[manager moveItemAtPath:&lt;#(nonnull NSString *)#&gt; toPath:&lt;#(nonnull NSString *)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]
+删除文件：
+[manager removeItemAtPath:&lt;#(nonnull NSString *)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]
+创建文件夹：
+[manager createDirectoryAtPath:&lt;#(nonnull NSString *)#&gt; withIntermediateDirectories:&lt;#(BOOL)#&gt; attributes:&lt;#(nullable NSDictionary&lt;NSString *,id&gt; *)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]
+</code></pre><hr>
+<blockquote>
+<p>说明：createDirectoryAtPath：创建文件夹的位置<br>withIntermediateDirectories：如果值得文件中有一些文件夹不存在，是否自动创建不存在的文件夹，多级文件夹时候，前面文件夹不存在，是否自动创建(布尔值)<br>attributes：指定创建出来的文件夹的属性（可读，可写，可读写）</p>
+</blockquote>
+<hr>
+<pre><code>创建文件夹：
+[manager createFileAtPath:&lt;#(nonnull NSString *)#&gt; contents:&lt;#(nullable NSData *)#&gt; attributes:&lt;#(nullable NSDictionary&lt;NSString *,id&gt; *)#&gt;]
+说明：
+createFileAtPath;文件创建的路径
+contents：文件内容
+attributes：文件属性
+
+注意：NSDate：二进制数据
+</code></pre><hr>
+<h1 id="Copy"><a href="#Copy" class="headerlink" title="Copy"></a>Copy</h1><hr>
+<pre><code>利用源对象产生一个新的对象
+copy:创建的是不可变副本(NSString,NSArray等)
+mutableCopy：创建的是可变副本(NSMutableArray等)
+实现对应协议(copy或mutableCopy)，然后实现copytWithZone/mutableCopyWithZone
+oc中自带类几乎都实现了上面协议，可以直接使用（如果是自定义类型，需要自己实现）
+ NSString *str=@&quot;lnj&quot;;
+ NSMutableString *str1=[str mutableCopy];
+ 说明：
+copy和mutableCopy也不是一定生成新对象，oc会进行优化，只要满足，新对象和老对象修改
+都互不影响即可，如果copy和之前都是不可变对象，则这样没必要生成新对象了，这属于oc的自动优化。
+浅拷贝：不会产生新的对象
+深拷贝：会产生新的对象
+</code></pre><hr>
+<h2 id="copy和property"><a href="#copy和property" class="headerlink" title="copy和property"></a>copy和property</h2><blockquote>
+<p>以后防止外面可以修改内部字符串，都是用下面写法<br>@property(nonatomic,copy)NSString *name;//不在使用以前的retain</p>
+</blockquote>
+<hr>
+<pre><code>补充：Block_copy(myBlock);
+使用该方法进行block拷贝，不会进行copy而是把block从栈中转移到堆内存中
+这样可以避免，要使用的外界对象已经释放了。
+</code></pre><hr>
+<h2 id="自定义类实现copy"><a href="#自定义类实现copy" class="headerlink" title="自定义类实现copy"></a>自定义类实现copy</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">-(id) copyWithZone:(NSZone *)zone&#123;</div><div class="line">    //创建一个新的对象</div><div class="line">    Person *p=[[[self class] allocWithZone:zone]init];</div><div class="line">    //设置当前对象的内容给新的对象</div><div class="line">    p.age=_age;</div><div class="line">    p.name=_name;</div><div class="line">    //返回新的对象</div><div class="line">    return p;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>说明：如果是mutableCopy内部代码是一抹一样的
+理论上子类会继承父类的copy，但是有可能子类有的属性父类没有，所以一般也要重写。
+内部代码如下：
+id obj=[super copyWithZone:zone];
+[obj setHeight:_height];
+return obj;
+说明：已经实现的使用父类即可，没有的子类在加上就行
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/OC语言笔记_04md/" data-id="cj60seecm001s60nk1at35h7s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/Python知识点(一)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python知识点(一)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/OC语言笔记_01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">OC语言笔记_01</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

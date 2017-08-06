@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>java和node.js基于tcp通信 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="java和node.js基于tcp通信案例说明：tcp发送数据给服务器并接收回返数据，关闭socket java代码部分  1234567891011121314151617181920212223242526272829303132333435public class test &amp;#123;	public static void main(String[] args) &amp;#123;	//字符串缓">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java和node.js基于tcp通信">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/java和node.js基于tcp通信/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="java和node.js基于tcp通信案例说明：tcp发送数据给服务器并接收回返数据，关闭socket java代码部分  1234567891011121314151617181920212223242526272829303132333435public class test &amp;#123;	public static void main(String[] args) &amp;#123;	//字符串缓">
+<meta property="og:updated_time" content="2017-07-09T06:18:59.717Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java和node.js基于tcp通信">
+<meta name="twitter:description" content="java和node.js基于tcp通信案例说明：tcp发送数据给服务器并接收回返数据，关闭socket java代码部分  1234567891011121314151617181920212223242526272829303132333435public class test &amp;#123;	public static void main(String[] args) &amp;#123;	//字符串缓">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-java和node.js基于tcp通信" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/java和node.js基于tcp通信/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.513Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      java和node.js基于tcp通信
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="java和node-js基于tcp通信"><a href="#java和node-js基于tcp通信" class="headerlink" title="java和node.js基于tcp通信"></a>java和node.js基于tcp通信</h1><h2 id="案例说明：tcp发送数据给服务器并接收回返数据，关闭socket"><a href="#案例说明：tcp发送数据给服务器并接收回返数据，关闭socket" class="headerlink" title="案例说明：tcp发送数据给服务器并接收回返数据，关闭socket"></a>案例说明：tcp发送数据给服务器并接收回返数据，关闭socket</h2><blockquote>
+<p>java代码部分</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">public class test &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">	//字符串缓冲流,StringBuffer必须这样初始化</div><div class="line">	//直接StringBuffer sBuffer；是无效的，会报空指针</div><div class="line">	StringBuffer sBuffer=new StringBuffer();</div><div class="line">	String sayString=&quot;我是客户端发送的数据&quot;;</div><div class="line">	Socket socket;</div><div class="line">	try &#123;</div><div class="line">		socket = new Socket();</div><div class="line">		//之所以不直接把ip端口号放到构造方法就是为了设置socket请求超时时间</div><div class="line">		  SocketAddress endpoint = new InetSocketAddress(&quot;192.168.0.27&quot;,3000);</div><div class="line">        socket.connect(endpoint, 4000);//设置连接服务器超时为4秒钟</div><div class="line">		//这个超时指的是，接收到输入流之后read耗费的超时时间</div><div class="line">		socket.setSoTimeout(1000);</div><div class="line">		//输出流</div><div class="line">		OutputStream osStream=socket.getOutputStream();</div><div class="line">		osStream.write(sayString.getBytes());</div><div class="line">		//输入流</div><div class="line">		InputStream isInputStream=socket.getInputStream();</div><div class="line">		//这只是一个包装流，直接使用InputStream也是一样的</div><div class="line">		DataInputStream dsStream=new DataInputStream(isInputStream);</div><div class="line">		int len=0;</div><div class="line">		byte[] by=new byte[1024];</div><div class="line">		while ((len=dsStream.read(by))!=-1) &#123;</div><div class="line">			String infoString=new String(by,0,len);</div><div class="line">			sBuffer.append(infoString);</div><div class="line">		&#125;</div><div class="line">		dsStream.close();</div><div class="line">		isInputStream.close();</div><div class="line">	&#125;catch (IOException e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">	&#125;</div><div class="line">	System.out.println(sBuffer.toString());</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>node.js服务端部分</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">const net=require(&apos;net&apos;);</div><div class="line">net.createServer(function (socket) &#123;</div><div class="line">    console.log(&apos;端口：&apos;+socket.remotePort+&apos; 连接了服务器！&apos;);</div><div class="line">    socket.on(&apos;data&apos;,function (data) &#123;</div><div class="line">        console.log(&apos;client say:&apos;+data.toString(&apos;utf-8&apos;));</div><div class="line">        socket.write(&apos;服务器：&apos;+data);</div><div class="line">        socket.end();</div><div class="line">    &#125;);</div><div class="line">    socket.on(&apos;close&apos;,function() &#123;</div><div class="line">         console.log(&apos;端口：&apos;+socket.remotePort+&apos; 断开了服务器！&apos;);</div><div class="line">     &#125;);</div><div class="line">&#125;).listen(3000,&apos;192.168.0.27&apos;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>该日志意义所在，inputstream在通过while然后read返回－1在读取文件时候<br>是可行的，因为文件有结束标志，但是此时是server端返回的是没有结束标志的<br>而inputstream会因此而一直阻塞在此，但是我们需求是在接收完数据，while<br>之后，我们需要关闭socket通信，但是java代码这边因为阻塞，一直停留在<br>while的（）那不动，故而后面代码是无法执行的，也就是说即使后面关闭连接也<br>无效.但是此时在node.js之后添加一句socket.end();就会关闭此时端口<br>socket，而java代码部分，在此句之后，会接收到结束标志,也就是判断结果会<br>为－1从而执行后面关闭代码。</p>
+</blockquote>
+<h2 id="对比文件读取"><a href="#对比文件读取" class="headerlink" title="对比文件读取"></a>对比文件读取</h2><blockquote>
+<p>java代码部分：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">//文件读取部分</div><div class="line">		StringBuffer sbBuffer=new StringBuffer();</div><div class="line">		BufferedReader brReader=null;</div><div class="line">		try &#123;</div><div class="line">			//类似的有FileWriter，注意FileWriter如果文件不存在会自动创建</div><div class="line">			FileReader frReader=new FileReader(&quot;b.txt&quot;);</div><div class="line">			//包装而已，为了高效，也可以直接使用FileReader</div><div class="line">			brReader=new BufferedReader(frReader);</div><div class="line">			int len=0;</div><div class="line">			char[] by=new char[1024];</div><div class="line">				while ((len=brReader.read(by))!=-1) &#123;</div><div class="line">					String info=new String(by,0,len);</div><div class="line">					sbBuffer.append(info);</div><div class="line">				&#125;</div><div class="line">		&#125; catch (IOException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;finally&#123;</div><div class="line">			//如果流为空关闭即可</div><div class="line">			if (brReader==null) &#123;</div><div class="line">				try &#123;</div><div class="line">					brReader.close();</div><div class="line">				&#125; catch (IOException e) &#123;</div><div class="line">					// TODO Auto-generated catch block</div><div class="line">					e.printStackTrace();</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		System.out.println(sbBuffer.toString());</div></pre></td></tr></table></figure>
+<blockquote>
+<p>此代码是直接可以结束的，因为文件读取有结束标志</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/java和node.js基于tcp通信/" data-id="cj60seed7002a60nkqs8ay29o" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/Js闭包/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS闭包
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/Java查漏补缺（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java查漏补缺（一）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

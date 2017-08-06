@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C语言笔记_03(数组相关) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="数组：存储同一类型的数据  定义方式     //定义方式一：     int arr[3];     arr[0]=1;     arr[1]=2;     arr[2]=3;     //定义方式二：     int arr1[3]={1,2,3};     //部分初始化：     int arr2[3]={1,2};     printf(&amp;quot;%i\n&amp;quot;,arr2[2])">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言笔记_03(数组相关)">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/C语言笔记_03/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数组：存储同一类型的数据  定义方式     //定义方式一：     int arr[3];     arr[0]=1;     arr[1]=2;     arr[2]=3;     //定义方式二：     int arr1[3]={1,2,3};     //部分初始化：     int arr2[3]={1,2};     printf(&amp;quot;%i\n&amp;quot;,arr2[2])">
+<meta property="og:updated_time" content="2017-07-09T06:20:29.111Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C语言笔记_03(数组相关)">
+<meta name="twitter:description" content="数组：存储同一类型的数据  定义方式     //定义方式一：     int arr[3];     arr[0]=1;     arr[1]=2;     arr[2]=3;     //定义方式二：     int arr1[3]={1,2,3};     //部分初始化：     int arr2[3]={1,2};     printf(&amp;quot;%i\n&amp;quot;,arr2[2])">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C语言笔记_03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/C语言笔记_03/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.492Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C语言/">C语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C语言笔记_03(数组相关)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="数组：存储同一类型的数据"><a href="#数组：存储同一类型的数据" class="headerlink" title="数组：存储同一类型的数据"></a>数组：存储同一类型的数据</h1><hr>
+<pre><code> 定义方式
+    //定义方式一：
+    int arr[3];
+    arr[0]=1;
+    arr[1]=2;
+    arr[2]=3;
+    //定义方式二：
+    int arr1[3]={1,2,3};
+    //部分初始化：
+    int arr2[3]={1,2};
+    printf(&quot;%i\n&quot;,arr2[2]);//部分初始化时候，未初始化的元素，默认值是0
+注意：如果没有对数组进行初始化(完全初始化和部分初始化)，则内部可能是垃圾
+值，不要使用。另外，数组的元素个数不能使用变量，不然的话数组中元素是一些
+随机值。
+如果定义的同时进行初始化，元素的个数可以省略
+</code></pre><hr>
+<hr>
+<pre><code>例如：int arr[]={1,2};
+案例：给数组指定位置元素赋值
+方式一：arr[100]=100
+方式二：int arr[100]={[99]=99,[100]=100};
+错误案例：不能再定义之后在进行整体初始化，会报错，只能单个赋值。
+int arr[3];
+arr={1,2,3};//此处是错误的。
+</code></pre><hr>
+<h1 id="遍历数组"><a href="#遍历数组" class="headerlink" title="遍历数组"></a>遍历数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">int arr[3];</div><div class="line">   arr[0]=1;</div><div class="line">   arr[1]=2;</div><div class="line">   arr[2]=3;</div><div class="line">   for(int a=0;a&lt;sizeof(arr)/sizeof(arr[0]);a++)&#123;</div><div class="line">       printf(&quot;第%i个元素是%d:\n &quot;,a,arr[a]);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h1 id="数组分类"><a href="#数组分类" class="headerlink" title="数组分类"></a>数组分类</h1><hr>
+<pre><code>数值数组  存储数值的
+字符数组  存储字符
+指针数组  存储指针(地址)
+结构数组  存储结构体类型的数据
+</code></pre><hr>
+<h2 id="数组说明"><a href="#数组说明" class="headerlink" title="数组说明"></a>数组说明</h2><hr>
+<pre><code>变量内存寻址从大到小，所以存储数据时会从高字节开始存储
+数组存储内存寻址从小到大，从所占用字节的低字节开始。
+说明案例：
+    int arr[3];
+    arr[0]=1;
+    arr[1]=2;
+    arr[2]=3;
+    for(int a=0;a&lt;sizeof(arr)/sizeof(arr[0]);a++){
+        printf(&quot;内存地址%d\n&quot;,&amp;arr[a]);
+    }
+输出：内存地址1606416428，内存地址1606416432，内存地址1606416436
+可知数组是从数组所占用字节的低字节开始存储。
+注意：数组地址是其所占用存储空间最小的一个地址，即数组的地址就是数
+组第一个元素的地址，另外数组名就是数组地址，&amp;arr和arr都是输出数组地址值。
+另外，数组中元素存储和变量一模一样，从高字节到低字节存储。
+</code></pre><hr>
+<h2 id="数组注意点"><a href="#数组注意点" class="headerlink" title="数组注意点"></a>数组注意点</h2><hr>
+<pre><code>int arr[3]={1,2,3};
+int arr1[2]={4,5};
+arr1[2]=44;
+printf(&quot;%d\n&quot;,arr[0]);//44
+说明：数组本身相当于一个变量，所以这两个数组是从大到小寻址，加入内存类似
+于excel表，从上往下分别是从0开始变大，则arr位于arr1的下方，但是此时arr1
+没有索引为2的元素，此时给arr1赋值为44，则直接赋值给arr1下面的arr数组的
+第一个元素，所以arr【0】值为44. 
+函数中的形参数组传递：因为数组名称就是数组地址，所以当把数组传递给函数时
+候，传递过去的是地址引用，所以在那个函数中修改了数组的元素的值就是修改的
+原来的数组的对应元素的值，因为地址指向同一片内存，此处要和变量区分，基本
+数据类型传递的时候，相当于新开辟一段内存，在函数结束的时候，那片内存地址
+就会收回，所以这是(值传递)，类似于copy不能修改原来的值，这就是变量形参
+和数组形参的区别。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">案例：指针在内存中永远是占用8个字节</div><div class="line">void getArrInfo(int arr[3])&#123;</div><div class="line">    for (int a=0; a&lt;sizeof(arr)/sizeof(arr[0]); a++) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,arr[a]);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int arr[3]=&#123;1,2,3&#125;;</div><div class="line">    getArrInfo(arr);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>解析：此案例不论数组长度多么的大，都是只输出两个元素，因为数组名称就是地址，
+也就是指针，指针在C语言中永远都是占据8个字节，而后面具体int元素，都是四个字节
+，所以一直计算的值就是2.
+解决：可以外接计算好长度，传递多参数过来解决。
+</code></pre><hr>
+<h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><blockquote>
+<p>找到最小的，存储起来，然后再剩余的元素中查找最小的存储起来(两个元素互换值)，循环往复。</p>
+</blockquote>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><blockquote>
+<p>相邻两个元素比较，完全比较完一次，最值出现在末尾。</p>
+</blockquote>
+<h1 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h1><blockquote>
+<p>必须是有序数组</p>
+</blockquote>
+<h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><hr>
+<pre><code>int arr[3][3]={{1,2,3},{1,3,5}};
+二维数组内存寻址也是从小到大，但是多个二维数组之间内存寻址还是从大到小。
+注意点：
+如下写法正确：如果在定义的同时初始化，可以省略第一个【】内数字
+int arr[][3]={{1,2,3},{1,3,5}};
+</code></pre><hr>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><hr>
+<pre><code>定义字符串变量
+char str[]=&quot;qiang&quot;;
+注意：字符串变量和字符数组有区别，C语言规定，字符串变量必须以\0结束
+，所以字符串变量的元素个数比字符数组元素个数大一，多一个\0；
+char str[]={&apos;a&apos;,&apos;b&apos;};//这里是字符数组，不是字符串变量
+输出字符串：%s。从传入的地址开始逐个取出，直到遇到\0为止。
+</code></pre><hr>
+<hr>
+<pre><code>案例：
+char str[]=&quot;lnj&quot;;
+char str2[]={&apos;x&apos;,&apos;m&apos;,&apos;g&apos;};
+printf(&quot;%s\n&quot;,str2);//xmglnj
+解析：str和str2作为变量内存寻址是从大到小，所以内存中str2位于str上面，
+而%s遇到\0才结束，此时取出完毕str2元素时候，没有遇到\0，会继续取出str
+元素直到遇到\0。
+其他初始化方式：
+char str[]={&apos;l&apos;,&apos;m&apos;.&apos;j&apos;,&apos;\0&apos;};//只要显示指出\0此时就是字符串变量
+char str[10]={&apos;l&apos;,&apos;m&apos;,&apos;j&apos;};
+这也是字符串变量，因为未完全初始化的数组，后面默认值是0.而字符\0的ascii对应值就是0.
+</code></pre><hr>
+<h2 id="输出字符串"><a href="#输出字符串" class="headerlink" title="输出字符串"></a>输出字符串</h2><hr>
+<pre><code>方式一：通过printf（“%s”,str）;输出字符串
+缺点：如果想换行，必须加上\n。
+优点：可以自定义字符串输出格式
+方式二：puts()
+优点：会自动换行
+缺点：无法自定义格式，只能原样输出
+</code></pre><hr>
+<h2 id="输入字符串"><a href="#输入字符串" class="headerlink" title="输入字符串"></a>输入字符串</h2><hr>
+<pre><code>方式一：
+char buf[10];
+scanf(&quot;%s&quot;,buf);
+注意点：会以空格，tab，enter作为接收符号。
+方式二：gets()
+说明：通过此方法输入系统会报警告，因为可能超出范围。
+char buf[10];
+gets(buf);
+优点：可以利用gets接收字符串，并且可以在字符串中输入空格，tab。
+</code></pre><hr>
+<hr>
+<pre><code>获取字符串长度：首先引入头文件&lt;string.h&gt;，然后使用strlen()方法获取字符串长度(不包括\0)
+    char buf[]=&quot;qiangge&quot;;
+    size_t length=strlen(buf);
+    for (int a=0; a&lt;length; a++) {
+        printf(&quot;%c\n&quot;,buf[a]);
+    }
+
+strcat（dest,src）：字符串连接,将src数据拼接到dest后面
+注意：要想使用拼接函数，dest必须是数组，而且数组的长度必须大于拼接之后的长度。
+strncat(char*,const char*,size_t):参数一二和上面方法参数意思一样，参数三，指的是需要拼接的个数。
+例如：size为1的时候，只会把参数二的第一个字符拼接到参数一中。
+strcpy: 字符串拷贝。
+    char str1[10]=&quot;lnjads&quot;;
+    char str2[]=&quot;cool&quot;;
+    strcpy(str1, str2);//会把str2的内容拷贝并覆盖到str1.
+    printf(&quot;%s\n&quot;,str1);//cool
+注意点：目标容积必须能够存放拷贝的数据。
+strncpy(char*,const char*,size_t):参数三，需要拷贝几个字符。
+注意：此处比如说只拷贝一个字符，则只会逐个替换（结果为cnjads）.
+strcmp（str1,str2）: 字符串比较,返回值为整型的值(值=0则字符串相等，&lt;0则str1&lt;str2).
+原理：取出每一个字符，进行逐个比较，如果发现不相等就不会再继续往下比较了。
+例如：“abc”和&quot;acc&quot;比较，逐个取出字符，a和a比较相等，b和c比较已经不相等，返回负数，后面的c已经不比较了。
+</code></pre><hr>
+<h1 id="字符串数组：就是二维数组"><a href="#字符串数组：就是二维数组" class="headerlink" title="字符串数组：就是二维数组"></a>字符串数组：就是二维数组</h1><blockquote>
+<p>char names[5][5]={“lnj”,”xb”,”lmj”};</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/C语言笔记_03/" data-id="cj60seeam000b60nk7b3kqol1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/C语言笔记_04/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C语言笔记_04(指针相关)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/C语言笔记_02/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C语言笔记_02</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

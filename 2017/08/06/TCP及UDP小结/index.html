@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Socket通信小结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="TCP及UDP小结UDP双向发送 udp是面向无连接的，所以不关心发送接收成功与否，双方都无应答，但是扔要建立连接只是没有三次握手的过程，故而udp也可以设置建立连接超时时间：socket.setSoTimeout(time);udp虽然也可以绑定端口号，但是不是说绑定之后，就按照绑定的端口发送数据，而是绑定端口其实就成了监听广播了。jdk文档如下：示例：DatagramSocket s = ne">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Socket通信小结">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/TCP及UDP小结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="TCP及UDP小结UDP双向发送 udp是面向无连接的，所以不关心发送接收成功与否，双方都无应答，但是扔要建立连接只是没有三次握手的过程，故而udp也可以设置建立连接超时时间：socket.setSoTimeout(time);udp虽然也可以绑定端口号，但是不是说绑定之后，就按照绑定的端口发送数据，而是绑定端口其实就成了监听广播了。jdk文档如下：示例：DatagramSocket s = ne">
+<meta property="og:updated_time" content="2017-07-09T06:19:11.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Socket通信小结">
+<meta name="twitter:description" content="TCP及UDP小结UDP双向发送 udp是面向无连接的，所以不关心发送接收成功与否，双方都无应答，但是扔要建立连接只是没有三次握手的过程，故而udp也可以设置建立连接超时时间：socket.setSoTimeout(time);udp虽然也可以绑定端口号，但是不是说绑定之后，就按照绑定的端口发送数据，而是绑定端口其实就成了监听广播了。jdk文档如下：示例：DatagramSocket s = ne">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-TCP及UDP小结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/TCP及UDP小结/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.537Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Socket通信小结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TCP及UDP小结"><a href="#TCP及UDP小结" class="headerlink" title="TCP及UDP小结"></a>TCP及UDP小结</h1><h2 id="UDP双向发送"><a href="#UDP双向发送" class="headerlink" title="UDP双向发送"></a>UDP双向发送</h2><hr>
+<p>udp是面向无连接的，所以不关心发送接收成功与否，双方都无应答，但是扔要建立连接只是没有三次握手的<br>过程，故而udp也可以设置建立连接超时时间：socket.setSoTimeout(time);<br>udp虽然也可以绑定端口号，但是不是说绑定之后，就按照绑定的端口发送数据，而是绑定端口其实就成了监听广播了。<br>jdk文档如下：<br>示例：DatagramSocket s = new DatagramSocket(null); s.bind(new InetSocketAddress(8888)); 这等价于：DatagramSocket s = new DatagramSocket(8888); 两个例子都能创建能够在 UDP 8888 端口上接收广播的 DatagramSocket。<br>故而udp无法绑定端口作为发送端，端口为系统自动分配然后作为监听端口的。</p>
+<hr>
+<h3 id="需要先运行的java类"><a href="#需要先运行的java类" class="headerlink" title="需要先运行的java类"></a>需要先运行的java类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">两个java文件都各自有发送端和服务端，案例如下</div><div class="line">public class UdpServer &#123;</div><div class="line">    public static void main(String[] args) throws IOException &#123;</div><div class="line">        DatagramSocket ds=new DatagramSocket(9090);</div><div class="line">        byte[] b=new byte[1024];</div><div class="line">        DatagramPacket dp=new DatagramPacket(b,b.length);</div><div class="line">        ds.receive(dp);</div><div class="line">        String string=new String(b,0,dp.getLength());</div><div class="line">        System.out.println(string);</div><div class="line">        ds.close();</div><div class="line"></div><div class="line"></div><div class="line">        DatagramSocket ds1=new DatagramSocket();</div><div class="line">        String info=&quot;udpserver发送的数据&quot;;</div><div class="line">        Inet4Address i4= (Inet4Address) Inet4Address.getByName(&quot;127.0.0.1&quot;);</div><div class="line">        DatagramPacket dp1=new DatagramPacket(info.getBytes(),info.getBytes().length,i4,10086);</div><div class="line">        ds1.send(dp1);</div><div class="line">        ds1.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>DatagramSocket不加端口号就是客户端，加上就是服务端（监听该端口号）</p>
+</blockquote>
+<h4 id="服务端创建步骤"><a href="#服务端创建步骤" class="headerlink" title="服务端创建步骤"></a>服务端创建步骤</h4><ul>
+<li>创建DatagramSocket并监听本机某端口，服务器端无需指定ip，因为其本身就是监听状态</li>
+<li>创建DatagramPacket，内部参数分别为byte数组，和其长度</li>
+<li>然后ds接受dp，并把dp当做receive参数</li>
+<li>最后关闭DatagramSocket</li>
+</ul>
+<h4 id="发送端创建步骤"><a href="#发送端创建步骤" class="headerlink" title="发送端创建步骤"></a>发送端创建步骤</h4><ul>
+<li>创建DatagramSocket</li>
+<li>创建DatagramPacket，参数分别为，byte类型数据，该byte的长度，通过Inet4Address得到的代表ip值，端口号</li>
+<li>发送数据，参数为dp</li>
+<li>关闭DatagramSocket</li>
+</ul>
+<h3 id="后运行的java类"><a href="#后运行的java类" class="headerlink" title="后运行的java类"></a>后运行的java类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public class UdpUtils &#123;</div><div class="line">    public static void main(String[] args) throws IOException &#123;</div><div class="line">        DatagramSocket ds=new DatagramSocket();</div><div class="line">        String info=&quot;udpclient发送的数据&quot;;</div><div class="line">        Inet4Address i4= (Inet4Address) Inet4Address.getByName(&quot;127.0.0.1&quot;);</div><div class="line">        DatagramPacket dp=new DatagramPacket(info.getBytes(),info.getBytes().length,i4,9090);</div><div class="line">        ds.send(dp);</div><div class="line">        ds.close();</div><div class="line"></div><div class="line">        DatagramSocket ds1=new DatagramSocket(10086);</div><div class="line">        byte[] b=new byte[1024];</div><div class="line">        DatagramPacket dp1=new DatagramPacket(b,b.length);</div><div class="line">        ds1.receive(dp1);</div><div class="line">        String str=new String(b,0,dp1.getLength());</div><div class="line">        System.out.println(str);</div><div class="line">        ds1.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>之所以后执行，是因为java阻塞代码，先执行接受端，此时两个文件都有发送和接收，而且端口号不一样<br>可知，这是一个，a&gt;b而后b&gt;a的过程，其中是a发送到b的9090端口，b接收到数据后，回数据给a的10086端口。而不一定是a发送给b，b就回数据到a发送数据的端口。</p>
+</blockquote>
+<h2 id="tcp代码案例："><a href="#tcp代码案例：" class="headerlink" title="tcp代码案例："></a>tcp代码案例：</h2><blockquote>
+<p>tcp绑定方法是用场景：ServerSocket 有一个不带参数的默认构造方法。通过该方法创建的 ServerSocket 不与任何端口绑定，接下来还需要通过 bind()方法与特定端口绑定。这个默认构造方法的用途是，允许服务器在绑定到特定端口之前，先设置ServerSocket 的一些选项。因为一旦服务器与特定端口绑定，有些选项就不能再改变了。不过一般情况下，直接使用常用方法即可。<br>例如：<br>ServerSocket serverSocket=new ServerSocket();<br>serverSocket.setReuseAddress(true); //设置 ServerSocket 的选项<br>serverSocket.bind(new InetSocketAddress(8080)); //与 8080 端口绑定</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">tcp客户端案例：</div><div class="line">public class TcpUtil &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) throws IOException &#123;</div><div class="line">        Socket s=new Socket(&quot;127.0.0.1&quot;,10086);</div><div class="line">        s.setSoTimeout(1000);</div><div class="line">        System.out.println(s.getPort());//连接的服务器端端口号，此时为10086</div><div class="line">        System.out.println(s.getLocalPort());//系统为客户端自动分配的端口号</div><div class="line">        System.out.println(s.getRemoteSocketAddress());//获取服务端的ip和端口号</div><div class="line">        System.out.println(s.getInetAddress());//获取服务器端ip</div><div class="line">        OutputStream os=s.getOutputStream();</div><div class="line">        os.write(&quot;客户端发送的信息&quot;.getBytes());</div><div class="line">        os.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">tcp服务端案例：</div><div class="line">public class TcpServer &#123;</div><div class="line">    public static void main(String[] args) throws IOException &#123;</div><div class="line">        ServerSocket ss=new ServerSocket(10086);</div><div class="line">        Socket s=ss.accept();</div><div class="line">        InputStream is=s.getInputStream();</div><div class="line">        byte[] b=new byte[1024];</div><div class="line">        int len=is.read(b);</div><div class="line">        String str=new String(b,0,len);</div><div class="line">        System.out.println(str+&quot;发送数据的ip：&quot;+s.getInetAddress());//获取客户端ip地址</div><div class="line">        System.out.println(str+&quot;发送数据的完整地址：&quot;+s.getRemoteSocketAddress());//获取客户端的完整地址，ip和端口号</div><div class="line">        System.out.println(s.getPort());//客户端的端口号</div><div class="line">        System.out.println(s.getLocalPort());//服务端监听端口，也即服务端端口，此时为10086</div><div class="line">        s.close();</div><div class="line">        ss.close();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>总结：相关方法tcp，udp通用，但是调用对象可能不同，例如udp服务端为datagrampacket<br>而tcp客户端就是socket调用，udp客户端时datagramsocket调用，tcp服务端时serversocket调用。</p>
+<p>getPort():获取对方端口号，服务端则得到客户端端口号，客户端则得到服务端端口号<br>getLocalPort():获取本地端口号，例如，服务端获取就是服务端监听也即服务端端口号<br>getInetAddress():获取对方ip地址<br>getRemoteSocketAddress()：获取对方完整地址，包括ip和端口号<br>getLocalAddress():获取本地ip地址</p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/TCP及UDP小结/" data-id="cj60seecs001w60nk7dhuklsg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/Ubuntu命令/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Ubuntu命令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/Python知识点(一)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python知识点(一)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

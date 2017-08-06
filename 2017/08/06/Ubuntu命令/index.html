@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ubuntu命令 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ctrl+shift+加：放大终端 ctrl+减：缩小终端 ls；显示当前路径的文件以及文件夹   延伸：ls / 显示根目录内容    同理，还可以ls /bin等等    ls -a:显示所有文件，包括隐藏文件    ls -l:以列表形式显示内容    ls -h:只这样使用和ls没区别，但是ls -l -h这样时候    会显示文件大小(格式化后的文件大小)    ls -a -h -l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu命令">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/Ubuntu命令/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ctrl+shift+加：放大终端 ctrl+减：缩小终端 ls；显示当前路径的文件以及文件夹   延伸：ls / 显示根目录内容    同理，还可以ls /bin等等    ls -a:显示所有文件，包括隐藏文件    ls -l:以列表形式显示内容    ls -h:只这样使用和ls没区别，但是ls -l -h这样时候    会显示文件大小(格式化后的文件大小)    ls -a -h -l">
+<meta property="og:updated_time" content="2017-07-09T06:21:44.897Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu命令">
+<meta name="twitter:description" content="ctrl+shift+加：放大终端 ctrl+减：缩小终端 ls；显示当前路径的文件以及文件夹   延伸：ls / 显示根目录内容    同理，还可以ls /bin等等    ls -a:显示所有文件，包括隐藏文件    ls -l:以列表形式显示内容    ls -h:只这样使用和ls没区别，但是ls -l -h这样时候    会显示文件大小(格式化后的文件大小)    ls -a -h -l">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Ubuntu命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Ubuntu命令/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.539Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/杂类/">杂类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>ctrl+shift+加：放大终端</li>
+<li>ctrl+减：缩小终端</li>
+<li>ls；显示当前路径的文件以及文件夹</li>
+</ul>
+<hr>
+<pre><code>延伸：ls / 显示根目录内容
+   同理，还可以ls /bin等等
+   ls -a:显示所有文件，包括隐藏文件
+   ls -l:以列表形式显示内容
+   ls -h:只这样使用和ls没区别，但是ls -l -h这样时候
+   会显示文件大小(格式化后的文件大小)
+   ls -a -h -l：等效于 ls -alh（无顺序之分）
+   ls 2*:通配符*，此时表示显示2开头的文件或文件夹。
+   ls 2?；通配符?,此时表示2开头且后面只有一位的文件或文件夹，例如23，25.
+   ls 2[123]3:此时显示 213，223，233名称的文件，还可以这么写 2[1-3]3等效。
+</code></pre><hr>
+<ul>
+<li>pwd:显示当前路径</li>
+<li>touch 文件名：创建文件 如果文件名以.开头则是隐藏文件。</li>
+<li>mkdir 文件夹名称：创建文件夹</li>
+</ul>
+<hr>
+<pre><code>延伸：mkdir a/b/c/d -p:不加-p不能创建多级目录，因为不会自动创建，比如c目录没有
+    d就没法创建，但是加上-p之后，就会自动创建。
+</code></pre><hr>
+<ul>
+<li>clear：清空终端</li>
+<li>–help：帮助文档，例如ls –help等效于 man ls</li>
+<li>cat 文件名：查看文件内容</li>
+<li>history：历史命令，刚刚执行过的命令</li>
+<li>rm 文件或文件夹名称:删除文件或文件夹，可使用*通配符删除对应文件</li>
+</ul>
+<hr>
+<pre><code>延伸：如果文件夹非空，不能直接删除
+    rm 文件夹名称 -r:可以删除非空(和空)文件夹。
+</code></pre><hr>
+<ul>
+<li>more 文件名:分屏显示内容，按F往下一屏，按B往上一屏，q退出。</li>
+<li>ls -lah /bin |more:把对应路径下分屏显示。</li>
+</ul>
+<blockquote>
+<p>注意：ll相当于 ls -la<br>|意思是把前面的执行内容，拿到|后面显示，|可以理解为一个管道。</p>
+</blockquote>
+<hr>
+<pre><code>路径：两次tab可以显示当前能补全的所有内容
+    cd /home/python/laowang:进入绝对路径
+    相对路径：从当前目录开始算起
+    绝对路径：从根目录(/)开始算起
+    cd ..:返回上一级路径
+    cd ./A:进入当前路径下的A文件夹里面
+    cd ~：返回家目录，也就是此时的home/python
+    cd -:返回上一次操作时候的目录。
+写了很多命令不想执行，删除太麻烦：ctrl+c不执行
+</code></pre><hr>
+<ul>
+<li>tree:以目录树方式显示</li>
+</ul>
+<hr>
+<pre><code>重定向：
+例如：ls &gt;xx.txt就会把本来ls输出的内容全部输入到当前目录的xx.txt文件中。
+还有ls &gt;&gt;xx.txt是追加内容到原来文件的末尾的意思。一个&gt;会清空原来内容。
+</code></pre><hr>
+<hr>
+<pre><code>链接：类似快捷方式
+mv 原文件名 新文件名：重命名
+    延伸：mv还可以移动文件 mv 111.txt laowang  ：把111.txt移动到laowang文件夹。
+
+ln -s 原文件名 链接名称：创建软链接
+ln 原文件名 链接名称：创建硬链接，相当于又创建一个文件名(类似于同一个文件鼬多个指向的入口)
+所以删除原文件后，只是删除一个入口，例如链接还可以打开文件内容。
+如何彻底删除硬链接文件：当删除所有硬链接个数时候，才会真正删除文件
+查询文件硬链接数：当ls -lh时候，紧紧跟着文件名称的后面一个数字就是硬链接数。
+</code></pre><hr>
+<hr>
+<pre><code>复制文件：
+首先说明，cat可以一次查询不同文件内容，分行显示
+如果 cat 1.txt 2.txt &gt;xxx.txt:就相当于把1，2两个文件内容复制到xxx.txt文件中。 
+
+grep &quot;ntfs&quot; 1.txt:去1.txt中查找ntfs
+grep &quot;^ntfs&quot; 1.txt:去1.txt中查找ntfs开头的内容
+grep &quot;ntfs$&quot; 1.txt:去1.txt中查找ntfs结尾的内容
+grep -n &quot;ntfs&quot; 1.txt:去1.txt中查找ntfs在哪一行
+grep -v &quot;ntfs&quot; 1.txt:去1.txt中查找不包含ntfs的内容
+
+cp:copy文本  cp 要复制的文件名称 新文件名称
+如果拷贝的是文件夹，直接这样是不能copy的，加上-r就可以了，一般牵扯到文件夹然后失败的
+加上-r一般都可以解决。其中-r放到前面后面都可行。
+</code></pre><hr>
+<hr>
+<pre><code>find；
+搜索文件：
+find / -name &quot;*name*&quot;:在根目录下查找名称包含name的文件
+find / -name &quot;.sh&quot;:根目录下查找后缀.sh结尾的文件
+find / -name &quot;[A-Z]*&quot;:查找根目录下大写字母开头的文件。
+find / -size 2M:查找根目录下文件大小为2m的文件
+find / -size +2M:查找根目录下文件大于2m的文件
+find / -size -2M:查找根目录下文件小于为2m的文件
+find ./ -size+4K -size +2M:查找根目录下文件大于4k小于2m的文件
+find ./ -perm 777 查找当前目录权限为77的文件或目录(注意此处还包括目录)
+</code></pre><hr>
+<hr>
+<pre><code>tar:注意打包不会压缩，大小不变
+打包：tar -cvf test.tar *.py 把当前目录的所有py结尾文件打包
+解包：tar -xvf test.tar
+压缩解压一：相对比压缩二会更小
+压缩：tar -zcvf test.tar.gz *.py 把当前目录py文件压缩打包
+解压：tar -zxvf test.tat.gz
+压缩方式二：相对比压缩三更小
+压缩：tar -jcvf test.tar.bz2 *.py
+解压：tar -jxvf test.tar.bz2
+注意：只要是tar情况下，tar -zxvf test.tat.gz -C laowang/
+这意思是-大写的c，解压到指定文件夹，bz2和gz都可以使用
+
+压缩方式三：
+压缩：zip test.zip *.py
+解压：unzip test.zip
+zip情况下，解压到指定位置通过-d指定
+</code></pre><hr>
+<ul>
+<li>which：<blockquote>
+<p>例如：which ls:查看ls（当前命令，用的到底是bin文件夹下面的哪个文件，因为linux下命令<br>都是bin目录下的某个命令）</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<pre><code>cal：列表形式打印出当天所在月整月日历
+cal -y 2008:打印出2008年整年的日历
+date:查看当前时间
+date &quot;+%Y====%m====%d&quot;；输出2017====06====10
+ps -aux:当前ubuntu正在开启的进程，输出完毕之后停止
+top:显示当前ubuntu进程运行情况，且不停止
+htop:显示更加人性化
+kill pid数字:杀进程
+kill -9 pid数字:强制杀进程，一定会被杀掉。
+重启：reboot/init6
+关机：shutdown -h/init0  立刻关机
+shutdown -h +10:十分钟之后关机
+shutdown -h 20:20:今晚八点二十关机
+df：检查磁盘空间 可以使用df -h
+du:当前路径所占用空间大小 可使用 du -h
+</code></pre><hr>
+<ul>
+<li>ifconfig:查看当前电脑网络信息<blockquote>
+<p>修改网卡地址：sudo ifconfig ens33 192.168.220.129<br>其中ens33就是其中一个网卡的名字，可以通过ifconfig查询出所有网卡名字</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<pre><code>用户相关命令
+useradd 账户名称：添加账户，需要权限，加sudo
+但是这样没有设置密码是不能切换账户到新添加的用户的，此时
+需要通过passwd 账户名然后先后输入两次密码，设置密码，没有权限则加上sudo
+passwd不但可以创建密码，只要密码设置过，再次使用该命令，就是修改密码。
+useradd 账户名 -m:会创建用户名同时创建家目录
+
+su 账户名称：切换账户，类似于注销后登录。需要输入要切换到的用户的密码
+whoami；显示当前账户名
+who:当前登录的用户，有ip就是远程连接，没ip就是本机登录
+exit：退出当前账户
+远程登录电脑：ssh python@192.168.8.1
+其中python是用户名，后面跟着的是电脑的ip。
+在同一个终端开启多个标签：ctrl+shift+t
+快速切换标签：alt+数字
+uerdel 用户名:删除用户
+userdel -r 用户名：删除用户名同时，删除对应的家目录
+注意：切换目录时候，对比，su qiangge 和su - qiangge的区别
+su qiangge :然后输入pwd:/home/python/Desktop
+su - qiangge :然后输入pwd :/home/qiangge
+也就是说加上-会切换到对应账户的家目录里面
+cat /etc/passwd：查询用户详细信息。
+切换到超级管理员:sudo -s(ubuntu中使用，其他linux是su root切换超级管理员)
+groupadd 组名：创建组
+可以进入group文件查看：cat /etc/group
+groupdel 组名：删除组
+还可以通过groupmod然后多按几次tab键显示所有组。
+为普通用户加入sudo权限（超级管理员权限，不然sudo -s无效），
+通过cat /etc/group |grep adm查询那些用户可以切换到超级管理员，
+如果没有当前用户，可以通过命令添加进去(必须通过本来就有切换到超级管理员权限的用户名来操作).
+sudo usermod -a -G adm 用户名
+sudo usermod -a -G sudo 用户名
+chown:修改文件所有者(也就是用户，可以通过ll查看)，chown 组名 文件名
+chgrp:修改文件所属的组，chgrp 组名 文件名。
+</code></pre><hr>
+<h2 id="修改文件权限："><a href="#修改文件权限：" class="headerlink" title="- 修改文件权限："></a>- 修改文件权限：</h2><pre><code>d rwx  --x r--: d代表是否是文件夹(d代表是文件夹) 
+后面三个一组，共三组(分别是文件拥有者的权限，同组的权限，其他人权限)
+r:可读 w:可写  x:可执行(其中r可当作4，w为2，x为1)
+u:文件拥有者 g:同组 o:其他人
+字符法修改权限:chmod u=rwx 2.py
+chmod u=r,g=r,o= 2.py
+数字法修改权限：chmod 41 2.py代表修改拥有者权限为可读，同组权限为可执行，其他人无权限
+</code></pre><hr>
+<ul>
+<li>vim相关编辑器：</li>
+</ul>
+<hr>
+<pre><code>vi/vim 文件名称：创建文件(如果文件存在也是打开该文件)
+i:vi进入编辑模式，按下i才能进行编辑，会光标前面插入字符
+a:vi进入编辑模式，按下a会在光标后插入字符
+o:在编辑模式下，输入字母o是下一行。
+I：行首添加
+A：行尾添加
+O：上一行添加
+yy:复制光标所在行
+p:粘贴
+dd:剪切光标所在行
+4yy：光标所在行，开始向下复制的4行
+2dd:光标所在行，开始向下删除两行
+命令模式下上下左右的光标是无效:
+h l 分别为左右移动光标，j k分别是下上
+可见区域：快速定位
+M：中间
+L：最下面
+H：最顶端
+
+ctrl+f:下一页
+ctrl+b:上一页
+ctrl+u:向上翻半屏
+ctrl+d:向下翻半屏
+30G:快速定位到第30行
+G：快速定位到整个代码最后一行
+gg：快速回到整个代码的第一行
+
+w:向后跳一个单词的长度，跳到下一个单词开始处
+b:向前跳一个单词的长度，上i一个单词的开始处
+D：从当前光标开始剪切，一直到行末
+d0:从当前光标开始剪切，一直到行首
+dw:删除当前光标的一个单词
+u:撤销刚刚的操作
+ctrl+r；反撤销
+x:删除当前的光标位置，每次只会删除一个
+X:删除光标前一个位置，每次只删除一个
+v 加上下键选中多行或一行，然后两个&gt;&gt;:选中代码整体右移动，同理还有左移
+V同v操作：区别在于，V选中是正行操作，而v是选择部分被操作
+但是一直按下&gt;&gt;会很累，只需要在上面操作之后，按下.就是重复操作了
+(：跳到上一片代码的开头
+): 跳到下一片代码的开头
+r:（替换先要进入编辑模式修改，太麻烦，次命令在命令模式下直接修改）
+替换当前光标字符，只能替换一个
+R:从当前光标开始，替换以及后面的字符
+/：然后输入要搜索的内容，如果想取消搜索的颜色提示(难看)
+可是在搜索一个不存在的即可。
+N：搜索出来的情况下，调到上一个被搜索到的内容
+n:搜索出来的情况下，调到下一个被搜索到的内容
+
+末行模式：
+整片替换：首先进入末行模式(:)，然后输入%s/要被替换内容/新内容/g
+11，16s/要被替换内容/新内容/g：替换指定行到哪一行的内容
+q!:不保存强制退出
+w:保存
+q:退出
+shift+zz:相当于wq
+</code></pre><hr>
+<blockquote>
+<p>进入末行模式然后保存文件：首先必须按下esc从编辑模式退回到<br>命令模式。然后在命令模式下输入:，然后输入wq即可保存文件<br>这其中任何情况下不想保存了，都可以esc退回到命令行模式</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Ubuntu命令/" data-id="cj60seecy002060nku4szrt48" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/Vue文档初读（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Vue文档初读（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/TCP及UDP小结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Socket通信小结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

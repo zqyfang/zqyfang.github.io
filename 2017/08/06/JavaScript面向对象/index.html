@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JavaScript面向对象 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="面向对象基础方式一、123456789var obj=&amp;#123;	name:&amp;apos;zq&amp;apos;,	age:18,	sayHi:function () &amp;#123;		console.log(this.info+&amp;apos;...&amp;apos;+this.name+&amp;apos;...&amp;apos;+this.age);	&amp;#125;&amp;#125;;obj.info=123;obj.sayHi(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript面向对象">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/JavaScript面向对象/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="面向对象基础方式一、123456789var obj=&amp;#123;	name:&amp;apos;zq&amp;apos;,	age:18,	sayHi:function () &amp;#123;		console.log(this.info+&amp;apos;...&amp;apos;+this.name+&amp;apos;...&amp;apos;+this.age);	&amp;#125;&amp;#125;;obj.info=123;obj.sayHi(">
+<meta property="og:updated_time" content="2017-07-09T06:14:59.145Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript面向对象">
+<meta name="twitter:description" content="面向对象基础方式一、123456789var obj=&amp;#123;	name:&amp;apos;zq&amp;apos;,	age:18,	sayHi:function () &amp;#123;		console.log(this.info+&amp;apos;...&amp;apos;+this.name+&amp;apos;...&amp;apos;+this.age);	&amp;#125;&amp;#125;;obj.info=123;obj.sayHi(">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript面向对象" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/JavaScript面向对象/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.502Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript面向对象
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="面向对象基础"><a href="#面向对象基础" class="headerlink" title="面向对象基础"></a><strong>面向对象基础</strong></h1><h2 id="方式一、"><a href="#方式一、" class="headerlink" title="方式一、"></a>方式一、</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var obj=&#123;</div><div class="line">	name:&apos;zq&apos;,</div><div class="line">	age:18,</div><div class="line">	sayHi:function () &#123;</div><div class="line">		console.log(this.info+&apos;...&apos;+this.name+&apos;...&apos;+this.age);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line">obj.info=123;</div><div class="line">obj.sayHi();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>推荐使用的场合： 作为函数的参数，临时只用一次的场景。比如设置函数原型对象。<br>缺点： 不能作为对象创建的模板，也就是不能用new进行构造新对象。</p>
+</blockquote>
+<h2 id="方式二、"><a href="#方式二、" class="headerlink" title="方式二、"></a>方式二、</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var obj=new Object();</div><div class="line">obj.name=&apos;haha&apos;;</div><div class="line">obj.sayHi=function() &#123;</div><div class="line">	console.log(this.name);</div><div class="line">&#125;;</div><div class="line">obj.sayHi();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>跟上面的方式一样，只能临时用一下这个对象，不想作为new的构造模板是可以的。</p>
+<blockquote>
+<p>费力不讨好，不推荐使用</p>
+</blockquote>
+</blockquote>
+<h2 id="方式三、"><a href="#方式三、" class="headerlink" title="方式三、"></a>方式三、</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function Person() &#123;</div><div class="line">	this.name=&apos;哈哈&apos;;</div><div class="line">&#125;</div><div class="line">Person.prototype=&#123;</div><div class="line">	sayHi:function() &#123;</div><div class="line">		console.log(this.name);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line">var p=new Person();</div><div class="line">p.sayHi();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>把 一个函数对象 当做构造函数来使用，一般要把 函数对象的首字母大写<br>通过this可以直接给 构造出来的对象添加属性。</p>
+</blockquote>
+<h2 id="方式四、"><a href="#方式四、" class="headerlink" title="方式四、"></a>方式四、</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function Person(pros) &#123;</div><div class="line">	this.inits(pros);</div><div class="line">&#125;</div><div class="line">Person.prototype=&#123;</div><div class="line">	inits:function (pros) &#123;</div><div class="line">		this.name=pros.name||&apos;&apos;;</div><div class="line">		this.age=pros.age||18;</div><div class="line">	&#125;,</div><div class="line">	sayHi:function () &#123;</div><div class="line">		console.log(this.name+&apos;.....&apos;+this.age);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line">var pros=&#123;</div><div class="line">	name:&apos;zq&apos;,</div><div class="line">	age:12</div><div class="line">&#125;;</div><div class="line">var p=new Person(pros);</div><div class="line">p.sayHi();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>终极版本，这样既可以在实例化对象时候，初始化通过对象pros传递的各种属性。<br>同时很好的通过原型定义方法，避免了对象过多时候，方法重复创建浪费的内存的情况。<br>另外，注意js的变量提升问题，例如pros必须定义在new对象的上面，变量提示只提升定义，不提示实例化。</p>
+</blockquote>
+<h1 id="方法调用模式"><a href="#方法调用模式" class="headerlink" title="方法调用模式"></a><strong>方法调用模式</strong></h1><h2 id="方式一、方法调用模式"><a href="#方式一、方法调用模式" class="headerlink" title="方式一、方法调用模式"></a>方式一、方法调用模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function Persion() &#123;</div><div class="line">    var name1 = &quot;itcast&quot;,</div><div class="line">    age1 = 19,</div><div class="line">    show1 = function() &#123;</div><div class="line">        console.log(this.name);</div><div class="line">    &#125;;</div><div class="line">    return &#123;</div><div class="line">        age : age1,</div><div class="line">        name : name1,</div><div class="line">        show : show1</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var p = new Persion();</div><div class="line">p.show();  //在show方法中的this指向了p对象。</div></pre></td></tr></table></figure>
+<h2 id="方式二、函数调用模式"><a href="#方式二、函数调用模式" class="headerlink" title="方式二、函数调用模式"></a>方式二、函数调用模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function add( a, b) &#123;</div><div class="line">    this.result = a + b;</div><div class="line">&#125;</div><div class="line">add( 3, 9 ); //此方法执行的时候，this指向了window,node中指向global.</div><div class="line">console.log(result); //输出12.全局的result。</div></pre></td></tr></table></figure>
+<h2 id="方式三、构造器调用模式"><a href="#方式三、构造器调用模式" class="headerlink" title="方式三、构造器调用模式"></a>方式三、构造器调用模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function Persion（）&#123;</div><div class="line">    this.name = &quot;123&quot;;</div><div class="line">    this.age = 19;</div><div class="line">    this.show = function()&#123;</div><div class="line">        console.log(this.name);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var p = new Persion();</div><div class="line">p.show();//  在show方法中方法this，指向了p对象实例。</div></pre></td></tr></table></figure>
+<h2 id="方式四、call-和-apply调用模式"><a href="#方式四、call-和-apply调用模式" class="headerlink" title="方式四、call 和 apply调用模式"></a>方式四、call 和 apply调用模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function add(a,b)&#123;</div><div class="line">    this.result = a + b;s           </div><div class="line">&#125;</div><div class="line">var p  = &#123;&#125;;        //定义一个空对象。</div><div class="line">add.call(p,3,4);    //在这个方法调用的时候，this指向了p</div><div class="line">console.log(p.result);</div><div class="line">//apply和call是一样的用法，只不过apply第二个参数用数组进行传递。</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>方式1，4，还是方法形式的使用，2，3都是对象形式的使用。
+</code></pre><hr>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a><strong>补充</strong></h2><blockquote>
+<p>函数表达式才能自执行</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">//如下是错误写法，不会直接执行</div><div class="line">//	function a () &#123;</div><div class="line">//		console.log(111);</div><div class="line">//	&#125;();</div><div class="line">	//可执行,因为函数表达式才能直接执行，函数a被小括号包裹，就是函数表达式了</div><div class="line">	(function a () &#123;</div><div class="line">		console.log(222);</div><div class="line">	&#125;)();</div><div class="line">	//可执行，function () &#123;console.log(111);&#125;赋值给a相当于也成为了函数表达式</div><div class="line">	var a=function () &#123;</div><div class="line">		console.log(111);</div><div class="line">	&#125;();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>除了上面两种函数表达式，还有以下形式</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">方式一、</div><div class="line"></div><div class="line">!function()&#123;</div><div class="line"></div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">方式二、</div><div class="line"> </div><div class="line">+function()&#123;</div><div class="line"></div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<ul>
+<li>小括号</li>
+<li>赋值操作</li>
+<li>逻辑运算符</li>
+<li>数字运算符</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/JavaScript面向对象/" data-id="cj60seeb4000n60nkn0ggkjpc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/Java查漏补缺（二）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java查漏补缺（二）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/Html标签简介/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Html标签简介</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

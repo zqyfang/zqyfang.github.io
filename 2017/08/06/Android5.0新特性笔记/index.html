@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android 5.0新特性 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android 5.0新特性 Material Theme View的阴影和裁剪 Drawables图形资源 Animations 新增控件-卡片和列表   http://developer.android.com/training/material/index.html  1.MaterialDesigh概述 材质设计,以抽象化的形式展现物理世界的特征。  Material 主题 系统自带的主题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 5.0新特性">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/Android5.0新特性笔记/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Android 5.0新特性 Material Theme View的阴影和裁剪 Drawables图形资源 Animations 新增控件-卡片和列表   http://developer.android.com/training/material/index.html  1.MaterialDesigh概述 材质设计,以抽象化的形式展现物理世界的特征。  Material 主题 系统自带的主题">
+<meta property="og:updated_time" content="2017-07-09T06:17:52.574Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 5.0新特性">
+<meta name="twitter:description" content="Android 5.0新特性 Material Theme View的阴影和裁剪 Drawables图形资源 Animations 新增控件-卡片和列表   http://developer.android.com/training/material/index.html  1.MaterialDesigh概述 材质设计,以抽象化的形式展现物理世界的特征。  Material 主题 系统自带的主题">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Android5.0新特性笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Android5.0新特性笔记/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.556Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 5.0新特性
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Android-5-0新特性"><a href="#Android-5-0新特性" class="headerlink" title="Android 5.0新特性"></a>Android 5.0新特性</h2><ol>
+<li>Material Theme</li>
+<li>View的阴影和裁剪</li>
+<li>Drawables图形资源</li>
+<li>Animations</li>
+<li>新增控件-卡片和列表</li>
+</ol>
+<blockquote>
+<p><a href="http://developer.android.com/training/material/index.html" target="_blank" rel="external">http://developer.android.com/training/material/index.html</a></p>
+</blockquote>
+<h3 id="1-MaterialDesigh概述"><a href="#1-MaterialDesigh概述" class="headerlink" title="1.MaterialDesigh概述"></a>1.MaterialDesigh概述</h3><blockquote>
+<p>材质设计,以抽象化的形式展现物理世界的特征。</p>
+</blockquote>
+<h4 id="Material-主题"><a href="#Material-主题" class="headerlink" title="Material 主题"></a>Material 主题</h4><ul>
+<li><p>系统自带的主题</p>
+<ol>
+<li>@android:style/Theme.Material</li>
+<li>@android:style/Theme.Material.Light</li>
+<li>@android:style/Theme.Material.Light.DarkActionBar</li>
+</ol>
+</li>
+<li><p>如何自定义主题</p>
+<blockquote>
+<p>参见<a href="http://developer.android.com/training/material/theme.html" target="_blank" rel="external">http://developer.android.com/training/material/theme.html</a></p>
+<p>不同的Theme，不同的属性值。</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>常用的样式属性</p>
+<pre><code> &lt;style name=&quot;RedTheme&quot; parent=&quot;android:Theme.Material&quot;&gt;
+
+    &lt;!-- 状态栏颜色，会被statusBarColor效果覆盖--&gt;
+    &lt;item name=&quot;android:colorPrimaryDark&quot;&gt;@color/status_red&lt;/item&gt;
+    &lt;!-- 状态栏颜色，继承自colorPrimaryDark --&gt;
+    &lt;item name=&quot;android:statusBarColor&quot;&gt;@color/status_red&lt;/item&gt;
+    &lt;!-- actionBar颜色 --&gt;
+    &lt;item name=&quot;android:colorPrimary&quot;&gt;@color/action_red&lt;/item&gt;
+    &lt;!-- 背景颜色 --&gt;
+    &lt;item name=&quot;android:windowBackground&quot;&gt;@color/window_bg_red&lt;/item&gt;
+    &lt;!-- 底部栏颜色 --&gt;
+    &lt;item name=&quot;android:navigationBarColor&quot;&gt;@color/navigation_red&lt;/item&gt;
+
+    &lt;!-- ListView的分割线颜色，switch滑动区域色--&gt;
+    &lt;item name=&quot;android:colorForeground&quot;&gt;@color/fg_red&lt;/item&gt;
+    &lt;!-- popMenu的背景色 --&gt;
+    &lt;item name=&quot;android:colorBackground&quot;&gt;@color/bg_red&lt;/item&gt;
+
+    &lt;!-- 控件默认颜色 ，效果会被colorControlActivated取代  --&gt;
+    &lt;item name=&quot;android:colorAccent&quot;&gt;@color/control_activated_red&lt;/item&gt;
+
+    &lt;!-- 控件默认时颜色  --&gt;
+    &lt;item name=&quot;android:colorControlNormal&quot;&gt;@color/control_normal_red&lt;/item&gt;
+    &lt;!-- 控件按压时颜色，会影响水波纹效果，继承自colorAccent  --&gt;
+    &lt;item name=&quot;android:colorControlHighlight&quot;&gt;@color/control_highlight_red&lt;/item&gt;
+    &lt;!-- 控件选中时颜色 --&gt;
+    &lt;item name=&quot;android:colorControlActivated&quot;&gt;@color/control_activated_red&lt;/item&gt;
+    &lt;!-- Button的默认背景 --&gt;
+    &lt;item name=&quot;android:colorButtonNormal&quot;&gt;@color/button_normal_red&lt;/item&gt;
+
+    &lt;!-- Button，textView的文字颜色  --&gt;
+    &lt;item name=&quot;android:textColor&quot;&gt;@color/white_text&lt;/item&gt;
+    &lt;!-- RadioButton checkbox等控件的文字 --&gt;
+    &lt;item name=&quot;android:textColorPrimaryDisableOnly&quot;&gt;@color/white_text&lt;/item&gt;
+    &lt;!-- actionBar的标题文字颜色 --&gt;
+    &lt;item name=&quot;android:textColorPrimary&quot;&gt;@color/white_text&lt;/item&gt;
+&lt;/style&gt;
+</code></pre></li>
+</ul>
+<h3 id="2-阴影和裁剪"><a href="#2-阴影和裁剪" class="headerlink" title="2.阴影和裁剪"></a>2.阴影和裁剪</h3><h4 id="Z轴属性"><a href="#Z轴属性" class="headerlink" title="Z轴属性"></a>Z轴属性</h4><ul>
+<li><p>Z = elevation + translationZ</p>
+<pre><code>android:elevation    //静态Z轴的高度。相对于父控件的高度
+android:translationZ    //Z轴偏移的高度。
+</code></pre></li>
+<li><p>高度决定了View的遮盖关系，遮盖关系决定绘制时机。</p>
+</li>
+</ul>
+<h4 id="阴影轮廓"><a href="#阴影轮廓" class="headerlink" title="阴影轮廓"></a>阴影轮廓</h4><pre><code>android:outlineProvider：
+none：不显示阴影
+background ：按照显示区域来绘制阴影
+bounds ：在View的边界描绘阴影
+paddedBounds： 在View边界描绘阴影，但会忽略paddingTop和paddingLeft
+</code></pre><p>View都是矩形的，阴影默认是沿着背景的边界绘制。如果背景是矩形了自然没有问题。<br>如果是圆形的，分两种情况:</p>
+<ol>
+<li>通过shape定义的，系统可以识别出真实边界，阴影绘制没有问题.</li>
+<li>带有透明通道的png图片，会当成矩形绘制阴影。因为系统无法排除透明通道，识别出真实的边界，</li>
+</ol>
+<p>为了避免圆形的View显示矩形的阴影，，View增加了一个新的描述来指明内容显示的形状，这就是轮廓。</p>
+<ul>
+<li><p>布局设置：</p>
+<pre><code>android:outlineProvider=&quot;none|background|bounds|paddedBounds&quot; 
+
+none 不显示阴影
+background ：按照显示区域来绘制阴影
+bounds ：在View的边界描绘阴影
+paddedBounds： 在View边界描绘阴影，但会计算paddingTop和paddingLeft
+</code></pre></li>
+</ul>
+<ul>
+<li>代码设置：<blockquote>
+<p>圆形png图片因为无法排除透明通道，无法识别出真实边界，所以可以自定义，代码提供轮廓</p>
+</blockquote>
+</li>
+</ul>
+<pre><code>View.setOutlineProvider(new ViewOutlineProvide(){
+     public void getOutline(View view, Outline outline) {
+        //矩形，圆形，圆角矩形，Path。除了正常的阴影，也可以自定义奇葩的阴影效果
+         outline.setOval(0, 0, view.getWidth(), view.getHeight());
+    }
+});
+</code></pre><h4 id="轮廓裁剪"><a href="#轮廓裁剪" class="headerlink" title="轮廓裁剪"></a>轮廓裁剪</h4><blockquote>
+<p>由于轮廓可以自定义，当轮廓小于View的大小，View并不会变小。如果希望View大小跟轮廓匹配，可以裁剪View的大小以适应轮廓，这样也可以通过裁剪生成新的形状。</p>
+</blockquote>
+<pre><code>Outline.canClip();//是否可以被裁剪。目前支持矩形，圆形，圆角矩形
+View.setClipToOutline(true);//允许裁剪View大小以适应轮廓
+</code></pre><ul>
+<li>只能往小了裁，不能往大了裁。</li>
+<li>轮廓大小如果大于View大小，只会扩大阴影的绘制路径，但不会超出父控件边界</li>
+<li>裁剪的本质是绘制时裁剪画布的大小，但不会改变View的测量大小，触摸区域。</li>
+</ul>
+<h3 id="3-Drawables图形资源"><a href="#3-Drawables图形资源" class="headerlink" title="3. Drawables图形资源"></a>3. Drawables图形资源</h3><ul>
+<li>Drawable渲染</li>
+<li>矢量图</li>
+<li>色彩提取</li>
+</ul>
+<h4 id="色彩渲染"><a href="#色彩渲染" class="headerlink" title="色彩渲染"></a>色彩渲染</h4><ul>
+<li><p>如何设置</p>
+<pre><code>代码：
+    Drawable#setTint(int color);//设置渲染色
+    Drawable#setTintMode(PorterDuff.Mode tintMode);//设置渲染模式
+xml文件：
+    //可以应用xml定义的bitmap或者ImageView或者View的background等涉及到drawable的地方.
+    android:tint
+    android:tintMode
+</code></pre></li>
+<li><p>渲染模式</p>
+<blockquote>
+<p>PorterDuff.Mode 18种模式，其决定了原图颜色和渲染颜色的取舍和合成规则。</p>
+<p>原理：将原图颜色Dst与渲染颜色Src每个像素点的alpha和color值通过算法计算得到新的颜色，以实现不同的混合效果。</p>
+<p>效果参见ApiDemos-Graphics-Xfermodes.演示了16种效果</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="矢量图"><a href="#矢量图" class="headerlink" title="矢量图"></a>矢量图</h4><pre><code>    &lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+        android:height=&quot;300dp&quot;//宽
+        android:width=&quot;300dp&quot;//宽
+        android:viewportHeight=&quot;40&quot;//画布高
+        android:viewportWidth=&quot;40&quot;//画布宽 虚拟大小，pathData中距离的参考
+        &gt;
+        &lt;path android:fillColor=&quot;#ff00ff&quot;
+                android:pathData=&quot;M20.5,9.5
+                        c-1.955,0,-3.83,1.268,-4.5,3
+                        c-0.67,-1.732,-2.547,-3,-4.5,-3
+                        C8.957,9.5,7,11.432,7,14
+                        c0,3.53,3.793,6.257,9,11.5
+                        c5.207,-5.242,9,-7.97,9,-11.5
+                        C25,11.432,23.043,9.5,20.5,9.5z&quot;
+                /&gt;
+&lt;/vector&gt;
+</code></pre><h4 id="取色器"><a href="#取色器" class="headerlink" title="取色器"></a>取色器</h4><ul>
+<li>android.support.v7.graphics.Palette</li>
+</ul>
+<pre><code>Vibrant 鲜艳的
+Vibrant dark鲜艳的暗色
+Vibrant light鲜艳的亮色
+Muted 柔和的
+Muted dark柔和的暗色
+Muted light柔和的亮色
+
+//在子线程可以使用同步操作
+ Palette p = Palette.from(bitmap).generate();
+
+ //在主线程使用异步操作
+ Palette.from(bitmap).generate(new PaletteAsyncListener() {
+     public void onGenerated(Palette p) {
+         // Use generated instance
+
+     }
+ });
+
+
+//gradle 添加依赖
+dependencies {    
+    ...
+    compile &apos;com.android.support:palette-v7:21.0.0&apos;
+}
+</code></pre><ul>
+<li><p>其他</p>
+<pre><code>//获取某个像素点的颜色值
+int color=Bitmap.getPixel(int x, int y);
+</code></pre></li>
+</ul>
+<h3 id="3-Animations"><a href="#3-Animations" class="headerlink" title="3.Animations"></a>3.Animations</h3><ul>
+<li>Touch feedback 触摸反馈</li>
+<li>Circular Reveal 循环揭露</li>
+<li>Activity transitions</li>
+<li>Curved motion</li>
+<li>View state changes</li>
+</ul>
+<h4 id="涟漪效果RippleDrawable"><a href="#涟漪效果RippleDrawable" class="headerlink" title="涟漪效果RippleDrawable"></a>涟漪效果RippleDrawable</h4><ul>
+<li><p>Button自带涟漪动画</p>
+<ol>
+<li>默认效果，有背景，按下带水波纹效果</li>
+<li>android:background=”?android:selectableItemBackground”;无背景，按下有水波纹效果</li>
+<li>android:background=”?android:selectableItemBackgroundBorderless”;无背景，V控件大小不限制水波纹的扩散</li>
+</ol>
+</li>
+<li><p>自定义涟漪背景：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ripple xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:color=&quot;#00FF00&quot;&gt;&lt;!--涟漪颜色--&gt;
+
+    &lt;!--背景颜色，如果没有，则涟漪动画无边界--&gt;
+    &lt;item android:drawable=&quot;@color/action_red&quot;/&gt;
+&lt;/ripple&gt;
+</code></pre></li>
+</ul>
+<h4 id="圆形缩放动画-RevealAnimator"><a href="#圆形缩放动画-RevealAnimator" class="headerlink" title="圆形缩放动画 RevealAnimator"></a>圆形缩放动画 RevealAnimator</h4><blockquote>
+<p>可用于View的隐藏显示的过渡</p>
+</blockquote>
+<pre><code> /**
+ * @param view 要执行动画的View
+ * @param centerX 圆心X
+ * @param centerY 圆心Y
+ * @param startRadius 开始半径
+ * @param endRadius 结束半径
+ */
+ViewAnimationUtils.createCircularReveal(myView, cx, cy, 0, finalRadius);
+</code></pre><h3 id="状态切换动画"><a href="#状态切换动画" class="headerlink" title="状态切换动画"></a>状态切换动画</h3><blockquote>
+<p>参见<a href="http://developer.android.com/training/material/animations.html#ViewState" target="_blank" rel="external">http://developer.android.com/training/material/animations.html#ViewState</a> </p>
+<ul>
+<li>StateListAnimator</li>
+<li>AnimatedStateListDrawable</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>StateListAnimator 属性动画</p>
+<ul>
+<li>定义      <!-- animate the translationZ property of a view when pressed -->
+<pre><code>&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    //切换到按下状态时执行的动画
+  &lt;item android:state_pressed=&quot;true&quot;&gt;
+    &lt;set&gt;
+      &lt;objectAnimator android:propertyName=&quot;translationZ&quot;
+        android:duration=&quot;@android:integer/config_shortAnimTime&quot;
+        android:valueTo=&quot;2dp&quot;
+        android:valueType=&quot;floatType&quot;/&gt;
+        &lt;!-- you could have other objectAnimator elements
+             here for &quot;x&quot; and &quot;y&quot;, or other properties --&gt;
+        //同时还可以执行其他的动画
+    &lt;/set&gt;
+  &lt;/item&gt;
+    //切换默认状态时执行的动画
+  &lt;item &gt;
+    &lt;set&gt;
+      &lt;objectAnimator android:propertyName=&quot;translationZ&quot;
+        android:duration=&quot;100&quot;
+        android:valueTo=&quot;0&quot;
+        android:valueType=&quot;floatType&quot;/&gt;
+    &lt;/set&gt;
+  &lt;/item&gt;
+&lt;/selector&gt;
+</code></pre></li>
+<li><p>使用</p>
+<pre><code>xml布局：
+android:stateListAnimator属性设置
+代码：
+View#setStateListAnimator(AnimatorInflater.loadStateListAnimator(this,R.drawable.selector_anim_state));
+</code></pre></li>
+<li><p>其他</p>
+<blockquote>
+<p>如果设置了Material Theme，Button默认会有Z轴改变的动画效果。如果想屏蔽，可以设置android:stateListAnimator为 @null</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>AnimatedStateListDrawable 过渡帧动画</p>
+<ul>
+<li><p>定义</p>
+<pre><code>&lt;animated-selector
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+
+    &lt;!-- 按下状态的图片--&gt;
+    &lt;item android:id=&quot;@+id/pressed&quot; android:drawable=&quot;@drawable/drawableP&quot;
+        android:state_pressed=&quot;true&quot;/&gt;
+     &lt;!-- 默认状态的图片--&gt;
+    &lt;item android:id=&quot;@id/default&quot;
+        android:drawable=&quot;@drawable/drawableD&quot;/&gt;
+
+    &lt;!-- 过渡帧动画 --&gt;
+    &lt;transition android:fromId=&quot;@+id/default&quot; android:toId=&quot;@+id/pressed&quot;&gt;
+        &lt;animation-list&gt;
+            //定义每一帧的图片资源
+            &lt;item android:duration=&quot;15&quot; android:drawable=&quot;@drawable/dt1&quot;/&gt;
+            &lt;item android:duration=&quot;15&quot; android:drawable=&quot;@drawable/dt2&quot;/&gt;
+            ...
+        &lt;/animation-list&gt;
+    &lt;/transition&gt;
+    ...
+&lt;/animated-selector&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<pre><code>- 如何使用
+
+    android:background当成普通drawable使用
+</code></pre><h4 id="矢量图动画-AnimatedVectorDrawable"><a href="#矢量图动画-AnimatedVectorDrawable" class="headerlink" title="矢量图动画 AnimatedVectorDrawable"></a>矢量图动画 AnimatedVectorDrawable</h4><blockquote>
+<p>参见<a href="http://developer.android.com/training/material/animations.html#AnimVector" target="_blank" rel="external">http://developer.android.com/training/material/animations.html#AnimVector</a></p>
+</blockquote>
+<ol>
+<li><p>在drawable目录定义一个<vector>矢量图</vector></p>
+<pre><code>&lt;!-- res/drawable/vectordrawable.xml --&gt;
+vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:height=&quot;64dp&quot;
+android:width=&quot;64dp&quot;
+android:viewportHeight=&quot;600&quot;
+android:viewportWidth=&quot;600&quot;&gt;
+    &lt;group
+        android:name=&quot;rotationGroup&quot;
+        android:pivotX=&quot;300.0&quot;
+        android:pivotY=&quot;300.0&quot;
+        android:rotation=&quot;45.0&quot; &gt;
+        &lt;path
+            android:name=&quot;v&quot;
+            android:fillColor=&quot;#000000&quot;
+            android:pathData=&quot;M300,70 l 0,-70 70,70 0,0 -70,70z&quot; /&gt;
+    &lt;/group&gt;
+&lt;/vector&gt;
+</code></pre></li>
+<li><p>在drawable目录定义一个<animated-vector>矢量图动画</animated-vector></p>
+<pre><code>&lt;!-- res/drawable/animvectordrawable.xml --&gt;
+&lt;animated-vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+  android:drawable=&quot;@drawable/vectordrawable&quot; &gt;
+    &lt;target
+        android:name=&quot;rotationGroup&quot;
+        android:animation=&quot;@anim/rotation&quot; /&gt;
+    &lt;target
+    android:name=&quot;v&quot;
+    android:animation=&quot;@anim/path_morph&quot; /&gt;
+&lt;/animated-vector&gt;
+</code></pre></li>
+<li><p>在anim目录定义要执行的属性动画</p>
+<pre><code>&lt;!-- res/anim/rotation.xml --&gt;
+&lt;objectAnimator
+android:duration=&quot;6000&quot;
+android:propertyName=&quot;rotation&quot;
+android:valueFrom=&quot;0&quot;
+android:valueTo=&quot;360&quot; /&gt;
+
+&lt;!-- res/anim/path_morph.xml --&gt;
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;objectAnimator
+        android:duration=&quot;3000&quot;
+        android:propertyName=&quot;pathData&quot;
+        android:valueFrom=&quot;M300,70 l 0,-70 70,70 0,0   -70,70z&quot;
+        android:valueTo=&quot;M300,70 l 0,-70 70,0  0,140 -70,0 z&quot;
+        android:valueType=&quot;pathType&quot; /&gt;
+//pathData要求参数个数相同，命令也要相同。
+&lt;/set&gt;
+</code></pre></li>
+</ol>
+<ol>
+<li><p>使用矢量图动画</p>
+<pre><code>animvectordrawable.xml作为background设置给View
+
+//代码中获取到background，因为是特殊的background，播放
+Drawable drawable = vector.getBackground();
+if (drawable instanceof Animatable) {
+   ((Animatable) drawable).start();
+}
+</code></pre></li>
+</ol>
+<h3 id="曲线运动"><a href="#曲线运动" class="headerlink" title="曲线运动"></a>曲线运动</h3><blockquote>
+<p>参见 <a href="http://developer.android.com/training/material/animations.html#CurvedMotion" target="_blank" rel="external">http://developer.android.com/training/material/animations.html#CurvedMotion</a></p>
+</blockquote>
+<ul>
+<li><p>PathInterpolator    </p>
+<blockquote>
+<p>通过Path定义动画插入器的运动轨迹.二阶，三阶贝塞尔曲线和自定义Path</p>
+</blockquote>
+<pre><code>动画插入器：通过运动曲线模型干预动画的执行。&lt;br/&gt;
+运动曲线模型：一个 1x1 的正方形内指定一个运动曲线，起点位于 (0,0)，终点 (1,1)，控制点形成运动曲线
+
+//二阶贝塞尔曲线
+public PathInterpolator(float controlX, float controlY)
+
+//三阶贝塞尔曲线
+public PathInterpolator(float controlX1, float controlY1, float controlX2, float controlY2)
+
+//Path定义运动曲线
+public PathInterpolator(Path path)
+
+Path path = new Path();
+path.lineTo(0.4f, 0.8f);
+path.lineTo(0.6f, 0.0f);
+path.lineTo(1f, 1f);//必须从0,0开始，1,1结束
+PathInterpolator pathin=new PathInterpolator(path);
+</code></pre></li>
+</ul>
+<ul>
+<li><p>ObjectAnimator 属性动画可以通过Path设置View的带X,Y属性</p>
+<pre><code> Path path2 = new Path();
+path2.lineTo(40, 80);
+path2.lineTo(50, 40);
+ObjectAnimator.ofFloat(mAnimView,View.TRANSLATION_X,View.TRANSLATION_Y,path2).setDuration(2000).start();
+</code></pre></li>
+</ul>
+<p>注意：Tween动画跟属性动画做动画，Tween动画不该变View真实的位置及大小，属性动画改变真实位置及大小。</p>
+<h3 id="Activity转场动画"><a href="#Activity转场动画" class="headerlink" title="Activity转场动画"></a>Activity转场动画</h3><blockquote>
+<p>回顾Activity切换动画</p>
+<p>新增Activity元素场景转换动画</p>
+<pre><code>- 进入、退出、共享元素转换
+</code></pre></blockquote>
+<ul>
+<li><p>回顾Activity切换动画</p>
+<pre><code>代码：
+    //Activity切换动画。api 16以后出现了更好的选择--ActivityOption
+    public void overridePendingTransition(int enterAnim, int exitAnim);//在startActivity之后，finish之前执行，配置进来的和出去的Activity执行的动画
+主题：
+    //主题配置切换动画
+    &lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.Light&quot;&gt;
+        ...
+         &lt;item name=&quot;android:windowAnimationStyle&quot;&gt;@style/ActivityAnimation&lt;/item&gt;
+    &lt;/style&gt;
+      &lt;!--Activity的动画 设置给windowAnimationStyle--&gt;
+    &lt;style name=&quot;ActivityAnimation&quot; parent=&quot;android:Animation.Activity&quot;&gt;
+        &lt;item name=&quot;android:activityOpenEnterAnimation&quot;&gt;@anim/slide_in_left&lt;/item&gt;//从A打开B时B的动画
+        &lt;item name=&quot;android:activityOpenExitAnimation&quot;&gt;@anim/slide_out_right&lt;/item&gt;//从A打开B时A的动画
+        &lt;item name=&quot;android:activityCloseEnterAnimation&quot;&gt;@anim/push_down_in&lt;/item&gt;//从B返回A时A的动画
+        &lt;item name=&quot;android:activityCloseExitAnimation&quot;&gt;@anim/push_down_out&lt;/item&gt;//从B返回A时B的动画
+    &lt;/style&gt;
+</code></pre></li>
+</ul>
+<ul>
+<li><p>Activity元素场景转换动画</p>
+<ul>
+<li><p>分类</p>
+<ol>
+<li><p>进入退出–Visibility</p>
+<p> Explode分解 - 从场景中心移入或移出视图。<br><br> Slide滑动 - 从场景边缘移入或移出视图。<br><br> Fade淡入淡出 - 通过调整透明度从场景增添或移除视图<br><br> 可实现接口进行自定义</p>
+</li>
+<li><p>共享元素动画–    Transition</p>
+<p> changeBounds - 为目标视图的布局边界的变化添加动画。<br><br> changeClipBounds - 为目标视图的裁剪边界的变化添加动画。<br><br> changeTransform - 为目标视图的缩放与旋转变化添加动画。<br><br> changeScroll - 为目标视图的ScrollTo操作添加动画。<br><br> changeImageTransform - 为目标图像的大小与缩放变化添加动画。<br></p>
+</li>
+</ol>
+</li>
+<li><p>如何使用</p>
+<pre><code>1. 通过Theme定义
+    &lt;style name=&quot;BaseAppTheme&quot; parent=&quot;android:Theme.Material&quot;&gt;
+      &lt;!-- 启用动画 --&gt;
+      &lt;item name=&quot;android:windowContentTransitions&quot;&gt;true&lt;/item&gt; 
+      &lt;item name=&quot;android:windowActivityTransitions&quot;&gt;true&lt;/item&gt;
+
+      &lt;!-- 进入退出动画 --&gt;
+        &lt;item name=&quot;android:windowEnterTransition&quot;&gt;@android:transition/explode&lt;/item&gt;
+        &lt;item name=&quot;android:windowExitTransition&quot;&gt;@android:transition/explode&lt;/item&gt;
+        &lt;item name=&quot;android:windowReturnTransition&quot;&gt;@android:transition/explode&lt;/item&gt;
+        &lt;item name=&quot;android:windowReenterTransition&quot;&gt;@android:transition/explode&lt;/item&gt;
+        // 尽快开始进入转换
+        &lt;item name=&quot;android:windowAllowEnterTransitionOverlap&quot;&gt;true&lt;/item&gt;
+
+      &lt;!-- 共享元素动画 --&gt;
+        &lt;item name=&quot;android:windowSharedElementEnterTransition&quot;&gt;
+            @android:transition/move&lt;/item&gt;
+        &lt;item name=&quot;android:windowSharedElementExitTransition&quot;&gt;
+            @android:transition/move&lt;/item&gt;
+        &lt;item name=&quot;android:windowSharedElementReturnTransition&quot;&gt;
+            @android:transition/move&lt;/item&gt;
+        &lt;item name=&quot;android:windowSharedElementReenterTransition&quot;&gt;
+            @android:transition/move&lt;/item&gt;
+        &lt;item name=&quot;android:windowSharedElementsUseOverlay&quot;&gt;true&lt;/item&gt;
+    &lt;/style&gt;
+
+    Activity里代码设置：
+
+    / 允许使用transitions
+    getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+    // 指定进入、退出、返回、重新进入时的transitions
+    TransitionSet set = new TransitionSet();//也可设置TransitionSet
+    set.addTransition(new Explode());
+    set.addTransition(new Fade());
+    getWindow().setEnterTransition(new Explode());
+    getWindow().setExitTransition(new Explode());
+    getWindow().setEnterTransition(new Explode());
+    getWindow().setExitTransition(new Explode());
+    // 指定进入、退出、返回、重新进入时的共享transitions
+    getWindow().setSharedElementEnterTransition(new ChangeTransform());
+    getWindow().setSharedElementExitTransition(new ChangeTransform());
+    getWindow().setSharedElementReturnTransition(new ChangeTransform());
+    getWindow().setSharedElementReenterTransition(new ChangeTransform());
+
+2. 启动Activity
+    //没有共享元素
+    ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(this);
+    //1个共享元素
+    ActivityOptions options = ActivityOptions
+    .makeSceneTransitionAnimation(this, sharedElementView, &quot;sharedElementName&quot;);
+    //多个共享元素
+    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this,
+    Pair.create(sharedElementView1, &quot;sharedElementName1&quot;),
+    Pair.create(sharedElementView2, &quot;sharedElementName2&quot;));
+    // 启动Activity
+    startActivity(new Intent(getApplicationContext(), XXXActivity.class), options.toBundle());
+
+    共享元素：利用 android:transitionName 属性对两个布局中的共享元素指定一个通用名称sharedElementName，以便过渡动画的执行
+
+3. 关闭Activity
+    调用finishAfterTransition替代finish。返回键默认处理为finishAfterTransition
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="RecyclerView"><a href="#RecyclerView" class="headerlink" title="RecyclerView"></a>RecyclerView</h3><ul>
+<li><p>介绍</p>
+<ul>
+<li>RecyclerView = 灵活的的listview，可实现网格、瀑布流等效果</li>
+</ul>
+</li>
+<li><p>基本功能三要素</p>
+<ul>
+<li>RecyclerView</li>
+<li>LayoutManagers</li>
+<li>Adapter</li>
+</ul>
+</li>
+<li><p>显示数据集</p>
+<blockquote>
+<p>参见 <a href="https://developer.android.com/training/material/lists-cards.html#RecyclerView" target="_blank" rel="external">https://developer.android.com/training/material/lists-cards.html#RecyclerView</a></p>
+</blockquote>
+<ol>
+<li>在布局文件中使用RecyclerView</li>
+<li>在Activity中找到RecyclerView</li>
+<li>RecyclerView.setLayoutManager(LayoutManager)</li>
+<li>RecyclerView.setAdapter(Adapter)</li>
+<li>定义Adapter<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> List&lt;Pair&lt;String, Integer&gt;&gt; data;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyAdapter</span><span class="params">(List&lt;Pair&lt;String, Integer&gt;&gt; data)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.data = data;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> data == <span class="keyword">null</span> ? <span class="number">0</span> : data.size();</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> RecyclerView.<span class="function">ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</div><div class="line">        SimpleVH svh = <span class="keyword">new</span> SimpleVH(View.inflate(parent.getContext(), R.layout.item_simple, <span class="keyword">null</span>));</div><div class="line">        <span class="keyword">return</span> svh;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(RecyclerView.ViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        SimpleVH svh = (SimpleVH) holder;</div><div class="line">        svh.iv.setImageResource(data.get(position).second);</div><div class="line">        svh.name.setText(data.get(position).first);</div><div class="line">        svh.item.setText(<span class="string">"position: "</span> + position );</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleVH</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span> </span>&#123;</div><div class="line">        ImageView iv;</div><div class="line">        TextView name;</div><div class="line">        TextView item;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SimpleVH</span><span class="params">(View itemView)</span> </span>&#123;</div><div class="line">            <span class="keyword">super</span>(itemView);</div><div class="line">            iv = (ImageView) itemView.findViewById(R.id.iv);</div><div class="line">            name = (TextView) itemView.findViewById(R.id.name);</div><div class="line">            item = (TextView) itemView.findViewById(R.id.item);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>显示网格布局及瀑布流布局</p>
+<blockquote>
+<p>实质上就是设置不同的LayoutManager</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- LinearLayoutManager(Context context, </div><div class="line">                    <span class="keyword">int</span> orientation,  <span class="comment">// 布局方向</span></div><div class="line">                    <span class="keyword">boolean</span> reverseLayout <span class="comment">//是否反转</span></div><div class="line">                    )</div><div class="line">- GridLayoutManager(Context context,</div><div class="line">                    <span class="keyword">int</span> spanCount,  <span class="comment">// 几列</span></div><div class="line">                    <span class="keyword">int</span> orientation, <span class="comment">// 方向</span></div><div class="line">                    <span class="keyword">boolean</span> reverseLayout <span class="comment">//是否反转</span></div><div class="line">                    )</div><div class="line">- StaggeredGridLayoutManager(</div><div class="line">                    <span class="keyword">int</span> spanCount, <span class="comment">// 几列</span></div><div class="line">                    <span class="keyword">int</span> orientation <span class="comment">// 方向</span></div><div class="line">                    )</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>设置点击事件</p>
+<ol>
+<li>RecyclerView.addOnItemTouchListener<blockquote>
+<p>使用了比较底层的API，较为复杂</p>
+</blockquote>
+</li>
+<li><p>通过Adapter将点击事件传递出来</p>
+<blockquote>
+<p>使用回调的设计手法  </p>
+</blockquote>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**adapter*/</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnItemClickListener</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(RecyclerView.ViewHolder vh)</span></span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOnItemClickListener</span><span class="params">(OnItemClickListener oicl)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.oicl = oicl;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(RecyclerView.ViewHolder vh)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (oicl != <span class="keyword">null</span>) &#123;</div><div class="line">        oicl.onItemClick(vh);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(RecyclerView.ViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    svh.itemView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">            <span class="comment">// 通知同一个方法，</span></div><div class="line">            onItemClick(holder);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**Activity*/</span></div><div class="line">myAdapter.setOnItemClickListener(<span class="keyword">new</span> MyAdapter.OnItemClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(RecyclerView.ViewHolder vh)</span> </span>&#123;</div><div class="line">        Toast.makeText(NewWidgetActivity.<span class="keyword">this</span>, <span class="string">"position: "</span>+ vh.getAdapterPosition(),Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>下拉刷新</p>
+<ul>
+<li>借助android.support.v4.widget.SwipeRefreshLayout</li>
+<li><p>使用方法</p>
+<ol>
+<li>用SwipeRefreshLayout作为RecyclerView的父控件</li>
+<li>SwipeRefreshLayout.setOnRefreshListener</li>
+<li>在OnRefreshListener完成数据的获取，然后调用SwipeRefreshLayout.setRefreshing(fasle)</li>
+<li><p>个性化</p>
+<pre><code>//定制SwipeRefreshLayout的样式
+//设置箭头的颜色
+swipeRefreshLayout.setColorSchemeColors(Color.RED,Color.GREEN, Color.BLUE);
+//设置圆圈的背景 v7 22以后
+swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.GRAY);
+</code></pre></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="CardView"><a href="#CardView" class="headerlink" title="CardView"></a>CardView</h3><ul>
+<li>android.support.v7.widget.CardView</li>
+<li>使用方法<ol>
+<li>在布局中使用android.support.v7.widget.CardView</li>
+<li>添加属性<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">CardView常用属性：</div><div class="line">card_view:cardElevation</div><div class="line"> 卡片高度</div><div class="line">card_view:cardMaxElevation</div><div class="line"> 卡片的最大高度</div><div class="line">card_view:cardBackgroundColor</div><div class="line"> 卡片的背景色</div><div class="line">card_view:cardCornerRadius</div><div class="line"> 卡片的圆角大小</div><div class="line">card_view:contentPadding</div><div class="line"></div><div class="line"> 卡片内容于边距的间隔</div><div class="line">card_view:contentPaddingBottom</div><div class="line">card_view:contentPaddingTop</div><div class="line">card_view:contentPaddingLeft</div><div class="line">card_view:contentPaddingRight</div><div class="line">card_view:contentPaddingStart</div><div class="line">card_view:contentPaddingEnd</div><div class="line"></div><div class="line">card_view:cardUseCompatPadding</div><div class="line"> 设置内边距，V21+的版本和之前的版本仍旧具有一样的计算方式</div><div class="line">card_view:cardPreventConrerOverlap</div><div class="line"> 在V20和之前的版本中添加内边距，这个属性为了防止内容和边角的重叠</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="与旧版本兼容"><a href="#与旧版本兼容" class="headerlink" title="与旧版本兼容"></a>与旧版本兼容</h3><ul>
+<li><p>定义不同的布局</p>
+<blockquote>
+<p>将使用了新的API的布局放在res/layout-v21/； 其他的放在res/layout/中</p>
+</blockquote>
+</li>
+<li><p>主题定义</p>
+<ol>
+<li>继承Theme.AppCompat</li>
+<li>定义颜色的时候去掉android:的命名空间（针对于新的那一些）<blockquote>
+<p>小窍门，所有没有见过的，都去掉，aapt会报错，根据aapt的提示添加android的命名空间</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>可以通过兼容包使用的效果<ol>
+<li>RecyclerView </li>
+<li>CardView </li>
+<li>Palette</li>
+</ol>
+</li>
+<li>不能在21之前版本使用的效果<ol>
+<li>Activity transitions</li>
+<li>Touch feedback</li>
+<li>Reveal animations</li>
+<li>Path-based animations</li>
+<li>Vector drawables</li>
+<li>Drawable tinting</li>
+</ol>
+</li>
+<li>代码要判断运行的环境，使用合适的效果</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Android5.0新特性笔记/" data-id="cj60see9y000360nkt2komjkj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/Android版本DSBridge使用规则/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JsBridge
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/Android 6.0权限/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android 6.0权限</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

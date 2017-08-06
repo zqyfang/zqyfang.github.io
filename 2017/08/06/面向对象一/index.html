@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>面向对象一 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="类 类是不占内存的，但是对象是占内存的，甚至可以说是对象的字段占内存的 因为字段是有初始值的。 但是静态类是占用内存的，因为其不能被实例化，也没有有对象，静态类包括其实例成员 都在静态存储区域。  属性：保护字段，对字段的复制和取值进行限定 属性的本质就是两个方法，set和get 属性不加修饰符，默认是private(只在当前类可访问)  12345678910111213141516171819">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象一">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/面向对象一/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="类 类是不占内存的，但是对象是占内存的，甚至可以说是对象的字段占内存的 因为字段是有初始值的。 但是静态类是占用内存的，因为其不能被实例化，也没有有对象，静态类包括其实例成员 都在静态存储区域。  属性：保护字段，对字段的复制和取值进行限定 属性的本质就是两个方法，set和get 属性不加修饰符，默认是private(只在当前类可访问)  12345678910111213141516171819">
+<meta property="og:updated_time" content="2017-07-09T07:33:08.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面向对象一">
+<meta name="twitter:description" content="类 类是不占内存的，但是对象是占内存的，甚至可以说是对象的字段占内存的 因为字段是有初始值的。 但是静态类是占用内存的，因为其不能被实例化，也没有有对象，静态类包括其实例成员 都在静态存储区域。  属性：保护字段，对字段的复制和取值进行限定 属性的本质就是两个方法，set和get 属性不加修饰符，默认是private(只在当前类可访问)  12345678910111213141516171819">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-面向对象一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/面向对象一/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.552Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Net/">.Net</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      面向对象一
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><hr>
+<pre><code>类是不占内存的，但是对象是占内存的，甚至可以说是对象的字段占内存的
+因为字段是有初始值的。
+但是静态类是占用内存的，因为其不能被实例化，也没有有对象，静态类包括其实例成员
+都在静态存储区域。
+
+属性：保护字段，对字段的复制和取值进行限定
+属性的本质就是两个方法，set和get
+属性不加修饰符，默认是private(只在当前类可访问)
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">案例：</div><div class="line">class Person</div><div class="line">    &#123;</div><div class="line">        private string _name;//字段</div><div class="line">        public string Name //属性</div><div class="line">        &#123;</div><div class="line">            get &#123;</div><div class="line">					if (_name!=&quot;强强&quot;)</div><div class="line">					&#123;</div><div class="line">						return &quot;强强&quot;;</div><div class="line">					&#125;</div><div class="line">				return _name; &#125;</div><div class="line">            set &#123; _name = value; &#125;</div><div class="line">        &#125;</div><div class="line">		 public void show()</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(this.Name);//尽量使用返回属性，因为此时_name不走属性</div><div class="line">			//不会执行里面的判断。</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">使用：</div><div class="line">Person p = new Person();//实例化</div><div class="line">p.Name = &quot;呵呵&quot;;//初始化</div><div class="line">p.show();</div><div class="line">string info=p.Name;</div><div class="line">Console.WriteLine(info);</div></pre></td></tr></table></figure>
+<h1 id="静态与非静态"><a href="#静态与非静态" class="headerlink" title="静态与非静态"></a>静态与非静态</h1><blockquote>
+<p>静态成员必须使用类名去调用，而实例成员使用对象名调用。<br>静态函数中，只能访问静态成员，不允许访问实例成员。<br>实例函数中，既可以使用静态成员，也可以使用实例成员。<br>静态类，只能存在静态的实例成员。<br>静态类不能被实例化。<br>静态类只有在程序结束后才会释放资源。</p>
+</blockquote>
+<h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><blockquote>
+<p>作用：帮助我们初始化对象</p>
+</blockquote>
+<ul>
+<li>构造函数没有返回值，连void也不能写</li>
+<li>构造函数的名称必须和类名一致</li>
+<li>构造函数是可以有重载的</li>
+<li>只要写了构造函数，则默认构造函数都被干掉了</li>
+</ul>
+<h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><blockquote>
+<p>代表当前类的对象<br>在类中显示的调用本类的构造函数  :this</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">class Person</div><div class="line">    &#123;</div><div class="line">        private string _name;</div><div class="line">        public string Name</div><div class="line">        &#123;</div><div class="line">            get &#123;return _name; &#125;</div><div class="line">            set &#123; _name = value; &#125;</div><div class="line">        &#125;</div><div class="line">        private int _age;</div><div class="line">        public int Age</div><div class="line">        &#123;</div><div class="line">            get &#123; return _age; &#125;</div><div class="line">            set &#123; _age = value; &#125;</div><div class="line">        &#125;</div><div class="line">        //构造函数</div><div class="line">        public Person(int age,string name)</div><div class="line">        &#123;</div><div class="line">            this.Age = age;</div><div class="line">            this.Name = name;</div><div class="line">        &#125;</div><div class="line">		//构造函数的重载，但是为了避免重复书写this.Age等等，可以使用:this方式</div><div class="line">		//其实就是调用上面写的全面的构造函数，此构造只需要一个参数，但是为了调用</div><div class="line">		//上面两个的，需要给当前没有的参数，设置默认值。</div><div class="line">        public Person(string name):this(10,name)&#123;&#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="析构函数-释放资源"><a href="#析构函数-释放资源" class="headerlink" title="析构函数:释放资源"></a>析构函数:释放资源</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">在程序结束时候，执行</div><div class="line">class Person&#123;</div><div class="line">	~Person()&#123;</div><div class="line">	//一般gc会释放资源，但是有时间不确定性</div><div class="line">	//在析构函数中，就可以立刻释放资源，在程序结束时候</div><div class="line">	//所以里面可以做一些释放资源的操作</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>补充：引用命名空间的时候，也要注意，class也要是public修饰，不然即使加了<br>引用也无效。</p>
+</blockquote>
+<h1 id="值类型和引用类型"><a href="#值类型和引用类型" class="headerlink" title="值类型和引用类型"></a>值类型和引用类型</h1><hr>
+<pre><code>引用类型：string和自定义类和数组，存储在堆内存，在内有指针指向的时候，会在不确定的时间被
+gc回收。
+例如string str=&quot;abc&quot;
+解析：str在栈内存中，存储的是地址，指向堆内存中的&quot;abc&quot;
+值类型：int等，存储在栈内存中（值直接存储在栈内存中），超过作用域会自动销毁。
+</code></pre><hr>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><hr>
+<pre><code>字符串不可变性：当一个字符串重新赋值之后，老值并没有被销毁，而是重新开辟一段存储空间
+字符串赋值只是栈中存储的内存地址变化，真正堆内存中存储字符串不可变化。
+所以可以把string看做一个char类型的只读数组，可以通过下标去访问字符串中的某一个元素
+例如：string s=&quot;afns&quot;; s[0]结果就是a，但是不能这样去修改，因为是只读的
+</code></pre><hr>
+<hr>
+<pre><code>字符串方法：
+案例：如果想修改字符串某个元素，可以通过以下方式
+string s = &quot;abcdefg&quot;;
+char[] chs = s.ToCharArray();
+chs[0] = &apos;m&apos;;
+s = new string(chs);
+Console.WriteLine(s);//mbcdefg
+案例：stringBuilder和string对比
+StringBuilder sb = new StringBuilder();
+//创建计时器  导入命名空间alt shift f10
+Stopwatch sw = new Stopwatch();
+//开始计时
+sw.Start();
+for(int i = 0; i &lt; 1000; i++)
+{
+    sb.Append(i);
+}
+sw.Stop();//停止计时
+Console.WriteLine(sw.Elapsed);//获取总共耗时时间
+Console.WriteLine(sb.ToString());
+但是如果是string，则时间很长，因为，每一次添加，string都会新开辟内存，很耗费时间。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">案例：忽略大小写比较</div><div class="line"> string s1 = &quot;c&quot;;</div><div class="line">string s2 = &quot;C&quot;;</div><div class="line">if (s1.Equals(s2,StringComparison.OrdinalIgnoreCase))//参数二，是一个枚举，代表忽略大小写</div><div class="line">&#123;</div><div class="line">    Console.WriteLine(true);</div><div class="line">&#125;</div><div class="line"></div><div class="line">案例：分割字符串</div><div class="line">string s = &quot;asd +  _  ,,  asdahjf&quot;;</div><div class="line">char[] chs = &#123; &apos;+&apos;, &apos;_&apos;, &apos;,&apos;, &apos; &apos;&#125;;</div><div class="line">string[] ns=s.Split(chs, StringSplitOptions.RemoveEmptyEntries);//参数二枚举，移除空项</div><div class="line"></div><div class="line">案例：字符串join</div><div class="line">string[] strs = &#123; &quot;张三&quot;,&quot;李四&quot;, &quot;王五&quot; &#125;;</div><div class="line">string ns = string.Join(&quot;|&quot;, strs);//参数一：是用作分隔符的字符串，参数二：可变参数，可放数组或对应类型的元素</div><div class="line">Console.WriteLine(ns);//张三|李四|王五</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>补充：
+Length:字符串字符的个数
+ToUpper:字符串转大写
+ToLower:字符串转小写
+Contains:判断字符串是否包含子字符串
+StartsWith:是否以子串开始
+EndsWith:是否以子串结束
+IndexOf:子串第一次出现的位置
+LastIndexOf:从后往前第一次出现的位置
+Trim:去除首尾空格
+TrimEnd:去除尾部空格
+TrimStart:去除首空格
+string.IsNullOrEmpty:是否是null或者空
+IndexOf(string value,int startIndex):value从startIndex开始第一次出现的位置(该位置的索引还是从字符串开始处开始计数)
+Replace：将字符串出现的oldValue替换为newValue，并生成一个新字符串
+SubString:取从位置startIndex开始一直到最后的子字符串
+还有，取从位置startIndex开始长度为length的子字符串，如果子字符串长度不足则报错
+</code></pre><hr>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><hr>
+<pre><code>public class Student :Person{}
+子类继承父类的非私有的(字段，属性，方法)
+子类并没有继承父类构造函数
+子类先执行父类无参数构造函数（相当于创建了父类对象），因为子类可以使用父类属性方法，但是只有对象才能调用属性方法
+所以子类内部先执行父类构造函数，在子类内部创建父类对象，剩下的子类使用父类属性方法等才能进行。
+注意：如果当父类写了有参数的构造函数之后，则父类默认的无参数构造函数被干掉了，此时子类无法去调用父类无参数构造
+所以会报错，解决方案：1.在父类重写无参构造。2.在子类中显示的调用父类的构造函数，使用关键字：base()
+如下：Student是子类
+//子类构造函数如下
+public Student(string name,int age,char gender):base(name,age){
+    //父类有参构造中已经初始化了name,age，则利用base避免代码重复
+    this.Gender=gender;//Gender是属性
+}
+</code></pre><hr>
+<blockquote>
+<p>补充：子类和父类具有相同方法的时候，会有警告，此时需要在子类相同方法名前加上new，屏蔽父类方法<br>public new void show(){}，所以一般情况下，不要子父类出现相同的方法名。<br>new :1.创建对象  2.隐藏从父类继承来的成员。</p>
+</blockquote>
+<h2 id="里氏转换"><a href="#里氏转换" class="headerlink" title="里氏转换"></a>里氏转换</h2><blockquote>
+<p>子类可以赋值给父类  Person p=new Student();<br>如果父类中装的是子类对象，那么可以讲这个父类强转为子类对象。<br>Student ss=(Student)p;</p>
+</blockquote>
+<h2 id="is和as"><a href="#is和as" class="headerlink" title="is和as"></a>is和as</h2><blockquote>
+<p>is：转换成功返回true，否则返回false<br>一般用于里氏转换时候用于判断，避免转换失败的程序异常崩溃<br>if(p is Student)….</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">使用案例：</div><div class="line"> class Program</div><div class="line">    &#123;</div><div class="line">        static void Main(string[] args)</div><div class="line">        &#123;</div><div class="line">            Person p = new Student();</div><div class="line">            if(p is Student)</div><div class="line">            &#123;</div><div class="line">                Student s = (Student)p;</div><div class="line">                s.show();</div><div class="line">            &#125;</div><div class="line">            Console.ReadKey();</div><div class="line">        &#125;</div><div class="line">     </div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    class Person</div><div class="line">    &#123;</div><div class="line">        public new void show()</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;person显示&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    class Student : Person</div><div class="line">    &#123;</div><div class="line">        public new void show()</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;student显示&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在java中直接父类引用可以指向子类对象，Person p = new Student();然后p在调用子父类同名方法时候，调用<br>就是子类的，但是在C#中，直接如此是调用的父类方法，还需要 Student s = (Student)p;然后再调用。</p>
+<p>as： 转换成功则返回对应的对象，否则返回null<br>Student t=p as Teacher</p>
+<p>访问修饰符补充：protected  在子类当中也可以访问，其他和private相同(出了当前类无法访问)</p>
+</blockquote>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><blockquote>
+<p>长度可以任意改变，类型随便<br>打印对象时候，打印出来的是对应的命名空间。</p>
+</blockquote>
+<h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">案例：基本方法</div><div class="line">			ArrayList list = new ArrayList();</div><div class="line">            //添加单个元素</div><div class="line">            list.Add(1);</div><div class="line">            list.Add(true);</div><div class="line">            list.Add(&quot;字符串&quot;);</div><div class="line">            list.Add(&apos;c&apos;);</div><div class="line">            //添加数组或集合</div><div class="line">            list.AddRange(new string[] &#123; &quot;1&quot;, &quot;2&quot; &#125;);//如果此处使用add，下面打印此数组时候，打印的是命名空间</div><div class="line">            for(int a = 0; a &lt;list.Count; a++)</div><div class="line">            &#123;</div><div class="line">                Console.WriteLine(list[a]);</div><div class="line">            &#125;</div><div class="line">            //删除单个元素</div><div class="line">            list.Remove(true);</div><div class="line">            list.RemoveAt(0);//根据索引删除</div><div class="line">            list.RemoveRange(1, 2);//删除从所以1开始的，后面的两个元素，参数二是个数</div><div class="line">            list.Sort();//升序排列，但是必须可比较时候才能排列，不然异常</div><div class="line">            list.Reverse();//反转</div><div class="line">            list.Insert(1, &quot;呵呵&quot;);</div><div class="line">            list.InsertRange(1,new int[] &#123; 1, 2, 4 &#125;);//在1的位置插入数组或集合</div><div class="line">            list.Contains(1);//判断是否包含1，返回布尔值</div><div class="line">            Console.ReadKey();</div></pre></td></tr></table></figure>
+<h3 id="长度和可容个数"><a href="#长度和可容个数" class="headerlink" title="长度和可容个数"></a>长度和可容个数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ArrayList list = new ArrayList();</div><div class="line">         Console.WriteLine(list.Count);//集合真实长度</div><div class="line">         Console.WriteLine(list.Capacity);//集合可包含元素的个数</div><div class="line">         //如果集合为空，则两者都是0</div><div class="line">         //如果向集合添加数据，则Capacity开始是4，如果Count大于4，则Capacity变为8</div><div class="line">         //如果Count大于8，则Capacity变为16，Capacity直接按照倍数增加。</div></pre></td></tr></table></figure>
+<h2 id="HashTable-键值对集合-字典"><a href="#HashTable-键值对集合-字典" class="headerlink" title="HashTable  键值对集合 字典"></a>HashTable  键值对集合 字典</h2><blockquote>
+<p>var 推断类型，在声明的同时必须初始化，因为var是根据值推断类型的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">			Hashtable table = new Hashtable();</div><div class="line">            table.Add(1, &quot;测试1&quot;);</div><div class="line">            table.Add(2, &quot;测试2&quot;);</div><div class="line">            table.Add(3, &quot;测试3&quot;);</div><div class="line">            table[4] = &quot;测试4&quot;;//key不存在，则相当于add</div><div class="line">            table[3] = &quot;干掉测试3&quot;;//add不可重复，但是此种方式，相当于替换</div><div class="line">			//table.Contains   是否包含，返回布尔值</div><div class="line">            //table.ContainsKey  </div><div class="line">            //table.ContainsValue</div><div class="line">			table.Remove(3);//根据key，删除value</div><div class="line">            foreach (var item in table.Keys)</div><div class="line">            &#123;</div><div class="line">                Console.WriteLine(table[item]);</div><div class="line">            &#125;</div><div class="line">			//table.clear  清空</div><div class="line">注意：key必须唯一，value可重复，hashtable是先进后出结构。</div></pre></td></tr></table></figure>
+<h2 id="泛型集合"><a href="#泛型集合" class="headerlink" title="泛型集合"></a>泛型集合</h2><blockquote>
+<p>上面的集合，虽然存储时候，不限制数据类型，都是object类型存储，但是取出使用的时候还是要转成对应类型，比较麻烦。<br>泛型集合出现就是解决这个问题</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">注意：泛型集合几乎具有ArrayList所有方法，使用时候参照即可</div><div class="line">			//创建泛型集合</div><div class="line">            List&lt;int&gt; list = new List&lt;int&gt;();</div><div class="line">            list.Add(1);//上面类型确定，此处只能添加对应类型</div><div class="line">            list.AddRange(new int[] &#123; 1, 2, 3, 4 &#125;);</div><div class="line">            //list泛型集合可以转换成数组</div><div class="line">            int[] arr=list.ToArray();</div><div class="line">            //数组转集合</div><div class="line">            List&lt;int&gt; listTwo = arr.ToList();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>补充：<br>装箱：值类型转换为引用类型<br>拆箱：引用类型转换为值类型<br>但是有个大前提，必须有继承关系，没有继承关系的话，是不可能发生装箱，拆箱的。<br>例如：int转object类型，就是装箱，反之拆箱<br>例如：int转stirng不是装箱拆箱，因为没有继承关系<br>拆箱装箱影响效率，应该尽量避免。</p>
+</blockquote>
+<h2 id="字典集合：也都具有hashtable几乎所有方法"><a href="#字典集合：也都具有hashtable几乎所有方法" class="headerlink" title="字典集合：也都具有hashtable几乎所有方法"></a>字典集合：也都具有hashtable几乎所有方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">			Dictionary&lt;int, string&gt; dic = new Dictionary&lt;int, string&gt;();</div><div class="line">            dic.Add(1, &quot;测试1&quot;);</div><div class="line">            dic.Add(2, &quot;测试2&quot;);</div><div class="line">            dic[1] = &quot;替换&quot;;//和hashtable一样，此处是替换，但是不能是add，因为key唯一</div><div class="line">            foreach (var item in dic.Keys)</div><div class="line">            &#123;</div><div class="line">                Console.WriteLine(dic[item]);</div><div class="line">            &#125;</div><div class="line">            //但是字典集合有更方便的遍历方式，推荐此种方式</div><div class="line">            foreach (KeyValuePair&lt;int,string&gt; kv in dic)</div><div class="line">            &#123;</div><div class="line">                Console.WriteLine(&quot;&#123;0&#125;-----&#123;1&#125;&quot;, kv.Key, kv.Value);</div><div class="line">            &#125;</div></pre></td></tr></table></figure>
+<h1 id="文件相关"><a href="#文件相关" class="headerlink" title="文件相关"></a>文件相关</h1><h2 id="path类：静态类"><a href="#path类：静态类" class="headerlink" title="path类：静态类"></a>path类：静态类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">string str = @&quot;C:\Program Files\Elantech\a.mp3&quot;;</div><div class="line">         Path.GetFileName(str);//获取路径下文件名字</div><div class="line">         Path.GetFileNameWithoutExtension(str);//获取路径下文件名，但不包括扩展名</div><div class="line">         Path.GetExtension(str);//得到扩展名</div><div class="line">         Path.GetDirectoryName(str);//得到文件所处文件夹的名称</div><div class="line">         Path.GetFullPath(str);//得到文件全路径</div><div class="line">         Path.Combine(@&quot;c:\a&quot;,&quot;b.txt&quot;);//连接两个字符串作为路径</div></pre></td></tr></table></figure>
+<h2 id="file类：静态类"><a href="#file类：静态类" class="headerlink" title="file类：静态类"></a>file类：静态类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//创建文件</div><div class="line">         File.Create(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;);</div><div class="line">         //删除文件,不走回收站</div><div class="line">         File.Delete(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;);</div><div class="line">         //复制文件</div><div class="line">         File.Copy(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;, @&quot;C:\Users\zqyfa\Desktop\b.txt&quot;);</div><div class="line">string str = &quot;今天天气测试信息&quot;;</div><div class="line">         byte[] buffer = Encoding.Default.GetBytes(str);</div><div class="line">         //写入信息，文件可以不存在，会自动创建</div><div class="line">         /*</div><div class="line">          * WriteAllLines</div><div class="line">          * WriteAllText</div><div class="line">          * WriteAllBytes</div><div class="line">          * 以上三个都是会覆盖以前内容</div><div class="line">          * </div><div class="line">          * 如果不想覆盖，使用append对应三个方法</div><div class="line">          * File.AppendAllText等等</div><div class="line">          */</div><div class="line">         File.WriteAllBytes(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;, buffer);</div><div class="line">         //读取文件</div><div class="line">         byte[] b2=File.ReadAllBytes(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;);</div><div class="line">         string info = Encoding.Default.GetString(b2);</div><div class="line">         //以行的形式读取</div><div class="line">        string[] strs= File.ReadAllLines(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;, Encoding.Default);//参数二设置编码格式</div><div class="line">         //一次性读取整个文本内容</div><div class="line">         string str1 = File.ReadAllText(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;, Encoding.Default);</div></pre></td></tr></table></figure>
+<h2 id="文件流"><a href="#文件流" class="headerlink" title="文件流"></a>文件流</h2><blockquote>
+<p>file类对内存压力大，一次性读取，一般开发使用filestream文件流，对内存压力小<br>FileStream:操作字节<br>操作字符：<br>StreamReader，StreamWriter</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">案例：读取文件基本案例，但是此时没有循环读取，文件较大的时候，需要循环读取</div><div class="line">			//参数二：打开文件方式是枚举，参数三：读取操作方式(只读，读写等等)</div><div class="line">			FileStream fs = new FileStream(@&quot;文件路径&quot;, FileMode.OpenOrCreate, FileAccess.Read);</div><div class="line">            byte[] buffer = new byte[1024 * 1024 * 5];</div><div class="line">            //返回的是本次实际读取到的有效字节数,0指的是从文件开始出开始读取，读取长度是buffer.Lengt</div><div class="line">            //读取之后放到buffer中</div><div class="line">            int r = fs.Read(buffer, 0, buffer.Length);</div><div class="line">            //解码,0指的是从buffer的0处开始读取，解码长度是r，这样可以避免，多余的一次读取的无效字节</div><div class="line">            string s = Encoding.Default.GetString(buffer,0,r);//Encoding后面还可以是utf-8等值</div><div class="line">            //关闭流</div><div class="line">            fs.Close();</div><div class="line">            //释放资源</div><div class="line">            fs.Dispose();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">案例1:写入数据</div><div class="line">using (FileStream fsWriter = new FileStream(@&quot;文件路径&quot;, FileMode.Append, FileAccess.Write))</div><div class="line">&#123;</div><div class="line">    string s = &quot;我是要覆盖的信息&quot;;</div><div class="line">    byte[] bs=Encoding.Default.GetBytes(s);</div><div class="line">    fsWriter.Write(bs,0,bs.Length);</div><div class="line">&#125;</div><div class="line">使用using不需要关闭流，释放资源等，系统会自动操作。</div><div class="line"></div><div class="line">案例：复制多媒体文件</div><div class="line"> using (FileStream fsr = new FileStream(@&quot;C:\Users\zqyfa\Desktop\a\1、复习.avi&quot;, FileMode.OpenOrCreate, FileAccess.Read))</div><div class="line">            &#123;</div><div class="line">                using (FileStream fsw=new FileStream(@&quot;C:\Users\zqyfa\Desktop\a\b.avi&quot;, FileMode.OpenOrCreate, FileAccess.Write))</div><div class="line">                &#123;</div><div class="line">                    byte[] bys = new byte[1024 * 5 * 1024];</div><div class="line">                    while (true)</div><div class="line">                    &#123;</div><div class="line">                        int num=fsr.Read(bys,0,bys.Length);</div><div class="line">                        if (num==0)//num=0证明文件读取完毕了</div><div class="line">                        &#123;</div><div class="line">                            break;</div><div class="line">                        &#125;</div><div class="line">                        fsw.Write(bys, 0, num);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">案例2：字符输入输出流</div><div class="line">			//写入</div><div class="line">            //true代表是否追加(默认false，覆盖)，还可以设置编码查看不同构造即可</div><div class="line">            using(StreamWriter sw=new StreamWriter(@&quot;C:\Users\Administrator\Desktop\a.txt&quot;,true))</div><div class="line">            &#123;</div><div class="line">                string info = &quot;我是测试文本&quot;;</div><div class="line">                sw.Write(info);</div><div class="line">            &#125;</div><div class="line">            //读取</div><div class="line">            using (StreamReader sr=new StreamReader(@&quot;C:\Users\Administrator\Desktop\a.txt&quot;,Encoding.UTF8))</div><div class="line">            &#123;</div><div class="line">                while (!sr.EndOfStream)//是否流结束</div><div class="line">                &#123;</div><div class="line">                    Console.WriteLine(sr.ReadLine());</div><div class="line">                &#125;</div><div class="line">            &#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/面向对象一/" data-id="cj60seedi002k60nk2u3js7xo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/Android 6.0权限/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android 6.0权限
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/面向对象二/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">面向对象二</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

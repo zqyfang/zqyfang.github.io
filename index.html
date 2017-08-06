@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-CSharp线程和通信" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/CSharp线程和通信/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.560Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Net/">.Net</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//获得所以进程</div><div class="line">         Process[] pros = Process.GetProcesses();</div><div class="line">         foreach (var item in pros)</div><div class="line">         &#123;</div><div class="line">             //item.Kill(); 杀死进程</div><div class="line">             Console.WriteLine(item);</div><div class="line">         &#125;</div><div class="line">         //打开指定应用程序</div><div class="line">         Process.Start(&quot;calc&quot;);//计算器</div><div class="line">         Process.Start(&quot;chrome&quot;, &quot;http://www.baidu.com&quot;);</div><div class="line">         Console.ReadKey();</div><div class="line">         //打开文件</div><div class="line">         Process p1 = new Process();</div><div class="line">         ProcessStartInfo psi = new ProcessStartInfo(@&quot;文件路径&quot;);</div><div class="line">         p1.StartInfo = psi;</div><div class="line">         p1.Start();</div></pre></td></tr></table></figure>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><hr>
+<pre><code>前台线程：只有所有的前台线程都关闭了才能完成程序关闭
+后台线程: 只要所有的前台线程结束，后台线程自动结束。
+默认创建的线程是前台线程
+</code></pre><h2 id="—"><a href="#—" class="headerlink" title="—"></a>—</h2><pre><code>方法：
+Thread.CurrentThread: 获取当前线程引用
+Name  线程名
+Thread.Sleep(毫秒值) 线程睡眠
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">Thread t;</div><div class="line">        private void button1_Click(object sender, EventArgs e)</div><div class="line">        &#123;</div><div class="line">            t = new Thread(Test);</div><div class="line">            t.IsBackground = true;//标记为后台线程</div><div class="line">            //并不是启动线程，具体执行时间，cpu决定</div><div class="line">            t.Start();//线程准备就绪</div><div class="line">        &#125;</div><div class="line">        public void Test()</div><div class="line">        &#123;</div><div class="line">            for (int i = 0; i &lt; 10000; i++)</div><div class="line">            &#123;</div><div class="line">                textBox1.Text = i.ToString();</div><div class="line">                //Console.WriteLine(i);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        /// &lt;summary&gt;</div><div class="line">        /// 窗体加载时候就 执行</div><div class="line">        /// &lt;/summary&gt;</div><div class="line">        /// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;</div><div class="line">        /// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;</div><div class="line">        private void Form1Load(object sender, EventArgs e)</div><div class="line">        &#123;</div><div class="line">            //取消跨线程访问检查</div><div class="line">            //因为默认.net不允许跨线程访问，例如，在子线程更新</div><div class="line">            //主线程创建的texbox内部内容，就属于跨线程访问，如下</div><div class="line">            //设置，就不会报错</div><div class="line">            Control.CheckForIllegalCrossThreadCalls = false;</div><div class="line">        &#125;</div><div class="line">        /// &lt;summary&gt;</div><div class="line">        /// 点击窗体的x正要关闭窗体的时候</div><div class="line">        /// &lt;/summary&gt;</div><div class="line">        /// &lt;param name=&quot;sender&quot;&gt;&lt;/param&gt;</div><div class="line">        /// &lt;param name=&quot;e&quot;&gt;&lt;/param&gt;</div><div class="line">        private void FormClosing(object sender, FormClosingEventArgs e)</div><div class="line">        &#123;</div><div class="line">            //如果不关闭，则此时子线程还在试图更新textbox的内容</div><div class="line">            //但实际上，主线程创建的窗体已经关闭。</div><div class="line">            //不关闭线程，(有可能)造成异常</div><div class="line">            t.Abort();//终止线程</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h1 id="socket通信"><a href="#socket通信" class="headerlink" title="socket通信"></a>socket通信</h1><hr>
+<pre><code>TCP：三次握手(客户端：你有空吗  服务端：我有空，客户端：我知道了)，三次握手成功之后才通信
+UDP：快速，效率高，但是容易数据丢失
+</code></pre><hr>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div></pre></td><td class="code"><pre><div class="line">private void btnStart_Click(object sender, EventArgs e)</div><div class="line">        &#123;</div><div class="line">            try</div><div class="line">            &#123;</div><div class="line">                //当点击开始监听的时候 在服务器端创建一个负责监IP地址跟端口号的Socket</div><div class="line">                //AddressFamily.InterNetwork ：ipv4</div><div class="line">                Socket socketWatch = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);</div><div class="line">                IPAddress ip = IPAddress.Any;//IPAddress.Parse(txtServer.Text);</div><div class="line">                //创建端口号对象</div><div class="line">                IPEndPoint point = new IPEndPoint(ip, Convert.ToInt32(txtPort.Text));</div><div class="line">                //监听，如果端口被占用，则程序会出错</div><div class="line">                socketWatch.Bind(point);</div><div class="line">                //最大同时连接10个，后面的排队</div><div class="line">                /*</div><div class="line">                *给出的说明是：max length of the pending client connections queue;</div><div class="line">                也就是，悬挂的最大客户端连接数。我的理解是，在没有与客户端连接的时候，</div><div class="line">                那么潜在的可以响应的最大客户端连接数是10。但是如果已经有一个连接了，</div><div class="line">                那么潜在的最大客户端连接数还是10。为什么呢，因为一经响应连接，即socket.Accept()成功，</div><div class="line">                那么就会生成新的socket与已连接的客户端通信。那么这个已连接的客户端就不会再占用原来的socket</div><div class="line">                ，相当于腾空了，因此，原socket响应连接的能力还是10。同理，已经连接了10个客户端，</div><div class="line">                那么潜在的可响应的连接依然是10个</div><div class="line">                */</div><div class="line">                socketWatch.Listen(10);</div><div class="line"></div><div class="line">                Thread th = new Thread(Listen);</div><div class="line">                th.IsBackground = true;//线程随着程序结束而结束</div><div class="line">                //之所以服务端要在此处开启子线程，而客户端不用，是因为tcp要等待连接，会阻塞，而客户端不会</div><div class="line">                th.Start(socketWatch);</div><div class="line">            &#125;</div><div class="line">            catch</div><div class="line">            &#123; &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        /// &lt;summary&gt;</div><div class="line">        /// 等待客户端的连接 并且创建与之通信用的Socket</div><div class="line">        /// &lt;/summary&gt;</div><div class="line">        /// </div><div class="line">        Socket socketSend;</div><div class="line">        void Listen(object o)</div><div class="line">        &#123;</div><div class="line">            Socket socketWatch = o as Socket;</div><div class="line">            //等待客户端的连接 并且创建一个负责通信的Socket</div><div class="line">            while (true)</div><div class="line">            &#123;</div><div class="line">                try</div><div class="line">                &#123;</div><div class="line">                    //负责跟客户端通信的Socket</div><div class="line">                    //之所以要多次得到不同的socket对象，是因为此处有一个连接就专门建立一个</div><div class="line">                    //其对应的socket</div><div class="line">                    socketSend = socketWatch.Accept();</div><div class="line">                    //将远程连接的客户端的IP地址和Socket存入集合中</div><div class="line">                    dicSocket.Add(socketSend.RemoteEndPoint.ToString(), socketSend);</div><div class="line">                    //将远程连接的客户端的IP地址和端口号存储下拉框中</div><div class="line">                    cboUsers.Items.Add(socketSend.RemoteEndPoint.ToString());</div><div class="line">                    //192.168.11.78：连接成功</div><div class="line">                    ShowMsg(socketSend.RemoteEndPoint.ToString() + &quot;:&quot; + &quot;连接成功&quot;);</div><div class="line">                    //开启 一个新线程不停的接受客户端发送过来的消息</div><div class="line">                    Thread th = new Thread(Recive);</div><div class="line">                    th.IsBackground = true;</div><div class="line">                    th.Start(socketSend);</div><div class="line">                &#125;</div><div class="line">                catch</div><div class="line">                &#123; &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line">        /// &lt;summary&gt;</div><div class="line">        /// 服务器端不停的接受客户端发送过来的消息</div><div class="line">        /// &lt;/summary&gt;</div><div class="line">        /// &lt;param name=&quot;o&quot;&gt;&lt;/param&gt;</div><div class="line">        void Recive(object o)</div><div class="line">        &#123;</div><div class="line">            Socket socketSend = o as Socket;</div><div class="line">            while (true)</div><div class="line">            &#123;</div><div class="line">                try</div><div class="line">                &#123;</div><div class="line">                    //客户端连接成功后，服务器应该接受客户端发来的消息</div><div class="line">                    byte[] buffer = new byte[1024 * 1024 * 2];</div><div class="line">                    //实际接受到的有效字节数</div><div class="line">                    int r = socketSend.Receive(buffer);</div><div class="line">                    if (r == 0)</div><div class="line">                    &#123;</div><div class="line">                        break;</div><div class="line">                    &#125;</div><div class="line">                    string str = Encoding.UTF8.GetString(buffer, 0, r);</div><div class="line">                    ShowMsg(socketSend.RemoteEndPoint + &quot;:&quot; + str);</div><div class="line">                &#125;</div><div class="line">                catch</div><div class="line">                &#123; &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line"></div><div class="line"> private void Form1_Load(object sender, EventArgs e)</div><div class="line">        &#123;</div><div class="line">            //取消跨线程监检查</div><div class="line">            Control.CheckForIllegalCrossThreadCalls = false;</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>```<br>Socket socketSend;<br>        private void btnStart_Click(object sender, EventArgs e)<br>        {<br>            try<br>            {<br>                //创建负责通信的Socket<br>                socketSend = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);<br>                IPAddress ip = IPAddress.Parse(txtServer.Text);<br>                IPEndPoint point = new IPEndPoint(ip, Convert.ToInt32(txtPort.Text));<br>                //获得要连接的远程服务器应用程序的IP地址和端口号<br>                socketSend.Connect(point);<br>                ShowMsg(“连接成功”);</p>
+<pre><code>        //开启一个新的线程不停的接收服务端发来的消息
+        Thread th = new Thread(Recive);
+        th.IsBackground = true;
+        th.Start();
+    }
+    catch
+    { }
+}
+</code></pre><p> /// <summary><br>        /// 客户端给服务器发送消息<br>        /// </summary><br>        /// <param name="sender"><br>        /// <param name="e"><br>        private void btnSend_Click(object sender, EventArgs e)<br>        {<br>            string str = txtMsg.Text.Trim();<br>            byte[] buffer = System.Text.Encoding.UTF8.GetBytes(str);<br>            socketSend.Send(buffer);<br>        }</p>
+<pre><code>private void Form1_Load(object sender, EventArgs e)
+{
+    Control.CheckForIllegalCrossThreadCalls = false;
+}
+</code></pre><p>``</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/CSharp线程和通信/" data-id="cj60seea1000460nk757ihznv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android版本DSBridge使用规则" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Android版本DSBridge使用规则/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.558Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Android版本DSBridge使用规则"><a href="#Android版本DSBridge使用规则" class="headerlink" title="Android版本DSBridge使用规则"></a>Android版本DSBridge使用规则</h1><ul>
+<li>dsbridge是以<a href="https://pan.baidu.com/s/1pK8GFDh" target="_blank" rel="external">lib</a>形式引用，project structure&gt;dependencies&gt;+&gt;module</li>
+<li>修改xmlwebview为如下代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;wendu.dsbridge.DWebView</div><div class="line">   android:layout_width=&quot;match_parent&quot;</div><div class="line">   android:layout_height=&quot;match_parent&quot;/&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>java代码复制如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">final DWebView webView= (DWebView) findViewById(R.id.webview);</div><div class="line">        webView.setJavascriptInterface(new JsApi());</div><div class="line">        webView.clearCache(true);</div><div class="line">        webView.loadUrl(&quot;file:///android_asset/test.html&quot;);</div><div class="line">        webView.setWebViewClient(new WebViewClient()&#123;</div><div class="line">            @Override</div><div class="line">            public void onPageFinished(WebView view, String url) &#123;</div><div class="line">                super.onPageFinished(view, url);</div><div class="line"></div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>在html中添加代码初始化dsbridge： var bridge = getJsBridge();</li>
+</ul>
+<h2 id="java调用js"><a href="#java调用js" class="headerlink" title="java调用js"></a>java调用js</h2><blockquote>
+<p>为了防止java代码执行时候，js脚本还没有加载完毕，java调用js的事件最好在onPageFinished<br>之后执行，也就是在其内部执行。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">java调用js代码：</div><div class="line">wv.callHandler(&quot;addIndex&quot;,new Object[]&#123;&quot;html&quot;,1&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>addIndex是js中一个全局函数名，传递参数，必须是object类型，内部可以有多个值。</p>
+</blockquote>
+<h3 id="js响应代码"><a href="#js响应代码" class="headerlink" title="js响应代码"></a>js响应代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function addIndex(a,b)&#123;</div><div class="line">     alert(a+b);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>解析：a对应object中第一个元素，依此类推。</p>
+<hr>
+<h2 id="js调用java"><a href="#js调用java" class="headerlink" title="js调用java"></a>js调用java</h2><blockquote>
+<p>webView.setJavascriptInterface(new JsApi());<br>这句代码是把所有相应js的代码放在一起，jsapi就是对应类名</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">public class JsApi&#123;</div><div class="line">    @JavascriptInterface</div><div class="line">    public String testSyn(JSONObject jsonObject) throws JSONException &#123;</div><div class="line">        return jsonObject.getString(&quot;msg&quot;) + &quot;［syn call］&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //@JavascriptInterface</div><div class="line">    //此方法没有@JavascriptInterface标注将不会被调用</div><div class="line">    public String testNever(JSONObject jsonObject) throws JSONException &#123;</div><div class="line">        return jsonObject.getString(&quot;msg&quot;) + &quot;[ never call]&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @JavascriptInterface</div><div class="line">    public String testNoArgSyn(JSONObject jsonObject) throws JSONException &#123;</div><div class="line">        return  &quot;testNoArgSyn called [ syn call]&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @JavascriptInterface</div><div class="line">    public void testNoArgAsyn(JSONObject jsonObject,CompletionHandler handler) throws JSONException &#123;</div><div class="line">        handler.complete( &quot;testNoArgAsyn  called [ asyn call]&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @JavascriptInterface</div><div class="line">    public void testAsyn(JSONObject jsonObject, CompletionHandler handler) throws JSONException &#123;</div><div class="line">        handler.complete(jsonObject.getString(&quot;msg&quot;)+&quot; [ asyn call]&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="js响应代码-1"><a href="#js响应代码-1" class="headerlink" title="js响应代码"></a>js响应代码</h3><blockquote>
+<p>例如把该段代码放在js某个点击事件里面</p>
+<p><button onclick="testAsyn()">testAsyn</button><br>  function testAsyn(){<br>        bridge.call(“test”, {msg: “testAsyn”}, function (v) {<br>          alert(v);<br>        })<br>    }</p>
+</blockquote>
+<hr>
+<p>解析：testAsyn只是方法名，对应js的点击事件，而参数test对应java中jsapi类中的某个方法，名称<br>要一致，传递给java的数据是以json对象形式存在，对象内部可以有不止一个元素和其对应值。另外注意<br>dsbridge可以直接使用alert。</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">具体java方法：必须加上 @JavascriptInterface，否则不响应</div><div class="line"> @JavascriptInterface</div><div class="line">    public void testAsyn(JSONObject jsonObject, CompletionHandler handler) throws JSONException &#123;</div><div class="line">        handler.complete(jsonObject.getString(&quot;msg&quot;)+&quot; [ asyn call]&quot;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 可知传递的数据，可以通过jsonObject得到</p>
+</blockquote>
+<h1 id="总结：DSBridge十分强大，初始化简洁，方法调用明确，建议使用。"><a href="#总结：DSBridge十分强大，初始化简洁，方法调用明确，建议使用。" class="headerlink" title="总结：DSBridge十分强大，初始化简洁，方法调用明确，建议使用。"></a>总结：DSBridge十分强大，初始化简洁，方法调用明确，建议使用。</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Android版本DSBridge使用规则/" data-id="cj60see9q000160nkiffb7tug" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android5.0新特性笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Android5.0新特性笔记/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.556Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Android-5-0新特性"><a href="#Android-5-0新特性" class="headerlink" title="Android 5.0新特性"></a>Android 5.0新特性</h2><ol>
+<li>Material Theme</li>
+<li>View的阴影和裁剪</li>
+<li>Drawables图形资源</li>
+<li>Animations</li>
+<li>新增控件-卡片和列表</li>
+</ol>
+<blockquote>
+<p><a href="http://developer.android.com/training/material/index.html" target="_blank" rel="external">http://developer.android.com/training/material/index.html</a></p>
+</blockquote>
+<h3 id="1-MaterialDesigh概述"><a href="#1-MaterialDesigh概述" class="headerlink" title="1.MaterialDesigh概述"></a>1.MaterialDesigh概述</h3><blockquote>
+<p>材质设计,以抽象化的形式展现物理世界的特征。</p>
+</blockquote>
+<h4 id="Material-主题"><a href="#Material-主题" class="headerlink" title="Material 主题"></a>Material 主题</h4><ul>
+<li><p>系统自带的主题</p>
+<ol>
+<li>@android:style/Theme.Material</li>
+<li>@android:style/Theme.Material.Light</li>
+<li>@android:style/Theme.Material.Light.DarkActionBar</li>
+</ol>
+</li>
+<li><p>如何自定义主题</p>
+<blockquote>
+<p>参见<a href="http://developer.android.com/training/material/theme.html" target="_blank" rel="external">http://developer.android.com/training/material/theme.html</a></p>
+<p>不同的Theme，不同的属性值。</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>常用的样式属性</p>
+<pre><code> &lt;style name=&quot;RedTheme&quot; parent=&quot;android:Theme.Material&quot;&gt;
+
+    &lt;!-- 状态栏颜色，会被statusBarColor效果覆盖--&gt;
+    &lt;item name=&quot;android:colorPrimaryDark&quot;&gt;@color/status_red&lt;/item&gt;
+    &lt;!-- 状态栏颜色，继承自colorPrimaryDark --&gt;
+    &lt;item name=&quot;android:statusBarColor&quot;&gt;@color/status_red&lt;/item&gt;
+    &lt;!-- actionBar颜色 --&gt;
+    &lt;item name=&quot;android:colorPrimary&quot;&gt;@color/action_red&lt;/item&gt;
+    &lt;!-- 背景颜色 --&gt;
+    &lt;item name=&quot;android:windowBackground&quot;&gt;@color/window_bg_red&lt;/item&gt;
+    &lt;!-- 底部栏颜色 --&gt;
+    &lt;item name=&quot;android:navigationBarColor&quot;&gt;@color/navigation_red&lt;/item&gt;
+
+    &lt;!-- ListView的分割线颜色，switch滑动区域色--&gt;
+    &lt;item name=&quot;android:colorForeground&quot;&gt;@color/fg_red&lt;/item&gt;
+    &lt;!-- popMenu的背景色 --&gt;
+    &lt;item name=&quot;android:colorBackground&quot;&gt;@color/bg_red&lt;/item&gt;
+
+    &lt;!-- 控件默认颜色 ，效果会被colorControlActivated取代  --&gt;
+    &lt;item name=&quot;android:colorAccent&quot;&gt;@color/control_activated_red&lt;/item&gt;
+
+    &lt;!-- 控件默认时颜色  --&gt;
+    &lt;item name=&quot;android:colorControlNormal&quot;&gt;@color/control_normal_red&lt;/item&gt;
+    &lt;!-- 控件按压时颜色，会影响水波纹效果，继承自colorAccent  --&gt;
+    &lt;item name=&quot;android:colorControlHighlight&quot;&gt;@color/control_highlight_red&lt;/item&gt;
+    &lt;!-- 控件选中时颜色 --&gt;
+    &lt;item name=&quot;android:colorControlActivated&quot;&gt;@color/control_activated_red&lt;/item&gt;
+    &lt;!-- Button的默认背景 --&gt;
+    &lt;item name=&quot;android:colorButtonNormal&quot;&gt;@color/button_normal_red&lt;/item&gt;
+
+    &lt;!-- Button，textView的文字颜色  --&gt;
+    &lt;item name=&quot;android:textColor&quot;&gt;@color/white_text&lt;/item&gt;
+    &lt;!-- RadioButton checkbox等控件的文字 --&gt;
+    &lt;item name=&quot;android:textColorPrimaryDisableOnly&quot;&gt;@color/white_text&lt;/item&gt;
+    &lt;!-- actionBar的标题文字颜色 --&gt;
+    &lt;item name=&quot;android:textColorPrimary&quot;&gt;@color/white_text&lt;/item&gt;
+&lt;/style&gt;
+</code></pre></li>
+</ul>
+<h3 id="2-阴影和裁剪"><a href="#2-阴影和裁剪" class="headerlink" title="2.阴影和裁剪"></a>2.阴影和裁剪</h3><h4 id="Z轴属性"><a href="#Z轴属性" class="headerlink" title="Z轴属性"></a>Z轴属性</h4><ul>
+<li><p>Z = elevation + translationZ</p>
+<pre><code>android:elevation    //静态Z轴的高度。相对于父控件的高度
+android:translationZ    //Z轴偏移的高度。
+</code></pre></li>
+<li><p>高度决定了View的遮盖关系，遮盖关系决定绘制时机。</p>
+</li>
+</ul>
+<h4 id="阴影轮廓"><a href="#阴影轮廓" class="headerlink" title="阴影轮廓"></a>阴影轮廓</h4><pre><code>android:outlineProvider：
+none：不显示阴影
+background ：按照显示区域来绘制阴影
+bounds ：在View的边界描绘阴影
+paddedBounds： 在View边界描绘阴影，但会忽略paddingTop和paddingLeft
+</code></pre><p>View都是矩形的，阴影默认是沿着背景的边界绘制。如果背景是矩形了自然没有问题。<br>如果是圆形的，分两种情况:</p>
+<ol>
+<li>通过shape定义的，系统可以识别出真实边界，阴影绘制没有问题.</li>
+<li>带有透明通道的png图片，会当成矩形绘制阴影。因为系统无法排除透明通道，识别出真实的边界，</li>
+</ol>
+<p>为了避免圆形的View显示矩形的阴影，，View增加了一个新的描述来指明内容显示的形状，这就是轮廓。</p>
+<ul>
+<li><p>布局设置：</p>
+<pre><code>android:outlineProvider=&quot;none|background|bounds|paddedBounds&quot; 
+
+none 不显示阴影
+background ：按照显示区域来绘制阴影
+bounds ：在View的边界描绘阴影
+paddedBounds： 在View边界描绘阴影，但会计算paddingTop和paddingLeft
+</code></pre></li>
+</ul>
+<ul>
+<li>代码设置：<blockquote>
+<p>圆形png图片因为无法排除透明通道，无法识别出真实边界，所以可以自定义，代码提供轮廓</p>
+</blockquote>
+</li>
+</ul>
+<pre><code>View.setOutlineProvider(new ViewOutlineProvide(){
+     public void getOutline(View view, Outline outline) {
+        //矩形，圆形，圆角矩形，Path。除了正常的阴影，也可以自定义奇葩的阴影效果
+         outline.setOval(0, 0, view.getWidth(), view.getHeight());
+    }
+});
+</code></pre><h4 id="轮廓裁剪"><a href="#轮廓裁剪" class="headerlink" title="轮廓裁剪"></a>轮廓裁剪</h4><blockquote>
+<p>由于轮廓可以自定义，当轮廓小于View的大小，View并不会变小。如果希望View大小跟轮廓匹配，可以裁剪View的大小以适应轮廓，这样也可以通过裁剪生成新的形状。</p>
+</blockquote>
+<pre><code>Outline.canClip();//是否可以被裁剪。目前支持矩形，圆形，圆角矩形
+View.setClipToOutline(true);//允许裁剪View大小以适应轮廓
+</code></pre><ul>
+<li>只能往小了裁，不能往大了裁。</li>
+<li>轮廓大小如果大于View大小，只会扩大阴影的绘制路径，但不会超出父控件边界</li>
+<li>裁剪的本质是绘制时裁剪画布的大小，但不会改变View的测量大小，触摸区域。</li>
+</ul>
+<h3 id="3-Drawables图形资源"><a href="#3-Drawables图形资源" class="headerlink" title="3. Drawables图形资源"></a>3. Drawables图形资源</h3><ul>
+<li>Drawable渲染</li>
+<li>矢量图</li>
+<li>色彩提取</li>
+</ul>
+<h4 id="色彩渲染"><a href="#色彩渲染" class="headerlink" title="色彩渲染"></a>色彩渲染</h4><ul>
+<li><p>如何设置</p>
+<pre><code>代码：
+    Drawable#setTint(int color);//设置渲染色
+    Drawable#setTintMode(PorterDuff.Mode tintMode);//设置渲染模式
+xml文件：
+    //可以应用xml定义的bitmap或者ImageView或者View的background等涉及到drawable的地方.
+    android:tint
+    android:tintMode
+</code></pre></li>
+<li><p>渲染模式</p>
+<blockquote>
+<p>PorterDuff.Mode 18种模式，其决定了原图颜色和渲染颜色的取舍和合成规则。</p>
+<p>原理：将原图颜色Dst与渲染颜色Src每个像素点的alpha和color值通过算法计算得到新的颜色，以实现不同的混合效果。</p>
+<p>效果参见ApiDemos-Graphics-Xfermodes.演示了16种效果</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="矢量图"><a href="#矢量图" class="headerlink" title="矢量图"></a>矢量图</h4><pre><code>    &lt;vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+        android:height=&quot;300dp&quot;//宽
+        android:width=&quot;300dp&quot;//宽
+        android:viewportHeight=&quot;40&quot;//画布高
+        android:viewportWidth=&quot;40&quot;//画布宽 虚拟大小，pathData中距离的参考
+        &gt;
+        &lt;path android:fillColor=&quot;#ff00ff&quot;
+                android:pathData=&quot;M20.5,9.5
+                        c-1.955,0,-3.83,1.268,-4.5,3
+                        c-0.67,-1.732,-2.547,-3,-4.5,-3
+                        C8.957,9.5,7,11.432,7,14
+                        c0,3.53,3.793,6.257,9,11.5
+                        c5.207,-5.242,9,-7.97,9,-11.5
+                        C25,11.432,23.043,9.5,20.5,9.5z&quot;
+                /&gt;
+&lt;/vector&gt;
+</code></pre><h4 id="取色器"><a href="#取色器" class="headerlink" title="取色器"></a>取色器</h4><ul>
+<li>android.support.v7.graphics.Palette</li>
+</ul>
+<pre><code>Vibrant 鲜艳的
+Vibrant dark鲜艳的暗色
+Vibrant light鲜艳的亮色
+Muted 柔和的
+Muted dark柔和的暗色
+Muted light柔和的亮色
+
+//在子线程可以使用同步操作
+ Palette p = Palette.from(bitmap).generate();
+
+ //在主线程使用异步操作
+ Palette.from(bitmap).generate(new PaletteAsyncListener() {
+     public void onGenerated(Palette p) {
+         // Use generated instance
+
+     }
+ });
+
+
+//gradle 添加依赖
+dependencies {    
+    ...
+    compile &apos;com.android.support:palette-v7:21.0.0&apos;
+}
+</code></pre><ul>
+<li><p>其他</p>
+<pre><code>//获取某个像素点的颜色值
+int color=Bitmap.getPixel(int x, int y);
+</code></pre></li>
+</ul>
+<h3 id="3-Animations"><a href="#3-Animations" class="headerlink" title="3.Animations"></a>3.Animations</h3><ul>
+<li>Touch feedback 触摸反馈</li>
+<li>Circular Reveal 循环揭露</li>
+<li>Activity transitions</li>
+<li>Curved motion</li>
+<li>View state changes</li>
+</ul>
+<h4 id="涟漪效果RippleDrawable"><a href="#涟漪效果RippleDrawable" class="headerlink" title="涟漪效果RippleDrawable"></a>涟漪效果RippleDrawable</h4><ul>
+<li><p>Button自带涟漪动画</p>
+<ol>
+<li>默认效果，有背景，按下带水波纹效果</li>
+<li>android:background=”?android:selectableItemBackground”;无背景，按下有水波纹效果</li>
+<li>android:background=”?android:selectableItemBackgroundBorderless”;无背景，V控件大小不限制水波纹的扩散</li>
+</ol>
+</li>
+<li><p>自定义涟漪背景：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ripple xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:color=&quot;#00FF00&quot;&gt;&lt;!--涟漪颜色--&gt;
+
+    &lt;!--背景颜色，如果没有，则涟漪动画无边界--&gt;
+    &lt;item android:drawable=&quot;@color/action_red&quot;/&gt;
+&lt;/ripple&gt;
+</code></pre></li>
+</ul>
+<h4 id="圆形缩放动画-RevealAnimator"><a href="#圆形缩放动画-RevealAnimator" class="headerlink" title="圆形缩放动画 RevealAnimator"></a>圆形缩放动画 RevealAnimator</h4><blockquote>
+<p>可用于View的隐藏显示的过渡</p>
+</blockquote>
+<pre><code> /**
+ * @param view 要执行动画的View
+ * @param centerX 圆心X
+ * @param centerY 圆心Y
+ * @param startRadius 开始半径
+ * @param endRadius 结束半径
+ */
+ViewAnimationUtils.createCircularReveal(myView, cx, cy, 0, finalRadius);
+</code></pre><h3 id="状态切换动画"><a href="#状态切换动画" class="headerlink" title="状态切换动画"></a>状态切换动画</h3><blockquote>
+<p>参见<a href="http://developer.android.com/training/material/animations.html#ViewState" target="_blank" rel="external">http://developer.android.com/training/material/animations.html#ViewState</a> </p>
+<ul>
+<li>StateListAnimator</li>
+<li>AnimatedStateListDrawable</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>StateListAnimator 属性动画</p>
+<ul>
+<li>定义      <!-- animate the translationZ property of a view when pressed -->
+<pre><code>&lt;selector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    //切换到按下状态时执行的动画
+  &lt;item android:state_pressed=&quot;true&quot;&gt;
+    &lt;set&gt;
+      &lt;objectAnimator android:propertyName=&quot;translationZ&quot;
+        android:duration=&quot;@android:integer/config_shortAnimTime&quot;
+        android:valueTo=&quot;2dp&quot;
+        android:valueType=&quot;floatType&quot;/&gt;
+        &lt;!-- you could have other objectAnimator elements
+             here for &quot;x&quot; and &quot;y&quot;, or other properties --&gt;
+        //同时还可以执行其他的动画
+    &lt;/set&gt;
+  &lt;/item&gt;
+    //切换默认状态时执行的动画
+  &lt;item &gt;
+    &lt;set&gt;
+      &lt;objectAnimator android:propertyName=&quot;translationZ&quot;
+        android:duration=&quot;100&quot;
+        android:valueTo=&quot;0&quot;
+        android:valueType=&quot;floatType&quot;/&gt;
+    &lt;/set&gt;
+  &lt;/item&gt;
+&lt;/selector&gt;
+</code></pre></li>
+<li><p>使用</p>
+<pre><code>xml布局：
+android:stateListAnimator属性设置
+代码：
+View#setStateListAnimator(AnimatorInflater.loadStateListAnimator(this,R.drawable.selector_anim_state));
+</code></pre></li>
+<li><p>其他</p>
+<blockquote>
+<p>如果设置了Material Theme，Button默认会有Z轴改变的动画效果。如果想屏蔽，可以设置android:stateListAnimator为 @null</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>AnimatedStateListDrawable 过渡帧动画</p>
+<ul>
+<li><p>定义</p>
+<pre><code>&lt;animated-selector
+    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+
+    &lt;!-- 按下状态的图片--&gt;
+    &lt;item android:id=&quot;@+id/pressed&quot; android:drawable=&quot;@drawable/drawableP&quot;
+        android:state_pressed=&quot;true&quot;/&gt;
+     &lt;!-- 默认状态的图片--&gt;
+    &lt;item android:id=&quot;@id/default&quot;
+        android:drawable=&quot;@drawable/drawableD&quot;/&gt;
+
+    &lt;!-- 过渡帧动画 --&gt;
+    &lt;transition android:fromId=&quot;@+id/default&quot; android:toId=&quot;@+id/pressed&quot;&gt;
+        &lt;animation-list&gt;
+            //定义每一帧的图片资源
+            &lt;item android:duration=&quot;15&quot; android:drawable=&quot;@drawable/dt1&quot;/&gt;
+            &lt;item android:duration=&quot;15&quot; android:drawable=&quot;@drawable/dt2&quot;/&gt;
+            ...
+        &lt;/animation-list&gt;
+    &lt;/transition&gt;
+    ...
+&lt;/animated-selector&gt;
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<pre><code>- 如何使用
+
+    android:background当成普通drawable使用
+</code></pre><h4 id="矢量图动画-AnimatedVectorDrawable"><a href="#矢量图动画-AnimatedVectorDrawable" class="headerlink" title="矢量图动画 AnimatedVectorDrawable"></a>矢量图动画 AnimatedVectorDrawable</h4><blockquote>
+<p>参见<a href="http://developer.android.com/training/material/animations.html#AnimVector" target="_blank" rel="external">http://developer.android.com/training/material/animations.html#AnimVector</a></p>
+</blockquote>
+<ol>
+<li><p>在drawable目录定义一个<vector>矢量图</vector></p>
+<pre><code>&lt;!-- res/drawable/vectordrawable.xml --&gt;
+vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+android:height=&quot;64dp&quot;
+android:width=&quot;64dp&quot;
+android:viewportHeight=&quot;600&quot;
+android:viewportWidth=&quot;600&quot;&gt;
+    &lt;group
+        android:name=&quot;rotationGroup&quot;
+        android:pivotX=&quot;300.0&quot;
+        android:pivotY=&quot;300.0&quot;
+        android:rotation=&quot;45.0&quot; &gt;
+        &lt;path
+            android:name=&quot;v&quot;
+            android:fillColor=&quot;#000000&quot;
+            android:pathData=&quot;M300,70 l 0,-70 70,70 0,0 -70,70z&quot; /&gt;
+    &lt;/group&gt;
+&lt;/vector&gt;
+</code></pre></li>
+<li><p>在drawable目录定义一个<animated-vector>矢量图动画</animated-vector></p>
+<pre><code>&lt;!-- res/drawable/animvectordrawable.xml --&gt;
+&lt;animated-vector xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+  android:drawable=&quot;@drawable/vectordrawable&quot; &gt;
+    &lt;target
+        android:name=&quot;rotationGroup&quot;
+        android:animation=&quot;@anim/rotation&quot; /&gt;
+    &lt;target
+    android:name=&quot;v&quot;
+    android:animation=&quot;@anim/path_morph&quot; /&gt;
+&lt;/animated-vector&gt;
+</code></pre></li>
+<li><p>在anim目录定义要执行的属性动画</p>
+<pre><code>&lt;!-- res/anim/rotation.xml --&gt;
+&lt;objectAnimator
+android:duration=&quot;6000&quot;
+android:propertyName=&quot;rotation&quot;
+android:valueFrom=&quot;0&quot;
+android:valueTo=&quot;360&quot; /&gt;
+
+&lt;!-- res/anim/path_morph.xml --&gt;
+&lt;set xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
+    &lt;objectAnimator
+        android:duration=&quot;3000&quot;
+        android:propertyName=&quot;pathData&quot;
+        android:valueFrom=&quot;M300,70 l 0,-70 70,70 0,0   -70,70z&quot;
+        android:valueTo=&quot;M300,70 l 0,-70 70,0  0,140 -70,0 z&quot;
+        android:valueType=&quot;pathType&quot; /&gt;
+//pathData要求参数个数相同，命令也要相同。
+&lt;/set&gt;
+</code></pre></li>
+</ol>
+<ol>
+<li><p>使用矢量图动画</p>
+<pre><code>animvectordrawable.xml作为background设置给View
+
+//代码中获取到background，因为是特殊的background，播放
+Drawable drawable = vector.getBackground();
+if (drawable instanceof Animatable) {
+   ((Animatable) drawable).start();
+}
+</code></pre></li>
+</ol>
+<h3 id="曲线运动"><a href="#曲线运动" class="headerlink" title="曲线运动"></a>曲线运动</h3><blockquote>
+<p>参见 <a href="http://developer.android.com/training/material/animations.html#CurvedMotion" target="_blank" rel="external">http://developer.android.com/training/material/animations.html#CurvedMotion</a></p>
+</blockquote>
+<ul>
+<li><p>PathInterpolator    </p>
+<blockquote>
+<p>通过Path定义动画插入器的运动轨迹.二阶，三阶贝塞尔曲线和自定义Path</p>
+</blockquote>
+<pre><code>动画插入器：通过运动曲线模型干预动画的执行。&lt;br/&gt;
+运动曲线模型：一个 1x1 的正方形内指定一个运动曲线，起点位于 (0,0)，终点 (1,1)，控制点形成运动曲线
+
+//二阶贝塞尔曲线
+public PathInterpolator(float controlX, float controlY)
+
+//三阶贝塞尔曲线
+public PathInterpolator(float controlX1, float controlY1, float controlX2, float controlY2)
+
+//Path定义运动曲线
+public PathInterpolator(Path path)
+
+Path path = new Path();
+path.lineTo(0.4f, 0.8f);
+path.lineTo(0.6f, 0.0f);
+path.lineTo(1f, 1f);//必须从0,0开始，1,1结束
+PathInterpolator pathin=new PathInterpolator(path);
+</code></pre></li>
+</ul>
+<ul>
+<li><p>ObjectAnimator 属性动画可以通过Path设置View的带X,Y属性</p>
+<pre><code> Path path2 = new Path();
+path2.lineTo(40, 80);
+path2.lineTo(50, 40);
+ObjectAnimator.ofFloat(mAnimView,View.TRANSLATION_X,View.TRANSLATION_Y,path2).setDuration(2000).start();
+</code></pre></li>
+</ul>
+<p>注意：Tween动画跟属性动画做动画，Tween动画不该变View真实的位置及大小，属性动画改变真实位置及大小。</p>
+<h3 id="Activity转场动画"><a href="#Activity转场动画" class="headerlink" title="Activity转场动画"></a>Activity转场动画</h3><blockquote>
+<p>回顾Activity切换动画</p>
+<p>新增Activity元素场景转换动画</p>
+<pre><code>- 进入、退出、共享元素转换
+</code></pre></blockquote>
+<ul>
+<li><p>回顾Activity切换动画</p>
+<pre><code>代码：
+    //Activity切换动画。api 16以后出现了更好的选择--ActivityOption
+    public void overridePendingTransition(int enterAnim, int exitAnim);//在startActivity之后，finish之前执行，配置进来的和出去的Activity执行的动画
+主题：
+    //主题配置切换动画
+    &lt;style name=&quot;AppTheme&quot; parent=&quot;Theme.Light&quot;&gt;
+        ...
+         &lt;item name=&quot;android:windowAnimationStyle&quot;&gt;@style/ActivityAnimation&lt;/item&gt;
+    &lt;/style&gt;
+      &lt;!--Activity的动画 设置给windowAnimationStyle--&gt;
+    &lt;style name=&quot;ActivityAnimation&quot; parent=&quot;android:Animation.Activity&quot;&gt;
+        &lt;item name=&quot;android:activityOpenEnterAnimation&quot;&gt;@anim/slide_in_left&lt;/item&gt;//从A打开B时B的动画
+        &lt;item name=&quot;android:activityOpenExitAnimation&quot;&gt;@anim/slide_out_right&lt;/item&gt;//从A打开B时A的动画
+        &lt;item name=&quot;android:activityCloseEnterAnimation&quot;&gt;@anim/push_down_in&lt;/item&gt;//从B返回A时A的动画
+        &lt;item name=&quot;android:activityCloseExitAnimation&quot;&gt;@anim/push_down_out&lt;/item&gt;//从B返回A时B的动画
+    &lt;/style&gt;
+</code></pre></li>
+</ul>
+<ul>
+<li><p>Activity元素场景转换动画</p>
+<ul>
+<li><p>分类</p>
+<ol>
+<li><p>进入退出–Visibility</p>
+<p> Explode分解 - 从场景中心移入或移出视图。<br><br> Slide滑动 - 从场景边缘移入或移出视图。<br><br> Fade淡入淡出 - 通过调整透明度从场景增添或移除视图<br><br> 可实现接口进行自定义</p>
+</li>
+<li><p>共享元素动画–    Transition</p>
+<p> changeBounds - 为目标视图的布局边界的变化添加动画。<br><br> changeClipBounds - 为目标视图的裁剪边界的变化添加动画。<br><br> changeTransform - 为目标视图的缩放与旋转变化添加动画。<br><br> changeScroll - 为目标视图的ScrollTo操作添加动画。<br><br> changeImageTransform - 为目标图像的大小与缩放变化添加动画。<br></p>
+</li>
+</ol>
+</li>
+<li><p>如何使用</p>
+<pre><code>1. 通过Theme定义
+    &lt;style name=&quot;BaseAppTheme&quot; parent=&quot;android:Theme.Material&quot;&gt;
+      &lt;!-- 启用动画 --&gt;
+      &lt;item name=&quot;android:windowContentTransitions&quot;&gt;true&lt;/item&gt; 
+      &lt;item name=&quot;android:windowActivityTransitions&quot;&gt;true&lt;/item&gt;
+
+      &lt;!-- 进入退出动画 --&gt;
+        &lt;item name=&quot;android:windowEnterTransition&quot;&gt;@android:transition/explode&lt;/item&gt;
+        &lt;item name=&quot;android:windowExitTransition&quot;&gt;@android:transition/explode&lt;/item&gt;
+        &lt;item name=&quot;android:windowReturnTransition&quot;&gt;@android:transition/explode&lt;/item&gt;
+        &lt;item name=&quot;android:windowReenterTransition&quot;&gt;@android:transition/explode&lt;/item&gt;
+        // 尽快开始进入转换
+        &lt;item name=&quot;android:windowAllowEnterTransitionOverlap&quot;&gt;true&lt;/item&gt;
+
+      &lt;!-- 共享元素动画 --&gt;
+        &lt;item name=&quot;android:windowSharedElementEnterTransition&quot;&gt;
+            @android:transition/move&lt;/item&gt;
+        &lt;item name=&quot;android:windowSharedElementExitTransition&quot;&gt;
+            @android:transition/move&lt;/item&gt;
+        &lt;item name=&quot;android:windowSharedElementReturnTransition&quot;&gt;
+            @android:transition/move&lt;/item&gt;
+        &lt;item name=&quot;android:windowSharedElementReenterTransition&quot;&gt;
+            @android:transition/move&lt;/item&gt;
+        &lt;item name=&quot;android:windowSharedElementsUseOverlay&quot;&gt;true&lt;/item&gt;
+    &lt;/style&gt;
+
+    Activity里代码设置：
+
+    / 允许使用transitions
+    getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+    // 指定进入、退出、返回、重新进入时的transitions
+    TransitionSet set = new TransitionSet();//也可设置TransitionSet
+    set.addTransition(new Explode());
+    set.addTransition(new Fade());
+    getWindow().setEnterTransition(new Explode());
+    getWindow().setExitTransition(new Explode());
+    getWindow().setEnterTransition(new Explode());
+    getWindow().setExitTransition(new Explode());
+    // 指定进入、退出、返回、重新进入时的共享transitions
+    getWindow().setSharedElementEnterTransition(new ChangeTransform());
+    getWindow().setSharedElementExitTransition(new ChangeTransform());
+    getWindow().setSharedElementReturnTransition(new ChangeTransform());
+    getWindow().setSharedElementReenterTransition(new ChangeTransform());
+
+2. 启动Activity
+    //没有共享元素
+    ActivityOptions options=ActivityOptions.makeSceneTransitionAnimation(this);
+    //1个共享元素
+    ActivityOptions options = ActivityOptions
+    .makeSceneTransitionAnimation(this, sharedElementView, &quot;sharedElementName&quot;);
+    //多个共享元素
+    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this,
+    Pair.create(sharedElementView1, &quot;sharedElementName1&quot;),
+    Pair.create(sharedElementView2, &quot;sharedElementName2&quot;));
+    // 启动Activity
+    startActivity(new Intent(getApplicationContext(), XXXActivity.class), options.toBundle());
+
+    共享元素：利用 android:transitionName 属性对两个布局中的共享元素指定一个通用名称sharedElementName，以便过渡动画的执行
+
+3. 关闭Activity
+    调用finishAfterTransition替代finish。返回键默认处理为finishAfterTransition
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="RecyclerView"><a href="#RecyclerView" class="headerlink" title="RecyclerView"></a>RecyclerView</h3><ul>
+<li><p>介绍</p>
+<ul>
+<li>RecyclerView = 灵活的的listview，可实现网格、瀑布流等效果</li>
+</ul>
+</li>
+<li><p>基本功能三要素</p>
+<ul>
+<li>RecyclerView</li>
+<li>LayoutManagers</li>
+<li>Adapter</li>
+</ul>
+</li>
+<li><p>显示数据集</p>
+<blockquote>
+<p>参见 <a href="https://developer.android.com/training/material/lists-cards.html#RecyclerView" target="_blank" rel="external">https://developer.android.com/training/material/lists-cards.html#RecyclerView</a></p>
+</blockquote>
+<ol>
+<li>在布局文件中使用RecyclerView</li>
+<li>在Activity中找到RecyclerView</li>
+<li>RecyclerView.setLayoutManager(LayoutManager)</li>
+<li>RecyclerView.setAdapter(Adapter)</li>
+<li>定义Adapter<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAdapter</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">Adapter</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> List&lt;Pair&lt;String, Integer&gt;&gt; data;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyAdapter</span><span class="params">(List&lt;Pair&lt;String, Integer&gt;&gt; data)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.data = data;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getItemCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> data == <span class="keyword">null</span> ? <span class="number">0</span> : data.size();</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> RecyclerView.<span class="function">ViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</div><div class="line">        SimpleVH svh = <span class="keyword">new</span> SimpleVH(View.inflate(parent.getContext(), R.layout.item_simple, <span class="keyword">null</span>));</div><div class="line">        <span class="keyword">return</span> svh;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(RecyclerView.ViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        SimpleVH svh = (SimpleVH) holder;</div><div class="line">        svh.iv.setImageResource(data.get(position).second);</div><div class="line">        svh.name.setText(data.get(position).first);</div><div class="line">        svh.item.setText(<span class="string">"position: "</span> + position );</div><div class="line"></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleVH</span> <span class="keyword">extends</span> <span class="title">RecyclerView</span>.<span class="title">ViewHolder</span> </span>&#123;</div><div class="line">        ImageView iv;</div><div class="line">        TextView name;</div><div class="line">        TextView item;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="title">SimpleVH</span><span class="params">(View itemView)</span> </span>&#123;</div><div class="line">            <span class="keyword">super</span>(itemView);</div><div class="line">            iv = (ImageView) itemView.findViewById(R.id.iv);</div><div class="line">            name = (TextView) itemView.findViewById(R.id.name);</div><div class="line">            item = (TextView) itemView.findViewById(R.id.item);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>显示网格布局及瀑布流布局</p>
+<blockquote>
+<p>实质上就是设置不同的LayoutManager</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- LinearLayoutManager(Context context, </div><div class="line">                    <span class="keyword">int</span> orientation,  <span class="comment">// 布局方向</span></div><div class="line">                    <span class="keyword">boolean</span> reverseLayout <span class="comment">//是否反转</span></div><div class="line">                    )</div><div class="line">- GridLayoutManager(Context context,</div><div class="line">                    <span class="keyword">int</span> spanCount,  <span class="comment">// 几列</span></div><div class="line">                    <span class="keyword">int</span> orientation, <span class="comment">// 方向</span></div><div class="line">                    <span class="keyword">boolean</span> reverseLayout <span class="comment">//是否反转</span></div><div class="line">                    )</div><div class="line">- StaggeredGridLayoutManager(</div><div class="line">                    <span class="keyword">int</span> spanCount, <span class="comment">// 几列</span></div><div class="line">                    <span class="keyword">int</span> orientation <span class="comment">// 方向</span></div><div class="line">                    )</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>设置点击事件</p>
+<ol>
+<li>RecyclerView.addOnItemTouchListener<blockquote>
+<p>使用了比较底层的API，较为复杂</p>
+</blockquote>
+</li>
+<li><p>通过Adapter将点击事件传递出来</p>
+<blockquote>
+<p>使用回调的设计手法  </p>
+</blockquote>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**adapter*/</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">interface</span> <span class="title">OnItemClickListener</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(RecyclerView.ViewHolder vh)</span></span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOnItemClickListener</span><span class="params">(OnItemClickListener oicl)</span> </span>&#123;</div><div class="line">    <span class="keyword">this</span>.oicl = oicl;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(RecyclerView.ViewHolder vh)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (oicl != <span class="keyword">null</span>) &#123;</div><div class="line">        oicl.onItemClick(vh);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onBindViewHolder</span><span class="params">(RecyclerView.ViewHolder holder, <span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    svh.itemView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">            <span class="comment">// 通知同一个方法，</span></div><div class="line">            onItemClick(holder);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**Activity*/</span></div><div class="line">myAdapter.setOnItemClickListener(<span class="keyword">new</span> MyAdapter.OnItemClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemClick</span><span class="params">(RecyclerView.ViewHolder vh)</span> </span>&#123;</div><div class="line">        Toast.makeText(NewWidgetActivity.<span class="keyword">this</span>, <span class="string">"position: "</span>+ vh.getAdapterPosition(),Toast.LENGTH_SHORT).show();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>下拉刷新</p>
+<ul>
+<li>借助android.support.v4.widget.SwipeRefreshLayout</li>
+<li><p>使用方法</p>
+<ol>
+<li>用SwipeRefreshLayout作为RecyclerView的父控件</li>
+<li>SwipeRefreshLayout.setOnRefreshListener</li>
+<li>在OnRefreshListener完成数据的获取，然后调用SwipeRefreshLayout.setRefreshing(fasle)</li>
+<li><p>个性化</p>
+<pre><code>//定制SwipeRefreshLayout的样式
+//设置箭头的颜色
+swipeRefreshLayout.setColorSchemeColors(Color.RED,Color.GREEN, Color.BLUE);
+//设置圆圈的背景 v7 22以后
+swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.GRAY);
+</code></pre></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="CardView"><a href="#CardView" class="headerlink" title="CardView"></a>CardView</h3><ul>
+<li>android.support.v7.widget.CardView</li>
+<li>使用方法<ol>
+<li>在布局中使用android.support.v7.widget.CardView</li>
+<li>添加属性<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">CardView常用属性：</div><div class="line">card_view:cardElevation</div><div class="line"> 卡片高度</div><div class="line">card_view:cardMaxElevation</div><div class="line"> 卡片的最大高度</div><div class="line">card_view:cardBackgroundColor</div><div class="line"> 卡片的背景色</div><div class="line">card_view:cardCornerRadius</div><div class="line"> 卡片的圆角大小</div><div class="line">card_view:contentPadding</div><div class="line"></div><div class="line"> 卡片内容于边距的间隔</div><div class="line">card_view:contentPaddingBottom</div><div class="line">card_view:contentPaddingTop</div><div class="line">card_view:contentPaddingLeft</div><div class="line">card_view:contentPaddingRight</div><div class="line">card_view:contentPaddingStart</div><div class="line">card_view:contentPaddingEnd</div><div class="line"></div><div class="line">card_view:cardUseCompatPadding</div><div class="line"> 设置内边距，V21+的版本和之前的版本仍旧具有一样的计算方式</div><div class="line">card_view:cardPreventConrerOverlap</div><div class="line"> 在V20和之前的版本中添加内边距，这个属性为了防止内容和边角的重叠</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="与旧版本兼容"><a href="#与旧版本兼容" class="headerlink" title="与旧版本兼容"></a>与旧版本兼容</h3><ul>
+<li><p>定义不同的布局</p>
+<blockquote>
+<p>将使用了新的API的布局放在res/layout-v21/； 其他的放在res/layout/中</p>
+</blockquote>
+</li>
+<li><p>主题定义</p>
+<ol>
+<li>继承Theme.AppCompat</li>
+<li>定义颜色的时候去掉android:的命名空间（针对于新的那一些）<blockquote>
+<p>小窍门，所有没有见过的，都去掉，aapt会报错，根据aapt的提示添加android的命名空间</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>可以通过兼容包使用的效果<ol>
+<li>RecyclerView </li>
+<li>CardView </li>
+<li>Palette</li>
+</ol>
+</li>
+<li>不能在21之前版本使用的效果<ol>
+<li>Activity transitions</li>
+<li>Touch feedback</li>
+<li>Reveal animations</li>
+<li>Path-based animations</li>
+<li>Vector drawables</li>
+<li>Drawable tinting</li>
+</ol>
+</li>
+<li>代码要判断运行的环境，使用合适的效果</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Android5.0新特性笔记/" data-id="cj60see9y000360nkt2komjkj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android 6.0权限" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Android 6.0权限/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.554Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android 6.0之前,权限在app安装时候，就直接默认授予，Android 6.0引入运行时权限，动态申请。</p>
+<p><strong>注意：</strong>同一组内的任何一个权限被授权了，其他权限也自动被授权。例如，一旦 READ_CALENDAR 被授权了，应用也有 WRITE<em>CALENDAR 权限了。<br>基于权限问题，因为是使用，不做赘述，直接撸代码¬</em>¬</p>
+<h1 id="封装权限申请"><a href="#封装权限申请" class="headerlink" title="封装权限申请"></a>封装权限申请</h1><h2 id="Activity代码："><a href="#Activity代码：" class="headerlink" title="Activity代码："></a>Activity代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">public class BaseActivity extends AppCompatActivity &#123;</div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_base);</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 为子类提供一个权限检查方法</div><div class="line">     * @param permissions</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    public boolean hasPermission(String... permissions) &#123;</div><div class="line">        for (String permission : permissions) &#123;</div><div class="line">            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">                return false;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 为子类提供一个权限请求方法</div><div class="line">     * @param code</div><div class="line">     * @param permissions</div><div class="line">     */</div><div class="line">    public void requestPermission(int code, String... permissions) &#123;</div><div class="line">        ActivityCompat.requestPermissions(this,permissions,code);</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) &#123;</div><div class="line">        switch (requestCode) &#123;</div><div class="line">            case Constant.WRITE_EXTERNAL_CODE:</div><div class="line">                doSDCardPermission();</div><div class="line">                break;</div><div class="line">            case Constant.CALL_PHONT_CODE:</div><div class="line">                //打电话权限回掉处理</div><div class="line">                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">                    doCallPhontPermission();</div><div class="line">                &#125;else&#123;</div><div class="line">                    //提示用户权限未被授予</div><div class="line">                    Toast.makeText(this, &quot;打电话权限未被授予&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">                &#125;</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 默认打电话权限处理</div><div class="line">     */</div><div class="line">    public void doCallPhontPermission() &#123;</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 默认的写sd卡权限处理</div><div class="line">     */</div><div class="line">    public void doSDCardPermission() &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="权限activity"><a href="#权限activity" class="headerlink" title="权限activity"></a>权限activity</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">public class PermissionActivity extends BaseActivity implements View.OnClickListener&#123;</div><div class="line">    private Button sd,call;</div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        sd= (Button) findViewById(R.id.sd);</div><div class="line">        call= (Button) findViewById(R.id.call);</div><div class="line">        sd.setOnClickListener(this);</div><div class="line">        call.setOnClickListener(this);</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onClick(View view) &#123;</div><div class="line">        switch (view.getId()) &#123;</div><div class="line">            case R.id.call:</div><div class="line">                callPhone();</div><div class="line">            break;</div><div class="line">            case R.id.sd:</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    private void callPhone() &#123;</div><div class="line">        if (hasPermission(Manifest.permission.CALL_PHONE)) &#123;</div><div class="line">            //如果有权限就真正打电话，否则请求权限</div><div class="line">            doCallPhone();</div><div class="line">        &#125;else&#123;</div><div class="line">            requestPermission(Constant.CALL_PHONT_CODE,Manifest.permission.CALL_PHONE);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    private void doCallPhone() &#123;</div><div class="line">        Intent i=new Intent(Intent.ACTION_CALL);</div><div class="line">        Uri data= Uri.parse(&quot;tel:&quot;+&quot;10086&quot;);</div><div class="line">        i.setData(data);</div><div class="line">        this.startActivity(i);//此处只是警告，不是错误</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>项目开发，效率问题，也可直接使用第三方。</p>
+</blockquote>
+<h1 id="第三方权限"><a href="#第三方权限" class="headerlink" title="第三方权限"></a>第三方权限</h1><blockquote>
+<p><a href="https://github.com/lovedise/PermissionGen" target="_blank" rel="external">https://github.com/lovedise/PermissionGen</a></p>
+</blockquote>
+<h2 id="第一步：添加依赖。"><a href="#第一步：添加依赖。" class="headerlink" title="第一步：添加依赖。"></a>第一步：添加依赖。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.lovedise:permissiongen:0.0.6&apos;</div></pre></td></tr></table></figure>
+<h2 id="第二步、正常写拨电话请求权限"><a href="#第二步、正常写拨电话请求权限" class="headerlink" title="第二步、正常写拨电话请求权限"></a>第二步、正常写拨电话请求权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//拨打电话</div><div class="line">    public void call() &#123;</div><div class="line">//下面部分直接复制</div><div class="line">        PermissionGen.needPermission(this, 100,//100是端口号，对应下面代码</div><div class="line">                new String[] &#123;</div><div class="line">                        Manifest.permission.CALL_PHONE,//需要请求的权限，根据需要修改，也可以是多个，逗号隔开即可</div><div class="line">                &#125;</div><div class="line">        );</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="第三步、使用"><a href="#第三步、使用" class="headerlink" title="第三步、使用"></a>第三步、使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  @PermissionSuccess(requestCode = 100)//此句必须加上，100对应上面</div><div class="line">    private void doCallPhone() &#123;</div><div class="line">//内部是拨打电话逻辑，和框架无关</div><div class="line">        Intent i=new Intent(Intent.ACTION_CALL);</div><div class="line">        Uri data= Uri.parse(&quot;tel:&quot;+&quot;10086&quot;);</div><div class="line">        i.setData(data);</div><div class="line">        this.startActivity(i);//会报警告，但是不影响运行，只是提示。</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="第四步、直接写下面即可"><a href="#第四步、直接写下面即可" class="headerlink" title="第四步、直接写下面即可"></a>第四步、直接写下面即可</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) &#123;</div><div class="line">       PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);</div></pre></td></tr></table></figure>
+<h1 id="整体代码："><a href="#整体代码：" class="headerlink" title="整体代码："></a>整体代码：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line">//使用框架请求权限示例代码</div><div class="line">public class MainActivity extends AppCompatActivity &#123;</div><div class="line">    private Button randw,call;</div><div class="line">    private ImageView iv;</div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        call= (Button) findViewById(R.id.call);</div><div class="line">        randw= (Button) findViewById(R.id.randw);</div><div class="line">        iv= (ImageView) findViewById(R.id.iv);</div><div class="line">        call.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View view) &#123;</div><div class="line">                call();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        randw.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View view) &#123;</div><div class="line">                randw();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    //拨打电话</div><div class="line">    public void call() &#123;</div><div class="line">        PermissionGen.needPermission(this, 100,</div><div class="line">                new String[] &#123;</div><div class="line">                        Manifest.permission.CALL_PHONE,</div><div class="line">                &#125;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">    @PermissionSuccess(requestCode = 100)</div><div class="line">    private void doCallPhone() &#123;</div><div class="line">        Intent i=new Intent(Intent.ACTION_CALL);</div><div class="line">        Uri data= Uri.parse(&quot;tel:&quot;+&quot;10086&quot;);</div><div class="line">        i.setData(data);</div><div class="line">        this.startActivity(i);</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) &#123;</div><div class="line">        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);</div><div class="line">    &#125;</div><div class="line">    //读写内存卡</div><div class="line">    public void randw() &#123;</div><div class="line">        PermissionGen.needPermission(this, 200,</div><div class="line">                new String[] &#123;</div><div class="line">                        Manifest.permission.WRITE_EXTERNAL_STORAGE,</div><div class="line">                &#125;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">    @PermissionSuccess(requestCode = 200)</div><div class="line">    private void doSDCardPermission() &#123;</div><div class="line">        String url=&quot;http://images.csdn.net/20150817/1.jpg&quot;;</div><div class="line">        try &#123;</div><div class="line">            Bitmap bitmap = getHttpBitmap(url);//从网络获取图片</div><div class="line">            savePicture(bitmap);//保存图片到SD卡</div><div class="line">        &#125; catch (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    //以下部分是失效代码，仅仅用于表示获取图片意义</div><div class="line">    public Bitmap getHttpBitmap(String url)</div><div class="line">    &#123;</div><div class="line">        Bitmap bitmap = null;</div><div class="line">        try</div><div class="line">        &#123;</div><div class="line">            URL pictureUrl = new URL(url);</div><div class="line">            InputStream in = pictureUrl.openStream();</div><div class="line">            bitmap = BitmapFactory.decodeStream(in);</div><div class="line">            in.close();</div><div class="line">        &#125; catch (MalformedURLException e)</div><div class="line">        &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e)</div><div class="line">        &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return bitmap;</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 保存图片</div><div class="line">     * @param bitmap</div><div class="line">     */</div><div class="line">    public void savePicture(Bitmap bitmap)</div><div class="line">    &#123;</div><div class="line">        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))</div><div class="line">        &#123;</div><div class="line">            try</div><div class="line">            &#123;</div><div class="line">                File file = new File(Environment.getExternalStorageDirectory(),&quot;a.jpg&quot;);</div><div class="line">                FileOutputStream out = new FileOutputStream(file);</div><div class="line">                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);</div><div class="line">                out.flush();</div><div class="line">                out.close();</div><div class="line">                Toast.makeText(this, &quot;保存成功&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">            &#125; catch (Exception e)</div><div class="line">            &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Android 6.0权限/" data-id="cj60see9i000060nkjme3g7q0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-面向对象一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/面向对象一/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.552Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Net/">.Net</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/面向对象一/">面向对象一</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><hr>
+<pre><code>类是不占内存的，但是对象是占内存的，甚至可以说是对象的字段占内存的
+因为字段是有初始值的。
+但是静态类是占用内存的，因为其不能被实例化，也没有有对象，静态类包括其实例成员
+都在静态存储区域。
+
+属性：保护字段，对字段的复制和取值进行限定
+属性的本质就是两个方法，set和get
+属性不加修饰符，默认是private(只在当前类可访问)
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">案例：</div><div class="line">class Person</div><div class="line">    &#123;</div><div class="line">        private string _name;//字段</div><div class="line">        public string Name //属性</div><div class="line">        &#123;</div><div class="line">            get &#123;</div><div class="line">					if (_name!=&quot;强强&quot;)</div><div class="line">					&#123;</div><div class="line">						return &quot;强强&quot;;</div><div class="line">					&#125;</div><div class="line">				return _name; &#125;</div><div class="line">            set &#123; _name = value; &#125;</div><div class="line">        &#125;</div><div class="line">		 public void show()</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(this.Name);//尽量使用返回属性，因为此时_name不走属性</div><div class="line">			//不会执行里面的判断。</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">使用：</div><div class="line">Person p = new Person();//实例化</div><div class="line">p.Name = &quot;呵呵&quot;;//初始化</div><div class="line">p.show();</div><div class="line">string info=p.Name;</div><div class="line">Console.WriteLine(info);</div></pre></td></tr></table></figure>
+<h1 id="静态与非静态"><a href="#静态与非静态" class="headerlink" title="静态与非静态"></a>静态与非静态</h1><blockquote>
+<p>静态成员必须使用类名去调用，而实例成员使用对象名调用。<br>静态函数中，只能访问静态成员，不允许访问实例成员。<br>实例函数中，既可以使用静态成员，也可以使用实例成员。<br>静态类，只能存在静态的实例成员。<br>静态类不能被实例化。<br>静态类只有在程序结束后才会释放资源。</p>
+</blockquote>
+<h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><blockquote>
+<p>作用：帮助我们初始化对象</p>
+</blockquote>
+<ul>
+<li>构造函数没有返回值，连void也不能写</li>
+<li>构造函数的名称必须和类名一致</li>
+<li>构造函数是可以有重载的</li>
+<li>只要写了构造函数，则默认构造函数都被干掉了</li>
+</ul>
+<h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><blockquote>
+<p>代表当前类的对象<br>在类中显示的调用本类的构造函数  :this</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">class Person</div><div class="line">    &#123;</div><div class="line">        private string _name;</div><div class="line">        public string Name</div><div class="line">        &#123;</div><div class="line">            get &#123;return _name; &#125;</div><div class="line">            set &#123; _name = value; &#125;</div><div class="line">        &#125;</div><div class="line">        private int _age;</div><div class="line">        public int Age</div><div class="line">        &#123;</div><div class="line">            get &#123; return _age; &#125;</div><div class="line">            set &#123; _age = value; &#125;</div><div class="line">        &#125;</div><div class="line">        //构造函数</div><div class="line">        public Person(int age,string name)</div><div class="line">        &#123;</div><div class="line">            this.Age = age;</div><div class="line">            this.Name = name;</div><div class="line">        &#125;</div><div class="line">		//构造函数的重载，但是为了避免重复书写this.Age等等，可以使用:this方式</div><div class="line">		//其实就是调用上面写的全面的构造函数，此构造只需要一个参数，但是为了调用</div><div class="line">		//上面两个的，需要给当前没有的参数，设置默认值。</div><div class="line">        public Person(string name):this(10,name)&#123;&#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="析构函数-释放资源"><a href="#析构函数-释放资源" class="headerlink" title="析构函数:释放资源"></a>析构函数:释放资源</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">在程序结束时候，执行</div><div class="line">class Person&#123;</div><div class="line">	~Person()&#123;</div><div class="line">	//一般gc会释放资源，但是有时间不确定性</div><div class="line">	//在析构函数中，就可以立刻释放资源，在程序结束时候</div><div class="line">	//所以里面可以做一些释放资源的操作</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>补充：引用命名空间的时候，也要注意，class也要是public修饰，不然即使加了<br>引用也无效。</p>
+</blockquote>
+<h1 id="值类型和引用类型"><a href="#值类型和引用类型" class="headerlink" title="值类型和引用类型"></a>值类型和引用类型</h1><hr>
+<pre><code>引用类型：string和自定义类和数组，存储在堆内存，在内有指针指向的时候，会在不确定的时间被
+gc回收。
+例如string str=&quot;abc&quot;
+解析：str在栈内存中，存储的是地址，指向堆内存中的&quot;abc&quot;
+值类型：int等，存储在栈内存中（值直接存储在栈内存中），超过作用域会自动销毁。
+</code></pre><hr>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><hr>
+<pre><code>字符串不可变性：当一个字符串重新赋值之后，老值并没有被销毁，而是重新开辟一段存储空间
+字符串赋值只是栈中存储的内存地址变化，真正堆内存中存储字符串不可变化。
+所以可以把string看做一个char类型的只读数组，可以通过下标去访问字符串中的某一个元素
+例如：string s=&quot;afns&quot;; s[0]结果就是a，但是不能这样去修改，因为是只读的
+</code></pre><hr>
+<hr>
+<pre><code>字符串方法：
+案例：如果想修改字符串某个元素，可以通过以下方式
+string s = &quot;abcdefg&quot;;
+char[] chs = s.ToCharArray();
+chs[0] = &apos;m&apos;;
+s = new string(chs);
+Console.WriteLine(s);//mbcdefg
+案例：stringBuilder和string对比
+StringBuilder sb = new StringBuilder();
+//创建计时器  导入命名空间alt shift f10
+Stopwatch sw = new Stopwatch();
+//开始计时
+sw.Start();
+for(int i = 0; i &lt; 1000; i++)
+{
+    sb.Append(i);
+}
+sw.Stop();//停止计时
+Console.WriteLine(sw.Elapsed);//获取总共耗时时间
+Console.WriteLine(sb.ToString());
+但是如果是string，则时间很长，因为，每一次添加，string都会新开辟内存，很耗费时间。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">案例：忽略大小写比较</div><div class="line"> string s1 = &quot;c&quot;;</div><div class="line">string s2 = &quot;C&quot;;</div><div class="line">if (s1.Equals(s2,StringComparison.OrdinalIgnoreCase))//参数二，是一个枚举，代表忽略大小写</div><div class="line">&#123;</div><div class="line">    Console.WriteLine(true);</div><div class="line">&#125;</div><div class="line"></div><div class="line">案例：分割字符串</div><div class="line">string s = &quot;asd +  _  ,,  asdahjf&quot;;</div><div class="line">char[] chs = &#123; &apos;+&apos;, &apos;_&apos;, &apos;,&apos;, &apos; &apos;&#125;;</div><div class="line">string[] ns=s.Split(chs, StringSplitOptions.RemoveEmptyEntries);//参数二枚举，移除空项</div><div class="line"></div><div class="line">案例：字符串join</div><div class="line">string[] strs = &#123; &quot;张三&quot;,&quot;李四&quot;, &quot;王五&quot; &#125;;</div><div class="line">string ns = string.Join(&quot;|&quot;, strs);//参数一：是用作分隔符的字符串，参数二：可变参数，可放数组或对应类型的元素</div><div class="line">Console.WriteLine(ns);//张三|李四|王五</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>补充：
+Length:字符串字符的个数
+ToUpper:字符串转大写
+ToLower:字符串转小写
+Contains:判断字符串是否包含子字符串
+StartsWith:是否以子串开始
+EndsWith:是否以子串结束
+IndexOf:子串第一次出现的位置
+LastIndexOf:从后往前第一次出现的位置
+Trim:去除首尾空格
+TrimEnd:去除尾部空格
+TrimStart:去除首空格
+string.IsNullOrEmpty:是否是null或者空
+IndexOf(string value,int startIndex):value从startIndex开始第一次出现的位置(该位置的索引还是从字符串开始处开始计数)
+Replace：将字符串出现的oldValue替换为newValue，并生成一个新字符串
+SubString:取从位置startIndex开始一直到最后的子字符串
+还有，取从位置startIndex开始长度为length的子字符串，如果子字符串长度不足则报错
+</code></pre><hr>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><hr>
+<pre><code>public class Student :Person{}
+子类继承父类的非私有的(字段，属性，方法)
+子类并没有继承父类构造函数
+子类先执行父类无参数构造函数（相当于创建了父类对象），因为子类可以使用父类属性方法，但是只有对象才能调用属性方法
+所以子类内部先执行父类构造函数，在子类内部创建父类对象，剩下的子类使用父类属性方法等才能进行。
+注意：如果当父类写了有参数的构造函数之后，则父类默认的无参数构造函数被干掉了，此时子类无法去调用父类无参数构造
+所以会报错，解决方案：1.在父类重写无参构造。2.在子类中显示的调用父类的构造函数，使用关键字：base()
+如下：Student是子类
+//子类构造函数如下
+public Student(string name,int age,char gender):base(name,age){
+    //父类有参构造中已经初始化了name,age，则利用base避免代码重复
+    this.Gender=gender;//Gender是属性
+}
+</code></pre><hr>
+<blockquote>
+<p>补充：子类和父类具有相同方法的时候，会有警告，此时需要在子类相同方法名前加上new，屏蔽父类方法<br>public new void show(){}，所以一般情况下，不要子父类出现相同的方法名。<br>new :1.创建对象  2.隐藏从父类继承来的成员。</p>
+</blockquote>
+<h2 id="里氏转换"><a href="#里氏转换" class="headerlink" title="里氏转换"></a>里氏转换</h2><blockquote>
+<p>子类可以赋值给父类  Person p=new Student();<br>如果父类中装的是子类对象，那么可以讲这个父类强转为子类对象。<br>Student ss=(Student)p;</p>
+</blockquote>
+<h2 id="is和as"><a href="#is和as" class="headerlink" title="is和as"></a>is和as</h2><blockquote>
+<p>is：转换成功返回true，否则返回false<br>一般用于里氏转换时候用于判断，避免转换失败的程序异常崩溃<br>if(p is Student)….</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">使用案例：</div><div class="line"> class Program</div><div class="line">    &#123;</div><div class="line">        static void Main(string[] args)</div><div class="line">        &#123;</div><div class="line">            Person p = new Student();</div><div class="line">            if(p is Student)</div><div class="line">            &#123;</div><div class="line">                Student s = (Student)p;</div><div class="line">                s.show();</div><div class="line">            &#125;</div><div class="line">            Console.ReadKey();</div><div class="line">        &#125;</div><div class="line">     </div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    class Person</div><div class="line">    &#123;</div><div class="line">        public new void show()</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;person显示&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    class Student : Person</div><div class="line">    &#123;</div><div class="line">        public new void show()</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;student显示&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在java中直接父类引用可以指向子类对象，Person p = new Student();然后p在调用子父类同名方法时候，调用<br>就是子类的，但是在C#中，直接如此是调用的父类方法，还需要 Student s = (Student)p;然后再调用。</p>
+<p>as： 转换成功则返回对应的对象，否则返回null<br>Student t=p as Teacher</p>
+<p>访问修饰符补充：protected  在子类当中也可以访问，其他和private相同(出了当前类无法访问)</p>
+</blockquote>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><blockquote>
+<p>长度可以任意改变，类型随便<br>打印对象时候，打印出来的是对应的命名空间。</p>
+</blockquote>
+<h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">案例：基本方法</div><div class="line">			ArrayList list = new ArrayList();</div><div class="line">            //添加单个元素</div><div class="line">            list.Add(1);</div><div class="line">            list.Add(true);</div><div class="line">            list.Add(&quot;字符串&quot;);</div><div class="line">            list.Add(&apos;c&apos;);</div><div class="line">            //添加数组或集合</div><div class="line">            list.AddRange(new string[] &#123; &quot;1&quot;, &quot;2&quot; &#125;);//如果此处使用add，下面打印此数组时候，打印的是命名空间</div><div class="line">            for(int a = 0; a &lt;list.Count; a++)</div><div class="line">            &#123;</div><div class="line">                Console.WriteLine(list[a]);</div><div class="line">            &#125;</div><div class="line">            //删除单个元素</div><div class="line">            list.Remove(true);</div><div class="line">            list.RemoveAt(0);//根据索引删除</div><div class="line">            list.RemoveRange(1, 2);//删除从所以1开始的，后面的两个元素，参数二是个数</div><div class="line">            list.Sort();//升序排列，但是必须可比较时候才能排列，不然异常</div><div class="line">            list.Reverse();//反转</div><div class="line">            list.Insert(1, &quot;呵呵&quot;);</div><div class="line">            list.InsertRange(1,new int[] &#123; 1, 2, 4 &#125;);//在1的位置插入数组或集合</div><div class="line">            list.Contains(1);//判断是否包含1，返回布尔值</div><div class="line">            Console.ReadKey();</div></pre></td></tr></table></figure>
+<h3 id="长度和可容个数"><a href="#长度和可容个数" class="headerlink" title="长度和可容个数"></a>长度和可容个数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ArrayList list = new ArrayList();</div><div class="line">         Console.WriteLine(list.Count);//集合真实长度</div><div class="line">         Console.WriteLine(list.Capacity);//集合可包含元素的个数</div><div class="line">         //如果集合为空，则两者都是0</div><div class="line">         //如果向集合添加数据，则Capacity开始是4，如果Count大于4，则Capacity变为8</div><div class="line">         //如果Count大于8，则Capacity变为16，Capacity直接按照倍数增加。</div></pre></td></tr></table></figure>
+<h2 id="HashTable-键值对集合-字典"><a href="#HashTable-键值对集合-字典" class="headerlink" title="HashTable  键值对集合 字典"></a>HashTable  键值对集合 字典</h2><blockquote>
+<p>var 推断类型，在声明的同时必须初始化，因为var是根据值推断类型的。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">			Hashtable table = new Hashtable();</div><div class="line">            table.Add(1, &quot;测试1&quot;);</div><div class="line">            table.Add(2, &quot;测试2&quot;);</div><div class="line">            table.Add(3, &quot;测试3&quot;);</div><div class="line">            table[4] = &quot;测试4&quot;;//key不存在，则相当于add</div><div class="line">            table[3] = &quot;干掉测试3&quot;;//add不可重复，但是此种方式，相当于替换</div><div class="line">			//table.Contains   是否包含，返回布尔值</div><div class="line">            //table.ContainsKey  </div><div class="line">            //table.ContainsValue</div><div class="line">			table.Remove(3);//根据key，删除value</div><div class="line">            foreach (var item in table.Keys)</div><div class="line">            &#123;</div><div class="line">                Console.WriteLine(table[item]);</div><div class="line">            &#125;</div><div class="line">			//table.clear  清空</div><div class="line">注意：key必须唯一，value可重复，hashtable是先进后出结构。</div></pre></td></tr></table></figure>
+<h2 id="泛型集合"><a href="#泛型集合" class="headerlink" title="泛型集合"></a>泛型集合</h2><blockquote>
+<p>上面的集合，虽然存储时候，不限制数据类型，都是object类型存储，但是取出使用的时候还是要转成对应类型，比较麻烦。<br>泛型集合出现就是解决这个问题</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">注意：泛型集合几乎具有ArrayList所有方法，使用时候参照即可</div><div class="line">			//创建泛型集合</div><div class="line">            List&lt;int&gt; list = new List&lt;int&gt;();</div><div class="line">            list.Add(1);//上面类型确定，此处只能添加对应类型</div><div class="line">            list.AddRange(new int[] &#123; 1, 2, 3, 4 &#125;);</div><div class="line">            //list泛型集合可以转换成数组</div><div class="line">            int[] arr=list.ToArray();</div><div class="line">            //数组转集合</div><div class="line">            List&lt;int&gt; listTwo = arr.ToList();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>补充：<br>装箱：值类型转换为引用类型<br>拆箱：引用类型转换为值类型<br>但是有个大前提，必须有继承关系，没有继承关系的话，是不可能发生装箱，拆箱的。<br>例如：int转object类型，就是装箱，反之拆箱<br>例如：int转stirng不是装箱拆箱，因为没有继承关系<br>拆箱装箱影响效率，应该尽量避免。</p>
+</blockquote>
+<h2 id="字典集合：也都具有hashtable几乎所有方法"><a href="#字典集合：也都具有hashtable几乎所有方法" class="headerlink" title="字典集合：也都具有hashtable几乎所有方法"></a>字典集合：也都具有hashtable几乎所有方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">			Dictionary&lt;int, string&gt; dic = new Dictionary&lt;int, string&gt;();</div><div class="line">            dic.Add(1, &quot;测试1&quot;);</div><div class="line">            dic.Add(2, &quot;测试2&quot;);</div><div class="line">            dic[1] = &quot;替换&quot;;//和hashtable一样，此处是替换，但是不能是add，因为key唯一</div><div class="line">            foreach (var item in dic.Keys)</div><div class="line">            &#123;</div><div class="line">                Console.WriteLine(dic[item]);</div><div class="line">            &#125;</div><div class="line">            //但是字典集合有更方便的遍历方式，推荐此种方式</div><div class="line">            foreach (KeyValuePair&lt;int,string&gt; kv in dic)</div><div class="line">            &#123;</div><div class="line">                Console.WriteLine(&quot;&#123;0&#125;-----&#123;1&#125;&quot;, kv.Key, kv.Value);</div><div class="line">            &#125;</div></pre></td></tr></table></figure>
+<h1 id="文件相关"><a href="#文件相关" class="headerlink" title="文件相关"></a>文件相关</h1><h2 id="path类：静态类"><a href="#path类：静态类" class="headerlink" title="path类：静态类"></a>path类：静态类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">string str = @&quot;C:\Program Files\Elantech\a.mp3&quot;;</div><div class="line">         Path.GetFileName(str);//获取路径下文件名字</div><div class="line">         Path.GetFileNameWithoutExtension(str);//获取路径下文件名，但不包括扩展名</div><div class="line">         Path.GetExtension(str);//得到扩展名</div><div class="line">         Path.GetDirectoryName(str);//得到文件所处文件夹的名称</div><div class="line">         Path.GetFullPath(str);//得到文件全路径</div><div class="line">         Path.Combine(@&quot;c:\a&quot;,&quot;b.txt&quot;);//连接两个字符串作为路径</div></pre></td></tr></table></figure>
+<h2 id="file类：静态类"><a href="#file类：静态类" class="headerlink" title="file类：静态类"></a>file类：静态类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//创建文件</div><div class="line">         File.Create(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;);</div><div class="line">         //删除文件,不走回收站</div><div class="line">         File.Delete(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;);</div><div class="line">         //复制文件</div><div class="line">         File.Copy(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;, @&quot;C:\Users\zqyfa\Desktop\b.txt&quot;);</div><div class="line">string str = &quot;今天天气测试信息&quot;;</div><div class="line">         byte[] buffer = Encoding.Default.GetBytes(str);</div><div class="line">         //写入信息，文件可以不存在，会自动创建</div><div class="line">         /*</div><div class="line">          * WriteAllLines</div><div class="line">          * WriteAllText</div><div class="line">          * WriteAllBytes</div><div class="line">          * 以上三个都是会覆盖以前内容</div><div class="line">          * </div><div class="line">          * 如果不想覆盖，使用append对应三个方法</div><div class="line">          * File.AppendAllText等等</div><div class="line">          */</div><div class="line">         File.WriteAllBytes(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;, buffer);</div><div class="line">         //读取文件</div><div class="line">         byte[] b2=File.ReadAllBytes(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;);</div><div class="line">         string info = Encoding.Default.GetString(b2);</div><div class="line">         //以行的形式读取</div><div class="line">        string[] strs= File.ReadAllLines(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;, Encoding.Default);//参数二设置编码格式</div><div class="line">         //一次性读取整个文本内容</div><div class="line">         string str1 = File.ReadAllText(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;, Encoding.Default);</div></pre></td></tr></table></figure>
+<h2 id="文件流"><a href="#文件流" class="headerlink" title="文件流"></a>文件流</h2><blockquote>
+<p>file类对内存压力大，一次性读取，一般开发使用filestream文件流，对内存压力小<br>FileStream:操作字节<br>操作字符：<br>StreamReader，StreamWriter</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">案例：读取文件基本案例，但是此时没有循环读取，文件较大的时候，需要循环读取</div><div class="line">			//参数二：打开文件方式是枚举，参数三：读取操作方式(只读，读写等等)</div><div class="line">			FileStream fs = new FileStream(@&quot;文件路径&quot;, FileMode.OpenOrCreate, FileAccess.Read);</div><div class="line">            byte[] buffer = new byte[1024 * 1024 * 5];</div><div class="line">            //返回的是本次实际读取到的有效字节数,0指的是从文件开始出开始读取，读取长度是buffer.Lengt</div><div class="line">            //读取之后放到buffer中</div><div class="line">            int r = fs.Read(buffer, 0, buffer.Length);</div><div class="line">            //解码,0指的是从buffer的0处开始读取，解码长度是r，这样可以避免，多余的一次读取的无效字节</div><div class="line">            string s = Encoding.Default.GetString(buffer,0,r);//Encoding后面还可以是utf-8等值</div><div class="line">            //关闭流</div><div class="line">            fs.Close();</div><div class="line">            //释放资源</div><div class="line">            fs.Dispose();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">案例1:写入数据</div><div class="line">using (FileStream fsWriter = new FileStream(@&quot;文件路径&quot;, FileMode.Append, FileAccess.Write))</div><div class="line">&#123;</div><div class="line">    string s = &quot;我是要覆盖的信息&quot;;</div><div class="line">    byte[] bs=Encoding.Default.GetBytes(s);</div><div class="line">    fsWriter.Write(bs,0,bs.Length);</div><div class="line">&#125;</div><div class="line">使用using不需要关闭流，释放资源等，系统会自动操作。</div><div class="line"></div><div class="line">案例：复制多媒体文件</div><div class="line"> using (FileStream fsr = new FileStream(@&quot;C:\Users\zqyfa\Desktop\a\1、复习.avi&quot;, FileMode.OpenOrCreate, FileAccess.Read))</div><div class="line">            &#123;</div><div class="line">                using (FileStream fsw=new FileStream(@&quot;C:\Users\zqyfa\Desktop\a\b.avi&quot;, FileMode.OpenOrCreate, FileAccess.Write))</div><div class="line">                &#123;</div><div class="line">                    byte[] bys = new byte[1024 * 5 * 1024];</div><div class="line">                    while (true)</div><div class="line">                    &#123;</div><div class="line">                        int num=fsr.Read(bys,0,bys.Length);</div><div class="line">                        if (num==0)//num=0证明文件读取完毕了</div><div class="line">                        &#123;</div><div class="line">                            break;</div><div class="line">                        &#125;</div><div class="line">                        fsw.Write(bys, 0, num);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">案例2：字符输入输出流</div><div class="line">			//写入</div><div class="line">            //true代表是否追加(默认false，覆盖)，还可以设置编码查看不同构造即可</div><div class="line">            using(StreamWriter sw=new StreamWriter(@&quot;C:\Users\Administrator\Desktop\a.txt&quot;,true))</div><div class="line">            &#123;</div><div class="line">                string info = &quot;我是测试文本&quot;;</div><div class="line">                sw.Write(info);</div><div class="line">            &#125;</div><div class="line">            //读取</div><div class="line">            using (StreamReader sr=new StreamReader(@&quot;C:\Users\Administrator\Desktop\a.txt&quot;,Encoding.UTF8))</div><div class="line">            &#123;</div><div class="line">                while (!sr.EndOfStream)//是否流结束</div><div class="line">                &#123;</div><div class="line">                    Console.WriteLine(sr.ReadLine());</div><div class="line">                &#125;</div><div class="line">            &#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/面向对象一/" data-id="cj60seedi002k60nk2u3js7xo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-面向对象二" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/面向对象二/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.551Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Net/">.Net</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/面向对象二/">面向对象二</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><blockquote>
+<p>实现多态的3种手段：1、虚方法 2、抽象类 3、接口</p>
+</blockquote>
+<h2 id="虚方法"><a href="#虚方法" class="headerlink" title="虚方法"></a>虚方法</h2><blockquote>
+<p>将父类的方法标记为虚方法，使用关键字virtual,这个函数可以被子类重写<br>在子类的方法标记override</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">class Program</div><div class="line">    &#123;</div><div class="line">        static void Main(string[] args)</div><div class="line">        &#123;</div><div class="line">            Person p = new Student(&quot;强哥&quot;);</div><div class="line">            p.sayHello();//输出 强哥是学生</div><div class="line">            Console.ReadKey();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    class Person</div><div class="line">    &#123;</div><div class="line">        private string _name;</div><div class="line">        public string Name</div><div class="line">        &#123;</div><div class="line">            get &#123; return _name; &#125;</div><div class="line">            set &#123; _name = value; &#125;</div><div class="line">        &#125;</div><div class="line">        public Person(string name)</div><div class="line">        &#123;</div><div class="line">            this.Name = name;</div><div class="line">        &#125;</div><div class="line">        public virtual void sayHello()//虚方法</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;&#123;0&#125;，是人类&quot;, Name);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    class Student : Person</div><div class="line">    &#123;</div><div class="line">        public Student(string name) : base(name)</div><div class="line">        &#123;</div><div class="line">        &#125;</div><div class="line">        public override void sayHello()//重写</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;&#123;0&#125;,是学生&quot;, Name);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><blockquote>
+<p>当父类中的方法不知道如何实现的时候，可以考虑将父类写成抽象类，方法写成抽象方法<br>抽象类可以存在非抽象成员，抽象本身没法实例化无法使用，但是其子类可以使用其非抽象成员。<br>抽象成员必须在抽象类当中。<br>子类继承抽象类后，必须把父类中的所有抽象成员都重写，除非子类也是抽象类<br>抽象类是否构造函数的，虽然不能被实例化</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">class Program</div><div class="line">    &#123;</div><div class="line">        static void Main(string[] args)</div><div class="line">        &#123;</div><div class="line">            Animal a = new Dog();//注意抽象类不能实例化，所以此处使用其子类</div><div class="line">            a.show();</div><div class="line">            Console.ReadKey();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    abstract class Animal</div><div class="line">    &#123;</div><div class="line">        public abstract void show();//抽象方法不能有方法体</div><div class="line">    &#125;</div><div class="line">    class Dog : Animal</div><div class="line">    &#123;</div><div class="line">        public override void show()</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;狗再叫&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">解析：抽象类中抽象方法，存在的唯一意义，就是让子类重写，所以不论是虚方法，</div><div class="line">还是抽象类，本质都是子类重写方法实现多态。</div></pre></td></tr></table></figure>
+<h1 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h1><hr>
+<pre><code>public :公开的
+private:私有的，只能当前类内部访问
+protected:受保护的，当前类和其子类访问
+internal：只能在当前程序集中访问
+protected internal: protected+internal
+
+能够修饰类的访问修饰符：public internal(默认)
+子类访问权限不能高于父类
+</code></pre><hr>
+<h1 id="简单工厂设计模式"><a href="#简单工厂设计模式" class="headerlink" title="简单工厂设计模式"></a>简单工厂设计模式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">namespace ConsoleApp2</div><div class="line">&#123;</div><div class="line">    class Program</div><div class="line">    &#123;</div><div class="line">        static void Main(string[] args)</div><div class="line">        &#123;</div><div class="line"></div><div class="line">            string info = Console.ReadLine();</div><div class="line">            factory(info);</div><div class="line">            Console.ReadKey();</div><div class="line">        &#125;</div><div class="line">		//工厂方法</div><div class="line">        public static void factory(string info)</div><div class="line">        &#123;</div><div class="line">            NoteBook nb = null;</div><div class="line">            switch (info)</div><div class="line">            &#123;</div><div class="line">                case &quot;联想&quot;:nb = new Lenovo();</div><div class="line">                    break;</div><div class="line">                case &quot;宏基&quot;:nb = new Acer();</div><div class="line">                    break;</div><div class="line">            &#125;</div><div class="line">            nb.show();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    public abstract class NoteBook</div><div class="line">    &#123;</div><div class="line">        public abstract void show();</div><div class="line">    &#125;</div><div class="line">    public class Lenovo : NoteBook</div><div class="line">    &#123;</div><div class="line">        public override void show()</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;联想&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    public class Acer : NoteBook</div><div class="line">    &#123;</div><div class="line">        public override void show()</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;宏基&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="值传递和引用传递"><a href="#值传递和引用传递" class="headerlink" title="值传递和引用传递"></a>值传递和引用传递</h1><hr>
+<pre><code>值类型：int double char decimal bool enum struct   栈存储  原先值不随修改修改而修改
+引用类型：string 数组 自定义类 集合 object 接口    堆存储  随之变化
+特殊：字符串虽然是引用类型，但是是不可变的，所以结果类似值传递。
+ref的作用：把原先的值传递变化为了引用传递
+</code></pre><hr>
+<h1 id="序列化和反序列化"><a href="#序列化和反序列化" class="headerlink" title="序列化和反序列化"></a>序列化和反序列化</h1><ul>
+<li>序列化：将对象转换为二进制</li>
+<li>反序列化：将二进制转化为对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">			Person p=new Person();</div><div class="line">            p.Name = &quot;强哥&quot;;</div><div class="line">            using (FileStream fsw = new FileStream(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;, FileMode.Open, FileAccess.Write))</div><div class="line">            &#123;</div><div class="line">                //开始序列化对象</div><div class="line">                BinaryFormatter bf = new BinaryFormatter();</div><div class="line">                //序列化</div><div class="line">                bf.Serialize(fsw, p);</div><div class="line">            &#125;</div><div class="line">            using (FileStream fsr = new FileStream(@&quot;C:\Users\zqyfa\Desktop\a.txt&quot;, FileMode.Open, FileAccess.Read))</div><div class="line">            &#123;</div><div class="line">                BinaryFormatter bf = new BinaryFormatter();</div><div class="line">                //反序列化</div><div class="line">                p = (Person)bf.Deserialize(fsr);</div><div class="line">                Console.WriteLine(p.Name);</div><div class="line">            &#125;</div><div class="line">            Console.ReadKey();</div><div class="line">//下面是要被序列化的类，该类必须被 [Serializable] 标记</div><div class="line"> [Serializable]  //要被序列化的类标记下</div><div class="line">    class Person</div><div class="line">    &#123;</div><div class="line">        private string _name;</div><div class="line">        public string Name</div><div class="line">        &#123;</div><div class="line">            get &#123; return _name; &#125;</div><div class="line">            set &#123; _name = value; &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="部分类"><a href="#部分类" class="headerlink" title="部分类"></a>部分类</h1><hr>
+<pre><code>在同一文件下，不能出现两个名称相同的类，但是partial改变了这一结论
+public partial class Person{}
+public partial class Person{}
+这就叫部分类，这两个类可以看作一个类，所有成员共用，其实就是一个类
+</code></pre><hr>
+<h1 id="密封类"><a href="#密封类" class="headerlink" title="密封类"></a>密封类</h1><blockquote>
+<p>密封类不可以被其他类继承，但是可以继承其他类，使用关键字sealed<br>public sealed class Person{}</p>
+</blockquote>
+<h1 id="重写父类ToString方法"><a href="#重写父类ToString方法" class="headerlink" title="重写父类ToString方法"></a>重写父类ToString方法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class Person</div><div class="line">    &#123;</div><div class="line">        public override string ToString()</div><div class="line">        &#123;</div><div class="line">            return &quot;hello&quot;;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">此时Person类重写就是父类的虚方法ToString，否则直接打印的就是Person的命名空间</div></pre></td></tr></table></figure>
+<h1 id="自动属性"><a href="#自动属性" class="headerlink" title="自动属性"></a>自动属性</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public int Age&#123;</div><div class="line">	get;</div><div class="line">	set;</div><div class="line">&#125;</div><div class="line">自动属性书写更简便，效果等同字段加属性，唯一区别就是不能加限定。</div></pre></td></tr></table></figure>
+<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><hr>
+<pre><code>要使用多继承的时候使用接口，此处区分java,java中继承实现分开，c#不分开
+如果继承时候多继承类不行，但是多继承接口是可以得。
+接口中成员不可以添加访问修饰符，默认就是public
+接口中不能出现有方法体的成员
+接口中不能包含字段
+接口中可以包含自动属性
+接口中可以有方法，属性(必须是自动属性)，索引器，这三者本质都是方法
+静态类，抽象类，接口不可被实例化
+接口必须先继承类，在继承接口
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">接口基本案例：</div><div class="line">class Student : Person</div><div class="line">    &#123;</div><div class="line">        public void show()</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;实现接口方法&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    public interface Person</div><div class="line">    &#123;</div><div class="line">        void show();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="显示接口：解决方法重名问题"><a href="#显示接口：解决方法重名问题" class="headerlink" title="显示接口：解决方法重名问题"></a>显示接口：解决方法重名问题</h1><blockquote>
+<p>当接口和子类中方法名相同的时候，但是又想让子类同名方法不是多态的实现形式，而是<br>子类自己的方法(不是重写)。<br>类中默认访问修饰符石private<br>类中void Ifly.fly()，不能被访问修饰符修饰，这是固定写法，但是类中方法默认是private，<br>按理说，在外面调用时候是不能被调用，但是此时void Ifly.fly()其实是接口中方法的实现，<br>而接口中默认修饰符是public，所以外部能访问</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">class Bird : Ifly</div><div class="line">    &#123;</div><div class="line">        public void fly()</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;鸟在飞&quot;);</div><div class="line">        &#125;</div><div class="line">        /// &lt;summary&gt;</div><div class="line">        /// 显示接口</div><div class="line">        /// &lt;/summary&gt;</div><div class="line">        void Ifly.fly()//这就是显示接口</div><div class="line">        &#123;</div><div class="line">            Console.WriteLine(&quot;我是接口的飞&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    public interface Ifly</div><div class="line">    &#123;</div><div class="line">        void fly();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">//调用</div><div class="line">Ifly ifly = new Bird();</div><div class="line">ifly.fly();//接口飞</div><div class="line">Bird b = new Bird();</div><div class="line">b.fly();//鸟飞</div></pre></td></tr></table></figure>
+<blockquote>
+<p>总结：虚方法，抽象类，接口实现多态使用场景区别<br>虚方法：能抽取父类时候<br>抽象类：父类不知道如何实现的时候<br>接口：没有共同父类，但是可能有共同行为(例如飞)的时候</p>
+<p>补充：<br>产生不会重复的唯一编码，使用Guid<br>因为Guid是一个结构体，内部有属性有方法，具体可以细细研究<br>产生唯一编码：Guid.NewGuid()即可。 </p>
+</blockquote>
+<h1 id="MD5加密"><a href="#MD5加密" class="headerlink" title="MD5加密"></a>MD5加密</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">MD5加密不可逆</div><div class="line">基本案例：</div><div class="line">			//md5是抽象类，不能直接实例化</div><div class="line">            MD5 md5 = MD5.Create();</div><div class="line">            string info = &quot;我是要加密的信息&quot;;</div><div class="line">            byte[] buffer = Encoding.Default.GetBytes(info);</div><div class="line">            byte[] nb=md5.ComputeHash(buffer);</div><div class="line">            Console.WriteLine(Encoding.Default.GetString(nb));</div><div class="line">但是如上方式，输出值，都是乱码，但是此乱码不是编码格式造成的。</div><div class="line">因为按照如上方式，可能把对应字符连接组成汉字等等，所以需要采用</div><div class="line">把buffer中每个元素都tostring然后连接，才能避免乱码。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">完整案例：</div><div class="line">			MD5 md5 = MD5.Create();</div><div class="line">            string info = &quot;我是要加密的信息&quot;;</div><div class="line">            byte[] buffer = Encoding.Default.GetBytes(info);</div><div class="line">            byte[] nb=md5.ComputeHash(buffer);</div><div class="line">            string nbinfo=&quot;&quot;;</div><div class="line">            for (int i = 0; i &lt; nb.Length; i++)</div><div class="line">            &#123;</div><div class="line">                nbinfo += nb[i].ToString();</div><div class="line">				//nbinfo += nb[i].ToString(&quot;x&quot;);这样的话就会将十进制字符串转成16进制</div><div class="line">            &#125;</div><div class="line">            Console.WriteLine(nbinfo);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>补充：ToString添加不同参数有不同效果，例如转换成金额，日期等等。<br>ToString(“x2”)<br>x为 十六进制<br>2为  每次都是两位数<br>比如 0x0A ,若没有2，就只会输出0xA<br>假设两个数10和26<br>正常情况下十六进制显示0xA,0x1A,看起来不整齐<br>如果为x2,则为0x0A,0x1A。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/面向对象二/" data-id="cj60seedl002m60nkucabivkc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-进制相关" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/进制相关/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.549Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/进制相关/">进制相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="进制相关说明"><a href="#进制相关说明" class="headerlink" title="进制相关说明"></a>进制相关说明</h1><h2 id="进制转换基础"><a href="#进制转换基础" class="headerlink" title="进制转换基础"></a>进制转换基础</h2><h3 id="八进制"><a href="#八进制" class="headerlink" title="八进制"></a>八进制</h3><h4 id="八进制转十进制"><a href="#八进制转十进制" class="headerlink" title="八进制转十进制"></a>八进制转十进制</h4><blockquote>
+<p>说明：该位数字乘以8和该位的权次方相加即可，小数点之后，权位为负数</p>
+</blockquote>
+<ul>
+<li>案例：八进制72.45转十进制</li>
+</ul>
+<hr>
+<p>7<em>8**1+2</em>8<strong>0+4*8</strong>（-1）+5<em>8*</em>（-2）=58.578125</p>
+<p>注意：此时输出是字符串，而且参数二不加默认是把十进制字符串转十进制。</p>
+<hr>
+<h4 id="八进制转二进制"><a href="#八进制转二进制" class="headerlink" title="八进制转二进制"></a>八进制转二进制</h4><blockquote>
+<p>二进制八进制对照关系表</p>
+</blockquote>
+<hr>
+<pre><code>二进制      八进制
+000                0
+001                1
+010                2
+011                3
+100                4
+101                5
+110                6
+111                7
+八进制125转二进制
+125    001  010 101
+</code></pre><hr>
+<h4 id="八进制转十六进制"><a href="#八进制转十六进制" class="headerlink" title="八进制转十六进制"></a>八进制转十六进制</h4><hr>
+<p>最好按照八进制转二进制，二进制转十六进制转换</p>
+<p>八进制125转十六进制</p>
+<p>125   -&gt;  001 010  101 </p>
+<p>然后把转换的二进制四位一截取，直接按照八四二一码转值，按顺序(拼接)即可</p>
+<p>例如此时：0101   0101  -》  5   5   -》 55<br>故而八进制125值为十六进制55</p>
+<hr>
+<h3 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h3><hr>
+<p>1.二进制转十进制（八四二一码即可）注意，按顺序（加和）即可<br>例如：10101010   -》   128   32   8   2   =》170</p>
+<p>2.二进制转八进制(三位的二进制值拼接即可)<br>例如：10101010<br>说明：三位一截取，不够的补0<br>010 101 010   -&gt; 2   5   2  -&gt;252</p>
+<p>3.二进制转十六进制（四位的二进制值拼接即可）<br>1010    1010    —&gt;   aa</p>
+<hr>
+<h3 id="十进制"><a href="#十进制" class="headerlink" title="十进制"></a>十进制</h3><hr>
+<p>1.十进制转二进制（除以2余数逆向拼接即可）</p>
+<p>例如：125转二进制   得值 1111101 </p>
+<p>2.十进制转八进制（除以8余数逆向拼接即可）</p>
+<p>例如：125   =》175</p>
+<p>3.十进制转十六进制（除以16余数逆向拼接即可）</p>
+<p>例如： 125   =》7d</p>
+<hr>
+<h3 id="十六进制"><a href="#十六进制" class="headerlink" title="十六进制"></a>十六进制</h3><hr>
+<p>1.十六进制转二进制</p>
+<p>例如：7d转二进制，7对应四位二进制数为（通过8421获取）0111<br>d对应为1101</p>
+<p>7d  -&gt;  0111  1101</p>
+<p>2.十六进制转八进制</p>
+<p>转二进制后，三位截取获取8421码即可<br>001 111  101  -&gt;  1 7  5  -》175</p>
+<p>3.十六进制转十进制</p>
+<p>转二进制后每一位值相加即可</p>
+<p>7d   -&gt;  0111  1101  -&gt;125</p>
+<hr>
+<h2 id="API使用集合"><a href="#API使用集合" class="headerlink" title="API使用集合"></a>API使用集合</h2><hr>
+<p>A、十进制转换其他</p>
+<p>　　十进制转成二进制 </p>
+<p>　　Integer.toBinaryString(int i) </p>
+<p>　　十进制转成八进制 </p>
+<p>　　Integer.toOctalString(int i) </p>
+<p>　　十进制转成十六进制</p>
+<p>　　Integer.toHexString(int i)</p>
+<p>B、其他转换十进制</p>
+<p>　　二进制转十进制 </p>
+<p>　　Integer.valueOf(“1010”,2).toString()</p>
+<p>　　八进制转成十进制 </p>
+<p>　　Integer.valueOf(“125”,8).toString() </p>
+<p>　　十六进制转成十进制 </p>
+<p>　　Integer.valueOf(“ABCDEF”,16).toString() </p>
+<p>C、数字型字符串转数字</p>
+<p>Integer.parseInt(str)</p>
+<p>Float.parseFloat(str)</p>
+<hr>
+<h2 id="移位-针对的是二进制"><a href="#移位-针对的是二进制" class="headerlink" title="移位(针对的是二进制)"></a>移位(针对的是二进制)</h2><hr>
+<p>1.java中左移右移分别对应  &lt;&lt;   &gt;&gt;</p>
+<p>注意：向右移位是有符号操作，java使用最高位来表示数值的正负，负数最高位永远是1，一个以1开头的二进制数移位后仍将以1开头，一个以0开头的移位后仍将以0开头。</p>
+<p>补充：针对有符号向左移动的时候，符号位不变，补充的每一位都是符号位。</p>
+<p>即：-8&lt;<2 -="">   结果为：11111111111111111111111111100000。</2></p>
+<p>2.无符号（只有右移）&gt;&gt;&gt;</p>
+<p>说明：因为左移动是在后面补0，而符号位在最前面，所以左移即可，不需要无符号左移，两者等效。</p>
+<hr>
+<h2 id="原码反码补码"><a href="#原码反码补码" class="headerlink" title="原码反码补码"></a>原码反码补码</h2><blockquote>
+<p>不论正数负数，在内存中都是以补码形式存储</p>
+</blockquote>
+<hr>
+<p>正数：补码原码反码相同，即为计算出来的二进制。</p>
+<p>负数：原码就是二进制，反码就是0，1取反（符号位不变），补码是反码加一。</p>
+<p>总结：也就是说整数无需关心各种码直接二进制即可，只有负数才涉及转换，所谓的补码运算也就只是针对负数而言的。</p>
+<hr>
+<h2 id="byte数组案例"><a href="#byte数组案例" class="headerlink" title="byte数组案例"></a>byte数组案例</h2><hr>
+<p>byte取值范围：-128~127，超过会被截取<br>b[0]= (byte) 129;//注意此处，127以下包括127都不会需要强制转换（针对正数而言）然后打印b[0]会得到-127。</p>
+<p>例如：129超过byte取值范围界限，会被截取为byte类型的一字节</p>
+<p>129对应的二进制是：00000000 00000000 00000000 10000001</p>
+<p>强制转换后，只剩下最后部分一字节  10000001（原码）</p>
+<p>反码：符号位不变其余取反，1  1111110</p>
+<p>补码：反码加一，  &gt;&gt;&gt;  1  1111111  可知符号位1代表负数，后面七项相加为127。</p>
+<p>故而最后结果为-127.</p>
+<p>案例：[0]= (byte) -129输出结果为127.</p>
+<p>-129：因为是负数，所以其在内存中以补码形式存储。</p>
+<p>-129  原码：10000000  00000000 00000000 10000001</p>
+<p>反码：符号位不变，其余取反，11111111 11111111 11111111 01111110</p>
+<p>补码：反码加一  11111111 11111111 11111111 01111111<br>故而11111111 11111111 11111111 01111111才是内存中-129真正的存储形式</p>
+<p>截取之后，01111111   -&gt;然后此时符号位为第一位0 ，为正数，而正数各种码一致也就是127.</p>
+<p>补充：byte取值范围说明（-128~127）</p>
+<p>注意：负数的补码是 其绝对值的原码的反码+1</p>
+<p>最高位为符号位，取值是后面七位的结果</p>
+<p>最大值为：0   111 1111  即为127</p>
+<p>最小值为：1   000 0000  </p>
+<p>又负数的补码是其绝对值的原码的反码加1.</p>
+<p>128的原码 00000000 00000000 00000000 10000000</p>
+<p>反码 ：00000000 00000000 00000000  011111111</p>
+<p>补码：00000000 00000000 00000000  10000000</p>
+<p>截取之后：1000000</p>
+<p>可知10000000就是-128的补码</p>
+<p>步骤：</p>
+<p>1、byte为一字节8位，最高位是符号位，即最大值是01111111，因正数的补码是其本身，即此正数为01111111,十进制表示形式为127</p>
+<p>2、最大正数是01111111，那么最小负是10000000(最大的负数是11111111，即-1)</p>
+<p>3、10000000是最小负数的补码表示形式，我们把补码计算步骤倒过来就即可。10000000减1得01111111然后取反10000000因为负数的补码是其绝对值取反，即10000000为最小负数的绝对值，而10000000的十进制表示是128，所以最小负数是-128</p>
+<p>4、由此可以得出byte的取值范围是-128到+127。</p>
+<hr>
+<h2 id="符号操作"><a href="#符号操作" class="headerlink" title="符号操作"></a>符号操作</h2><blockquote>
+<p>0为假，1为真</p>
+</blockquote>
+<hr>
+<p>~   按位取反</p>
+<p>&amp;   按位与(有假则假)</p>
+<p>^   按位异或(相同为假，不同为真)</p>
+<p>|   按位或(有真则真)</p>
+<hr>
+<hr>
+<p>案例：</p>
+<p> byte[] b=new byte[3];</p>
+<p> b[0]= (byte) 128;</p>
+<p> System.out.println(b[0]);//-128</p>
+<p> System.out.println(b[0]&amp;0xff);//128</p>
+<p> System.out.println(b[0]&amp;0x000000ff);//128，0x000000ff和0xff等效，因为十六进制也是整型，十六进制一位是4个bit，故而会默认补充六个0.</p>
+<p>是因为java的自动转型导致的，原理如下：</p>
+<p>1、 128为int整数32位，前24为全部为0 后8位是1000 0000</p>
+<p>2、（byte)128 转型为byte后首位是1，java认为是负数的补码标识<br>3、在System.out.println调用时，java类型系统会自动将byte类型转换为int，此时进行的是有符号左移操作，前24位全部为1，后8为位1000 0000，仍然是-128.</p>
+<p>4、所以输出的为-128</p>
+<p>tip：java在做字节操作的时候应为会发生自动的类型转换，又不支持无符号整数，要特别注意，通常需要使用 与&amp; 操作屏蔽掉自动扩展导致的错误的bit</p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/进制相关/" data-id="cj60seedf002h60nkzsyf7wa0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-基于Gulp的自动化工作流" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/基于Gulp的自动化工作流/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.547Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/基于Gulp的自动化工作流/">基于Gulp的自动化工作流</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">Gulp中文网</a></p>
+</blockquote>
+<hr>
+<pre><code>全局安装：npm install --global gulp
+切换到项目目录：npm install gulp --save-dev
+在项目根目录下创建一个名为 gulpfile.js 的文件
+以下步骤都是在gulpfile.js中。
+</code></pre><hr>
+<h1 id="Gulp说明："><a href="#Gulp说明：" class="headerlink" title="Gulp说明："></a><strong>Gulp说明：</strong></h1><ul>
+<li>gulp主文件，用于注册任务</li>
+<li>gulp的作用机械化的完成重复性的工作</li>
+<li>代码都是由node执行</li>
+</ul>
+<h1 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a><strong>简单使用</strong></h1><ul>
+<li>载入gulp模块</li>
+</ul>
+<blockquote>
+<p>var gulp=require(‘gulp’);</p>
+</blockquote>
+<ul>
+<li>注册任务，say是任务名</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  gulp.task(&apos;copy&apos;,function()&#123;</div><div class="line">  //当gulp执行say任务时，会自动执行该函数</div><div class="line">  //console.log(&apos;say&apos;);</div><div class="line">  //合并，压缩之类的操作</div><div class="line">  //gulp.src：取一个文件</div><div class="line">  gulp.src(&apos;./src/index.html&apos;)</div><div class="line">  .pipe(gulp.dest(&apos;dist/&apos;));//将此处需要的操作传递进去,相当于一个环节</div><div class="line">  //.pipe()可以多次，比如先压缩再放入另一个文件夹</div><div class="line">  //dest是目的地的意思，不需要写文件名，原来是什么名字现在就是什么名字。</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">gulp.task(&apos;dist&apos;,function () &#123;</div><div class="line">  gulp.watch(&apos;./src/index.html&apos;,[&apos;copy&apos;]);</div><div class="line">  //watch是监视参数一文件，一旦发生变法，执行参数二任务。</div><div class="line">  gulp.watch(&apos;./styles/demo.less&apos;,[&apos;style&apos;]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>执行</li>
+</ul>
+<hr>
+<pre><code>然后切换到项目目录，因为在之前已经全局安装了gulp
+此处执行gulp 任务名即可
+</code></pre><hr>
+<h1 id="gulp插件"><a href="#gulp插件" class="headerlink" title="gulp插件"></a><strong>gulp插件</strong></h1><hr>
+<pre><code>转换less到css，需要用到插件gulp-less
+切换到项目目录： npm install gulp-less --save-dev
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var less=require(&apos;gulp-less&apos;);</div><div class="line">gulp.task(&apos;style&apos;,function () &#123;</div><div class="line">  gulp.src(&apos;./styles/*.less&apos;)//*通配所有less文件</div><div class="line">  .pipe(less())</div><div class="line">  .pipe(gulp.dest(&apos;dist/css/&apos;));</div><div class="line">&#125;);</div><div class="line">//css压缩，插件gulp-cssnano</div><div class="line">//多个文件合并：gulp-concat</div><div class="line">var concat=require(&apos;gulp-concat&apos;);</div><div class="line">gulp.task(&apos;scripts&apos;,function () &#123;</div><div class="line">  return gulp.src(&apos;./lib/*.js&apos;)</div><div class="line">  .pipe(concat(&apos;all.js&apos;))</div><div class="line">  .pipe(gulp.dest(&apos;./dist/&apos;));</div><div class="line">  //把lib文件下所有js文件，合并到all.js并且输出到dist文件夹下面，名称还是all。</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>gulp四个api：watch task dest src .</p>
+</blockquote>
+<h1 id="其他常用gulp插件"><a href="#其他常用gulp插件" class="headerlink" title="其他常用gulp插件"></a>其他常用gulp插件</h1><ol>
+<li>最小化js:gulp-uglify</li>
+<li>创建本地服务器：gulp-connect</li>
+<li>重命名文件：gulp-rename</li>
+<li>压缩html:gulp-minify-html</li>
+<li>最小化图像：gulp-imagemin</li>
+</ol>
+<h1 id="强大gulp插件"><a href="#强大gulp插件" class="headerlink" title="强大gulp插件"></a>强大gulp插件</h1><h2 id="browsersync功能强大（gulp-connect没有其强大）"><a href="#browsersync功能强大（gulp-connect没有其强大）" class="headerlink" title="browsersync功能强大（gulp-connect没有其强大）"></a>browsersync功能强大（gulp-connect没有其强大）</h2><blockquote>
+<p><a href="https://browsersync.io/docs/gulp" target="_blank" rel="external">https://browsersync.io/docs/gulp</a></p>
+</blockquote>
+<h3 id="使用步骤："><a href="#使用步骤：" class="headerlink" title="使用步骤："></a>使用步骤：</h3><ul>
+<li>切换到项目目录</li>
+<li>执行npm install browser-sync gulp –save-dev</li>
+<li>代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var gulp        = require(&apos;gulp&apos;);</div><div class="line">var browserSync = require(&apos;browser-sync&apos;).create();</div><div class="line">gulp.task(&apos;browser-sync&apos;, function() &#123;</div><div class="line">    browserSync.init(&#123;</div><div class="line">        server: &#123;</div><div class="line">            baseDir: &quot;./&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>其中baseDir./指的是当前项目根目录
+当执行完毕之后，多个窗口可以同步滚动，而且保存代码之后不需要刷新
+另外命令行UI关键字之后会打印出本机管理页面的地址，复制到浏览器可以进入browserSync后台
+其他几个关键字，还包括，其他人要访问后台的ip地址等，大家可以试试。
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/基于Gulp的自动化工作流/" data-id="cj60seedc002f60nkvnp4hrhx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-回调机制浅尝" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/回调机制浅尝/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.545Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/回调机制浅尝/">回调机制浅尝</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="回调机制浅尝"><a href="#回调机制浅尝" class="headerlink" title="回调机制浅尝"></a>回调机制浅尝</h1><h2 id="回调处于同步和异步之间，回调是异步的基础"><a href="#回调处于同步和异步之间，回调是异步的基础" class="headerlink" title="回调处于同步和异步之间，回调是异步的基础"></a>回调处于同步和异步之间，回调是异步的基础</h2><blockquote>
+<p>回调使用场景：简单说来，延时操作，例如写完代码，运行模拟器测试，运行之后，你可以去干其他事情，当运行完毕，弹出提示运行完毕，这时候在可以去看结果显示。</p>
+</blockquote>
+<h2 id="案例说明："><a href="#案例说明：" class="headerlink" title="案例说明："></a>案例说明：</h2><blockquote>
+<p>小王有作业，计算数学题目，但是他有别的事情，他打电话给小明,让小明计算，而他自己去忙别的事情，等计算完成之后，小明在打电话回来告诉小王答案。</p>
+</blockquote>
+<h2 id="代码说明："><a href="#代码说明：" class="headerlink" title="代码说明："></a>代码说明：</h2><blockquote>
+<p>回调函数接口：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface CallBack &#123;</div><div class="line">	void sayResult(int str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>定义小王：也就是调用者，其内部有回调函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public class Wang implements CallBack&#123;</div><div class="line">	private Li li;</div><div class="line">	public Wang (Li li) &#123;</div><div class="line">		this.li=li;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	//小王调用小明的计算方法（此处十分重要，必须开子线程）</div><div class="line">	//回掉使用就是为了延时操作，如果不单开线程则li调用的对应方法耗时的时候，wnag这边也会阻塞在这，也就是说wang想出去玩是不可能的，所以单开线程，使之异步，则小王后面干吗还是不影响的，同时小李也在运算。</div><div class="line">	public void sendToLi() &#123;</div><div class="line">		new Thread(new Runnable() &#123;  </div><div class="line">            @Override  </div><div class="line">            public void run() &#123;   </div><div class="line">              li.addMethod(Wang.this,101);</div><div class="line">            &#125;  </div><div class="line">        &#125;).start();  </div><div class="line">	&#125;</div><div class="line">	//此处就是回调函数</div><div class="line">		public void sayResult(int result) &#123;</div><div class="line">			System.out.println(&quot;计算结果是：&quot;+result);</div><div class="line">		&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>解析：要实现回调函数接口，要有被调用者的引用，此时就是li</p>
+<hr>
+<blockquote>
+<p>定义小明：也就是被调用者</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Li &#123;</div><div class="line">	//计算方法</div><div class="line">	public void addMethod(Wang wang, int num) &#123;</div><div class="line">		int sum=0;</div><div class="line">		for (int i = 0; i &lt; num; i++) &#123;</div><div class="line">			sum+=num;</div><div class="line">		&#125;</div><div class="line">		//调用回调函数，把答案回传回去</div><div class="line">		wang.sayResult(sum);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>测试主函数：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		Li li=new Li();</div><div class="line">		Wang wang=new Wang(li);</div><div class="line">		wang.sendToLi();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>总结：回调，就是调用者（有被调用者的引用）有两个函数，一个是调用被调用者的方法，一个是回调函数。调用者（有调用者的引用），有真正的执行方法，执行完毕之后，通过调用者的引用然后回调调用者的回调方法。</p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/回调机制浅尝/" data-id="cj60seed9002c60nk9t7gif5k" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Vue文档初读（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Vue文档初读（一）/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.544Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Vue文档初读（一）/">Vue文档初读（一）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Vue初涉"><a href="#Vue初涉" class="headerlink" title="Vue初涉"></a><strong>Vue初涉</strong></h1><h2 id="一、Vue简介"><a href="#一、Vue简介" class="headerlink" title="一、Vue简介"></a>一、<strong>Vue简介</strong></h2><p>###构建单页面应用的渐进式框架，与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。</p>
+<blockquote>
+<p><a href="https://cn.vuejs.org" target="_blank" rel="external">Vue官网</a></p>
+</blockquote>
+<h2 id="二、Vue起步"><a href="#二、Vue起步" class="headerlink" title="二、Vue起步"></a>二、<strong>Vue起步</strong></h2><hr>
+<pre><code>新手使用建议本地引用，下载js文件，正常引用即可。
+</code></pre><hr>
+<ul>
+<li>废话不多说，直接上手</li>
+<li><p>数据绑定</p>
+<blockquote>
+<p>html代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app&quot;&gt;</div><div class="line">			&#123;&#123; message &#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>js代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var app = new Vue(&#123;</div><div class="line">	  el: &apos;#app&apos;,</div><div class="line">	  data: &#123;</div><div class="line">	    message: &apos;Hello Vue!&apos;</div><div class="line">	  &#125;</div><div class="line">	&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>解析：el相当于element,故而按照js可以得到类名，id名等；data相当于数据，这两个命名规则是已定的。</em></p>
+<ul>
+<li><p>DOM元素绑定</p>
+<blockquote>
+<p>html代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app-2&quot;&gt;</div><div class="line">  &lt;span v-bind:title=&quot;message&quot;&gt;</div><div class="line">    &#123;&#123;info&#125;&#125;</div><div class="line">  &lt;/span&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>js代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var app2 = new Vue(&#123;</div><div class="line">  el: &apos;#app-2&apos;,</div><div class="line">  data: &#123;</div><div class="line">   message:&apos;我是鼠标悬浮提示信息&apos;,</div><div class="line">	info:&apos;哈哈&apos;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>条件</p>
+<blockquote>
+<p>html代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app-3&quot;&gt;</div><div class="line">  &lt;p v-if=&quot;seen&quot;&gt;Now you see me&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>js代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var app3 = new Vue(&#123;</div><div class="line">	  el: &apos;#app-3&apos;,</div><div class="line">	  data: &#123;</div><div class="line">	    seen: true</div><div class="line">	  &#125;</div><div class="line">	&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>解析：if是条件指令，seen是固定的，true显示，false不显示</em></p>
+<ul>
+<li><p>循环</p>
+<blockquote>
+<p>html代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app-4&quot;&gt;</div><div class="line">  &lt;ol&gt;</div><div class="line">    &lt;li v-for=&quot;todo in todos&quot;&gt;</div><div class="line">      &#123;&#123; todo.text &#125;&#125;</div><div class="line">    &lt;/li&gt;</div><div class="line">  &lt;/ol&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>js代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var app4 = new Vue(&#123;</div><div class="line">  el: &apos;#app-4&apos;,</div><div class="line">  data: &#123;</div><div class="line">    todos: [</div><div class="line">      &#123; text: &apos;Learn JavaScript&apos; &#125;,</div><div class="line">      &#123; text: &apos;Learn Vue&apos; &#125;,</div><div class="line">      &#123; text: &apos;Build something awesome&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>解析：todos对应下面数据，至于todo随意命名即可</em></p>
+<ul>
+<li><p>数据处理</p>
+<blockquote>
+<p>js代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var app5 = new Vue(&#123;</div><div class="line">  el: &apos;#app-5&apos;,</div><div class="line">  data: &#123;</div><div class="line">    message: &apos;Hello Vue.js!&apos;</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    reverseMessage: function () &#123;</div><div class="line">      this.message = this.message.split(&apos;&apos;).reverse().join(&apos;&apos;)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>html代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app-5&quot;&gt;</div><div class="line">  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;</div><div class="line">  &lt;button v-on:click=&quot;reverseMessage&quot;&gt;Reverse Message&lt;/button&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>解析：vue使用简单，onclick事件在此处对应v-on指令的click</em></p>
+<ul>
+<li><p>数据双向绑定</p>
+<blockquote>
+<p>html代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app-6&quot;&gt;</div><div class="line">  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;</div><div class="line">  &lt;input v-model=&quot;message&quot;&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>js代码</p>
+</blockquote>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var app6 = new Vue(&#123;</div><div class="line">  el: &apos;#app-6&apos;,</div><div class="line">  data: &#123;</div><div class="line">    message: &apos;Hello Vue!&apos;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>解析：v-model指令代表数据双向绑定，整个页面其绑定的数据都会同时变化</em></p>
+<h2 id="三、综合案例"><a href="#三、综合案例" class="headerlink" title="三、综合案例"></a>三、<strong>综合案例</strong></h2><blockquote>
+<p>不赘述，直接上代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">		&lt;html lang=&quot;en&quot;&gt;</div><div class="line">		&lt;head&gt;</div><div class="line">		  &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">		  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</div><div class="line">		  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</div><div class="line">		  &lt;title&gt;Document&lt;/title&gt;</div><div class="line">		&lt;/head&gt;</div><div class="line">		&lt;body&gt;</div><div class="line">		  &lt;div class=&quot;app&quot; v-bind:title=&quot;info&quot;&gt;</div><div class="line">		    &#123;&#123;message&#125;&#125;</div><div class="line">		    &lt;p v-if=&quot;seen&quot;&gt;&#123;&#123;hide&#125;&#125;&lt;/p&gt;</div><div class="line">		    &lt;ol&gt;</div><div class="line">		      &lt;li v-for=&quot;todo in todos&quot; &gt;</div><div class="line">		        &#123;&#123;todo.text&#125;&#125;</div><div class="line">		      &lt;/li&gt;</div><div class="line">		    &lt;/ol&gt;</div><div class="line">		    &lt;button type=&quot;button&quot; v-on:click=&quot;revers&quot;&gt;Reverse&lt;/button&gt;&lt;br/&gt;</div><div class="line">		    &lt;input v-model=&quot;message&quot; type=&quot;text&quot;&gt;</div><div class="line">		  &lt;/div&gt;</div><div class="line">		&lt;/body&gt;</div><div class="line">		&lt;/html&gt;</div><div class="line">		&lt;script src=&quot;./src/vue.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</div><div class="line">		&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">		  var app=new Vue(&#123;</div><div class="line">		    el:&apos;.app&apos;,</div><div class="line">		    data:&#123;</div><div class="line">		      seen:true,</div><div class="line">		      message:&apos;Hello Vue!&apos;,</div><div class="line">		      info:&apos;mourse&apos;,</div><div class="line">		      hide:&apos;我显示咯！&apos;,</div><div class="line">		      todos:[</div><div class="line">		        &#123;text:&apos;a&apos;&#125;,</div><div class="line">		        &#123;text:&apos;b&apos;&#125;,</div><div class="line">		        &#123;text:&apos;c&apos;&#125;</div><div class="line">		      ]</div><div class="line">		    &#125;,</div><div class="line">		    methods:&#123;</div><div class="line">		      revers:function () &#123;</div><div class="line">		        this.info=this.info.split(&apos;&apos;).reverse().join(&apos;&apos;);</div><div class="line">		      &#125;</div><div class="line">		    &#125;</div><div class="line">		  &#125;)</div><div class="line">		&lt;/script&gt;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Vue文档初读（一）/" data-id="cj60seecv001z60nk1rvua6sp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

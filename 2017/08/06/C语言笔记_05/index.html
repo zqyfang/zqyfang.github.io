@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>C语言笔记_05(结构体相关) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="结构体基本概念1234567891011定义结构体：struct 结构体类型名称&amp;#123;    属性&amp;#125;;例如：struct Person&amp;#123;//定义结构体类型    //char name[20];//这是数组，所以下面不能在定义之后，进行一次性初始化    char *name;//最后定义指针，这样下面就可以这样初始化，p.name=&amp;quot;lnj&amp;quot;;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言笔记_05(结构体相关)">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/C语言笔记_05/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="结构体基本概念1234567891011定义结构体：struct 结构体类型名称&amp;#123;    属性&amp;#125;;例如：struct Person&amp;#123;//定义结构体类型    //char name[20];//这是数组，所以下面不能在定义之后，进行一次性初始化    char *name;//最后定义指针，这样下面就可以这样初始化，p.name=&amp;quot;lnj&amp;quot;;">
+<meta property="og:updated_time" content="2017-07-09T06:20:39.442Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C语言笔记_05(结构体相关)">
+<meta name="twitter:description" content="结构体基本概念1234567891011定义结构体：struct 结构体类型名称&amp;#123;    属性&amp;#125;;例如：struct Person&amp;#123;//定义结构体类型    //char name[20];//这是数组，所以下面不能在定义之后，进行一次性初始化    char *name;//最后定义指针，这样下面就可以这样初始化，p.name=&amp;quot;lnj&amp;quot;;">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C语言笔记_05" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/C语言笔记_05/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.495Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C语言/">C语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C语言笔记_05(结构体相关)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="结构体基本概念"><a href="#结构体基本概念" class="headerlink" title="结构体基本概念"></a>结构体基本概念</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">定义结构体：</div><div class="line">struct 结构体类型名称&#123;</div><div class="line">    属性</div><div class="line">&#125;;</div><div class="line">例如：</div><div class="line">struct Person&#123;//定义结构体类型</div><div class="line">    //char name[20];//这是数组，所以下面不能在定义之后，进行一次性初始化</div><div class="line">    char *name;//最后定义指针，这样下面就可以这样初始化，p.name=&quot;lnj&quot;;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>struct Person p;//定义结构体变量<br>定义同时初始化:struct Dog={“wc”,12,5.0};<br>先定义之后，然后一次性初始化：<br>struct Dog d1;<br>d1=(struct Dog){“xq”,6,7.0};类似于强制类型装换<br>还可以通过结构体名，逐个初始化例如：d1.name=”xc”；<br>将值赋值给指定属性：<br>struct Dog d1={.height=1.73，.name=”wc”};</p>
+</blockquote>
+<hr>
+<pre><code>注意：
+结构体内部属性内存寻址是从小到大
+结构体名称并不是结构体地址
+结构体地址第0个属性的地址
+结构体占用内存空间：查找所有属性中占用内存空间最大的属性，然后按照
+属性的倍数(比如说一倍，两倍等，系统自动设置倍数)分配内存空间，类似
+于比如有8个字节的属性，先创建一个8字节的内存空间，用完之后，在开辟
+一个，如果最后比如说剩下四个字节，但是只有一个char(一个字节)需要存
+储的时候，则不在开辟了，多余空间就不需要管了。
+定义结构体变量的时候才会分配内存空间
+</code></pre><hr>
+<h1 id="类型定义方式"><a href="#类型定义方式" class="headerlink" title="类型定义方式"></a>类型定义方式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">方式一：基本定义方式</div><div class="line">struct Person&#123;</div><div class="line">    char *name;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125;;</div><div class="line">struct Person p;</div><div class="line">方式二：定义结构体类型同时定义结构体变量</div><div class="line">struct Person&#123;</div><div class="line">    char *name;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125; p;</div><div class="line">方式三：定义结构体类型的同时定义结构体变量，并省略结构体名称</div><div class="line">struct&#123;</div><div class="line">    char *name;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125; p;</div><div class="line">弊端：此时其他地方不能使用该结构体</div><div class="line">有事：只用一次的十分方便</div></pre></td></tr></table></figure>
+<h1 id="结构体作用域"><a href="#结构体作用域" class="headerlink" title="结构体作用域"></a>结构体作用域</h1><blockquote>
+<p>如果结构体定义在函数或者代码块内部，则结构体作用域和变量相同。</p>
+</blockquote>
+<h1 id="指向结构体的指针"><a href="#指向结构体的指针" class="headerlink" title="指向结构体的指针"></a>指向结构体的指针</h1><hr>
+<pre><code>定义指向结构体的指针：
+   struct Person{
+        int age;
+        char *name;
+        double height;
+    };
+    struct Person p={30,&quot;lnj&quot;,1.75};
+    //定义指针
+    struct Person *pp;
+    pp=&amp;p;
+    (*pp).age=40;//必须加括号，因为。运算符的优先级高于*
+    pp-&gt;height=20.0;//还可以通过这种方式赋值修改值
+    printf(&quot;%d\n&quot;,(*pp).age);
+    printf(&quot;%lf\n&quot;,(*pp).height);//lf:针对的是double类型的占位符
+    printf(&quot;%f\n&quot;,pp-&gt;height);
+</code></pre><hr>
+<h1 id="结构体数组"><a href="#结构体数组" class="headerlink" title="结构体数组"></a>结构体数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">struct Bumen&#123;</div><div class="line">    char *name;</div><div class="line">    int count;</div><div class="line">&#125;;</div><div class="line">struct Bumen bumens[3]=&#123;</div><div class="line">    &#123;&quot;ios&quot;,12&#125;,</div><div class="line">    &#123;&quot;android&quot;,20&#125;,</div><div class="line">    &#123;&quot;php&quot;,30&#125;</div><div class="line">&#125;;</div><div class="line">printf(&quot;%d\n&quot;,bumens[0].count);</div></pre></td></tr></table></figure>
+<h1 id="结构体嵌套"><a href="#结构体嵌套" class="headerlink" title="结构体嵌套"></a>结构体嵌套</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    struct Date&#123;</div><div class="line">        int year;</div><div class="line">        int month;</div><div class="line">        int day;</div><div class="line">    &#125;;</div><div class="line">    struct Person&#123;</div><div class="line">        int age;</div><div class="line">        char *name;</div><div class="line">        struct Date birth;</div><div class="line">        struct Date time;</div><div class="line">    &#125;;</div><div class="line">    //赋值方式</div><div class="line">    struct Person p=&#123;</div><div class="line">        20,</div><div class="line">        &quot;lnj&quot;,</div><div class="line">        &#123;</div><div class="line">            1980,</div><div class="line">            1,</div><div class="line">            15</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            1980,</div><div class="line">            1,</div><div class="line">            15</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="结构体和函数"><a href="#结构体和函数" class="headerlink" title="结构体和函数"></a>结构体和函数</h1><hr>
+<pre><code>结构体的属性传递给函数，在函数中修改形参不会影响到实参
+结构体名称作为参数传递，函数中修改形参不会影响到实参，结构体之间是值传递。
+例如把结构体p1赋值给p2，则p1中属性修改不会影响到p2属性值
+案例：函数中参数是结构体的写法
+void change(struct Person p){};//不会修改属性值
+void change(struct Person *p){};//指针，会属性修改值
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/C语言笔记_05/" data-id="cj60seear000f60nkmz8fggh7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/C语言笔记_06/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C语言笔记_06
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/C语言笔记_04/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C语言笔记_04(指针相关)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

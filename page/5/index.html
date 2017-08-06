@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-C语言笔记_01" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/C语言笔记_01/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.488Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C语言/">C语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/C语言笔记_01/">C语言笔记_01</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h1><blockquote>
+<p>c语言中所有关键字（32个）都是小写</p>
+</blockquote>
+<h1 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h1><blockquote>
+<p>(自己起得名字)<br>字母（大小写），数字，下划线（不能以数字开头）</p>
+</blockquote>
+<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><blockquote>
+<p>//:单行注释<br>/**/:多行注释<br>单行注释可以嵌套多行注释(次多行注释必须在同一行)<br>多行注释，可以嵌套单行注释</p>
+</blockquote>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><blockquote>
+<p>整型：短整型(short)，整型(int)，长整型(long)<br>字符型：(char)<br>(实型)浮点型:float(只保证7位数字有效),double（默认为双精度）</p>
+</blockquote>
+<h2 id="构造类型"><a href="#构造类型" class="headerlink" title="构造类型"></a>构造类型</h2><blockquote>
+<p>数组，结构体，枚举，共用体<br>  指针类型<br>  空类型(Void)</p>
+</blockquote>
+<h1 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h1><blockquote>
+<p>整型常量  10<br>  实型常量  10.1（双精度） 10.1f（单精度）<br>  字符型常量 ‘a’ （只能一个字符）错误实例：‘南’，因为一个汉字占用三个字节。<br>特殊情况：系统保留给某些字符的组合定义了特殊含义，这些字符的组合可以当做单个字符（例如：\n）<br>  字符串常量 “abc”</p>
+</blockquote>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><blockquote>
+<p>定义变量，但是没有初始化，内部存储的是垃圾数据，不同平台这个数据可能不同<br>int num;<br>printf(“%i\n”,num);//1606422582<br>解析：%代表占位符，i代表int类型</p>
+</blockquote>
+<h2 id="部分初始化"><a href="#部分初始化" class="headerlink" title="部分初始化"></a>部分初始化</h2><blockquote>
+<p>int num,num1=10;<br>解析：定义了两个变量num,num1,并且给num1进行初始化为10</p>
+<h2 id="完全初始化"><a href="#完全初始化" class="headerlink" title="完全初始化"></a>完全初始化</h2><p>int num,num1;<br>num=num1=10;<br>解析：都初始化为10</p>
+</blockquote>
+<h1 id="内存分析"><a href="#内存分析" class="headerlink" title="内存分析"></a>内存分析</h1><hr>
+<pre><code>类型   16位编译器   32位编译器   64位编译器
+ char    1           1           1
+ int     2           4           4
+ float   4           4           4
+ double  8           8           8
+ short   2           2           2
+ long    4           4           8
+ long long 8         8           8
+ void    2           4           8
+</code></pre><hr>
+<h2 id="内存寻址是从大到小，越先定义其内存地址越大"><a href="#内存寻址是从大到小，越先定义其内存地址越大" class="headerlink" title="内存寻址是从大到小，越先定义其内存地址越大"></a>内存寻址是从大到小，越先定义其内存地址越大</h2><blockquote>
+<p>int num=0;<br>    int num1=0;<br>    printf(“%p\n”,&amp;num);//0x7fff5fbff838<br>    printf(“%p\n”,&amp;num1);//0x7fff5fbff834<br>解析：可知num先定义，其内存地址大，而且此时mac系统为64位编译器<br>int占四个字节，可知内存地址差值也为4.其中&amp;变量名代表该变量的内存地址，<br>打印内存地址的占位符要用%p。</p>
+</blockquote>
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="printf函数"><a href="#printf函数" class="headerlink" title="printf函数"></a>printf函数</h2><blockquote>
+<p>printf(“%d,\n%d\n”,num,num1);<br>    注意：double<br>    double num=0.1;<br>    printf(“%lf”,num);</p>
+</blockquote>
+<h3 id="指定位宽（占多少列，例如99就是两列）默认情况下为右对齐"><a href="#指定位宽（占多少列，例如99就是两列）默认情况下为右对齐" class="headerlink" title="指定位宽（占多少列，例如99就是两列）默认情况下为右对齐"></a>指定位宽（占多少列，例如99就是两列）默认情况下为右对齐</h3><hr>
+<pre><code>int num=11;
+printf(&quot;%5i&quot;,num);
+输出：   11，说明：前面空出三列
+printf(&quot;%-5i&quot;,num);
+说明：此时对齐方式为左对齐
+如果:实际输出超出位宽，则原样输出
+int num=1111;
+printf(&quot;%2i&quot;,num);//1111
+前面补充0的案例：
+int num=1;
+printf(&quot;%02i&quot;,num);//01
+说明：此时实际输出小于位宽，前面补空格，但是此时位宽前面有0，则补充空格变化为补充0
+</code></pre><hr>
+<h3 id="保留位数"><a href="#保留位数" class="headerlink" title="保留位数"></a>保留位数</h3><blockquote>
+<p>float num=3.14;<br>printf(“%.3f\n”,num);<br>解析：%f默认保存6位小数，如果利用.n可以指定保存多少位小数<br>注意：float有效位数(从第一位数字开始，包括小数点)是7位，超出之后，不论怎么设置都不准确<br>例如：<br>float num=3.141592678;<br>printf(“%.9f\n”,num);//3.141592741<br>如果想完整输出该数字，必须将该数据保存为double类型，doule有效位数为15位<br>    提高逼格的案例：<br>    float num=3.141592678;<br>    printf(“%.<em>f\n”,5,num);//3.14159<br>    printf(“%.</em>f\n”,2,num);//3.14</p>
+</blockquote>
+<h2 id="scanf函数"><a href="#scanf函数" class="headerlink" title="scanf函数"></a>scanf函数</h2><hr>
+<pre><code>int num;
+scanf(&quot;%i&quot;,&amp;num);//必须告诉scanf函数变量的详细地址，才能存储用户输入的变量
+printf(&quot;%i\n&quot;,num);
+案例：计算两个输入值的和
+int num,num1;
+scanf(&quot;%i,%i&quot;,&amp;num,&amp;num1);
+printf(&quot;%i\n&quot;,num+num1);
+说明：输入也要对应格式化字符串中的样式，例如此时可输入123,123
+如果%i-%i则输入也要用123-123,如果格式化字符串中没有指明，-这些分割，
+在输入时可使用空格回车等实现多次输入(但是%c除外，因为空
+格等也会被当做字符被char接收，所以最好都加上逗号这种做分割，避免使用没有分割时空格赋值给char造成错误)。
+</code></pre><hr>
+<h2 id="格式化字符中类型列表"><a href="#格式化字符中类型列表" class="headerlink" title="格式化字符中类型列表"></a>格式化字符中类型列表</h2><hr>
+<pre><code>d   十进制整数
+0   八进制整数
+x   十六进制整数
+i   有符号或无符号的十进制，八进制，十六进制整数
+u   无符号整数
+f   浮点数
+c   字符
+s   字符串
+p   地址值
+</code></pre><hr>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="取模运算符号取决于左边的操作数"><a href="#取模运算符号取决于左边的操作数" class="headerlink" title="取模运算符号取决于左边的操作数"></a>取模运算符号取决于左边的操作数</h2><blockquote>
+<p>案例：<br>int num=10 % -3;<br>printf(“%d”,num);//1<br>取模运算左边小于右边，输出左边<br>int num=1 % -3;<br>printf(“%d”,num);//1</p>
+</blockquote>
+<h2 id="隐式转换和强制类型转换"><a href="#隐式转换和强制类型转换" class="headerlink" title="隐式转换和强制类型转换"></a>隐式转换和强制类型转换</h2><blockquote>
+<p>int num=10.8;<br>printf(“%d\n”,num);//10<br>int num=(int)10.8;<br>printf(“%d\n”,num);//10</p>
+</blockquote>
+<h2 id="算术运算注意：参与运算操作数是什么类型，结果就是什么类型"><a href="#算术运算注意：参与运算操作数是什么类型，结果就是什么类型" class="headerlink" title="算术运算注意：参与运算操作数是什么类型，结果就是什么类型"></a>算术运算注意：参与运算操作数是什么类型，结果就是什么类型</h2><blockquote>
+<p>int num=1/2;<br>printf(“%d\n”,num);//0<br>c语言中也有-=,*=,/=,+=，++，–等</p>
+</blockquote>
+<h2 id="sizeof运算符：计算一个常量，变量，一种数据类型在内存中所占的字节数"><a href="#sizeof运算符：计算一个常量，变量，一种数据类型在内存中所占的字节数" class="headerlink" title="sizeof运算符：计算一个常量，变量，一种数据类型在内存中所占的字节数"></a>sizeof运算符：计算一个常量，变量，一种数据类型在内存中所占的字节数</h2><blockquote>
+<p>注意：sizeof是运算符，不是函数<br>int num=1/2;<br>int size=sizeof(num);<br>printf(“%d\n”,size);//4</p>
+</blockquote>
+<h2 id="逗号运算符-常用于简化代码"><a href="#逗号运算符-常用于简化代码" class="headerlink" title="逗号运算符:常用于简化代码"></a>逗号运算符:常用于简化代码</h2><hr>
+<pre><code>    int a=15;
+    int b=5;
+    int result;
+    a+=10,b+=1,result=a+b;
+    printf(&quot;%d,%d,%d\n&quot;,a,b,result);//25,6,31
+注意：只要是表达式都有结果，逗号表达式也不例外
+    int a=15;
+    int b=5;
+    int result=((a+=1),(b+=1));
+    printf(&quot;%d\n&quot;,result);//6
+解析：逗号表达式结果就是最后一个表达式的结果。
+</code></pre><hr>
+<h2 id="关系运算符：在C语言中，只有0才为假"><a href="#关系运算符：在C语言中，只有0才为假" class="headerlink" title="关系运算符：在C语言中，只有0才为假"></a>关系运算符：在C语言中，只有0才为假</h2><hr>
+<pre><code>关系运算符中：&gt;,&lt;,&gt;=,&lt;=优先级大于==,!=
+关系运算符返回值只有两种：0（假），1(真)
+案例：
+int result=10&gt;1==1;
+printf(&quot;%d\n&quot;,result);//1
+注意：算术运算符优先级大于关系运算符
+ int result=2+2&gt;1+1;
+ printf(&quot;%d\n&quot;,result);//1
+如果优先级和结合性同时存在，先优先级在结合性（左结合性和右结合性，此时为左结合性）
+int result=2+2&gt;1+1==3&gt;1;
+printf(&quot;%d\n&quot;,result);//1
+右结合性案例：
+a=b=c;
+</code></pre><hr>
+<h2 id="逻辑运算符-返回值只有两个：1，0"><a href="#逻辑运算符-返回值只有两个：1，0" class="headerlink" title="逻辑运算符:返回值只有两个：1，0"></a>逻辑运算符:返回值只有两个：1，0</h2><hr>
+<pre><code>&amp;&amp;:逻辑与，结合性，从左至右
+||:逻辑或，结合性，从左至右
+!:逻辑非，结合性，从右至左
+int result=0 &amp;&amp; 11;
+printf(&quot;%d\n&quot;,result);//0
+</code></pre><hr>
+<h2 id="三目运算符-结合性从左至右，优先级低于关系运算符"><a href="#三目运算符-结合性从左至右，优先级低于关系运算符" class="headerlink" title="三目运算符:结合性从左至右，优先级低于关系运算符"></a>三目运算符:结合性从左至右，优先级低于关系运算符</h2><blockquote>
+<p>int result=10&gt;9?10:9;<br>printf(“%d\n”,result);//10</p>
+</blockquote>
+<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><h2 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h2><hr>
+<pre><code> int result=10;
+    if(0){
+        printf(&quot;%d\n&quot;,result);
+    }else{
+        printf(&quot;执行了else条件&quot;);//此处执行
+    }
+也有else if这种情况，单独if也可以。
+</code></pre><hr>
+<h2 id="switch语句"><a href="#switch语句" class="headerlink" title="switch语句"></a>switch语句</h2><blockquote>
+<p>其中default后break可省略，因为其后就是结束的大括号。<br>但是当default部位于最后的时候，break最好别省略，不然其后的都会执行，直到遇到下一个break。<br>switch的条件表达式必须返回整数的表达式，也就是说()内部只能是整数<br>注意：char可以转换为int类型，所以()内部也可以放入char。</p>
+</blockquote>
+<h2 id="分号空语句"><a href="#分号空语句" class="headerlink" title="分号空语句"></a>分号空语句</h2><hr>
+<pre><code>例如：if();while();for();都代表空语句，也就是说后面代码和这些已经没关系，语句已经结束
+for循环默认为真
+for(;;)
+{
+    printf(&quot;测试&quot;);
+}
+另外：for语句最简单死循环
+for(;;)；
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/C语言笔记_01/" data-id="cj60seeab000760nkltcjrmg8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css知识点(一)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/css知识点(一)/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.486Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/css知识点(一)/">CSS知识点(一)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="css-层叠样式表"><a href="#css-层叠样式表" class="headerlink" title="css:层叠样式表"></a><strong>css:层叠样式表</strong></h1><h2 id="css引入方式和输入规范"><a href="#css引入方式和输入规范" class="headerlink" title="css引入方式和输入规范"></a>css引入方式和输入规范</h2><h3 id="内嵌样式-不推荐，复用性差"><a href="#内嵌样式-不推荐，复用性差" class="headerlink" title="内嵌样式:不推荐，复用性差"></a>内嵌样式:不推荐，复用性差</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&quot;color:red;font-size:100px&quot;&gt;小朋友&lt;/div&gt;</div><div class="line">多个属性分号隔开，区分html的属性（用空格隔开）</div></pre></td></tr></table></figure>
+<h3 id="内部样式"><a href="#内部样式" class="headerlink" title="内部样式"></a>内部样式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">	div&#123;</div><div class="line">		color: red;</div><div class="line">		font-size: 100px</div><div class="line">	&#125;</div><div class="line"> &lt;/style&gt;</div></pre></td></tr></table></figure>
+<h3 id="外部样式"><a href="#外部样式" class="headerlink" title="外部样式"></a>外部样式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">单文件形式存在</div><div class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;a.css&quot;&gt;</div><div class="line">对应css文件：</div><div class="line">div&#123;</div><div class="line">	color: red;</div><div class="line">	font-size: 100px</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="import方式"><a href="#import方式" class="headerlink" title="@import方式"></a>@import方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">	@import url(&apos;a.css&apos;);</div><div class="line">&lt;/style&gt;</div><div class="line">  	括号内‘’内部是css文件地址。</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注意：link和import方式区别。
+    (1)link全部支持，import低版本ie不支持
+    (2)import等待html加载完毕后才加载
+    (3)import不支持js动态修改
+</code></pre><hr>
+<h2 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h2><h3 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h3><hr>
+<pre><code>id(id唯一),元素(div..)，类选择器
+        #id        div        .class
+        优先级：id&gt;class&gt;元素
+        选中的情况下依次根据优先级进行比较，没有选中根据就近原则
+        就近原则：没有选中情况下，谁进根据谁显示，选中情况下，如果id等比较也一模一样，会再次根据就近原则处理。
+        font-size:60px !important;
+        只能设置给属性，不能设置给选择器，无法提升继承的权重。比如给div设置color!important，但是内部p也设置文字颜色，还是按照p的颜色，因为0无限提升还是0.
+</code></pre><hr>
+<h3 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">	input[type=&apos;text&apos;]&#123;background-color: pink&#125;</div><div class="line">&lt;/style&gt;</div><div class="line">  	&lt;body&gt;</div><div class="line">  		&lt;input type=&quot;text&quot;&gt;</div><div class="line">  	&lt;/body&gt;</div></pre></td></tr></table></figure>
+<h3 id="伪元素选择器"><a href="#伪元素选择器" class="headerlink" title="伪元素选择器"></a>伪元素选择器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">	正常状态</div><div class="line"> 		a:link&#123;color: blue;&#125;</div><div class="line">	访问过</div><div class="line"> 		a:visited&#123;color:yellow;&#125;</div><div class="line"> 		  鼠标悬浮</div><div class="line"> 		a:hover&#123;color: red;&#125;</div><div class="line"> 		  鼠标按下</div><div class="line"> 		a:active&#123;color:pink;&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+<h3 id="层级选择器"><a href="#层级选择器" class="headerlink" title="层级选择器"></a>层级选择器</h3><h4 id="后代选择器-不一定是儿子"><a href="#后代选择器-不一定是儿子" class="headerlink" title="后代选择器(不一定是儿子)"></a>后代选择器(不一定是儿子)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.div1 p&#123;</div><div class="line">     color:red;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h4 id="交集选择器-分隔"><a href="#交集选择器-分隔" class="headerlink" title="交集选择器(.分隔)"></a>交集选择器(.分隔)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">	h3.special&#123;</div><div class="line">    	color:red;</div><div class="line">	&#125;</div><div class="line">交集选择器，我们一般都是以标签名开头，比如div.haha  比如p.special。</div></pre></td></tr></table></figure>
+<h4 id="并集选择器-逗号分隔"><a href="#并集选择器-逗号分隔" class="headerlink" title="并集选择器(逗号分隔)"></a>并集选择器(逗号分隔)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> 	h3,li&#123;</div><div class="line">     color:red;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="补充：css3的选择器"><a href="#补充：css3的选择器" class="headerlink" title="补充：css3的选择器"></a>补充：css3的选择器</h3><h4 id="儿子选择器-只是儿子辈"><a href="#儿子选择器-只是儿子辈" class="headerlink" title="儿子选择器(只是儿子辈)"></a>儿子选择器(只是儿子辈)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">div&gt;p&#123;</div><div class="line">     color:red;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="序选择器"><a href="#序选择器" class="headerlink" title="序选择器"></a>序选择器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ul li:last-child&#123;</div><div class="line">    color:blue;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="下一个兄弟选择器"><a href="#下一个兄弟选择器" class="headerlink" title="下一个兄弟选择器"></a>下一个兄弟选择器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">h3+p&#123;</div><div class="line">    color:red;</div><div class="line">&#125;</div><div class="line">h3同级的p标签(紧跟着h3的p)</div></pre></td></tr></table></figure>
+<h3 id="css的继承性"><a href="#css的继承性" class="headerlink" title="css的继承性"></a>css的继承性</h3><blockquote>
+<p>给自己设置，后代都可以继承。<br>     text,line,font开头，color。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.box1&#123;</div><div class="line">   		width: 200px;</div><div class="line">   		height: 200px;</div><div class="line">   	&#125;</div><div class="line">.a&#123;</div><div class="line">   		background-color: red;</div><div class="line">   	&#125;</div><div class="line">&lt;div class=&quot;box1 a&quot;&gt;&lt;/div&gt;</div><div class="line">一个标签可以通过空格选择两个类选择器</div></pre></td></tr></table></figure>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><blockquote>
+<p>下划线<br>text-decoration: none;//underline<br>对齐方式<br>text-align: right;//center,left<br>字体<br>font-family: 黑体;<br>font-weight: bold;加粗//normal不加粗<br>font-style: italic;斜体<br>平铺<br>background-repeat: no-repeat;//repeat,repeat-y,repeat-x</p>
+<p>list-style-type: 列表前样式<br>list-style: none;去除列表前面的小圆点<br>list-style-image: 列表项前的小图片</p>
+<p>display: none;<br>//其他属性block,块级显示(换行)<br>//inline:行级显示(不换行)</p>
+</blockquote>
+<h2 id="盒模型"><a href="#盒模型" class="headerlink" title="盒模型"></a>盒模型</h2><blockquote>
+<p>盒子的宽度和高度：<br>盒子宽度=width(内容宽度)+border(边框)*2+padding(内边距)。<br>也就代表着padding也会有背景色。<br>margin：外边距<br>padding:30px 20px 40px 100px;<br>遵循：上、右、下、左<br>还有元素，默认带有padding，比如ul标签，为了方便清除</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*&#123;</div><div class="line">      margin: 0;</div><div class="line">      padding: 0;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>border-width:10px;    → 边框宽度</li>
+<li>border-style:solid;     → 线型</li>
+<li>border-color:red;      → 颜色。</li>
+<li>等价于：border:10px solid red;</li>
+</ul>
+<h2 id="标准文档流"><a href="#标准文档流" class="headerlink" title="标准文档流"></a>标准文档流</h2><blockquote>
+<p>1）空白折叠现象：让img标签之间没有空隙，必须紧密连接。<br>2）高矮不齐，底边对齐：例如图片大小不一时候，底边是一致的<br>3）自动换行，一行写不满，换行写。</p>
+</blockquote>
+<hr>
+<pre><code>一、块级元素和行内元素
+块级元素对应容器级标签(p)
+行内元素对应文本级标签(p除外)
+二、块级元素和行内元素的相互转换
+display: inline;//block
+对比：块级元素默认整行占有，才能设置宽高，行内元素只能靠内容撑出宽高，所以不能设置宽高，但是通过以上可以相互转换。
+</code></pre><hr>
+<h2 id="浮动-脱标"><a href="#浮动-脱标" class="headerlink" title="浮动(脱标)"></a>浮动(脱标)</h2><h3 id="浮动的元素脱标"><a href="#浮动的元素脱标" class="headerlink" title="浮动的元素脱标"></a>浮动的元素脱标</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">		.a&#123;</div><div class="line">			width: 100px;</div><div class="line">			height: 100px;</div><div class="line">			background-color: red;</div><div class="line">			float: left;</div><div class="line">		&#125;</div><div class="line">		.b&#123;</div><div class="line">			width: 200px;</div><div class="line">			height: 200px;</div><div class="line">			background-color: green;</div><div class="line">		&#125;</div><div class="line">   &lt;/style&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">    	&lt;div class=&quot;a&quot;&gt;&lt;/div&gt;</div><div class="line">    	&lt;div class=&quot;b&quot;&gt;&lt;/div&gt;</div><div class="line">    &lt;/body&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：盒子a脱标，b还在标准流，两个会相互重叠，层次结构是b在下面，浮动浮动，浮起来在上面。<br>解析：span是行内元素，无法设置宽高，但是浮动之后就可以设置宽高。</p>
+</blockquote>
+<h3 id="浮动的元素互相贴靠"><a href="#浮动的元素互相贴靠" class="headerlink" title="浮动的元素互相贴靠"></a>浮动的元素互相贴靠</h3><blockquote>
+<p>如果有足够空间，那么就会靠着2哥。如果没有足够的空间，那么会靠着1号大哥。<br>如果没有足够的空间靠着1号大哥，自己去贴左墙。</p>
+</blockquote>
+<h3 id="字围现象"><a href="#字围现象" class="headerlink" title="字围现象"></a>字围现象</h3><blockquote>
+<p>div挡住了p，但是p中的文字不会被挡住，形成“字围”效果。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/css知识点(一)/" data-id="cj60seed3002760nk0evf6elb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css定位和浮动（清除）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/css定位和浮动（清除）/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.484Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/css定位和浮动（清除）/">CSS定位和浮动</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="css定位和浮动（清除）"><a href="#css定位和浮动（清除）" class="headerlink" title="css定位和浮动（清除）"></a>css定位和浮动（清除）</h1><h2 id="css定位"><a href="#css定位" class="headerlink" title="css定位"></a>css定位</h2><h3 id="定位概念：定位可以有负数的概念，相关属性，left，right，bottom，top。"><a href="#定位概念：定位可以有负数的概念，相关属性，left，right，bottom，top。" class="headerlink" title="定位概念：定位可以有负数的概念，相关属性，left，right，bottom，top。"></a>定位概念：定位可以有负数的概念，相关属性，left，right，bottom，top。</h3><ol>
+<li>相对定位：不脱标，原来位置其实还占据着，只是形影移动罢了。</li>
+<li>绝对定位：脱标，不需要display:block;就可以设置宽高。</li>
+<li>固定定位：就是固定而言的。</li>
+<li>绝对定位分析：margin：0，auto可以使盒子居中，但是只是针对处于标准流中而且有明确宽度的盒子而言的。<br> 当绝对定位时候，已经脱标，这样是无法使盒子居中的，但是可以通过left:50%; margin-left:负的宽度的一半。</li>
+</ol>
+<blockquote>
+<p>总结：一般子绝父相。（后面描述针对所有定位有效）而且bottom是相对页面的左下角来说,而不是可见区域（屏幕）左下角。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"> 案例：固定定位（包括点击切换）</div><div class="line"> &lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">		&lt;title&gt;&lt;/title&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;script src=&quot;http://libs.baidu.com/jquery/2.0.0/jquery.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">	&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">		*&#123;</div><div class="line">			margin: 0;</div><div class="line">			padding: 0;</div><div class="line">		&#125;</div><div class="line">		ul&#123;</div><div class="line">			list-style: none;</div><div class="line">			height: 50px;</div><div class="line">		&#125;</div><div class="line">		li&#123;</div><div class="line">			color: white;</div><div class="line">			float: left;</div><div class="line">			line-height: 50px;</div><div class="line">			width: 25%;</div><div class="line">			height: 50px;</div><div class="line">			text-align: center;</div><div class="line">		&#125;</div><div class="line">		.bottom&#123;</div><div class="line">			background-color: #0000FF;</div><div class="line">			width: 100%;</div><div class="line">			position: fixed;</div><div class="line">			bottom: 0;</div><div class="line">		&#125;</div><div class="line">		.content&#123;</div><div class="line">			position: absolute;</div><div class="line">			bottom: 50px;</div><div class="line">			top: 0;</div><div class="line">			width: 100%;</div><div class="line">		&#125;</div><div class="line">		.change&#123;</div><div class="line">			width: 100%;</div><div class="line">			height: 100%;</div><div class="line">			display: ;</div><div class="line">		&#125;</div><div class="line">	&lt;/style&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;div class=&quot;content&quot;&gt;</div><div class="line">			&lt;div class=&quot;one&quot; style=&quot;display: none;background-color: beige;&quot;&gt;</div><div class="line">				</div><div class="line">			&lt;/div&gt;</div><div class="line">			&lt;div class=&quot;two&quot; style=&quot;display: none;background-color: bisque;&quot;&gt;</div><div class="line">				</div><div class="line">			&lt;/div&gt;</div><div class="line">			&lt;div class=&quot;three&quot; style=&quot;display: none;background-color: pink;&quot;&gt;</div><div class="line">				</div><div class="line">			&lt;/div&gt;</div><div class="line">			&lt;div class=&quot;four&quot; style=&quot;display: none;background-color: azure;&quot;&gt;</div><div class="line">				</div><div class="line">			&lt;/div&gt;</div><div class="line">		&lt;/div&gt;</div><div class="line">		&lt;div class=&quot;bottom&quot;&gt;</div><div class="line">			&lt;ul&gt;</div><div class="line">				&lt;li&gt;首页&lt;/li&gt;</div><div class="line">				&lt;li&gt;项目&lt;/li&gt;</div><div class="line">				&lt;li&gt;设置&lt;/li&gt;</div><div class="line">				&lt;li&gt;中心&lt;/li&gt;</div><div class="line">			&lt;/ul&gt;</div><div class="line">		&lt;/div&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">	//第一次打开，默认显示首页对应内容</div><div class="line">	$(&quot;.one&quot;).addClass(&quot;change&quot;).show();</div><div class="line">	//遍历所有li然后添加点击事件，通过索引关联content</div><div class="line">	$(&quot;.bottom&gt;ul&gt;li&quot;).each(function (k,v) &#123;</div><div class="line">		$(v).click(function () &#123;</div><div class="line">			$(&quot;.content div&quot;).hide();</div><div class="line">			$($(&quot;.content div&quot;).get(k)).addClass(&quot;change&quot;).show();</div><div class="line">		&#125;);</div><div class="line">	&#125;)</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>乱序知识点：要想设置百分比宽高，其父元素必须有宽高，设置页面整体时候，必须先把html，body设置百分百。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"> 案例：九宫格案例（百分比使用）</div><div class="line"> &lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">		&lt;title&gt;&lt;/title&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">		html,body&#123;</div><div class="line">			margin: 0;</div><div class="line">			padding: 0;</div><div class="line">			height: 100%;</div><div class="line">		&#125;</div><div class="line">		.one,.two&#123;</div><div class="line">			float: left;</div><div class="line">			width: 50%; </div><div class="line">			height: 100%;</div><div class="line">		&#125;</div><div class="line">		p&#123;</div><div class="line">			margin: 0;</div><div class="line">			padding: 0;</div><div class="line">			height: 0.5%;</div><div class="line">		&#125;</div><div class="line">	&lt;/style&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;div class=&quot;top&quot; style=&quot;height: 33%;&quot;&gt;</div><div class="line">			&lt;div class=&quot;one&quot; style=&quot;background-color: beige;&quot;&gt;</div><div class="line">				</div><div class="line">			&lt;/div&gt;</div><div class="line">			&lt;div class=&quot;two&quot; style=&quot;background-color: bisque;&quot;&gt;</div><div class="line">				</div><div class="line">			&lt;/div&gt;</div><div class="line">		&lt;/div&gt;</div><div class="line">		&lt;p&gt;&lt;/p&gt;</div><div class="line">		&lt;div class=&quot;center&quot; style=&quot;height: 33%;&quot;&gt;</div><div class="line">			&lt;div class=&quot;one&quot; style=&quot;background-color: beige;&quot;&gt;</div><div class="line">				</div><div class="line">			&lt;/div&gt;</div><div class="line">			&lt;div class=&quot;two&quot; style=&quot;background-color: bisque;&quot;&gt;</div><div class="line">				</div><div class="line">			&lt;/div&gt;</div><div class="line">		&lt;/div&gt;</div><div class="line">		&lt;p&gt;&lt;/p&gt;</div><div class="line">		&lt;div class=&quot;bottom&quot; style=&quot;height: 33%;&quot;&gt;</div><div class="line">			&lt;div class=&quot;one&quot; style=&quot;background-color: beige;&quot;&gt;</div><div class="line">				</div><div class="line">			&lt;/div&gt;</div><div class="line">			&lt;div class=&quot;two&quot; style=&quot;background-color: bisque;&quot;&gt;</div><div class="line">				</div><div class="line">			&lt;/div&gt;</div><div class="line">		&lt;/div&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h2 id="浮动和清除"><a href="#浮动和清除" class="headerlink" title="浮动和清除"></a>浮动和清除</h2><h3 id="浮动的概念：浮动的元素会脱离标准文档流，向左或者向右浮动，直到遇到父元素或者另一个浮动的元素"><a href="#浮动的概念：浮动的元素会脱离标准文档流，向左或者向右浮动，直到遇到父元素或者另一个浮动的元素" class="headerlink" title="浮动的概念：浮动的元素会脱离标准文档流，向左或者向右浮动，直到遇到父元素或者另一个浮动的元素."></a>浮动的概念：浮动的元素会脱离标准文档流，向左或者向右浮动，直到遇到父元素或者另一个浮动的元素.</h3><ol>
+<li>浮动的元素可以设置宽高并且内联排列，是介于inline和block之间的存在，和浮动类似的有inline-block.</li>
+<li>浮动的元素脱离标准文档流，并且可能会覆盖标准流元素。</li>
+<li><p>浮动会导致父元素高度坍塌.</p>
+<blockquote>
+<p>解析：浮动的元素脱离标准文档流，并不占据文档流位置，自然无法撑开父元素高度。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="清除浮动：是通过在别的元素上清除浮动来撑开高度，而不是在浮动的元素上面清除。"><a href="#清除浮动：是通过在别的元素上清除浮动来撑开高度，而不是在浮动的元素上面清除。" class="headerlink" title="清除浮动：是通过在别的元素上清除浮动来撑开高度，而不是在浮动的元素上面清除。"></a>清除浮动：是通过在别的元素上清除浮动来撑开高度，而不是在浮动的元素上面清除。</h3><ul>
+<li>方式一：</li>
+</ul>
+<hr>
+<p>clear：both；margin属性失效,而且无法给父元素撑出高度。<br>        例如：两个div都浮动，如果不加clear：both属性，下一个div也会贴过来，加clear：both（在第二个加即可）<br>        两个div会分行排列，但是会第一个div下部和第二个div上部贴合，margin属性也无效。</p>
+<hr>
+<ul>
+<li>方式二：</li>
+</ul>
+<hr>
+<p>通过overflow: hidden;给父元素撑出高度，注意此属性用于父元素上面。</p>
+<hr>
+<ul>
+<li>方式三： </li>
+</ul>
+<hr>
+<p>内墙法，外墙法等。也是通过clear，但是弥补了属性失效的缺点<br>        例如：此时是随意新建一个div不需要给高度，只需要设置clear属性即可，注意区分该方式和方式一。</p>
+<hr>
+<ul>
+<li>方式四：给父元素设置高，不推荐。</li>
+</ul>
+<blockquote>
+<p>总结：清除浮动有四种方式，但是设置高太过于死板，方式一无法给父元素撑出高度，而且margin属性失效。<br>    推荐使用方式二三。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">对应案例：</div><div class="line">    &lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">	&lt;head&gt;</div><div class="line">		&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">		&lt;title&gt;&lt;/title&gt;</div><div class="line">	&lt;/head&gt;</div><div class="line">	&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">		*&#123;</div><div class="line">		margin: 0;</div><div class="line">		padding: 0;	</div><div class="line">		&#125;</div><div class="line">		li&#123;</div><div class="line">			margin-left: 10px;</div><div class="line">			list-style: none;</div><div class="line">			float: left;</div><div class="line">		&#125;</div><div class="line">		.box&#123;</div><div class="line">			border: 1px solid;</div><div class="line">			margin-bottom: 20px;</div><div class="line">		&#125;</div><div class="line">		.qiang&#123;</div><div class="line">			clear: both;</div><div class="line">		&#125;</div><div class="line">	&lt;/style&gt;</div><div class="line">	&lt;body&gt;</div><div class="line">		&lt;div class=&quot;box&quot;&gt;</div><div class="line">			&lt;ul&gt;</div><div class="line">				&lt;li style=&quot;height: 30px; background-color: pink; width: 40px;&quot;&gt;&lt;/li&gt;</div><div class="line">				&lt;li style=&quot;height: 50px; background-color: pink; width: 40px;&quot;&gt;&lt;/li&gt;</div><div class="line">				&lt;li style=&quot;height: 70px; background-color: pink; width: 40px;&quot;&gt;&lt;/li&gt;</div><div class="line">			&lt;/ul&gt;</div><div class="line">			&lt;div class=&quot;qiang&quot;&gt;&lt;/div&gt;</div><div class="line">		&lt;/div&gt;</div><div class="line">		&lt;div class=&quot;box&quot; style=&quot;overflow: hidden;&quot;&gt;</div><div class="line">			&lt;ul&gt;</div><div class="line">				&lt;li style=&quot;height: 30px; background-color: pink; width: 40px;&quot;&gt;&lt;/li&gt;</div><div class="line">				&lt;li style=&quot;height: 50px; background-color: pink; width: 40px;&quot;&gt;&lt;/li&gt;</div><div class="line">				&lt;li style=&quot;height: 70px; background-color: pink; width: 40px;&quot;&gt;&lt;/li&gt;</div><div class="line">			&lt;/ul&gt;</div><div class="line">		&lt;/div&gt;</div><div class="line">	&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h3 id="inline-block和浮动的区别"><a href="#inline-block和浮动的区别" class="headerlink" title="inline-block和浮动的区别"></a>inline-block和浮动的区别</h3><hr>
+<p> inline-block：既可以设置宽高，又可以内联排列，介于inline和block之间的效果。<br>    内联排列时候，例如标题栏的排布（ul）,推荐使用inline-block。<br>    但是：不浮动则不脱标，此时li之间有空格符号、这个空格符将会产生4px的边距。故而使用inline-block时候<br>    需要注意空格符号造成的边距问题。<br>    属性：当条目高度不一的时候，可以通过vertical-align: top;让元素顶部对齐，同理也可以底部对齐。</p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/css定位和浮动（清除）/" data-id="cj60seed1002560nk2rz5ltcv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CSharp语法基础范概" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/CSharp语法基础范概/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.482Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Net/">.Net</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/CSharp语法基础范概/">CSharp语法基础范概</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><hr>
+<pre><code>单行注释：//
+多行注释： /**/
+文档注释：///  
+</code></pre><hr>
+<h1 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h1><hr>
+<pre><code>格式化：ctrl+k（松开k快速按下d）
+智能提示:ctrl+j
+注释所选代码：ctrl+k+c(k松开)
+取消注释所选代码:ctrl+k+u(k松开)
+选中当前行：shift+end(如果光标在行首)，shift+home(如果光标在行尾)，如果选中之后，使用上下键
+可以选中多行。
+折叠冗余代码：在要折叠代码之前(上一行)写上#region,在最后写上#endregion
+</code></pre><hr>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><hr>
+<pre><code>int   有符号整数
+double 64位浮点数    精度小数点后15到16位
+float 单精度，定义时候需要加上f，因为浮点数默认为double类型
+char 字符，不能存储空字符 char s=&apos;&apos;;会报错
+string 字符串,可以存储空字符串
+注意：string是c#独有的，String也等效，但是是.net平台其他语言包括c#都可以用的一个类，
+string最后也是映射为String。
+decimal 128位数据类型，精度是28到29有效位,常用于财务货币计算
+和double相比，有更高的精度和更小(decimal范围更小)的范围
+例子：decimal num=1000m   最后必须加上m
+
+命名规则：字母，下划线，或@符号开头，不能以数字开头，后面可以跟任意字母，数字，下划线
+</code></pre><hr>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><hr>
+<pre><code>+：只有两边至少有一边为字符串时候就是说起连接eider作用，否则是相加的作用
+占位符：其中{0}等就是占位符，替代占位符的实际变量可以是不同类型
+int n1 = 1;
+int n2 = 3;
+Console.WriteLine(&quot;数字{0},数字{1}&quot;, n1, n2); //1,3
+对比：占位符按照挖坑的顺序输出,占位符从0开始
+Console.WriteLine(&quot;数字{1},数字{0}&quot;, n1, n2); //3,1
+string info=&quot;hehe&quot;；
+Console.WriteLine(&quot;{0},{1}&quot;,n1,info);
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">题目：交换数字</div><div class="line">方法一：</div><div class="line">int a=10;</div><div class="line">int b=11;</div><div class="line">int temp=a;</div><div class="line">a=b;</div><div class="line">b=temp;</div><div class="line">方法二：</div><div class="line">n1=n1-n2;</div><div class="line">n2=n1+n2;</div><div class="line">n1=n2-n1;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>补充：ReadLine 接收控制台输入，并用字符串类型变量保存<br> string name=Console.ReadLine();<br> Console.WriteLine(name);</p>
+<p>int类型加减乘除，结果也还是int类型</p>
+</blockquote>
+<h1 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h1><hr>
+<pre><code>定义：\加上一个特殊意义字符，就组成了一个转义符
+Console.WriteLine(&quot;这是一个需要转义的\&quot;\&quot;字符串&quot;);这样就能输出字符串中间的&quot;&quot;
+\t:tab
+\b:相当于backspace，会删除\b前面一个字符，但是把\b放到字符串两端无效果
+\n：换行，但是只是苹果系统和win控制台能识别，在windows系统(例如写文件，要使用\r\n);
+
+原样输出：@
+Console.WriteLine(@&quot;f:\\c\test&quot;);
+保留原格式输出：@
+Console.WriteLine(@&quot;晴天天气
+            十分的好&quot;);
+</code></pre><hr>
+<blockquote>
+<p>补充：char c=’\b’;<br>此时理论上应该是错误的，因为char只能放入一个字符，但是此时\b代表是backspace按键，就是个转义符，代表的是一个字符。</p>
+</blockquote>
+<h1 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h1><hr>
+<pre><code>显式类型转换：
+double d=3.14;
+int a=(int)d
+
+隐式类型转换：不需要写代码，内部自动
+int a=3;
+double b=a;
+
+利用占位符输出指定位数小数：
+Console.WriteLine(&quot;{0:0.00}&quot;,10.0/3);//3.33
+{0}，代表后面，第0个数字，另外，必须10.0不然结果是3.00.
+</code></pre><hr>
+<h2 id="Convert类型转换"><a href="#Convert类型转换" class="headerlink" title="Convert类型转换"></a>Convert类型转换</h2><blockquote>
+<p>上面的显式，隐式转换指的是可以类型兼容的类型，例如int,double<br>但是string转int或者其他，则需要借助，Convert工厂</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">例题：</div><div class="line"> string str = &quot;3.14&quot;;</div><div class="line"> Console.WriteLine(Convert.ToDouble(str));</div><div class="line"></div><div class="line">一元运算符（++，--）优先级高于二元运算符(+,-,/等等)</div></pre></td></tr></table></figure>
+<h1 id="do-while-循环体在do中"><a href="#do-while-循环体在do中" class="headerlink" title="do-while:循环体在do中"></a>do-while:循环体在do中</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">string answer;</div><div class="line">do</div><div class="line">&#123;</div><div class="line">    answer = &quot;哈哈&quot;;</div><div class="line">    Console.WriteLine(&quot;测试&quot;);</div><div class="line">&#125;</div><div class="line">while (answer.Equals(&quot;哈哈&quot;));</div></pre></td></tr></table></figure>
+<h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><blockquote>
+<p>F11：单步调试<br>F10：逐过程调试(方法上面使用)<br>断点调试</p>
+</blockquote>
+<h1 id="转换对比"><a href="#转换对比" class="headerlink" title="转换对比"></a>转换对比</h1><hr>
+<pre><code>使用Convert进行转换，如果失败会抛异常，内部调用int.Parese()，效率相比更低
+使用int.Parse(字符串) ，失败会抛异常(同理有double.Parse等)
+使用int.TryParse(字符串,out 变量) 失败返回false，成功返回true，不会抛异常，效率最高
+int num=0;
+bool b=int.TryParse(&quot;123&quot;,out num)
+解析：b接收布尔型返回值，num接收转换成功后的数字（转换失败num输出0）
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">三元表达式：</div><div class="line">int max=n1&gt;n2?n1:n2</div><div class="line">产生随机数：</div><div class="line">Random r = new Random();</div><div class="line">int num=r.Next(1, 10);//区间是左闭右开的</div></pre></td></tr></table></figure>
+<blockquote>
+<p>常量：const int num=10;</p>
+</blockquote>
+<h1 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h1><blockquote>
+<p>声明到命名空间下面，类的上面，表示这个命名空间，窦娥可以使用这个枚举</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public enum Gender&#123;</div><div class="line">    man，</div><div class="line">    woman</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>枚举类型默认可以跟int类型互相转换，枚举和int是兼容的<br>枚举默认是从0开始的，如果上面把man=2这样就是从2开始，可以强制转换之后，打印验证</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">案例：数字转枚举</div><div class="line">public enum Gender</div><div class="line">    &#123;</div><div class="line">        boy,</div><div class="line">        girl,</div><div class="line">        hehe</div><div class="line">    &#125; </div><div class="line">int a = 2;</div><div class="line">Gender g = (Gender)a;</div><div class="line">Console.WriteLine(g);//输出hehe,如果是3，则枚举中没有对应值，会直接输出3</div><div class="line">案例：字符串转枚举</div><div class="line">string s = &quot;0&quot;;</div><div class="line">Gender g = (Gender)Enum.Parse(typeof(Gender), s);</div><div class="line">Console.WriteLine(g);//boy</div><div class="line">枚举转字符串：Gender.boy.ToString()</div></pre></td></tr></table></figure>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">struct Gender</div><div class="line">    &#123;</div><div class="line">        public int _age;//字段，不是变量，而且如果不用public，外部无法访问。</div><div class="line">        public int _name;//区别，字段可存储多个值，但是变量只能存储一个</div><div class="line">        public int _max;//例如下面，还可以创建给g2,g3所以可以存储多个值</div><div class="line">		//规范，名称前面加上下划线，只是规范但是最好遵守</div><div class="line">    &#125; </div><div class="line">struct前面public可以省略</div><div class="line">Gender g1;</div><div class="line">g1._age = 13;</div><div class="line">g1._name = 15;</div><div class="line">g1._max = 50;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>扩展：结构体内部字段可以使枚举类型，赋值时候，也是使用对应枚举类型赋值</p>
+</blockquote>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int[] arr1=new int[10];//默认是0</div><div class="line">string[] arr2=new string[10];//默认是null,null和“”区别是null没有开辟内存空间</div><div class="line">bool[] arr3=new bool[10];//默认是false</div><div class="line">其他方式：</div><div class="line">int[] arr=&#123;1,2,3,4&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>案例：冒泡排序
+从大到小，或者从小到大顺序进行排列
+int[] arr={5,8,1,3,9};
+第一趟：5和8比，如果大于，换位置，然后继续和下一个(1)比较,以此类推，比较4次
+第二趟：比较三次
+每一个比较完成之后，会把最大或者最小的一个放到最后，以此类推
+</code></pre><hr>
+<h1 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h1><hr>
+<pre><code>Program.show();//Program代表类名，此时意思，类名调用方法
+如果方法和main函数在一个类时候，可以省略类名，否则不可省略。
+
+c#中基本数据类型，是值传递，相当于传递的是copy，不会影响原来的值
+但是string特殊，是引用传递。
+</code></pre><hr>
+<h2 id="方法的高级参数"><a href="#方法的高级参数" class="headerlink" title="方法的高级参数"></a>方法的高级参数</h2><h3 id="out参数"><a href="#out参数" class="headerlink" title="out参数"></a>out参数</h3><blockquote>
+<p>一个方法中，返回多个同一类型的值时候，可以返回一个数组。<br>但是如果返回多个不同类型的值得时候，返回数组就不行，可以使用out参数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">class Program</div><div class="line">    &#123;</div><div class="line">        static void Main(string[] args)</div><div class="line">        &#123;</div><div class="line">            string info = &quot;呵呵&quot;;</div><div class="line">            string rs;</div><div class="line">            bool b=Program.test(info,out rs);</div><div class="line">            Console.WriteLine(b);</div><div class="line">            Console.WriteLine(rs);</div><div class="line">            Console.ReadKey();</div><div class="line">        &#125;</div><div class="line">        public static bool test(string info,out string rs)</div><div class="line">        &#123;</div><div class="line">		//使用out参数时候，方法内部必须对它进行赋值</div><div class="line">            if (info.Equals(&quot;呵呵&quot;))</div><div class="line">            &#123;</div><div class="line">                rs = &quot;通过&quot;;</div><div class="line">                return true;</div><div class="line">            &#125;</div><div class="line">            else</div><div class="line">            &#123;</div><div class="line">                rs = &quot;不通过&quot;;</div><div class="line">                return false;</div><div class="line">            &#125;  </div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">输出：True和通过</div></pre></td></tr></table></figure>
+<h3 id="ref参数"><a href="#ref参数" class="headerlink" title="ref参数"></a>ref参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">形参的改变，修改外部实参的值</div><div class="line">int a = 10;</div><div class="line">test1(ref a);</div><div class="line">Console.WriteLine(a);//20</div><div class="line"> public static void test1(ref int a)</div><div class="line">&#123;</div><div class="line">    a += 10;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="params可变参数"><a href="#params可变参数" class="headerlink" title="params可变参数"></a>params可变参数</h3><hr>
+<pre><code>test2(1,2,3);//此处可以传递和params类型相同的参数，也可以直接传递一个数组(下面是int[])
+public static void test2(params int[] num){}
+注意：params修饰的参数数组，只能是参数列表的最后一个。
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/CSharp语法基础范概/" data-id="cj60seea6000560nkdxrbsqlu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

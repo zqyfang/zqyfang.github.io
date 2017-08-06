@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Java查漏补缺（三）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Java查漏补缺（三）/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.506Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Java查漏补缺（三）/">Java查漏补缺（三）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java开始"><a href="#Java开始" class="headerlink" title="Java开始"></a>Java开始</h1><hr>
+<pre><code>书接上文，继续开始啦！^_+
+</code></pre><hr>
+<h2 id="第五部分"><a href="#第五部分" class="headerlink" title="第五部分"></a><strong>第五部分</strong></h2><blockquote>
+<ul>
+<li><strong>多态</strong>：<br>  A：要有继承关系<br>  B:要有方法重写<br>  C：要有父类引用指向子类对象</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">	public class Demo1 &#123;</div><div class="line">	</div><div class="line">		public static void main(String[] args) &#123;</div><div class="line">			// TODO Auto-generated method stub</div><div class="line">			Fu fu=new Zi();//向上转型</div><div class="line">			fu.show();</div><div class="line">	//		fu.name();父类不能使用子类的特有方法</div><div class="line">			Zi zi=(Zi)fu;//向下转型</div><div class="line">			zi.name();</div><div class="line">			//下面就是多态的使用场景，提高了代码复用性，没有重复创建对象，节约内存。</div><div class="line">			fu=new Zi1();</div><div class="line">			fu.show();</div><div class="line">		&#125;</div><div class="line">	</div><div class="line">	&#125;</div><div class="line">	class Fu&#123;</div><div class="line">		int num=20;</div><div class="line">		public void show() &#123;</div><div class="line">			System.out.println(num);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	class Zi extends Fu&#123;</div><div class="line">		int num=30;</div><div class="line">		public void show() &#123;</div><div class="line">			System.out.println(num+&quot;show&quot;);</div><div class="line">		&#125;</div><div class="line">		public void name() &#123;</div><div class="line">			System.out.println(&quot;name&quot;);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	class Zi1 extends Fu&#123;</div><div class="line">		int num=40;</div><div class="line">		public void show() &#123;</div><div class="line">			System.out.println(num+&quot;showzi1&quot;);</div><div class="line">		&#125;</div><div class="line">		public void name() &#123;</div><div class="line">			System.out.println(&quot;namezi1&quot;);</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>输出：30show，name，40showzi1
+解析：因为多态时候，方法存在重写，但是变量不存在重写，
+所以对于成员方法，编译看左边，运行看右边，对于成员变量，都看右边。
+</code></pre><hr>
+<blockquote>
+<ul>
+<li><strong>抽象</strong><br>  抽象类，抽象方法都被abstract修饰，抽象方法没有方法体（{}内部的部分）。<br>  A:有抽象方法的类一定是抽象类或接口<br>  B：抽象类中不一定有抽象方法。<br>  C:抽象类不能被实例化。<br>  构造方法作用：实例化对象，并且初始化成员变量。但是抽象类时候类都是抽象的了，更不可能实例化出对象，所以构造方法只是为了初始化成员变量<br>  抽象方法必须没有方法体，而且必须abstract修饰。<br>  public abstract void name();</li>
+<li><strong>接口</strong><br>interface Animal{}<br>接口和抽象类区别：接口全是抽象方法（当然也可以啥也没有），比抽象类更抽象（但是也可以放常量）。<br>A:接口不能被实例化<br>B:接口中没有变量，只有常量，因为接口中变量都有默认修饰符，public static final。<br>C:接口没有构造方法（抽象方法有，因为抽象方法需要初始化变量），但是接口只有静态常量，随类加载而加载。<br>D:接口中方法都是抽象的。即使不加abstract也是抽象的，默认有public abstract。<br>E:类实现接口时候，可以多实现（不是多重实现），并且可以在继承一个类基础上实现多个接口<br>F：接口和接口可以继承，可以多继承。</li>
+</ul>
+</blockquote>
+<ul>
+<li><p><strong>接口和抽象类区别：</strong><br>  抽象类：共性的时候使用  is a.<br>  接口：扩展的时候，like a.</p>
+<p>  例如品乓球运动员，篮球运动员，乒乓球教练，篮球教练<br>  可以抽象为运动员，教练。<br>  这两个可以抽象为人。<br>  但是会说英语，例如乒乓球运动员和篮球教练会说英语，就是使用接口。<br>  教练 is 人，但是英语 is 人几部合适了。</p>
+<h2 id="第六部分"><a href="#第六部分" class="headerlink" title="第六部分"></a><strong>第六部分</strong></h2></li>
+</ul>
+<blockquote>
+<ul>
+<li><strong> ==比较符</strong><br>  基本类型时候，比较的是值是否相同<br>  引用类型时候，比较的是地址值</li>
+<li><strong>方法被调用，在方法内部就有一个this代表该对象。</strong><br>  这样可以简化参数传递，只传入一个即可。</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&gt;student类中：</div><div class="line">public boolean compare(Student s)&#123;</div><div class="line">        return this.age==s.age;</div><div class="line">    &#125;</div><div class="line">&gt;main方法中：</div><div class="line">public static void main(String[] args) &#123;</div><div class="line">        Student s=new Student(12, &quot;哈哈&quot;);</div><div class="line">        Student s1=new Student(12, &quot;嘿嘿&quot;);</div><div class="line">        boolean result=s.compare(s1);</div><div class="line">        System.out.println(result);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li><strong>equal：针对上面的改进版以及解析</strong><br>  object中有equal的方法</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">    public boolean equals(Object obj) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        return super.equals(obj);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p><em>但是此时默认的比较是比较两个对象地址值，但是地址值无效，所以此操作也是没有意义的。故而，需要重写此方法。</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">    public boolean equals(Object obj) &#123;</div><div class="line">        //如果传入对象进入调用此方法本身，直接返回true，不用比较</div><div class="line">        if (obj==this) &#123;</div><div class="line">            return true;</div><div class="line">        &#125;</div><div class="line">        //判断传入对象，是不是属于该类的对象，如果不是，下面的向下转型就是无效的，直接返回false。</div><div class="line">        if (!(obj instanceof Student)) &#123;</div><div class="line">            return false;</div><div class="line">        &#125;</div><div class="line">        Student s=(Student)obj;</div><div class="line">        //注意，此时的equals不是object的，而是string类（注意是类）的对应方法，比较的是字符串值是否相等。</div><div class="line">        return this.age==s.age&amp;&amp; this.name.equals(s.name);</div><div class="line">    &#125;</div><div class="line">对应调用：</div><div class="line">public static void main(String[] args) &#123;</div><div class="line">        Student s=new Student(12, &quot;哈哈&quot;);</div><div class="line">        Student s1=new Student(12, &quot;嘿嘿&quot;);</div><div class="line">        boolean result=s.equals(s1);</div><div class="line">        System.out.println(result);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<ul>
+<li><strong>scanner相关：</strong></li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        Scanner s=new Scanner(System.in);</div><div class="line">        //获取字符串</div><div class="line">        String string=s.nextLine();</div><div class="line">        int age=s.nextInt();</div><div class="line">        System.out.println(age+&quot;...........&quot;+string);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p><em>注意：可以输入多次，根据接收几次来确定,但是先int,后string不行，因为会把enter读取string。解决方案：在new一个scanner，或者字符串拼接。</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        Scanner s=new Scanner(System.in);</div><div class="line">        //获取字符串</div><div class="line">        int age=s.nextInt();</div><div class="line">        s=new Scanner(System.in);</div><div class="line">        String ss=s.nextLine();</div><div class="line">        System.out.println(age+&quot;...........&quot;+ss);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="第七部分"><a href="#第七部分" class="headerlink" title="第七部分"></a>第七部分</h2><blockquote>
+<ul>
+<li><strong>冒泡排序。</strong></li>
+<li>折半查找也叫二分法查找（前提是数组有序）</li>
+<li>String和StringBuffer类：<br>  string一旦赋值不能改变。<br>  咱们一般意义的改变，其实只是字符串对应的常量池地址变化而已<br>  案例：<br>  String a=”hha”;<br>  String b=”hhe”;<br>  String c=a+b;</li>
+</ul>
+</blockquote>
+<hr>
+<pre><code>貌似可以赋值，其实是a在方法区的常量池有个地址，b有另一个地址，但是c被赋值为a+b时候，
+相当于把a和b相连接，但是在内存中新开辟一个内存地址进行赋值，所以，字符串值不能改变，
+但是引用可以改变，照成了貌似可以改变值的假象。
+也就是说c==a+b返回false。
+</code></pre><hr>
+<blockquote>
+<p>但是StringBuffer值可以改变，其是字符串缓冲区的意思：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        //方式一、</div><div class="line">        StringBuffer sBuffer=new StringBuffer();</div><div class="line">        System.out.println(sBuffer.capacity());//获取默认长度16</div><div class="line">        System.out.println(sBuffer.length());//获取真实长度0</div><div class="line">        //方式二、</div><div class="line">        StringBuffer sBuffer1=new StringBuffer(&quot;哈哈&quot;);</div><div class="line">        System.out.println(sBuffer1.capacity());//获取默认长度16，加上真实长度2，为18</div><div class="line">        System.out.println(sBuffer1.length());//获取真实长度2</div><div class="line">        //方式三、</div><div class="line">        StringBuffer sBuffer2=new StringBuffer(12);</div><div class="line">        System.out.println(sBuffer2.capacity());//获取默认长度12</div><div class="line">        System.out.println(sBuffer2.length());//获取真实长度0</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>相关方法：
+末尾添加：append(),返回一个StringBuffer，而且修改，修改的都是本身。
+指定位置添加:insert(8,&quot;world&quot;),而且修改，修改的都是本身。
+delete(int index):删除指定位置字符
+deleteCharAt(int start,int end):删除strat到end位置字符，包左不包右。
+</code></pre><hr>
+<blockquote>
+<p><strong>相关面试题</strong></p>
+</blockquote>
+<ul>
+<li><strong>题目一、</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        String a=&quot;哈哈&quot;;</div><div class="line">        String b=&quot;哈哈1&quot;;</div><div class="line">        changeStr(a,b);</div><div class="line">        System.out.println(a);//哈哈</div><div class="line">    &#125;</div><div class="line">    private static void changeStr(String a, String b) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        a+=&quot;黑恶虎&quot;;</div><div class="line">        System.out.println(a);//哈哈黑恶虎</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>按理说：String是引用数据类型，形式参数改变会直接影响实际参数。<br>但是String类比较特殊，不会直接改变</em></p>
+<ul>
+<li><strong>题目二：如果替换成StringBuffer，则两次输出都是哈哈黑恶虎。</strong></li>
+<li><strong>题目三、</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">       // TODO Auto-generated method stub</div><div class="line">       String a=&quot;哈哈&quot;;</div><div class="line">       String b=&quot;哈哈1&quot;;</div><div class="line">       String c=&quot;哈哈哈哈1&quot;;</div><div class="line">       System.out.println(c==a+b);//false</div><div class="line">       System.out.println(c==&quot;哈哈&quot;+&quot;哈哈1&quot;);//true</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>c==”哈哈”+”哈哈1”赋值是常量赋值，基本数据类型中，常量如果存在不会重新创建所以c和”哈哈”+”哈哈1”都指向”哈哈哈哈1”。但是c==a+b时候，是变量赋值，所以都会在内存中新建。最终指向不同地址。</em></p>
+<blockquote>
+<ul>
+<li><strong>Integer类</strong></li>
+</ul>
+</blockquote>
+<hr>
+<pre><code>Interger.parseInter().
+JDK1.5新特性：
+Integer i=new Integer(100);
+Integer i=100;//等效，默认相当于new Integer(100)//自动装箱
+i=i+200;//按理说会报错，int+Integer不行，但是底层有自动拆箱，相当于i.intValue().
+把上面转换成i.intValue()+200.
+i=i.intValue()+200；计算结果为300，但是i为Integer，所以又一次自动装箱，转换为Integer类型。
+</code></pre><hr>
+<blockquote>
+<p>面试题：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        Integer i=new Integer(128);</div><div class="line">        Integer i1=new Integer(128);</div><div class="line">        System.out.println(i==i1);//false</div><div class="line">        System.out.println(i.equals(i1));//true</div><div class="line">        Integer ii=128;</div><div class="line">        Integer ii1=128;</div><div class="line">        System.out.println(ii==ii1);//false</div><div class="line">        System.out.println(ii.equals(ii1));//true</div><div class="line">        Integer iii=127;</div><div class="line">        Integer iii1=127;</div><div class="line">        System.out.println(iii==iii1);//true</div><div class="line">        System.out.println(iii.equals(iii1));//true</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>解析，因为1.5新特性可知，上面两种比较结果相同。
+但是第三组比较很郁闷，
+因为Interger在byte范围内时候直接从常量池中拿值，所以不存在地址不同的情况
+所以System.out.println(iii==iii1);//true
+又因为Interger重写了equals方法，比较的是值，所以
+System.out.println(iii.equals(iii1));//true
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Java查漏补缺（三）/" data-id="cj60seeba000s60nkw1fb7pzl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Java查漏补缺（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Java查漏补缺（二）/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.504Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Java查漏补缺（二）/">Java查漏补缺（二）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java开始"><a href="#Java开始" class="headerlink" title="Java开始"></a>Java开始</h1><hr>
+<pre><code>书接上文，继续开始啦！^_+
+</code></pre><hr>
+<h2 id="第三部分"><a href="#第三部分" class="headerlink" title="第三部分"></a>第三部分</h2><ul>
+<li>封装一般和set，get方法配合使用。</li>
+<li>构造方法:给对象进行初始化。<br>如果不显示给构造方法，系统会默认给个无参数构造方法。<br>如果一旦给了带参构造，系统不会给出无参数构造。</li>
+<li><p>给成员变量赋值有两种方法<br>A：set,get方法<br>B：构造方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Studenta&#123;</div><div class="line">	private int age;</div><div class="line">	private String name;</div><div class="line">	public Studenta(int age, String name) &#123;</div><div class="line">		super();</div><div class="line">		this.age = age;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line">	public void show() &#123;</div><div class="line">		System.out.println(name);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>this关键字：代表其所在方法所属对象的引用，所以构造方法赋值.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public Studenta(int age, String name) &#123;</div><div class="line">	super();</div><div class="line">	this.age = age;</div><div class="line">	this.name = name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  <em>如果不加this，age还是赋值给age，就近原则还是赋值给的布局变量，而不是成员变量</em></p>
+</li>
+</ul>
+<ul>
+<li>构造代码块：先于构造方法执行,把所有构造方法中的共同内容定义在构造代码库中。</li>
+<li>static关键字<br>  static修饰的成员变量只有一个，不会重复创建，所以也就是说是共用的，这也是其使用场景。<br><strong>特点：</strong></li>
+</ul>
+<blockquote>
+<p>A：随类加载而加载<br>  B：优先于对象存在<br>  C:如果该内容被所有对象所共用，就用静态修饰。<br>  D:直接被类名所调用。<br><em>注意事项：</em></p>
+<p>A：在静态方法中没有this关键字，因为静态是随着类加载而加载，而this是随对象而存在。<br>B:静态方法只能访问静态成员变量或静态成员方法。</p>
+</blockquote>
+<h1 id="第四部分"><a href="#第四部分" class="headerlink" title="第四部分"></a>第四部分</h1><ul>
+<li><p><strong>继承</strong>：<br>  子类可以访问父类非私有的属性和行为。<br>  注意，私有的只有在类内部才能使用，即使是该类本身的对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">	public class B &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		Person person=new Person();</div><div class="line">		person.name();</div><div class="line">		//person.show();</div><div class="line">		会报错，私有的类不能再外部使用，即使是本身对象也不行。通过name方法间接调用</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">	//注意此时person类不能用public修饰</div><div class="line">	class Person&#123;</div><div class="line">		String name;</div><div class="line">		int age;</div><div class="line">		public String getName() &#123;</div><div class="line">			return name;</div><div class="line">		&#125;</div><div class="line">		public void setName(String name) &#123;</div><div class="line">			this.name = name;</div><div class="line">		&#125;</div><div class="line">		public int getAge() &#123;</div><div class="line">			return age;</div><div class="line">		&#125;</div><div class="line">		public void setAge(int age) &#123;</div><div class="line">			this.age = age;</div><div class="line">		&#125;</div><div class="line">		private void show() &#123;</div><div class="line">			System.out.println(&quot;名字&quot;);</div><div class="line">		&#125;</div><div class="line">		public void name() &#123;</div><div class="line">			show();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	class Student1 extends Person&#123;&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>特点</strong></p>
+<blockquote>
+<p>  A：继承java中只能单继承<br>  解析：因为如果支持多继承，多个父类同时含有同样方法，会照成调用不明确<br>  B：支持多重继承<br>  C：num:布局变量，this.num:成员变量，super.num:父类的变量<br>  this:代表本类对象的引用<br>  super:代表父类内存空间的引用<br>  构造方法：<br>  this.(参数)：本类的构造方法<br>  suoer.(参数)：父类的构造方法</p>
+</blockquote>
+<p>  成员方法：<br>  this.方法名（）—本类方法<br>  super.方法名（）—父类方法</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>重写</strong><br>  A：父类的私有方法不可以被重写。<br>  B:子类访问权限要大于或等于父类的权限<br>  C:静态的方法只能被静态所重写<br>  D:看案例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class C &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		Student3 student3=new Student3();</div><div class="line">		student3.show();</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class Student2&#123;</div><div class="line">	public void show() &#123;</div><div class="line">		System.out.println(&quot;第一&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class Student3 extends Student2&#123;</div><div class="line">	public void show() &#123;</div><div class="line">		//这样写简略代码，提高复用</div><div class="line">		super.show();</div><div class="line">		System.out.println(&quot;第二&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><strong>继承的构造关系：</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>子类构造默认都去访问父类无参构造方法；<br>    在子类构造方法中第一行，不论写不写，默认都有一行super();<br>    如果父类没有无参构造，（但是有有参构造），子类可以通过super(参数)指定要访问的父类构造。</p>
+</blockquote>
+<ul>
+<li>顺序：静态代码库》》构造代码块》》构造方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class Zi&#123;</div><div class="line">	static&#123;</div><div class="line">		System.out.println(&quot;静态代码块&quot;);</div><div class="line">	&#125;</div><div class="line">	&#123;</div><div class="line">		System.out.println(&quot;构造代码库&quot;);</div><div class="line">	&#125;</div><div class="line">	public Zi() &#123;</div><div class="line">		System.out.println(&quot;构造方法&quot;);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><em>面试题：因为静态代码块和类一起加载<br>父静态代码块》子静态代码块》父构造代码块》父构造方法》子构造代码块》子构造方法</em></p>
+<ul>
+<li><strong>final关键字</strong><br>  其可以修饰成员变量，类，成员方法<br>  A：修饰的成员方法不可以被子类重写。<br>  B：修饰的类不能被继承<br>  C:修饰的成员变量其实是常量</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Java查漏补缺（二）/" data-id="cj60seebe000t60nkqi4qte1l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-JavaScript面向对象" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/JavaScript面向对象/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.502Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/JavaScript面向对象/">JavaScript面向对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="面向对象基础"><a href="#面向对象基础" class="headerlink" title="面向对象基础"></a><strong>面向对象基础</strong></h1><h2 id="方式一、"><a href="#方式一、" class="headerlink" title="方式一、"></a>方式一、</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var obj=&#123;</div><div class="line">	name:&apos;zq&apos;,</div><div class="line">	age:18,</div><div class="line">	sayHi:function () &#123;</div><div class="line">		console.log(this.info+&apos;...&apos;+this.name+&apos;...&apos;+this.age);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line">obj.info=123;</div><div class="line">obj.sayHi();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>推荐使用的场合： 作为函数的参数，临时只用一次的场景。比如设置函数原型对象。<br>缺点： 不能作为对象创建的模板，也就是不能用new进行构造新对象。</p>
+</blockquote>
+<h2 id="方式二、"><a href="#方式二、" class="headerlink" title="方式二、"></a>方式二、</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var obj=new Object();</div><div class="line">obj.name=&apos;haha&apos;;</div><div class="line">obj.sayHi=function() &#123;</div><div class="line">	console.log(this.name);</div><div class="line">&#125;;</div><div class="line">obj.sayHi();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>跟上面的方式一样，只能临时用一下这个对象，不想作为new的构造模板是可以的。</p>
+<blockquote>
+<p>费力不讨好，不推荐使用</p>
+</blockquote>
+</blockquote>
+<h2 id="方式三、"><a href="#方式三、" class="headerlink" title="方式三、"></a>方式三、</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function Person() &#123;</div><div class="line">	this.name=&apos;哈哈&apos;;</div><div class="line">&#125;</div><div class="line">Person.prototype=&#123;</div><div class="line">	sayHi:function() &#123;</div><div class="line">		console.log(this.name);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line">var p=new Person();</div><div class="line">p.sayHi();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>把 一个函数对象 当做构造函数来使用，一般要把 函数对象的首字母大写<br>通过this可以直接给 构造出来的对象添加属性。</p>
+</blockquote>
+<h2 id="方式四、"><a href="#方式四、" class="headerlink" title="方式四、"></a>方式四、</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">function Person(pros) &#123;</div><div class="line">	this.inits(pros);</div><div class="line">&#125;</div><div class="line">Person.prototype=&#123;</div><div class="line">	inits:function (pros) &#123;</div><div class="line">		this.name=pros.name||&apos;&apos;;</div><div class="line">		this.age=pros.age||18;</div><div class="line">	&#125;,</div><div class="line">	sayHi:function () &#123;</div><div class="line">		console.log(this.name+&apos;.....&apos;+this.age);</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line">var pros=&#123;</div><div class="line">	name:&apos;zq&apos;,</div><div class="line">	age:12</div><div class="line">&#125;;</div><div class="line">var p=new Person(pros);</div><div class="line">p.sayHi();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>终极版本，这样既可以在实例化对象时候，初始化通过对象pros传递的各种属性。<br>同时很好的通过原型定义方法，避免了对象过多时候，方法重复创建浪费的内存的情况。<br>另外，注意js的变量提升问题，例如pros必须定义在new对象的上面，变量提示只提升定义，不提示实例化。</p>
+</blockquote>
+<h1 id="方法调用模式"><a href="#方法调用模式" class="headerlink" title="方法调用模式"></a><strong>方法调用模式</strong></h1><h2 id="方式一、方法调用模式"><a href="#方式一、方法调用模式" class="headerlink" title="方式一、方法调用模式"></a>方式一、方法调用模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function Persion() &#123;</div><div class="line">    var name1 = &quot;itcast&quot;,</div><div class="line">    age1 = 19,</div><div class="line">    show1 = function() &#123;</div><div class="line">        console.log(this.name);</div><div class="line">    &#125;;</div><div class="line">    return &#123;</div><div class="line">        age : age1,</div><div class="line">        name : name1,</div><div class="line">        show : show1</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var p = new Persion();</div><div class="line">p.show();  //在show方法中的this指向了p对象。</div></pre></td></tr></table></figure>
+<h2 id="方式二、函数调用模式"><a href="#方式二、函数调用模式" class="headerlink" title="方式二、函数调用模式"></a>方式二、函数调用模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function add( a, b) &#123;</div><div class="line">    this.result = a + b;</div><div class="line">&#125;</div><div class="line">add( 3, 9 ); //此方法执行的时候，this指向了window,node中指向global.</div><div class="line">console.log(result); //输出12.全局的result。</div></pre></td></tr></table></figure>
+<h2 id="方式三、构造器调用模式"><a href="#方式三、构造器调用模式" class="headerlink" title="方式三、构造器调用模式"></a>方式三、构造器调用模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function Persion（）&#123;</div><div class="line">    this.name = &quot;123&quot;;</div><div class="line">    this.age = 19;</div><div class="line">    this.show = function()&#123;</div><div class="line">        console.log(this.name);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var p = new Persion();</div><div class="line">p.show();//  在show方法中方法this，指向了p对象实例。</div></pre></td></tr></table></figure>
+<h2 id="方式四、call-和-apply调用模式"><a href="#方式四、call-和-apply调用模式" class="headerlink" title="方式四、call 和 apply调用模式"></a>方式四、call 和 apply调用模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function add(a,b)&#123;</div><div class="line">    this.result = a + b;s           </div><div class="line">&#125;</div><div class="line">var p  = &#123;&#125;;        //定义一个空对象。</div><div class="line">add.call(p,3,4);    //在这个方法调用的时候，this指向了p</div><div class="line">console.log(p.result);</div><div class="line">//apply和call是一样的用法，只不过apply第二个参数用数组进行传递。</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>方式1，4，还是方法形式的使用，2，3都是对象形式的使用。
+</code></pre><hr>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a><strong>补充</strong></h2><blockquote>
+<p>函数表达式才能自执行</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">//如下是错误写法，不会直接执行</div><div class="line">//	function a () &#123;</div><div class="line">//		console.log(111);</div><div class="line">//	&#125;();</div><div class="line">	//可执行,因为函数表达式才能直接执行，函数a被小括号包裹，就是函数表达式了</div><div class="line">	(function a () &#123;</div><div class="line">		console.log(222);</div><div class="line">	&#125;)();</div><div class="line">	//可执行，function () &#123;console.log(111);&#125;赋值给a相当于也成为了函数表达式</div><div class="line">	var a=function () &#123;</div><div class="line">		console.log(111);</div><div class="line">	&#125;();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>除了上面两种函数表达式，还有以下形式</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">方式一、</div><div class="line"></div><div class="line">!function()&#123;</div><div class="line"></div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">方式二、</div><div class="line"> </div><div class="line">+function()&#123;</div><div class="line"></div><div class="line">&#125;();</div></pre></td></tr></table></figure>
+<ul>
+<li>小括号</li>
+<li>赋值操作</li>
+<li>逻辑运算符</li>
+<li>数字运算符</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/JavaScript面向对象/" data-id="cj60seeb4000n60nkn0ggkjpc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Html标签简介" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Html标签简介/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.501Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Html标签简介/">Html标签简介</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、属性值：标签内部，空格分隔"><a href="#一、属性值：标签内部，空格分隔" class="headerlink" title="一、属性值：标签内部，空格分隔"></a>一、<strong>属性值：标签内部，空格分隔</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">    	是伐啦&lt;font size=&quot;5&quot; color=&quot;red&quot;&gt;看不见&lt;/font&gt;&lt;br/&gt;开发编程</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<h1 id="二、标签"><a href="#二、标签" class="headerlink" title="二、标签"></a>二、<strong>标签</strong></h1><h2 id="一-、文件标签"><a href="#一-、文件标签" class="headerlink" title="(一)、文件标签"></a>(一)、<strong>文件标签</strong></h2><h3 id="body有以下属性"><a href="#body有以下属性" class="headerlink" title="body有以下属性:"></a>body有以下属性:</h3><blockquote>
+<p>text:文本颜色<br>    bgcoloc:背景色<br>    background：背景图片</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;body text=&quot;green&quot;  background=&quot;bg.jpg&quot; bgcolor=&quot;pink&quot;&gt;</div><div class="line">    	我请大&lt;font color=&quot;red&quot;&gt;家&lt;/font&gt;吃狗不理包子</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注解：background会覆盖背景色,而且注意font标签字体颜色使用color,而body字体使用text.
+</code></pre><hr>
+<h2 id="（二）、排版标签"><a href="#（二）、排版标签" class="headerlink" title="（二）、排版标签"></a>（二）、<strong>排版标签</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;p align=&quot;center&quot;&gt;</div><div class="line">    	春夜喜雨&lt;br/&gt;</div><div class="line">    	杜甫</div><div class="line">    	&lt;hr size=&quot;30px&quot; width=&quot;50%&quot; color=&quot;red&quot; align=&quot;&quot;&gt;</div><div class="line">    	春眠不觉晓&lt;br/&gt;</div><div class="line">    	处处闻啼鸟</div><div class="line">&lt;/p&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>属性：<br>    size：宽度（不写单位默认px）<br>    width：长度(可以写值，也可以写百分比)<br>    align:对齐方式（不写默认根据父元素）</p>
+</blockquote>
+<hr>
+<pre><code>百分比和具体值区别：百分比随父元素变化而变化，例如缩放窗口。
+注意此处，hr下面两项对齐方式已经是居左了，p对他们无影响了。
+</code></pre><hr>
+<h2 id="三-、块标签"><a href="#三-、块标签" class="headerlink" title="(三)、块标签"></a>(三)、<strong>块标签</strong></h2><p>div:行级块标签,默认占据一行<br>span:行内块标签，不换行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;div style=&quot;background-color: pink&quot;&gt;hehe&lt;/div&gt;</div><div class="line"> &lt;span style=&quot;background-color: red&quot;&gt;haha&lt;/span&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注解：内部style是css属性</p>
+</blockquote>
+<h2 id="四-、文字标签"><a href="#四-、文字标签" class="headerlink" title="(四)、文字标签"></a>(四)、<strong>文字标签</strong></h2><p> <em>font</em><br> <strong>属性：</strong></p>
+<blockquote>
+<pre><code>color:颜色
+ size:大小
+（最大7号字体，在写大也只有7.最小值1，不写默认3）
+ face:字体类型
+</code></pre></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;font size=&quot;10&quot; color=&quot;pink&quot; face=&quot;黑体&quot;&gt;哈哈&lt;/font&gt;</div></pre></td></tr></table></figure>
+<h2 id="五-、清单标签（列表）"><a href="#五-、清单标签（列表）" class="headerlink" title="(五)、清单标签（列表）"></a>(五)、<strong>清单标签（列表）</strong></h2><ul>
+<li>ul无序列表<blockquote>
+<p>属性：type<br>  有square(方块) circle(圆圈) disc(默认)</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>oi有序列表<blockquote>
+<p>属性：type<br>  写数字，就是1，2，3，形式<br>  写I，i  就是罗马字符<br>  写字母  就是a,b大小写这种<br>  start :首项开始位置</p>
+</blockquote>
+</li>
+<li>dl定义列表<blockquote>
+<p>dt:标题<br>dd:描述</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;ol type=&quot;I&quot; start=&quot;2&quot;&gt;</div><div class="line">    &lt;li&gt;我是程序员&lt;/li&gt;</div><div class="line">    &lt;li&gt;我是程序员&lt;/li&gt;</div><div class="line">    &lt;li&gt;我是程序员&lt;/li&gt;</div><div class="line">&lt;/ol&gt;</div></pre></td></tr></table></figure>
+<h2 id="六-、图形标签"><a href="#六-、图形标签" class="headerlink" title="(六)、图形标签"></a>(六)、<strong>图形标签</strong></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">    &lt;img src=&quot;bg.jpg&quot; height=&quot;378&quot; width=&quot;652&quot; border=&quot;5&quot; align=&quot;middle&quot; alt=&quot;呵呵&quot; title=&quot;哈哈&quot;&gt;</div><div class="line">    balsbabfj</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>属性：align指的是图片和相邻文本的位置
+middle指的就是居中，此时文本就在图片之后中央的位置。还可以bottom，top。
+alt:网络不好，图片显示不出来的提示。
+title：鼠标悬浮提示。
+</code></pre><hr>
+<h2 id="七-、链接标签"><a href="#七-、链接标签" class="headerlink" title="(七)、链接标签"></a>(七)、<strong>链接标签</strong></h2><blockquote>
+<p>target:_self(在本身打开)  _blank(新建页面打开)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> &lt;body&gt;</div><div class="line">    	&lt;a href=&quot;a.html&quot;  target=&quot;_self&quot;&gt;链接&lt;/a&gt;</div><div class="line">    	&lt;a href=&quot;&quot; name=&quot;top&quot;&gt;锚点&lt;/a&gt;</div><div class="line">    	哈哈哈哈&lt;br/&gt;</div><div class="line">    	哈哈哈哈&lt;br/&gt;</div><div class="line">    	哈哈哈哈&lt;br/&gt;</div><div class="line">    	&lt;a href=&quot;#top&quot;&gt;top&lt;/a&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<p><em>解析锚点，是根据name来确定的，最上面name=top,下面另一个a标签，href中的#代表本页面，然后跟上对应name值即可。</em></p>
+<h2 id="八-、表格标签"><a href="#八-、表格标签" class="headerlink" title="(八)、表格标签"></a>(八)、<strong>表格标签</strong></h2><hr>
+<pre><code>caption：标题
+th:表格头
+tr:行
+td:单元格
+    td属性：
+    rowspan：行合并
+    colspan：列合并《注意这两者合并之后都要删除被合并的部分》
+table属性：
+    border:表格边框
+    width：表格长度
+    algin:表格对齐方式
+    bgcolor:背景颜色
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;table border=&quot;1&quot; width=&quot;50%&quot; align=&quot;center&quot; bgcolor=&quot;pink&quot;&gt;</div><div class="line">    	&lt;caption&gt;标题&lt;/caption&gt;</div><div class="line">    		&lt;tr align=&quot;center&quot;&gt;</div><div class="line">    			&lt;th&gt;哈哈&lt;/th&gt;</div><div class="line">    			&lt;th&gt;哈哈&lt;/th&gt;</div><div class="line">    			&lt;th&gt;哈哈&lt;/th&gt;</div><div class="line">    		&lt;/tr&gt;</div><div class="line">    		&lt;tr align=&quot;center&quot;&gt;</div><div class="line">    			&lt;td rowspan=&quot;2&quot;&gt;哈哈&lt;/td&gt;</div><div class="line">    			&lt;td&gt;哈哈&lt;/td&gt;</div><div class="line">    			&lt;td&gt;哈哈&lt;/td&gt;</div><div class="line">    		&lt;/tr&gt;</div><div class="line">    		&lt;tr align=&quot;center&quot;&gt;</div><div class="line">    			&lt;td&gt;哈哈&lt;/td&gt;</div><div class="line">    			&lt;td&gt;哈哈&lt;/td&gt;</div><div class="line">    		&lt;/tr&gt;</div><div class="line">    		&lt;tr align=&quot;center&quot;&gt;</div><div class="line">    			&lt;td&gt;哈哈&lt;/td&gt;</div><div class="line">    			&lt;td colspan=&quot;2&quot;&gt;哈哈&lt;/td&gt;</div><div class="line">    		&lt;/tr&gt;</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure>
+<h1 id="三、表单标签"><a href="#三、表单标签" class="headerlink" title="三、表单标签"></a>三、<strong>表单标签</strong></h1><ul>
+<li><blockquote>
+<p>form标签<br>  name:表单名称<br>  action：提交的地址<br>  method：提交方式</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>select标签<br> name:名称（提交时候网址上面是这样的：name值=value值?…）<br> option:代表一个选择项<br> selected=”select”:默认被选择<br> value:提交值</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>input标签<br>  type:根据不同值，显示不同功能的表单项。<br>  可以是：text,password,radio(单选),<br>  checkbox(复选),file(上传文件),<br>  button,submit,reset,<br>  image(图片按钮,也有src,alt等属性)，<br>  hidden(隐藏表单，服务端需要但是不需要用户看见)等值。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<pre><code>解析:单选时候通过相同name值实现互斥。复选的name值相同表示此时是同一组。value:默认值,比如当是radio(单选)时候，提交的就是value值。checked=&quot;check&quot;:默认选择。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">    	&lt;form action=&quot;#&quot;&gt;</div><div class="line">    		&lt;input type=&quot;text&quot; value=&quot;默认值&quot;&gt;&lt;br/&gt;</div><div class="line">			&lt;input type=&quot;radio&quot; name=&quot;sex&quot; value=&quot;nan&quot; checked=&quot;check&quot;&gt;男</div><div class="line">			&lt;input type=&quot;radio&quot; name=&quot;sex&quot; value=&quot;nv&quot;&gt;女&lt;br/&gt;</div><div class="line">			&lt;input type=&quot;checkbox&quot; value=&quot;lanqiu&quot; name=&quot;lanqiu&quot;&gt;篮球</div><div class="line">			&lt;input type=&quot;checkbox&quot; value=&quot;zuqiu&quot; name=&quot;zuqiu&quot; checked=&quot;check&quot;&gt;足球</div><div class="line">			&lt;input type=&quot;checkbox&quot; value=&quot;paiqiu&quot; name=&quot;paiqiu&quot;&gt;排球&lt;br/&gt;</div><div class="line">			&lt;input type=&quot;file&quot; name=&quot;file&quot;&gt;&lt;br/&gt;</div><div class="line">			&lt;input type=&quot;button&quot; value=&quot;按钮&quot;&gt;</div><div class="line">			&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;&lt;br/&gt;</div><div class="line">			&lt;input type=&quot;image&quot; src=&quot;bg.jpg&quot; alt=&quot;提交&quot;&gt;&lt;br/&gt;</div><div class="line">			&lt;select name=&quot;city&quot;&gt;</div><div class="line">				&lt;option value=&quot;bj&quot;&gt;北京&lt;/option&gt;</div><div class="line">				&lt;option value=&quot;sh&quot; selected=&quot;select&quot;&gt;上海&lt;/option&gt;</div><div class="line">				&lt;option value=&quot;tj&quot;&gt;天津&lt;/option&gt;</div><div class="line">				&lt;option value=&quot;wh&quot;&gt;武汉&lt;/option&gt;</div><div class="line">				&lt;option value=&quot;zz&quot;&gt;郑州&lt;/option&gt;</div><div class="line">			&lt;/select&gt;&lt;br/&gt;</div><div class="line">			&lt;textarea cols=&quot;100&quot; rows=&quot;10&quot; name=&quot;ta&quot;&gt;</div><div class="line">				默认值</div><div class="line">			&lt;/textarea&gt;</div><div class="line">    	&lt;/form&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li><blockquote>
+<p>textarea标签</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;textarea cols=&quot;100&quot; rows=&quot;10&quot; name=&quot;ta&quot;&gt;</div><div class="line">    默认值</div><div class="line">&lt;/textarea&gt;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>属性：
+    cols：列
+    rows:行
+    name:名称（提交之后：name值=textarea框中的值
+    ）
+注意：textarea没有value值，提交的值是框框中输入的内容。
+</code></pre><hr>
+<h1 id="四、框架标签-去掉body-直接用frameset"><a href="#四、框架标签-去掉body-直接用frameset" class="headerlink" title="四、框架标签(去掉body,直接用frameset)"></a>四、<strong>框架标签(去掉body,直接用frameset)</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;frameset rows=&quot;120,*&quot;&gt;</div><div class="line">        &lt;frame src=&quot;top.html&quot;&gt;</div><div class="line">    &lt;frameset cols=&quot;120,*&quot;&gt;</div><div class="line">        &lt;frame src=&quot;left.html&quot;&gt;</div><div class="line">        &lt;frame src=&quot;http://www.baidu.com&quot; name=&quot;right&quot;&gt;</div><div class="line">    &lt;/frameset&gt;</div><div class="line">    &lt;/frameset&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>right.html代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">    &lt;a href=&quot;https://www.baidu.com&quot; target=&quot;right&quot;&gt;百度&lt;/a&gt;&lt;br/&gt;</div><div class="line">    &lt;a href=&quot;https://www.sogou.com/&quot; target=&quot;right&quot;&gt;搜狗&lt;/a&gt;&lt;br/&gt;</div><div class="line">    &lt;a href=&quot;http://www.youdao.com/&quot; target=&quot;right&quot;&gt;有道&lt;/a&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>解析：此处target指的就是跳转到哪，没有用_self这些属性，right对应上面
+&lt;frame src=&quot;http://www.baidu.com&quot; name=&quot;right&quot;&gt;中的name值right。
+rows=&quot;120,*&quot;：值得是上面120行，其他*表示，还可以这么写，rows=&quot;120,*,120&quot;
+这样的意思是上下各120，中间全部占有。
+</code></pre><hr>
+<p><strong>代码综合：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">总代码：</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;frameset rows=&quot;120,*&quot;&gt;</div><div class="line">    	&lt;frame src=&quot;top.html&quot;&gt;</div><div class="line">    &lt;frameset cols=&quot;120,*&quot;&gt;</div><div class="line">    	&lt;frame src=&quot;left.html&quot;&gt;</div><div class="line">    	&lt;frame src=&quot;http://www.baidu.com&quot; name=&quot;right&quot;&gt;</div><div class="line">    &lt;/frameset&gt;</div><div class="line">    &lt;/frameset&gt;</div><div class="line">&lt;/html&gt;</div><div class="line"></div><div class="line">left代码：</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=&quot;en&quot;&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;/head&gt;</div><div class="line">    &lt;frameset rows=&quot;120,*&quot;&gt;</div><div class="line">    	&lt;frame src=&quot;top.html&quot;&gt;</div><div class="line">    &lt;frameset cols=&quot;120,*&quot;&gt;</div><div class="line">    	&lt;frame src=&quot;left.html&quot;&gt;</div><div class="line">    	&lt;frame src=&quot;http://www.baidu.com&quot; name=&quot;right&quot;&gt;</div><div class="line">    &lt;/frameset&gt;</div><div class="line">    &lt;/frameset&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h1 id="五、特殊标签"><a href="#五、特殊标签" class="headerlink" title="五、特殊标签"></a>五、<strong>特殊标签</strong></h1><hr>
+<pre><code>&amp;nbsp:空格
+&amp;gt:大于
+&amp;lt:小于
+&amp;Reg:注册符号
+&amp;copy:版权符号
+</code></pre><hr>
+<h1 id="六、标签分类"><a href="#六、标签分类" class="headerlink" title="六、标签分类"></a>六、<strong>标签分类</strong></h1><blockquote>
+<p>div标签是个容器级标签，什么都可以放，甚至可以放div自己<br>span标签是个文本级标签，”小区域”，只能放置图片文字表单元素。<br>例如：p h ul dl ol div不可以放在span里面。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Html标签简介/" data-id="cj60seeaz000k60nk2gyu7y39" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Gson序列化和反序列化对象" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Gson序列化和反序列化对象/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.499Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/Gson序列化和反序列化对象/">序列化反序列化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Gson序列化和反序列化对象"><a href="#Gson序列化和反序列化对象" class="headerlink" title="Gson序列化和反序列化对象"></a>Gson序列化和反序列化对象</h1><h2 id="反序列化：把字节序列恢复为对象的过程，类比gson解析json字符串"><a href="#反序列化：把字节序列恢复为对象的过程，类比gson解析json字符串" class="headerlink" title="反序列化：把字节序列恢复为对象的过程，类比gson解析json字符串"></a>反序列化：把字节序列恢复为对象的过程，类比gson解析json字符串</h2><hr>
+<p>应用场景：例如网络传输的json字符串，android机需解析生成对应数据时候。</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">反序列化案例：读取本地json文本,gson.fromJson()</div><div class="line">默认：此时对应的javabena变量名为pib，方便演示</div><div class="line">FileReader fr=new FileReader(sdpath+&quot;/download/&quot;+&quot;config.txt&quot;);</div><div class="line">JsonReader jr=new JsonReader(fr);</div><div class="line">Gson gson=new Gson();</div><div class="line">PageItemsBean pib = gson.fromJson(jr,PageItemsBean.class);</div><div class="line">此时读取数据，通过pib即可。</div></pre></td></tr></table></figure>
+<h2 id="序列化：把对象转换为字节序列的过程，类比gson序列化对象并保存为文本"><a href="#序列化：把对象转换为字节序列的过程，类比gson序列化对象并保存为文本" class="headerlink" title="序列化：把对象转换为字节序列的过程，类比gson序列化对象并保存为文本"></a>序列化：把对象转换为字节序列的过程，类比gson序列化对象并保存为文本</h2><hr>
+<p>应用场景：例如本地保存的配置文件，有修改需求时候，例如增加某个节点，此时可以使用序列化对应对象，然后生成json字符串，并保存为文件。</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">序列化案例：修改本地存储的json文本（此时为增加一个节点）,gson.toJson()</div><div class="line">PageItemsBean pib=new PageItemsBean();</div><div class="line">pib.setIndex(1);</div><div class="line">pib.setLinkedID(&quot;b949d491dda9cdsehf&quot;);</div><div class="line">pib.setType(&quot;Device&quot;);</div><div class="line">pib.setLinkedPageID(&quot;&quot;);</div><div class="line">//通过反序列化生成的java对象cf，此时必须保证，cf在内存中已经持有json字符串中所有具体值</div><div class="line">//而后，比如说想在javabena中对应的哪个list数组中添加一项，就可以找到该数组对象，然后add（）</div><div class="line">//次add方法是数组的add（），不指定位置，默认添加到最后，举例：add(0，pib)，就会添加到位置0.</div><div class="line">        cf.getPages().get(0).getPanels().get(0).getPageItems().add(pib);</div><div class="line">        String json=gson.toJson(cf);</div><div class="line">        FileWriter fw= null;</div><div class="line">        try &#123;</div><div class="line">            fw = new FileWriter(sdpath+&quot;/download/&quot;+&quot;config.txt&quot;);</div><div class="line">            fw.write(json);</div><div class="line">            fw.close();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h1 id="总结：序列化反序列化本无顺序之分，但是此时是为了修改同一个本地的文本配置文件，cf必须在内存中持有"><a href="#总结：序列化反序列化本无顺序之分，但是此时是为了修改同一个本地的文本配置文件，cf必须在内存中持有" class="headerlink" title="总结：序列化反序列化本无顺序之分，但是此时是为了修改同一个本地的文本配置文件，cf必须在内存中持有"></a>总结：序列化反序列化本无顺序之分，但是此时是为了修改同一个本地的文本配置文件，cf必须在内存中持有</h1><h1 id="json字符串的引用，所以，针对本需求而言，必须是先生成cf，才能去修改。"><a href="#json字符串的引用，所以，针对本需求而言，必须是先生成cf，才能去修改。" class="headerlink" title="json字符串的引用，所以，针对本需求而言，必须是先生成cf，才能去修改。"></a>json字符串的引用，所以，针对本需求而言，必须是先生成cf，才能去修改。</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Gson序列化和反序列化对象/" data-id="cj60seeax000j60nkv7jd1pyj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C语言笔记_06" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/C语言笔记_06/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.497Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C语言/">C语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/C语言笔记_06/">C语言笔记_06</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="枚举：就是用来表示几种固定类型的取值"><a href="#枚举：就是用来表示几种固定类型的取值" class="headerlink" title="枚举：就是用来表示几种固定类型的取值"></a>枚举：就是用来表示几种固定类型的取值</h1><blockquote>
+<p>枚举的本质就是基本数据类型，整型</p>
+</blockquote>
+<h2 id="枚举的定义"><a href="#枚举的定义" class="headerlink" title="枚举的定义"></a>枚举的定义</h2><hr>
+<pre><code>enum 枚举类型名称{
+    取值，
+};
+例子：
+//定义枚举类型
+enum Gender{
+    kGenderMale,//命名规范，最好如此
+    kGenderFemale
+};
+//定义枚举变量
+enum Gender sex;
+sex=male;
+sex=female;
+</code></pre><hr>
+<blockquote>
+<p>注意点：枚举类型本质是整型，所以枚举类型除了可以接受枚举的固定取值之外<br>（此时为male和female），还可以接受其他整型的值，也就是说枚举类型可以<br>当做int类型变量使用。默认枚举的第一个取值就是0，第二个就是1，后面取值递增。</p>
+</blockquote>
+<h1 id="全局变量和局部变量"><a href="#全局变量和局部变量" class="headerlink" title="全局变量和局部变量"></a>全局变量和局部变量</h1><h2 id="全局变量-存储在静态区中，随着程序的启动而创建，随着程序结束而结束"><a href="#全局变量-存储在静态区中，随着程序的启动而创建，随着程序结束而结束" class="headerlink" title="全局变量(存储在静态区中，随着程序的启动而创建，随着程序结束而结束)"></a>全局变量(存储在静态区中，随着程序的启动而创建，随着程序结束而结束)</h2><hr>
+<pre><code>写在函数，代码块，形参列表之外的变量
+全局变量没有进行初始化，系统默认将全局变量初始化为0
+作用域：从定义的哪一行到文件末尾
+extern int num:extern用来声明一个全局变量，但是不会开辟内存空间
+也就是说，int num；这种和上面extern声明的全局变量都是外部全局变量，只是有没有默认初
+始值的区别，而且即使extern修饰还是能在其他文件修改这个值，因为是同一段内存空间，所以
+出现static关键字，这样就是内部全局变量了。
+</code></pre><hr>
+<h3 id="外部全局变量，可以被其他文件访问的全局变量"><a href="#外部全局变量，可以被其他文件访问的全局变量" class="headerlink" title="外部全局变量，可以被其他文件访问的全局变量"></a>外部全局变量，可以被其他文件访问的全局变量</h3><pre><code>&gt; 可以定义多个同名的外部全局变量
+ 多个同名的外部全局变量指向同一块存储空间
+</code></pre><h3 id="内部全局变量，给全局变量加上static关键字，只能被当前文件访问"><a href="#内部全局变量，给全局变量加上static关键字，只能被当前文件访问" class="headerlink" title="内部全局变量，给全局变量加上static关键字，只能被当前文件访问"></a>内部全局变量，给全局变量加上static关键字，只能被当前文件访问</h3><pre><code>&gt; 可以定义多个同名的外部全局变量
+ 多个同名的外部全局变量如果不在同一个文件中，那么指向不同存储空间
+</code></pre><h2 id="局部变量-存储在栈中，作用域结束会自动释放"><a href="#局部变量-存储在栈中，作用域结束会自动释放" class="headerlink" title="局部变量(存储在栈中，作用域结束会自动释放)"></a>局部变量(存储在栈中，作用域结束会自动释放)</h2><hr>
+<pre><code>局部变量就是定义在函数，代码块和函数形参列表中的变量
+相同作用于，不能出现同名的局部变量
+局部变量如果没有初始化，那么局部变量是一些随机值
+static修饰局部变量：会延长局部变量的生命周期，并且会更改局部变量存储的位置，将局部变量从栈转移到静态区中。
+static修饰时候：执行定义布局变量的代码的时候就会分配存储空间，程序结束释放该空间(只是比全局变量稍弱，全局变量。程序启动就分配空间)。
+</code></pre><hr>
+<h1 id="extern和static对函数的作用"><a href="#extern和static对函数的作用" class="headerlink" title="extern和static对函数的作用"></a>extern和static对函数的作用</h1><hr>
+<pre><code>函数也分为，内部函数(只能在当前文件访问的函数)和外部函数(函数默认为内部函数)
+内部函数：返回值前加上关键字static
+static void demo(){};//定义一个内部函数
+static void demo();//声明一个内部函数，注意此声明不要放到头文件里面，没有任何意义，因为即使别人引用了头文件，内部函数还是不能使用该函数。
+extern关键字：加在函数返回值前，就是外部函数，但是一般不写，因为默认就是外部函数。
+</code></pre><hr>
+<h1 id="预处理指令，把文件翻译成0，1之前的操作，一般都是以-开头"><a href="#预处理指令，把文件翻译成0，1之前的操作，一般都是以-开头" class="headerlink" title="预处理指令，把文件翻译成0，1之前的操作，一般都是以#开头"></a>预处理指令，把文件翻译成0，1之前的操作，一般都是以#开头</h1><blockquote>
+<p>源代码-&gt;预处理-&gt;汇编-&gt;二进制-&gt;可执行程序</p>
+</blockquote>
+<h2 id="宏定义-不带分号-，发生在预处理期间"><a href="#宏定义-不带分号-，发生在预处理期间" class="headerlink" title="宏定义(不带分号)，发生在预处理期间"></a>宏定义(不带分号)，发生在预处理期间</h2><blockquote>
+<p>作用：程序翻译成0，1之前，会将所有宏名替换为值</p>
+</blockquote>
+<h3 id="不带参数的宏定义"><a href="#不带参数的宏定义" class="headerlink" title="不带参数的宏定义"></a>不带参数的宏定义</h3><pre><code>&gt; #define 宏名 值
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">#define COUNT 5</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int arr[COUNT]=&#123;1,2,3,4,5&#125;;</div><div class="line">    for (int a=0; a&lt;COUNT; a++) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,arr[a]);</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注意：一般宏名都大写，多个单词之间用下划线隔开，宏定义不加；
+宏定义作用域：从定义哪一行开始到文件末尾。
+可提前结束宏定义作用域，在要结束的地方加上#undef COUNT即可。
+</code></pre><hr>
+<h3 id="带参数的宏定义"><a href="#带参数的宏定义" class="headerlink" title="带参数的宏定义"></a>带参数的宏定义</h3><hr>
+<pre><code>#define SUM(v1,v2) v1+v2:此时不需要写数据类型
+注意：宏定义不会做任何运算，只是做替换而已。
+下面直接类似函数使用即可
+函数和宏定义：当功能比较简单的时候推荐宏定义，效率更高。
+案例：注意结果
+#define SUM(v1,v2) v1*v2
+int main(int argc,const char *argv[]) {
+    printf(&quot;%d\n&quot;,SUM(5+5,4+4));//输出29
+    return 0;
+}
+解析：因为宏定义只是替换，不进行任何运算，此时真的执行时5+5*4+4结果为29
+所以可以更改如下：
+#define SUM(v1,v2) (v1)*(v2)
+int main(int argc,const char *argv[]) {
+    printf(&quot;%d\n&quot;,SUM(5+5,4+4));//输出80
+    return 0;
+}
+但是当进行多次运算的时候，因为优先级的原因，建议最好把结果也加上圆括号。
+#define SUM(v1,v2) （(v1)*(v2)）
+int main(int argc,const char *argv[]) {
+    printf(&quot;%d\n&quot;,SUM(5+5,4+4)/SUM(5+5,4+4)*SUM(5+5,4+4));
+    return 0;
+}
+这样结果就是正确结果。
+</code></pre><hr>
+<h2 id="条件编译：缩小应用程序大小"><a href="#条件编译：缩小应用程序大小" class="headerlink" title="条件编译：缩小应用程序大小"></a>条件编译：缩小应用程序大小</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">写法一：</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int score=100;</div><div class="line">#if score==100 //末尾没有符号</div><div class="line">    printf(&quot;厉害&quot;);</div><div class="line">#elif score==90</div><div class="line">    printf(&quot;加油&quot;);</div><div class="line">#else </div><div class="line">    printf(&quot;加油&quot;);//输出的是加油</div><div class="line">#endif  //必须有此行,省略的话，会将满足之后的所有都清除，包括return 0和大括号。</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>解析：条件编译也是预处理指令，在编译之前就已经执行，但是上面定义的int socre=100是在代<br>码执行到这里时候才分配内存空间，所以下面的条件编译其实是0==100所以不符合，所以socre最<br>好用宏定义，这样就执行正确了。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">写法二：</div><div class="line">#ifdef SCORE  //判断是否定义了score这个宏</div><div class="line">#elif COUNT  //判断是否定义了count这个宏</div><div class="line">#else</div><div class="line">#endif</div><div class="line">写法三：</div><div class="line">#ifndef SCORE  //判断是不是没有定义了score这个宏</div><div class="line">#elif COUNT  //判断是不是没有定义了count这个宏</div><div class="line">#else</div><div class="line">#endif</div></pre></td></tr></table></figure>
+<h1 id="文件包含注意事项"><a href="#文件包含注意事项" class="headerlink" title="文件包含注意事项"></a>文件包含注意事项</h1><hr>
+<pre><code>引入头文件的时候，相当于把函数声明赋值到要使用的文件中，也就类似于函数声明，函数声明
+可以重复，但是会降低效率，所以多次引入头文件也会降低效率，为了防止效率降低，在.h文件中书
+写如下即可：
+#ifndef test_h
+#define test_h
+int sum(int v1,int v2);
+void say();
+#endif
+</code></pre><hr>
+<h1 id="typedef-给一个已知的数据类型（包括自定义数据类型）起别名"><a href="#typedef-给一个已知的数据类型（包括自定义数据类型）起别名" class="headerlink" title="typedef:给一个已知的数据类型（包括自定义数据类型）起别名"></a>typedef:给一个已知的数据类型（包括自定义数据类型）起别名</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">typedof 原有类型 别名;</div><div class="line">typedef int Interger;</div><div class="line">typedef Interger myInt;</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    myInt num=30;</div><div class="line">    printf(&quot;%d\n&quot;,num);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">同理也可以给构造类型起别名：typedef struct Person p;</div><div class="line">则struct Person==p;</div><div class="line">定义类型方式：</div><div class="line">typedef struct Person&#123;</div><div class="line">    int age;</div><div class="line">&#125; p;</div><div class="line">这种方式相当于在创建结构体同时创建了对应的别名。</div><div class="line">同理可以删除Person(结构体类型)，这就是另一种写法。</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>枚举别名：
+方式一：
+enum Gender{
+    kGenderMale,
+    kGenderFemale
+} g;
+typedef enum Gender g;
+方式二：
+typedef enum Gender{
+    kGenderMale,
+    kGenderFemale
+} g;
+方式三：
+typedef enum{
+    kGenderMale,
+    kGenderFemale
+} g;
+</code></pre><hr>
+<blockquote>
+<p>指针别名：<br>typedef char * String;<br>String str=”lnj”;</p>
+</blockquote>
+<hr>
+<pre><code>函数别名：
+typedef int(*funcPointer)(int,int);
+注意：如果给指向函数的指针起别名，那么指向函数的指针的指针名称就是他的别名，不需要加到最后。
+使用：funcPointer mp=sum;
+然后直接把sum()传入参数即可。
+</code></pre><hr>
+<h1 id="const关键字：类型修饰符"><a href="#const关键字：类型修饰符" class="headerlink" title="const关键字：类型修饰符"></a>const关键字：类型修饰符</h1><hr>
+<pre><code>被const修饰的变量就是常量，不能修改了
+两种写法：
+const int num=1;
+int const num=2;
+</code></pre><hr>
+<hr>
+<pre><code>案例：
+如果const写在指针类型左边或指针类型和*之间，意味着指针的指向可以改变，但是指向的内存空间
+中的值不能改变。
+如果const写在指针的右边(数据类型 * const)，意味着指针的指向不可以改变，但是指向的内存空
+间中的值可以改变。因为const此时离变量名最近，就在const后面，也就是说const修饰的是p,p的
+值就是地址可以改变。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">例子：指针指向内存空间的值可以改变</div><div class="line">int num=800;</div><div class="line">    int * const name=&amp;num;</div><div class="line">    *name = 300;</div><div class="line">    printf(&quot;%d\n&quot;,num);//300</div><div class="line">例子：指针的指向可以改变</div><div class="line">int num=800;</div><div class="line">    int const *name=&amp;num;</div><div class="line">    printf(&quot;%p\n&quot;,name);//0x7fff5fbff82c</div><div class="line">    int age=300;</div><div class="line">    name = &amp;age;</div><div class="line">    printf(&quot;%p\n&quot;,name);//0x7fff5fbff81c</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/C语言笔记_06/" data-id="cj60seeat000h60nk4jotshwa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C语言笔记_05" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/C语言笔记_05/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.495Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C语言/">C语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/C语言笔记_05/">C语言笔记_05(结构体相关)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="结构体基本概念"><a href="#结构体基本概念" class="headerlink" title="结构体基本概念"></a>结构体基本概念</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">定义结构体：</div><div class="line">struct 结构体类型名称&#123;</div><div class="line">    属性</div><div class="line">&#125;;</div><div class="line">例如：</div><div class="line">struct Person&#123;//定义结构体类型</div><div class="line">    //char name[20];//这是数组，所以下面不能在定义之后，进行一次性初始化</div><div class="line">    char *name;//最后定义指针，这样下面就可以这样初始化，p.name=&quot;lnj&quot;;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>struct Person p;//定义结构体变量<br>定义同时初始化:struct Dog={“wc”,12,5.0};<br>先定义之后，然后一次性初始化：<br>struct Dog d1;<br>d1=(struct Dog){“xq”,6,7.0};类似于强制类型装换<br>还可以通过结构体名，逐个初始化例如：d1.name=”xc”；<br>将值赋值给指定属性：<br>struct Dog d1={.height=1.73，.name=”wc”};</p>
+</blockquote>
+<hr>
+<pre><code>注意：
+结构体内部属性内存寻址是从小到大
+结构体名称并不是结构体地址
+结构体地址第0个属性的地址
+结构体占用内存空间：查找所有属性中占用内存空间最大的属性，然后按照
+属性的倍数(比如说一倍，两倍等，系统自动设置倍数)分配内存空间，类似
+于比如有8个字节的属性，先创建一个8字节的内存空间，用完之后，在开辟
+一个，如果最后比如说剩下四个字节，但是只有一个char(一个字节)需要存
+储的时候，则不在开辟了，多余空间就不需要管了。
+定义结构体变量的时候才会分配内存空间
+</code></pre><hr>
+<h1 id="类型定义方式"><a href="#类型定义方式" class="headerlink" title="类型定义方式"></a>类型定义方式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">方式一：基本定义方式</div><div class="line">struct Person&#123;</div><div class="line">    char *name;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125;;</div><div class="line">struct Person p;</div><div class="line">方式二：定义结构体类型同时定义结构体变量</div><div class="line">struct Person&#123;</div><div class="line">    char *name;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125; p;</div><div class="line">方式三：定义结构体类型的同时定义结构体变量，并省略结构体名称</div><div class="line">struct&#123;</div><div class="line">    char *name;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125; p;</div><div class="line">弊端：此时其他地方不能使用该结构体</div><div class="line">有事：只用一次的十分方便</div></pre></td></tr></table></figure>
+<h1 id="结构体作用域"><a href="#结构体作用域" class="headerlink" title="结构体作用域"></a>结构体作用域</h1><blockquote>
+<p>如果结构体定义在函数或者代码块内部，则结构体作用域和变量相同。</p>
+</blockquote>
+<h1 id="指向结构体的指针"><a href="#指向结构体的指针" class="headerlink" title="指向结构体的指针"></a>指向结构体的指针</h1><hr>
+<pre><code>定义指向结构体的指针：
+   struct Person{
+        int age;
+        char *name;
+        double height;
+    };
+    struct Person p={30,&quot;lnj&quot;,1.75};
+    //定义指针
+    struct Person *pp;
+    pp=&amp;p;
+    (*pp).age=40;//必须加括号，因为。运算符的优先级高于*
+    pp-&gt;height=20.0;//还可以通过这种方式赋值修改值
+    printf(&quot;%d\n&quot;,(*pp).age);
+    printf(&quot;%lf\n&quot;,(*pp).height);//lf:针对的是double类型的占位符
+    printf(&quot;%f\n&quot;,pp-&gt;height);
+</code></pre><hr>
+<h1 id="结构体数组"><a href="#结构体数组" class="headerlink" title="结构体数组"></a>结构体数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">struct Bumen&#123;</div><div class="line">    char *name;</div><div class="line">    int count;</div><div class="line">&#125;;</div><div class="line">struct Bumen bumens[3]=&#123;</div><div class="line">    &#123;&quot;ios&quot;,12&#125;,</div><div class="line">    &#123;&quot;android&quot;,20&#125;,</div><div class="line">    &#123;&quot;php&quot;,30&#125;</div><div class="line">&#125;;</div><div class="line">printf(&quot;%d\n&quot;,bumens[0].count);</div></pre></td></tr></table></figure>
+<h1 id="结构体嵌套"><a href="#结构体嵌套" class="headerlink" title="结构体嵌套"></a>结构体嵌套</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    struct Date&#123;</div><div class="line">        int year;</div><div class="line">        int month;</div><div class="line">        int day;</div><div class="line">    &#125;;</div><div class="line">    struct Person&#123;</div><div class="line">        int age;</div><div class="line">        char *name;</div><div class="line">        struct Date birth;</div><div class="line">        struct Date time;</div><div class="line">    &#125;;</div><div class="line">    //赋值方式</div><div class="line">    struct Person p=&#123;</div><div class="line">        20,</div><div class="line">        &quot;lnj&quot;,</div><div class="line">        &#123;</div><div class="line">            1980,</div><div class="line">            1,</div><div class="line">            15</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            1980,</div><div class="line">            1,</div><div class="line">            15</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="结构体和函数"><a href="#结构体和函数" class="headerlink" title="结构体和函数"></a>结构体和函数</h1><hr>
+<pre><code>结构体的属性传递给函数，在函数中修改形参不会影响到实参
+结构体名称作为参数传递，函数中修改形参不会影响到实参，结构体之间是值传递。
+例如把结构体p1赋值给p2，则p1中属性修改不会影响到p2属性值
+案例：函数中参数是结构体的写法
+void change(struct Person p){};//不会修改属性值
+void change(struct Person *p){};//指针，会属性修改值
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/C语言笔记_05/" data-id="cj60seear000f60nkmz8fggh7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C语言笔记_04" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/C语言笔记_04/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.493Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C语言/">C语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/C语言笔记_04/">C语言笔记_04(指针相关)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="指针基本概念"><a href="#指针基本概念" class="headerlink" title="指针基本概念"></a>指针基本概念</h1><hr>
+<pre><code>指针就是用来专门(只能存储地址)保存地址的
+定义指针变量：数据类型 *变量名称.
+int *p;
+p=&amp;num；
+在64位编译器，指针占用8个字节
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">void change(int *v)&#123;</div><div class="line">//    v=50;这样写不对，这相当于把50存储到p当中，但是p是指针变量，只能存储指针(地址)</div><div class="line">    *v=50;//把50赋值给v存储的内存地址对应的内存空间</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int num=1;</div><div class="line">    change(&amp;num);</div><div class="line">    printf(&quot;%d\n&quot;,num);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">结论:*v==num  v=&amp;num</div><div class="line">案例：//编写函数交换两个变量的值</div><div class="line">void swf(int *v1,int *v2)&#123;</div><div class="line">    *v1=*v1^*v2;</div><div class="line">    *v2=*v1^*v2;</div><div class="line">    *v1=*v1^*v2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int a=1;</div><div class="line">    int b=2;</div><div class="line">    swf(&amp;a,&amp;b);</div><div class="line">    printf(&quot;%d...%d&quot;,a,b);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注意点：
+1.指针只能保存地址
+2.同一个变量可以有多个指针指向它
+3.指针的指向可以修改
+4.不要访问野指针
+5.指针类型是什么类型，就只能指向什么类型的数据
+</code></pre><hr>
+<h1 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    char charValue=&apos;l&apos;;</div><div class="line">    char *charValueP;</div><div class="line">    charValueP=&amp;charValue;</div><div class="line">    char **charValuePP;</div><div class="line">    charValuePP=&amp;charValueP;</div><div class="line">    //修改charValue的值</div><div class="line">    //charValue=&apos;n&apos;;</div><div class="line">//    *charValueP=&apos;n&apos;;</div><div class="line">//    **charValuePP=&apos;n&apos;;</div><div class="line">//    三者等效，都可以实现修改值</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="指针类型"><a href="#指针类型" class="headerlink" title="指针类型"></a>指针类型</h1><blockquote>
+<p>指针为什么要有类型？<br>系统会自动根据指针的类型来确定应该取多少个字节的值</p>
+</blockquote>
+<h1 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h1><blockquote>
+<p>指针+1：其实是加上指针类型所占用长度，例如int类型就是加4</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int arr[]=&#123;1,3,5&#125;;</div><div class="line">    int *p=arr;//arr就是数组内存地址，也是首元素地址</div><div class="line">    for (int a=0; a&lt;sizeof(arr)/sizeof(arr[0]); a++) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,*(p++));//p++就是p+1,p+1就是arr[值]的地址，加上*就是元素值。</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="指针和字符串"><a href="#指针和字符串" class="headerlink" title="指针和字符串"></a>指针和字符串</h1><hr>
+<pre><code>指针保存字符串：char *name=&quot;qiang&quot;;
+//通过指针保存一个字符串，其实保存的就是字符串第0个元素的地址，也是字符串的地址
+    char *name=&quot;qiang&quot;;
+    printf(&quot;%p\n&quot;,&amp;name[0]);//0x100000fa2
+    printf(&quot;%p\n&quot;,name);//0x100000fa2
+
+指针保存字符串和数组保存字符串区别：
+数组保存字符串是一个变量，可以修改，存储在栈中，作用域结束会被释放
+指针保存字符串是一个常量，不可修改，存储在常量区中，不会被释放，而且多个相同值对应地址相同。
+</code></pre><hr>
+<h1 id="指针数组"><a href="#指针数组" class="headerlink" title="指针数组"></a>指针数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> char *names[4]=&#123;</div><div class="line">        &quot;lmj&quot;,</div><div class="line">        &quot;lnj&quot;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h1 id="指针变量作用"><a href="#指针变量作用" class="headerlink" title="指针变量作用"></a>指针变量作用</h1><hr>
+<pre><code>案例：
+void change(int *arr){//此处传递过来是数组名，又因为数组名就是地址，所以也可以使用指针接收。
+    arr[0]=100;
+}
+int main(int argc,const char *argv[]) {
+    int arr[]={1,2,3,4};
+    change(arr);
+    printf(&quot;%d\n&quot;,arr[0]);
+    return 0;
+}
+案例二：
+char *get1(){
+    char *name=&quot;lnj&quot;;
+    return name;
+}
+char *get2(){
+    char name[]=&quot;lnj&quot;;
+    return name;
+}
+int main(int argc,const char *argv[]) {
+    char *v1=get1();
+    char *v2=get2();
+    printf(&quot;%s&quot;,v1);//输出lnj，此时v1是指针保存字符串，存储在常量区中不会被销毁
+    printf(&quot;%s&quot;,v2);//输出为空，此时v2是数组保存字符串，存储在栈中，即使返回了地址，但是栈中字符串随大括号结束被释放，地址已经无效了。
+    return 0;
+}
+案例三：实现strlen函数
+int myStrlen(char *str){
+    int count=0;
+    while(*str++){//因为如果到了最后\0的部分，\0字符的ascii编码是0，C语言中0就是代表假。
+        count++;
+    }
+    return count;
+}
+</code></pre><hr>
+<h1 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h1><hr>
+<pre><code>函数名就是函数的地址
+指向函数的指针的定义格式：
+void (*指针名称)()：没有返回值没有参数的函数指针
+int (*sum)(int ,int)
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">void test()&#123;</div><div class="line">    printf(&quot;执行了&quot;);</div><div class="line">&#125;</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    void(*functionP)();</div><div class="line">    functionP=test;//test函数名就是函数内存地址</div><div class="line">    (*functionP)();//*functionP代表就是指向函数内存空间。</div><div class="line">    //在mac上面functionP()等效于上面一句</div><div class="line">    printf(&quot;%p\n&quot;,test);</div><div class="line">    printf(&quot;%p\n&quot;,functionP);</div><div class="line">    printf(&quot;%p&quot;,*functionP);//三者输出地址一样</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">函数指针应用场景：通过案例说明</div><div class="line">int sum(int v1,int v2)&#123;</div><div class="line">    return v1+v2;</div><div class="line">&#125;</div><div class="line">int del(int v1,int v2)&#123;</div><div class="line">    return v1-v2;</div><div class="line">&#125;</div><div class="line">int demo(int v1,int v2,int (*p)(int ,int))&#123;</div><div class="line">    return p(v1,v2);</div><div class="line">&#125;</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    demo(1,2,sum);</div><div class="line">    demo(1,2,del);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/C语言笔记_04/" data-id="cj60seeao000d60nkg6m7nys6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C语言笔记_03" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/C语言笔记_03/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.492Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C语言/">C语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/C语言笔记_03/">C语言笔记_03(数组相关)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="数组：存储同一类型的数据"><a href="#数组：存储同一类型的数据" class="headerlink" title="数组：存储同一类型的数据"></a>数组：存储同一类型的数据</h1><hr>
+<pre><code> 定义方式
+    //定义方式一：
+    int arr[3];
+    arr[0]=1;
+    arr[1]=2;
+    arr[2]=3;
+    //定义方式二：
+    int arr1[3]={1,2,3};
+    //部分初始化：
+    int arr2[3]={1,2};
+    printf(&quot;%i\n&quot;,arr2[2]);//部分初始化时候，未初始化的元素，默认值是0
+注意：如果没有对数组进行初始化(完全初始化和部分初始化)，则内部可能是垃圾
+值，不要使用。另外，数组的元素个数不能使用变量，不然的话数组中元素是一些
+随机值。
+如果定义的同时进行初始化，元素的个数可以省略
+</code></pre><hr>
+<hr>
+<pre><code>例如：int arr[]={1,2};
+案例：给数组指定位置元素赋值
+方式一：arr[100]=100
+方式二：int arr[100]={[99]=99,[100]=100};
+错误案例：不能再定义之后在进行整体初始化，会报错，只能单个赋值。
+int arr[3];
+arr={1,2,3};//此处是错误的。
+</code></pre><hr>
+<h1 id="遍历数组"><a href="#遍历数组" class="headerlink" title="遍历数组"></a>遍历数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">int arr[3];</div><div class="line">   arr[0]=1;</div><div class="line">   arr[1]=2;</div><div class="line">   arr[2]=3;</div><div class="line">   for(int a=0;a&lt;sizeof(arr)/sizeof(arr[0]);a++)&#123;</div><div class="line">       printf(&quot;第%i个元素是%d:\n &quot;,a,arr[a]);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<h1 id="数组分类"><a href="#数组分类" class="headerlink" title="数组分类"></a>数组分类</h1><hr>
+<pre><code>数值数组  存储数值的
+字符数组  存储字符
+指针数组  存储指针(地址)
+结构数组  存储结构体类型的数据
+</code></pre><hr>
+<h2 id="数组说明"><a href="#数组说明" class="headerlink" title="数组说明"></a>数组说明</h2><hr>
+<pre><code>变量内存寻址从大到小，所以存储数据时会从高字节开始存储
+数组存储内存寻址从小到大，从所占用字节的低字节开始。
+说明案例：
+    int arr[3];
+    arr[0]=1;
+    arr[1]=2;
+    arr[2]=3;
+    for(int a=0;a&lt;sizeof(arr)/sizeof(arr[0]);a++){
+        printf(&quot;内存地址%d\n&quot;,&amp;arr[a]);
+    }
+输出：内存地址1606416428，内存地址1606416432，内存地址1606416436
+可知数组是从数组所占用字节的低字节开始存储。
+注意：数组地址是其所占用存储空间最小的一个地址，即数组的地址就是数
+组第一个元素的地址，另外数组名就是数组地址，&amp;arr和arr都是输出数组地址值。
+另外，数组中元素存储和变量一模一样，从高字节到低字节存储。
+</code></pre><hr>
+<h2 id="数组注意点"><a href="#数组注意点" class="headerlink" title="数组注意点"></a>数组注意点</h2><hr>
+<pre><code>int arr[3]={1,2,3};
+int arr1[2]={4,5};
+arr1[2]=44;
+printf(&quot;%d\n&quot;,arr[0]);//44
+说明：数组本身相当于一个变量，所以这两个数组是从大到小寻址，加入内存类似
+于excel表，从上往下分别是从0开始变大，则arr位于arr1的下方，但是此时arr1
+没有索引为2的元素，此时给arr1赋值为44，则直接赋值给arr1下面的arr数组的
+第一个元素，所以arr【0】值为44. 
+函数中的形参数组传递：因为数组名称就是数组地址，所以当把数组传递给函数时
+候，传递过去的是地址引用，所以在那个函数中修改了数组的元素的值就是修改的
+原来的数组的对应元素的值，因为地址指向同一片内存，此处要和变量区分，基本
+数据类型传递的时候，相当于新开辟一段内存，在函数结束的时候，那片内存地址
+就会收回，所以这是(值传递)，类似于copy不能修改原来的值，这就是变量形参
+和数组形参的区别。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">案例：指针在内存中永远是占用8个字节</div><div class="line">void getArrInfo(int arr[3])&#123;</div><div class="line">    for (int a=0; a&lt;sizeof(arr)/sizeof(arr[0]); a++) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,arr[a]);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int arr[3]=&#123;1,2,3&#125;;</div><div class="line">    getArrInfo(arr);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>解析：此案例不论数组长度多么的大，都是只输出两个元素，因为数组名称就是地址，
+也就是指针，指针在C语言中永远都是占据8个字节，而后面具体int元素，都是四个字节
+，所以一直计算的值就是2.
+解决：可以外接计算好长度，传递多参数过来解决。
+</code></pre><hr>
+<h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><blockquote>
+<p>找到最小的，存储起来，然后再剩余的元素中查找最小的存储起来(两个元素互换值)，循环往复。</p>
+</blockquote>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><blockquote>
+<p>相邻两个元素比较，完全比较完一次，最值出现在末尾。</p>
+</blockquote>
+<h1 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h1><blockquote>
+<p>必须是有序数组</p>
+</blockquote>
+<h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><hr>
+<pre><code>int arr[3][3]={{1,2,3},{1,3,5}};
+二维数组内存寻址也是从小到大，但是多个二维数组之间内存寻址还是从大到小。
+注意点：
+如下写法正确：如果在定义的同时初始化，可以省略第一个【】内数字
+int arr[][3]={{1,2,3},{1,3,5}};
+</code></pre><hr>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><hr>
+<pre><code>定义字符串变量
+char str[]=&quot;qiang&quot;;
+注意：字符串变量和字符数组有区别，C语言规定，字符串变量必须以\0结束
+，所以字符串变量的元素个数比字符数组元素个数大一，多一个\0；
+char str[]={&apos;a&apos;,&apos;b&apos;};//这里是字符数组，不是字符串变量
+输出字符串：%s。从传入的地址开始逐个取出，直到遇到\0为止。
+</code></pre><hr>
+<hr>
+<pre><code>案例：
+char str[]=&quot;lnj&quot;;
+char str2[]={&apos;x&apos;,&apos;m&apos;,&apos;g&apos;};
+printf(&quot;%s\n&quot;,str2);//xmglnj
+解析：str和str2作为变量内存寻址是从大到小，所以内存中str2位于str上面，
+而%s遇到\0才结束，此时取出完毕str2元素时候，没有遇到\0，会继续取出str
+元素直到遇到\0。
+其他初始化方式：
+char str[]={&apos;l&apos;,&apos;m&apos;.&apos;j&apos;,&apos;\0&apos;};//只要显示指出\0此时就是字符串变量
+char str[10]={&apos;l&apos;,&apos;m&apos;,&apos;j&apos;};
+这也是字符串变量，因为未完全初始化的数组，后面默认值是0.而字符\0的ascii对应值就是0.
+</code></pre><hr>
+<h2 id="输出字符串"><a href="#输出字符串" class="headerlink" title="输出字符串"></a>输出字符串</h2><hr>
+<pre><code>方式一：通过printf（“%s”,str）;输出字符串
+缺点：如果想换行，必须加上\n。
+优点：可以自定义字符串输出格式
+方式二：puts()
+优点：会自动换行
+缺点：无法自定义格式，只能原样输出
+</code></pre><hr>
+<h2 id="输入字符串"><a href="#输入字符串" class="headerlink" title="输入字符串"></a>输入字符串</h2><hr>
+<pre><code>方式一：
+char buf[10];
+scanf(&quot;%s&quot;,buf);
+注意点：会以空格，tab，enter作为接收符号。
+方式二：gets()
+说明：通过此方法输入系统会报警告，因为可能超出范围。
+char buf[10];
+gets(buf);
+优点：可以利用gets接收字符串，并且可以在字符串中输入空格，tab。
+</code></pre><hr>
+<hr>
+<pre><code>获取字符串长度：首先引入头文件&lt;string.h&gt;，然后使用strlen()方法获取字符串长度(不包括\0)
+    char buf[]=&quot;qiangge&quot;;
+    size_t length=strlen(buf);
+    for (int a=0; a&lt;length; a++) {
+        printf(&quot;%c\n&quot;,buf[a]);
+    }
+
+strcat（dest,src）：字符串连接,将src数据拼接到dest后面
+注意：要想使用拼接函数，dest必须是数组，而且数组的长度必须大于拼接之后的长度。
+strncat(char*,const char*,size_t):参数一二和上面方法参数意思一样，参数三，指的是需要拼接的个数。
+例如：size为1的时候，只会把参数二的第一个字符拼接到参数一中。
+strcpy: 字符串拷贝。
+    char str1[10]=&quot;lnjads&quot;;
+    char str2[]=&quot;cool&quot;;
+    strcpy(str1, str2);//会把str2的内容拷贝并覆盖到str1.
+    printf(&quot;%s\n&quot;,str1);//cool
+注意点：目标容积必须能够存放拷贝的数据。
+strncpy(char*,const char*,size_t):参数三，需要拷贝几个字符。
+注意：此处比如说只拷贝一个字符，则只会逐个替换（结果为cnjads）.
+strcmp（str1,str2）: 字符串比较,返回值为整型的值(值=0则字符串相等，&lt;0则str1&lt;str2).
+原理：取出每一个字符，进行逐个比较，如果发现不相等就不会再继续往下比较了。
+例如：“abc”和&quot;acc&quot;比较，逐个取出字符，a和a比较相等，b和c比较已经不相等，返回负数，后面的c已经不比较了。
+</code></pre><hr>
+<h1 id="字符串数组：就是二维数组"><a href="#字符串数组：就是二维数组" class="headerlink" title="字符串数组：就是二维数组"></a>字符串数组：就是二维数组</h1><blockquote>
+<p>char names[5][5]={“lnj”,”xb”,”lmj”};</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/C语言笔记_03/" data-id="cj60seeam000b60nk7b3kqol1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C语言笔记_02" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/C语言笔记_02/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.490Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C语言/">C语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/C语言笔记_02/">C语言笔记_02</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><blockquote>
+<p>在函数中修改形参的值，不会影响到外面实参的值(前提是：基本数据类型)<br>返回值和返回值类型不同的时候，会进行隐式转换</p>
+</blockquote>
+<hr>
+<pre><code>int getHeight(){
+    return 1.75;
+}
+如果函数没有返回值，返回值类型是void
+void setHe(){
+    printf(&quot;案发后沙&quot;);
+}
+C语言可以没有返回值类型：没有写，默认为int类型。
+test(){
+    return 1;
+}
+</code></pre><hr>
+<h2 id="函数的声明和实现"><a href="#函数的声明和实现" class="headerlink" title="函数的声明和实现"></a>函数的声明和实现</h2><hr>
+<pre><code>C语言中默认在调用之前，声明定义函数，如果不定义函数，一定要在调用之前声明函数。
+#include &lt;stdio.h&gt;
+void showHello();//函数声明
+int main() {
+    showHello();
+    return 0;
+}
+void showHello(){//函数定义
+    printf(&quot;hello&quot;);
+}
+注意：如果函数返回值是int类型，那么不写声明，也不会报错。而且函数声明可以省略形参，
+函数声明只需要在函数被使用之前就可以了，它可以写在函数的外面，也可以写在函数里面。
+C语言中函数定义不能重复，但是函数声明可以重复，因为函数声明仅仅是为了告诉系统有这个函数，
+接受什么，返回什么，所以多告诉几次也无所谓。
+</code></pre><hr>
+<h2 id="main函数解析"><a href="#main函数解析" class="headerlink" title="main函数解析"></a>main函数解析</h2><hr>
+<pre><code>main系统规定，程序入口，只能由系统调用，不能手动调用
+系统启动时候，会给程序传递进来一些参数
+argc:系统传递进来的参数个数
+argv:系统传递进来参数的实际值
+int main(int argc,const char *argv[]) {
+    printf(&quot;%i\n&quot;,argc);
+    printf(&quot;%s\n&quot;,argv[0]);
+    return 0;//返回给操作系统，代表正常结束，如果返回不是0，代表非正常结束
+}
+</code></pre><hr>
+<h2 id="mac常用指令"><a href="#mac常用指令" class="headerlink" title="mac常用指令"></a>mac常用指令</h2><hr>
+<pre><code>pwd:查看当前位置
+ls:查看当前文件夹中的内容
+cd Desktop/:进入指定文件夹，此时进入Desktop文件夹
+mkdir:新建文件夹，指令后面跟上文件夹名称（mkdir qiang）
+rmdir: 文件夹名称/:删除文件夹
+cd ../:返回上一个文件夹（注意空格）
+clear:清空终端
+open 文件名称/:打开文件
+touch 文件全称:创建文件
+cat 文件全称:预览文件
+</code></pre><hr>
+<h2 id="include指令-预处理指令"><a href="#include指令-预处理指令" class="headerlink" title="include指令(预处理指令)"></a>include指令(预处理指令)</h2><hr>
+<pre><code>不一定要写在文件头部，作用就是把对应文件copy进来，替换掉对应函数
+
+“”和&lt;&gt;区别：&lt;&gt;代表先从开发工具的编译环境中找寻文件，没有的话再去系统的编译环境中
+查找, “”代表会先从当前文件夹下面查找，没找到则去开发工具的编译环境中查找，如果还
+是没找到去系统的编译环境中查找。
+“”：不一定非要写文件名，还可以写相对路径，或者绝对路径
+</code></pre><hr>
+<h1 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h1><blockquote>
+<p>C语言中数字前面加0b代表二进制，0代表八进制，0x表示十六进制<br>案例：八进制转化为十进制输出<br>int num=12;<br>printf(“八进制:%o\n”,num);//14，o代表八进制<br>printf(“十六进制:%x\n”,num);//c，x代表十六进制<br>另外 i代表十进制<br>注意：C语言中没有以二进制输出的占位符。</p>
+</blockquote>
+<h2 id="原码，补码，反码"><a href="#原码，补码，反码" class="headerlink" title="原码，补码，反码"></a>原码，补码，反码</h2><hr>
+<pre><code>数据存储中内存都是存储的二进制，最终存储在内存中的是补码
+反码：正数的反码就是正数原码
+补码：正数的补码就是正数的原码
+所以：正数，三码合一。
+案例：通过-9说明负数的存储情况
+ -9是int类型，在mac系统上面，占据四个字节，也就是32位。
+二进制(原码)第一位是符号位，1代表负数，0代表正数。
+ -9的原码就是：10000000 00000000 00000000 00001001
+反码为符号位不变，其他位取反
+ -9的反码就是：11111111 11111111 11111111 11110110
+补码为反码加一
+ -9的补码就是：11111111 11111111 11111111 11110111 
+总结：之所以有原码，补码，反码的区分，是因为为了方便计算机计算。因为原码最
+高位是符号位，如果直接用原码计算，还需要判断是整数还是负数，但是如果用反码，
+补码此时已经不区分符号位了，直接计算就行，提高了效率。
+案例：1+（-1）=0
+00000000 00000000 00000000 00000001  1的补码
+11111111 11111111 11111111 11111111  -1的补码
+——————————————————————————————————————
+00000000 00000000 000000000 00000000 
+解析：本来最高位应该是1，但是因为超出四字节，被截取，此时最高位为0为正数，顾结果不需要考虑三码，直接为0.
+案例二：-9加1
+11111111 11111111 11111111 11110111  -9补码
+00000000 00000000 00000000 00000001   1补码
+——————————————————————————————————————
+11111111 11111111 11111111 11111000   -8补码
+解析：最高位为1是负数，先求反码为：11111111 11111111 11111111 11110111
+然后求原码为：10000000 0000000 00000000 00001000 此时为-8.
+</code></pre><hr>
+<h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><h3 id="按位与-amp-一假则假-0代表假，1代表真"><a href="#按位与-amp-一假则假-0代表假，1代表真" class="headerlink" title="按位与 &amp;  一假则假  0代表假，1代表真"></a>按位与 &amp;  一假则假  0代表假，1代表真</h3><hr>
+<pre><code>案例：9&amp;5
+ 00001001
+&amp;00000101
+——————————
+ 00000001  结果为1
+</code></pre><hr>
+<h4 id="按位或-一真则真"><a href="#按位或-一真则真" class="headerlink" title="按位或 | 一真则真"></a>按位或 | 一真则真</h4><hr>
+<pre><code> 00001001
+|00000101
+——————————
+ 00001101  结果为13
+</code></pre><hr>
+<h3 id="按位亦或-不同为1，相同为0"><a href="#按位亦或-不同为1，相同为0" class="headerlink" title="按位亦或 ^  不同为1，相同为0"></a>按位亦或 ^  不同为1，相同为0</h3><hr>
+<pre><code> 00001001
+|00000101
+——————————
+ 00001100 结果为12
+说明：亦或结果和参与运算顺序无关，9^5^6=6^5^9.
+相同两个数亦或为0，任何数亦或0还是本身，任何一个数和同一个数亦或两次还是本身。
+</code></pre><hr>
+<h3 id="按位取反"><a href="#按位取反" class="headerlink" title="按位取反 ~"></a>按位取反 ~</h3><hr>
+<pre><code>~00001001=11110110(补码)
+11110101（反码）
+10001010 （原码） 结果为-10
+</code></pre><hr>
+<h2 id="移位运算"><a href="#移位运算" class="headerlink" title="移位运算"></a>移位运算</h2><hr>
+<pre><code>左移：&lt;&lt;  左移有可能改变数的正负性，因为左移最高位（符号位）会被抛弃，后面0。
+9&lt;&lt;1=9*2(1)=18
+右移: &gt;&gt; 右边移动位被抛弃，左边缺失位补充符号位。
+9&gt;&gt;1=9/2(1)=4 C语言中整数除以整数等于整数
+注意：负数移位(左右)的时候，需要转换为补码在进行移位，移位后，在转化为源码得到值。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">案例：输入10进制整数，输出二进制数</div><div class="line">思路：依次移动位数，和1&amp;就可以得到该位的二进制数。</div><div class="line">void printBinay(int v)&#123;</div><div class="line">    int i=31;</div><div class="line">    while (i&gt;=0) &#123;</div><div class="line">        //任何数&amp;1都是本身，这个本身针对的是二进制中的每一位数</div><div class="line">        printf(&quot;%i &quot;,(v&gt;&gt;i--)&amp;1);</div><div class="line">    &#125;</div><div class="line">    printf(&quot;\n&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>案例：交换值
+方式一：
+int temp=a;
+a=b;
+b=temp;
+方式二：
+a=a+b;
+b=a-b;
+a=a-b;
+方式三：
+a=a^b;
+b=a^b;
+a=a^b;
+</code></pre><hr>
+<h1 id="char类型"><a href="#char类型" class="headerlink" title="char类型"></a>char类型</h1><hr>
+<pre><code>char占据一个字节
+可以直接把整型赋值给一个char。
+char a=6;
+printf(&quot;%i\n&quot;,a);//6
+注意：所以在不超过char取值范围的情况下，char(-127~128)可以当做int使用
+</code></pre><hr>
+<h1 id="类型说明符号"><a href="#类型说明符号" class="headerlink" title="类型说明符号"></a>类型说明符号</h1><h2 id="说明长度的（可用于修改类型所占用的存储空间的大小，一般和int配合使用）"><a href="#说明长度的（可用于修改类型所占用的存储空间的大小，一般和int配合使用）" class="headerlink" title="说明长度的（可用于修改类型所占用的存储空间的大小，一般和int配合使用）"></a>说明长度的（可用于修改类型所占用的存储空间的大小，一般和int配合使用）</h2><hr>
+<pre><code>short: short int为两个字节，short int=short。输出使用%hi或者%hd。
+long:例如long int num=12411;本来int是四个字节，但是加上之后，为8个字节。long int=int;利用li或者ld输出。
+long long:在64位编译器下无区别，在32位编译器下，long为4个字节。long long为8个字节。long long int=long long
+</code></pre><hr>
+<h2 id="说明符号位的"><a href="#说明符号位的" class="headerlink" title="说明符号位的"></a>说明符号位的</h2><hr>
+<pre><code>unsigned：无符号，代表当前变量取值只能是正数和0.输出无符号数，用%u。取值范围变大。
+signed：有符号，默认就是这个,这个使用普通的取出符号即可。
+
+注意：上面的说明长度和说明符号位的可以混合使用
+例如：unsigned long int num=99;
+</code></pre><hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/C语言笔记_02/" data-id="cj60seeaf000960nk5sqwpysr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

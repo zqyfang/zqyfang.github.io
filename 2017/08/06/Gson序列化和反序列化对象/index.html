@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>序列化反序列化 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Gson序列化和反序列化对象反序列化：把字节序列恢复为对象的过程，类比gson解析json字符串 应用场景：例如网络传输的json字符串，android机需解析生成对应数据时候。  1234567反序列化案例：读取本地json文本,gson.fromJson()默认：此时对应的javabena变量名为pib，方便演示FileReader fr=new FileReader(sdpath+&amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="序列化反序列化">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/Gson序列化和反序列化对象/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Gson序列化和反序列化对象反序列化：把字节序列恢复为对象的过程，类比gson解析json字符串 应用场景：例如网络传输的json字符串，android机需解析生成对应数据时候。  1234567反序列化案例：读取本地json文本,gson.fromJson()默认：此时对应的javabena变量名为pib，方便演示FileReader fr=new FileReader(sdpath+&amp;quot">
+<meta property="og:updated_time" content="2017-07-09T06:18:20.403Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="序列化反序列化">
+<meta name="twitter:description" content="Gson序列化和反序列化对象反序列化：把字节序列恢复为对象的过程，类比gson解析json字符串 应用场景：例如网络传输的json字符串，android机需解析生成对应数据时候。  1234567反序列化案例：读取本地json文本,gson.fromJson()默认：此时对应的javabena变量名为pib，方便演示FileReader fr=new FileReader(sdpath+&amp;quot">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Gson序列化和反序列化对象" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Gson序列化和反序列化对象/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.499Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      序列化反序列化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Gson序列化和反序列化对象"><a href="#Gson序列化和反序列化对象" class="headerlink" title="Gson序列化和反序列化对象"></a>Gson序列化和反序列化对象</h1><h2 id="反序列化：把字节序列恢复为对象的过程，类比gson解析json字符串"><a href="#反序列化：把字节序列恢复为对象的过程，类比gson解析json字符串" class="headerlink" title="反序列化：把字节序列恢复为对象的过程，类比gson解析json字符串"></a>反序列化：把字节序列恢复为对象的过程，类比gson解析json字符串</h2><hr>
+<p>应用场景：例如网络传输的json字符串，android机需解析生成对应数据时候。</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">反序列化案例：读取本地json文本,gson.fromJson()</div><div class="line">默认：此时对应的javabena变量名为pib，方便演示</div><div class="line">FileReader fr=new FileReader(sdpath+&quot;/download/&quot;+&quot;config.txt&quot;);</div><div class="line">JsonReader jr=new JsonReader(fr);</div><div class="line">Gson gson=new Gson();</div><div class="line">PageItemsBean pib = gson.fromJson(jr,PageItemsBean.class);</div><div class="line">此时读取数据，通过pib即可。</div></pre></td></tr></table></figure>
+<h2 id="序列化：把对象转换为字节序列的过程，类比gson序列化对象并保存为文本"><a href="#序列化：把对象转换为字节序列的过程，类比gson序列化对象并保存为文本" class="headerlink" title="序列化：把对象转换为字节序列的过程，类比gson序列化对象并保存为文本"></a>序列化：把对象转换为字节序列的过程，类比gson序列化对象并保存为文本</h2><hr>
+<p>应用场景：例如本地保存的配置文件，有修改需求时候，例如增加某个节点，此时可以使用序列化对应对象，然后生成json字符串，并保存为文件。</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">序列化案例：修改本地存储的json文本（此时为增加一个节点）,gson.toJson()</div><div class="line">PageItemsBean pib=new PageItemsBean();</div><div class="line">pib.setIndex(1);</div><div class="line">pib.setLinkedID(&quot;b949d491dda9cdsehf&quot;);</div><div class="line">pib.setType(&quot;Device&quot;);</div><div class="line">pib.setLinkedPageID(&quot;&quot;);</div><div class="line">//通过反序列化生成的java对象cf，此时必须保证，cf在内存中已经持有json字符串中所有具体值</div><div class="line">//而后，比如说想在javabena中对应的哪个list数组中添加一项，就可以找到该数组对象，然后add（）</div><div class="line">//次add方法是数组的add（），不指定位置，默认添加到最后，举例：add(0，pib)，就会添加到位置0.</div><div class="line">        cf.getPages().get(0).getPanels().get(0).getPageItems().add(pib);</div><div class="line">        String json=gson.toJson(cf);</div><div class="line">        FileWriter fw= null;</div><div class="line">        try &#123;</div><div class="line">            fw = new FileWriter(sdpath+&quot;/download/&quot;+&quot;config.txt&quot;);</div><div class="line">            fw.write(json);</div><div class="line">            fw.close();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div></pre></td></tr></table></figure>
+<h1 id="总结：序列化反序列化本无顺序之分，但是此时是为了修改同一个本地的文本配置文件，cf必须在内存中持有"><a href="#总结：序列化反序列化本无顺序之分，但是此时是为了修改同一个本地的文本配置文件，cf必须在内存中持有" class="headerlink" title="总结：序列化反序列化本无顺序之分，但是此时是为了修改同一个本地的文本配置文件，cf必须在内存中持有"></a>总结：序列化反序列化本无顺序之分，但是此时是为了修改同一个本地的文本配置文件，cf必须在内存中持有</h1><h1 id="json字符串的引用，所以，针对本需求而言，必须是先生成cf，才能去修改。"><a href="#json字符串的引用，所以，针对本需求而言，必须是先生成cf，才能去修改。" class="headerlink" title="json字符串的引用，所以，针对本需求而言，必须是先生成cf，才能去修改。"></a>json字符串的引用，所以，针对本需求而言，必须是先生成cf，才能去修改。</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Gson序列化和反序列化对象/" data-id="cj60seeax000j60nkv7jd1pyj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/Html标签简介/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Html标签简介
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/C语言笔记_06/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C语言笔记_06</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

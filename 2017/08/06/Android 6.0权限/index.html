@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android 6.0权限 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android 6.0之前,权限在app安装时候，就直接默认授予，Android 6.0引入运行时权限，动态申请。 注意：同一组内的任何一个权限被授权了，其他权限也自动被授权。例如，一旦 READ_CALENDAR 被授权了，应用也有 WRITECALENDAR 权限了。基于权限问题，因为是使用，不做赘述，直接撸代码¬¬ 封装权限申请Activity代码：123456789101112131415">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 6.0权限">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/Android 6.0权限/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Android 6.0之前,权限在app安装时候，就直接默认授予，Android 6.0引入运行时权限，动态申请。 注意：同一组内的任何一个权限被授权了，其他权限也自动被授权。例如，一旦 READ_CALENDAR 被授权了，应用也有 WRITECALENDAR 权限了。基于权限问题，因为是使用，不做赘述，直接撸代码¬¬ 封装权限申请Activity代码：123456789101112131415">
+<meta property="og:updated_time" content="2017-07-09T06:17:43.609Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 6.0权限">
+<meta name="twitter:description" content="Android 6.0之前,权限在app安装时候，就直接默认授予，Android 6.0引入运行时权限，动态申请。 注意：同一组内的任何一个权限被授权了，其他权限也自动被授权。例如，一旦 READ_CALENDAR 被授权了，应用也有 WRITECALENDAR 权限了。基于权限问题，因为是使用，不做赘述，直接撸代码¬¬ 封装权限申请Activity代码：123456789101112131415">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Android 6.0权限" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Android 6.0权限/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.554Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 6.0权限
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android 6.0之前,权限在app安装时候，就直接默认授予，Android 6.0引入运行时权限，动态申请。</p>
+<p><strong>注意：</strong>同一组内的任何一个权限被授权了，其他权限也自动被授权。例如，一旦 READ_CALENDAR 被授权了，应用也有 WRITE<em>CALENDAR 权限了。<br>基于权限问题，因为是使用，不做赘述，直接撸代码¬</em>¬</p>
+<h1 id="封装权限申请"><a href="#封装权限申请" class="headerlink" title="封装权限申请"></a>封装权限申请</h1><h2 id="Activity代码："><a href="#Activity代码：" class="headerlink" title="Activity代码："></a>Activity代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">public class BaseActivity extends AppCompatActivity &#123;</div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_base);</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 为子类提供一个权限检查方法</div><div class="line">     * @param permissions</div><div class="line">     * @return</div><div class="line">     */</div><div class="line">    public boolean hasPermission(String... permissions) &#123;</div><div class="line">        for (String permission : permissions) &#123;</div><div class="line">            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">                return false;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 为子类提供一个权限请求方法</div><div class="line">     * @param code</div><div class="line">     * @param permissions</div><div class="line">     */</div><div class="line">    public void requestPermission(int code, String... permissions) &#123;</div><div class="line">        ActivityCompat.requestPermissions(this,permissions,code);</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) &#123;</div><div class="line">        switch (requestCode) &#123;</div><div class="line">            case Constant.WRITE_EXTERNAL_CODE:</div><div class="line">                doSDCardPermission();</div><div class="line">                break;</div><div class="line">            case Constant.CALL_PHONT_CODE:</div><div class="line">                //打电话权限回掉处理</div><div class="line">                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) &#123;</div><div class="line">                    doCallPhontPermission();</div><div class="line">                &#125;else&#123;</div><div class="line">                    //提示用户权限未被授予</div><div class="line">                    Toast.makeText(this, &quot;打电话权限未被授予&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">                &#125;</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 默认打电话权限处理</div><div class="line">     */</div><div class="line">    public void doCallPhontPermission() &#123;</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 默认的写sd卡权限处理</div><div class="line">     */</div><div class="line">    public void doSDCardPermission() &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="权限activity"><a href="#权限activity" class="headerlink" title="权限activity"></a>权限activity</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">public class PermissionActivity extends BaseActivity implements View.OnClickListener&#123;</div><div class="line">    private Button sd,call;</div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        sd= (Button) findViewById(R.id.sd);</div><div class="line">        call= (Button) findViewById(R.id.call);</div><div class="line">        sd.setOnClickListener(this);</div><div class="line">        call.setOnClickListener(this);</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onClick(View view) &#123;</div><div class="line">        switch (view.getId()) &#123;</div><div class="line">            case R.id.call:</div><div class="line">                callPhone();</div><div class="line">            break;</div><div class="line">            case R.id.sd:</div><div class="line">                break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    private void callPhone() &#123;</div><div class="line">        if (hasPermission(Manifest.permission.CALL_PHONE)) &#123;</div><div class="line">            //如果有权限就真正打电话，否则请求权限</div><div class="line">            doCallPhone();</div><div class="line">        &#125;else&#123;</div><div class="line">            requestPermission(Constant.CALL_PHONT_CODE,Manifest.permission.CALL_PHONE);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    private void doCallPhone() &#123;</div><div class="line">        Intent i=new Intent(Intent.ACTION_CALL);</div><div class="line">        Uri data= Uri.parse(&quot;tel:&quot;+&quot;10086&quot;);</div><div class="line">        i.setData(data);</div><div class="line">        this.startActivity(i);//此处只是警告，不是错误</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>项目开发，效率问题，也可直接使用第三方。</p>
+</blockquote>
+<h1 id="第三方权限"><a href="#第三方权限" class="headerlink" title="第三方权限"></a>第三方权限</h1><blockquote>
+<p><a href="https://github.com/lovedise/PermissionGen" target="_blank" rel="external">https://github.com/lovedise/PermissionGen</a></p>
+</blockquote>
+<h2 id="第一步：添加依赖。"><a href="#第一步：添加依赖。" class="headerlink" title="第一步：添加依赖。"></a>第一步：添加依赖。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.lovedise:permissiongen:0.0.6&apos;</div></pre></td></tr></table></figure>
+<h2 id="第二步、正常写拨电话请求权限"><a href="#第二步、正常写拨电话请求权限" class="headerlink" title="第二步、正常写拨电话请求权限"></a>第二步、正常写拨电话请求权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//拨打电话</div><div class="line">    public void call() &#123;</div><div class="line">//下面部分直接复制</div><div class="line">        PermissionGen.needPermission(this, 100,//100是端口号，对应下面代码</div><div class="line">                new String[] &#123;</div><div class="line">                        Manifest.permission.CALL_PHONE,//需要请求的权限，根据需要修改，也可以是多个，逗号隔开即可</div><div class="line">                &#125;</div><div class="line">        );</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="第三步、使用"><a href="#第三步、使用" class="headerlink" title="第三步、使用"></a>第三步、使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  @PermissionSuccess(requestCode = 100)//此句必须加上，100对应上面</div><div class="line">    private void doCallPhone() &#123;</div><div class="line">//内部是拨打电话逻辑，和框架无关</div><div class="line">        Intent i=new Intent(Intent.ACTION_CALL);</div><div class="line">        Uri data= Uri.parse(&quot;tel:&quot;+&quot;10086&quot;);</div><div class="line">        i.setData(data);</div><div class="line">        this.startActivity(i);//会报警告，但是不影响运行，只是提示。</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="第四步、直接写下面即可"><a href="#第四步、直接写下面即可" class="headerlink" title="第四步、直接写下面即可"></a>第四步、直接写下面即可</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) &#123;</div><div class="line">       PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);</div></pre></td></tr></table></figure>
+<h1 id="整体代码："><a href="#整体代码：" class="headerlink" title="整体代码："></a>整体代码：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div></pre></td><td class="code"><pre><div class="line">//使用框架请求权限示例代码</div><div class="line">public class MainActivity extends AppCompatActivity &#123;</div><div class="line">    private Button randw,call;</div><div class="line">    private ImageView iv;</div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        call= (Button) findViewById(R.id.call);</div><div class="line">        randw= (Button) findViewById(R.id.randw);</div><div class="line">        iv= (ImageView) findViewById(R.id.iv);</div><div class="line">        call.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View view) &#123;</div><div class="line">                call();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">        randw.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View view) &#123;</div><div class="line">                randw();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    //拨打电话</div><div class="line">    public void call() &#123;</div><div class="line">        PermissionGen.needPermission(this, 100,</div><div class="line">                new String[] &#123;</div><div class="line">                        Manifest.permission.CALL_PHONE,</div><div class="line">                &#125;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">    @PermissionSuccess(requestCode = 100)</div><div class="line">    private void doCallPhone() &#123;</div><div class="line">        Intent i=new Intent(Intent.ACTION_CALL);</div><div class="line">        Uri data= Uri.parse(&quot;tel:&quot;+&quot;10086&quot;);</div><div class="line">        i.setData(data);</div><div class="line">        this.startActivity(i);</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) &#123;</div><div class="line">        PermissionGen.onRequestPermissionsResult(this, requestCode, permissions, grantResults);</div><div class="line">    &#125;</div><div class="line">    //读写内存卡</div><div class="line">    public void randw() &#123;</div><div class="line">        PermissionGen.needPermission(this, 200,</div><div class="line">                new String[] &#123;</div><div class="line">                        Manifest.permission.WRITE_EXTERNAL_STORAGE,</div><div class="line">                &#125;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">    @PermissionSuccess(requestCode = 200)</div><div class="line">    private void doSDCardPermission() &#123;</div><div class="line">        String url=&quot;http://images.csdn.net/20150817/1.jpg&quot;;</div><div class="line">        try &#123;</div><div class="line">            Bitmap bitmap = getHttpBitmap(url);//从网络获取图片</div><div class="line">            savePicture(bitmap);//保存图片到SD卡</div><div class="line">        &#125; catch (Exception e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    //以下部分是失效代码，仅仅用于表示获取图片意义</div><div class="line">    public Bitmap getHttpBitmap(String url)</div><div class="line">    &#123;</div><div class="line">        Bitmap bitmap = null;</div><div class="line">        try</div><div class="line">        &#123;</div><div class="line">            URL pictureUrl = new URL(url);</div><div class="line">            InputStream in = pictureUrl.openStream();</div><div class="line">            bitmap = BitmapFactory.decodeStream(in);</div><div class="line">            in.close();</div><div class="line">        &#125; catch (MalformedURLException e)</div><div class="line">        &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e)</div><div class="line">        &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return bitmap;</div><div class="line">    &#125;</div><div class="line">    /**</div><div class="line">     * 保存图片</div><div class="line">     * @param bitmap</div><div class="line">     */</div><div class="line">    public void savePicture(Bitmap bitmap)</div><div class="line">    &#123;</div><div class="line">        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))</div><div class="line">        &#123;</div><div class="line">            try</div><div class="line">            &#123;</div><div class="line">                File file = new File(Environment.getExternalStorageDirectory(),&quot;a.jpg&quot;);</div><div class="line">                FileOutputStream out = new FileOutputStream(file);</div><div class="line">                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);</div><div class="line">                out.flush();</div><div class="line">                out.close();</div><div class="line">                Toast.makeText(this, &quot;保存成功&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">            &#125; catch (Exception e)</div><div class="line">            &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Android 6.0权限/" data-id="cj60see9i000060nkjme3g7q0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/Android5.0新特性笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android 5.0新特性
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/面向对象一/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">面向对象一</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

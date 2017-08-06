@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Node知识点(一) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、概述 global:全局对象process:表示node所处的当前进程，可以从此取出相应数据。Buffer():用于操作二进制数据。   __filename:当前运行的脚本文件名。 //C:\Users\Administrator\Desktop\Demo\a.js __dirname:当前运行的脚本所在的目录。 //C:\Users\Administrator\Desktop\Demo 如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node知识点(一)">
+<meta property="og:url" content="http://yoursite.com/2017/08/06/Node知识点(一)md/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、概述 global:全局对象process:表示node所处的当前进程，可以从此取出相应数据。Buffer():用于操作二进制数据。   __filename:当前运行的脚本文件名。 //C:\Users\Administrator\Desktop\Demo\a.js __dirname:当前运行的脚本所在的目录。 //C:\Users\Administrator\Desktop\Demo 如">
+<meta property="og:updated_time" content="2017-07-09T06:15:46.228Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node知识点(一)">
+<meta name="twitter:description" content="一、概述 global:全局对象process:表示node所处的当前进程，可以从此取出相应数据。Buffer():用于操作二进制数据。   __filename:当前运行的脚本文件名。 //C:\Users\Administrator\Desktop\Demo\a.js __dirname:当前运行的脚本所在的目录。 //C:\Users\Administrator\Desktop\Demo 如">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Node知识点(一)md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/Node知识点(一)md/" class="article-date">
+  <time datetime="2017-08-06T13:22:10.527Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Node知识点(一)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><blockquote>
+<p>global:全局对象<br>process:表示node所处的当前进程，可以从此取出相应数据。<br>Buffer():用于操作二进制数据。</p>
+</blockquote>
+<hr>
+<pre><code>__filename:当前运行的脚本文件名。
+//C:\Users\Administrator\Desktop\Demo\a.js
+__dirname:当前运行的脚本所在的目录。
+//C:\Users\Administrator\Desktop\Demo
+如果有package.json文件会根据main对应进行加载，如果没有，则加载index.js或index.node.
+</code></pre><hr>
+<h2 id="主要模块："><a href="#主要模块：" class="headerlink" title="主要模块："></a>主要模块：</h2><blockquote>
+<p>http:提供http服务功能。<br>url:解析URL。<br>fs：文件系统。<br>querystring :解析URL的查询字符串。<br>util:实用小工具。<br>path:处理文件路径。<br>cryto:加密解密。<br>module.exports:对外输出，供引用。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">var a=&#123;&#125;;</div><div class="line">function method(name) &#123;</div><div class="line">  console.log(name);</div><div class="line">&#125;</div><div class="line">a.show=method;</div><div class="line">module.exports=a;</div><div class="line">把对象a的show属性指向method函数。</div><div class="line">调用：</div><div class="line">var m=require(&apos;./test.js&apos;);</div><div class="line">m.show(&quot;呵呵&quot;);</div></pre></td></tr></table></figure>
+<h2 id="异常处理："><a href="#异常处理：" class="headerlink" title="异常处理："></a><strong>异常处理：</strong></h2><ul>
+<li>A：throw抛出错误对象。</li>
+<li>B:回调负责发出错误。</li>
+<li>C:通过EventEmitter接口，发出error事件。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">C案例：</div><div class="line">var EventEmitter=require(&apos;events&apos;).EventEmitter;</div><div class="line">var emitter=new EventEmitter();</div><div class="line">emitter.emit(&apos;error&apos;,new Error(&apos;something do help&apos;));</div><div class="line">emitter.on(&apos;error&apos;,function (err) &#123;</div><div class="line">  console.log(err.message);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>补充：当如果出现异常未捕获时候，则可以使用uncaughtException，同时退出node进程。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">process.on(&apos;uncaughtException&apos;,function(err) &#123;</div><div class="line">  console.error(err);</div><div class="line">  process.exit(1);//退出</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="二、module对象"><a href="#二、module对象" class="headerlink" title="二、module对象"></a>二、module对象</h1><hr>
+<pre><code>node.js都是模块性质，所以函数变量都是私有性质，
+虽然可以通过global.x这种方式设置为全局，但是不推荐。
+module:代表当前模块，module有个属性exports，是对外的接口。
+加载模块其实就是加载该模块的module.exports属性。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">test.js:</div><div class="line">var EventEmitter=require(&apos;events&apos;).EventEmitter;</div><div class="line">var emitter=new EventEmitter();</div><div class="line">module.exports=emitter;</div><div class="line">setTimeout(function () &#123;</div><div class="line">  emitter.emit(&apos;ready&apos;);</div><div class="line">&#125;,1000);</div><div class="line"></div><div class="line">a.js:</div><div class="line">var test=require(&apos;./test.js&apos;);</div><div class="line">test.on(&apos;ready&apos;,function () &#123;</div><div class="line">  console.log(&apos;接收到了&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注意：module.exports可以直接module.exports=fun(){},
+也可以module.exports.x=.....;但是按照第一种，只能输出一个的情况下试用。
+require.resolve():将模块名解析到一个绝对路径.
+</code></pre><hr>
+<h1 id="三、fs模块"><a href="#三、fs模块" class="headerlink" title="三、fs模块"></a>三、fs模块</h1><blockquote>
+<p>根据系统来判断行结尾</p>
+</blockquote>
+<hr>
+<pre><code>windows系统下面：process.platform，输出win32.
+使用：var a=(process.platform===&apos;win32&apos;?&apos;\r\n&apos; : &apos;\n&apos;);
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.readFile(&apos;./快捷键.txt&apos;,(err,data)=&gt;&#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  console.log(data);</div><div class="line">&#125;);</div><div class="line">fs.writeFile(&apos;./test.js&apos;,&apos;hello world&apos;,&apos;utf-8&apos;,function (err) &#123;</div><div class="line">  console.log(err);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>创建删除文件夹：如果文件夹存在则报错，同理删除时候如果不存在也会报错。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.mkdir(&apos;./hehe&apos;,0777,function (err) &#123;//0777是权限值</div><div class="line">  console.log(err);</div><div class="line">&#125;);</div><div class="line">fs.rmdir(&apos;./hahaa&apos;,function(err) &#123;</div><div class="line">  console.log(err);</div><div class="line">&#125;);</div><div class="line">读取文件：var fs=require(&apos;fs&apos;);</div><div class="line">fs.readFile(&apos;./test.js&apos;,function (err,data) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  console.log(data.toString(&apos;utf-8&apos;));//注意data此时是buffer对象.在toString(&apos;utf-8&apos;);记得传入编码格式。</div><div class="line">&#125;);</div><div class="line">补充：process.cwd()；</div><div class="line">输出：C:\Users\Administrator\Desktop\Demo</div><div class="line">读取目录：readdir();</div><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.readdir(process.cwd(),function (err,files) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    console.log(err);</div><div class="line">    return;</div><div class="line">  &#125;</div><div class="line">  files.forEach(function (file) &#123;</div><div class="line">    console.log(typeof file);//全是string</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line">status:参数是文件或目录，判断到底是文件还是文件夹</div></pre></td></tr></table></figure>
+<blockquote>
+<p>案例：判断一个目录内到底是文件还是文件夹。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.readdir(&apos;./&apos;,function (err,files) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  files.forEach(function (file) &#123;</div><div class="line">  //注意此处还要+file,这样才算传入了要查询状态的文件或目录名称。</div><div class="line">    fs.stat(&apos;./&apos;+file,function (err,status) &#123;</div><div class="line">      if (err) &#123;throw err;&#125;</div><div class="line">      if (status.isFile()) &#123;</div><div class="line">        console.log(file+&quot;我是文件&quot;);</div><div class="line">      &#125; else &#123;</div><div class="line">        console.log(file+&quot;我是文件夹&quot;);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>监听文件：watchFile()</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.watchFile(&apos;./笔记/笔记2.txt&apos;,function (curr,pre) &#123;</div><div class="line">  console.log(&apos;当前时间&apos;+curr.mtime);</div><div class="line">  console.log(&apos;上次修改时间&apos;+pre.mtime);</div><div class="line">&#125;);</div><div class="line">fs.writeFile(&apos;./笔记/笔记2.txt&apos;,&quot;changed&quot;,function (err) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  console.log(&apos;file write complete&apos;);</div><div class="line">&#125;);</div><div class="line">unwatchfile方法用于解除对文件的监听.</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>createReadStream:打开大文件创建读取操作数据流。
+如果多的话，会按照多个data发送多次。
+其中发送之后触发data事件，发送结束后触发end事件。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">var input=fs.createReadStream(&apos;./test.js&apos;);</div><div class="line">input.on(&apos;data&apos;,function (data) &#123;</div><div class="line">  console.log(data.toString(&apos;utf-8&apos;));</div><div class="line">&#125;);</div><div class="line">input.on(&apos;end&apos;,function () &#123;</div><div class="line">  console.log(&apos;结束了&apos;);</div><div class="line">&#125;);</div><div class="line">createWriteStream:创建一个写入数据流对象。</div><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">var input=fs.createReadStream(&apos;./笔记/阮一峰 01.txt&apos;);</div><div class="line">var output=fs.createWriteStream(&apos;./和.txt&apos;);</div><div class="line">input.on(&apos;data&apos;,function (data) &#123;</div><div class="line">  output.write(data);</div><div class="line">&#125;);</div><div class="line">input.on(&apos;error&apos;,function (err) &#123;</div><div class="line">  throw err;</div><div class="line">&#125;);</div><div class="line">input.on(&apos;end&apos;,function () &#123;</div><div class="line">  console.log(&apos;结束了&apos;);</div><div class="line">  output.end();//关闭写入流对象</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="四、path模块"><a href="#四、path模块" class="headerlink" title="四、path模块"></a>四、path模块</h1><blockquote>
+<p>join:按照系统添加路径分隔符。windows是’\’.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var path=require(&apos;path&apos;);</div><div class="line">var dir=path.join(__dirname,&apos;foo&apos;);</div><div class="line">console.log(dir);</div><div class="line">//C:\Users\Administrator\Desktop\Demo\foo</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>path.resolve():将相对路径转化为绝对路径
+该方法可以传入多个字符串参数（必须是字符串，不然无效），如果没给具体路径，以当前路径为参考。
+var path=require(&apos;path&apos;);
+var he=path.resolve(&apos;../&apos;,&apos;a/b&apos;,&apos;c&apos;,&apos;../d&apos;);
+console.log(he);
+//当前目录是：C:\Users\Administrator\Desktop\Demo
+输出：C:\Users\Administrator\Desktop\a\b\d
+</code></pre><hr>
+<blockquote>
+<p>path.relative方法接受两个参数，这两个参数都应该是绝对路径。<br>该方法返回第二个路径相对于第一个路径的那个相对路径。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">path.relative(&apos;/data/orandea/test/aaa&apos;, &apos;/data/orandea/impl/bbb&apos;)</div><div class="line">// &apos;../../impl/bbb&apos;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>path.parse():可以返回路径各部分的信息。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var path=require(&apos;path&apos;);</div><div class="line">var myFilePath=&apos;./someDir/someDir.json&apos;;</div><div class="line">var parse=path.parse(myFilePath);</div><div class="line">console.log(parse.base);//文件全称：someDir.json</div><div class="line">console.log(parse.name);//文件名字someDir</div><div class="line">console.log(parse.ext);//后缀json</div><div class="line">等于说：base等于name+ext。</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/Node知识点(一)md/" data-id="cj60seec6001d60nkcgiixm9h" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/06/OC笔记_02/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          OC语言笔记_02
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/06/Node相关/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Node相关</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Net/">.Net</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/C语言/">C语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Object-C/">Object C</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂类/">杂类</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/CSharp线程和通信/">进程和通信</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android版本DSBridge使用规则/">JsBridge</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android5.0新特性笔记/">Android 5.0新特性</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/Android 6.0权限/">Android 6.0权限</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/面向对象一/">面向对象一</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
