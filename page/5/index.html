@@ -260,6 +260,311 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/C语言笔记_02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/C语言笔记_02/" itemprop="url">C语言笔记_02</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C语言/" itemprop="url" rel="index">
+                    <span itemprop="name">C语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><blockquote>
+<p>在函数中修改形参的值，不会影响到外面实参的值(前提是：基本数据类型)<br>返回值和返回值类型不同的时候，会进行隐式转换</p>
+</blockquote>
+<hr>
+<pre><code>int getHeight(){
+    return 1.75;
+}
+如果函数没有返回值，返回值类型是void
+void setHe(){
+    printf(&quot;案发后沙&quot;);
+}
+C语言可以没有返回值类型：没有写，默认为int类型。
+test(){
+    return 1;
+}
+</code></pre><hr>
+<h2 id="函数的声明和实现"><a href="#函数的声明和实现" class="headerlink" title="函数的声明和实现"></a>函数的声明和实现</h2><hr>
+<pre><code>C语言中默认在调用之前，声明定义函数，如果不定义函数，一定要在调用之前声明函数。
+#include &lt;stdio.h&gt;
+void showHello();//函数声明
+int main() {
+    showHello();
+    return 0;
+}
+void showHello(){//函数定义
+    printf(&quot;hello&quot;);
+}
+注意：如果函数返回值是int类型，那么不写声明，也不会报错。而且函数声明可以省略形参，
+函数声明只需要在函数被使用之前就可以了，它可以写在函数的外面，也可以写在函数里面。
+C语言中函数定义不能重复，但是函数声明可以重复，因为函数声明仅仅是为了告诉系统有这个函数，
+接受什么，返回什么，所以多告诉几次也无所谓。
+</code></pre><hr>
+<h2 id="main函数解析"><a href="#main函数解析" class="headerlink" title="main函数解析"></a>main函数解析</h2><hr>
+<pre><code>main系统规定，程序入口，只能由系统调用，不能手动调用
+系统启动时候，会给程序传递进来一些参数
+argc:系统传递进来的参数个数
+argv:系统传递进来参数的实际值
+int main(int argc,const char *argv[]) {
+    printf(&quot;%i\n&quot;,argc);
+    printf(&quot;%s\n&quot;,argv[0]);
+    return 0;//返回给操作系统，代表正常结束，如果返回不是0，代表非正常结束
+}
+</code></pre><hr>
+<h2 id="mac常用指令"><a href="#mac常用指令" class="headerlink" title="mac常用指令"></a>mac常用指令</h2><hr>
+<pre><code>pwd:查看当前位置
+ls:查看当前文件夹中的内容
+cd Desktop/:进入指定文件夹，此时进入Desktop文件夹
+mkdir:新建文件夹，指令后面跟上文件夹名称（mkdir qiang）
+rmdir: 文件夹名称/:删除文件夹
+cd ../:返回上一个文件夹（注意空格）
+clear:清空终端
+open 文件名称/:打开文件
+touch 文件全称:创建文件
+cat 文件全称:预览文件
+</code></pre><hr>
+<h2 id="include指令-预处理指令"><a href="#include指令-预处理指令" class="headerlink" title="include指令(预处理指令)"></a>include指令(预处理指令)</h2><hr>
+<pre><code>不一定要写在文件头部，作用就是把对应文件copy进来，替换掉对应函数
+
+“”和&lt;&gt;区别：&lt;&gt;代表先从开发工具的编译环境中找寻文件，没有的话再去系统的编译环境中
+查找, “”代表会先从当前文件夹下面查找，没找到则去开发工具的编译环境中查找，如果还
+是没找到去系统的编译环境中查找。
+“”：不一定非要写文件名，还可以写相对路径，或者绝对路径
+</code></pre><hr>
+<h1 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h1><blockquote>
+<p>C语言中数字前面加0b代表二进制，0代表八进制，0x表示十六进制<br>案例：八进制转化为十进制输出<br>int num=12;<br>printf(“八进制:%o\n”,num);//14，o代表八进制<br>printf(“十六进制:%x\n”,num);//c，x代表十六进制<br>另外 i代表十进制<br>注意：C语言中没有以二进制输出的占位符。</p>
+</blockquote>
+<h2 id="原码，补码，反码"><a href="#原码，补码，反码" class="headerlink" title="原码，补码，反码"></a>原码，补码，反码</h2><hr>
+<pre><code>数据存储中内存都是存储的二进制，最终存储在内存中的是补码
+反码：正数的反码就是正数原码
+补码：正数的补码就是正数的原码
+所以：正数，三码合一。
+案例：通过-9说明负数的存储情况
+ -9是int类型，在mac系统上面，占据四个字节，也就是32位。
+二进制(原码)第一位是符号位，1代表负数，0代表正数。
+ -9的原码就是：10000000 00000000 00000000 00001001
+反码为符号位不变，其他位取反
+ -9的反码就是：11111111 11111111 11111111 11110110
+补码为反码加一
+ -9的补码就是：11111111 11111111 11111111 11110111 
+总结：之所以有原码，补码，反码的区分，是因为为了方便计算机计算。因为原码最
+高位是符号位，如果直接用原码计算，还需要判断是整数还是负数，但是如果用反码，
+补码此时已经不区分符号位了，直接计算就行，提高了效率。
+案例：1+（-1）=0
+00000000 00000000 00000000 00000001  1的补码
+11111111 11111111 11111111 11111111  -1的补码
+——————————————————————————————————————
+00000000 00000000 000000000 00000000 
+解析：本来最高位应该是1，但是因为超出四字节，被截取，此时最高位为0为正数，顾结果不需要考虑三码，直接为0.
+案例二：-9加1
+11111111 11111111 11111111 11110111  -9补码
+00000000 00000000 00000000 00000001   1补码
+——————————————————————————————————————
+11111111 11111111 11111111 11111000   -8补码
+解析：最高位为1是负数，先求反码为：11111111 11111111 11111111 11110111
+然后求原码为：10000000 0000000 00000000 00001000 此时为-8.
+</code></pre><hr>
+<h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><h3 id="按位与-amp-一假则假-0代表假，1代表真"><a href="#按位与-amp-一假则假-0代表假，1代表真" class="headerlink" title="按位与 &amp;  一假则假  0代表假，1代表真"></a>按位与 &amp;  一假则假  0代表假，1代表真</h3><hr>
+<pre><code>案例：9&amp;5
+ 00001001
+&amp;00000101
+——————————
+ 00000001  结果为1
+</code></pre><hr>
+<h4 id="按位或-一真则真"><a href="#按位或-一真则真" class="headerlink" title="按位或 | 一真则真"></a>按位或 | 一真则真</h4><hr>
+<pre><code> 00001001
+|00000101
+——————————
+ 00001101  结果为13
+</code></pre><hr>
+<h3 id="按位亦或-不同为1，相同为0"><a href="#按位亦或-不同为1，相同为0" class="headerlink" title="按位亦或 ^  不同为1，相同为0"></a>按位亦或 ^  不同为1，相同为0</h3><hr>
+<pre><code> 00001001
+|00000101
+——————————
+ 00001100 结果为12
+说明：亦或结果和参与运算顺序无关，9^5^6=6^5^9.
+相同两个数亦或为0，任何数亦或0还是本身，任何一个数和同一个数亦或两次还是本身。
+</code></pre><hr>
+<h3 id="按位取反"><a href="#按位取反" class="headerlink" title="按位取反 ~"></a>按位取反 ~</h3><hr>
+<pre><code>~00001001=11110110(补码)
+11110101（反码）
+10001010 （原码） 结果为-10
+</code></pre><hr>
+<h2 id="移位运算"><a href="#移位运算" class="headerlink" title="移位运算"></a>移位运算</h2><hr>
+<pre><code>左移：&lt;&lt;  左移有可能改变数的正负性，因为左移最高位（符号位）会被抛弃，后面0。
+9&lt;&lt;1=9*2(1)=18
+右移: &gt;&gt; 右边移动位被抛弃，左边缺失位补充符号位。
+9&gt;&gt;1=9/2(1)=4 C语言中整数除以整数等于整数
+注意：负数移位(左右)的时候，需要转换为补码在进行移位，移位后，在转化为源码得到值。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">案例：输入10进制整数，输出二进制数</div><div class="line">思路：依次移动位数，和1&amp;就可以得到该位的二进制数。</div><div class="line">void printBinay(int v)&#123;</div><div class="line">    int i=31;</div><div class="line">    while (i&gt;=0) &#123;</div><div class="line">        //任何数&amp;1都是本身，这个本身针对的是二进制中的每一位数</div><div class="line">        printf(&quot;%i &quot;,(v&gt;&gt;i--)&amp;1);</div><div class="line">    &#125;</div><div class="line">    printf(&quot;\n&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>案例：交换值
+方式一：
+int temp=a;
+a=b;
+b=temp;
+方式二：
+a=a+b;
+b=a-b;
+a=a-b;
+方式三：
+a=a^b;
+b=a^b;
+a=a^b;
+</code></pre><hr>
+<h1 id="char类型"><a href="#char类型" class="headerlink" title="char类型"></a>char类型</h1><hr>
+<pre><code>char占据一个字节
+可以直接把整型赋值给一个char。
+char a=6;
+printf(&quot;%i\n&quot;,a);//6
+注意：所以在不超过char取值范围的情况下，char(-127~128)可以当做int使用
+</code></pre><hr>
+<h1 id="类型说明符号"><a href="#类型说明符号" class="headerlink" title="类型说明符号"></a>类型说明符号</h1><h2 id="说明长度的（可用于修改类型所占用的存储空间的大小，一般和int配合使用）"><a href="#说明长度的（可用于修改类型所占用的存储空间的大小，一般和int配合使用）" class="headerlink" title="说明长度的（可用于修改类型所占用的存储空间的大小，一般和int配合使用）"></a>说明长度的（可用于修改类型所占用的存储空间的大小，一般和int配合使用）</h2><hr>
+<pre><code>short: short int为两个字节，short int=short。输出使用%hi或者%hd。
+long:例如long int num=12411;本来int是四个字节，但是加上之后，为8个字节。long int=int;利用li或者ld输出。
+long long:在64位编译器下无区别，在32位编译器下，long为4个字节。long long为8个字节。long long int=long long
+</code></pre><hr>
+<h2 id="说明符号位的"><a href="#说明符号位的" class="headerlink" title="说明符号位的"></a>说明符号位的</h2><hr>
+<pre><code>unsigned：无符号，代表当前变量取值只能是正数和0.输出无符号数，用%u。取值范围变大。
+signed：有符号，默认就是这个,这个使用普通的取出符号即可。
+
+注意：上面的说明长度和说明符号位的可以混合使用
+例如：unsigned long int num=99;
+</code></pre><hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/C语言笔记_01/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1265,7 +1570,7 @@ public static void test2(params int[] num){}
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1276,7 +1581,7 @@ public static void test2(params int[] num){}
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>

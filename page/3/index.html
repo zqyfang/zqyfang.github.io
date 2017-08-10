@@ -260,6 +260,328 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Node相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/Node相关/" itemprop="url">Node相关</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="流行框架第一天：构建前端自动化工作流环境"><a href="#流行框架第一天：构建前端自动化工作流环境" class="headerlink" title="流行框架第一天：构建前端自动化工作流环境"></a>流行框架第一天：构建前端自动化工作流环境</h1><h2 id="兩個問題"><a href="#兩個問題" class="headerlink" title="兩個問題"></a>兩個問題</h2><h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
+<li>了解什么是Node，什么是NPM；（Node.js）</li>
+<li>掌握Bower的使用；</li>
+<li>熟练使用Less/Sass；</li>
+<li>搭建一个自己的自动化工作流环境；<ul>
+<li>自动编译</li>
+<li>自动合并</li>
+<li>自动刷新</li>
+<li>自动部署</li>
+</ul>
+</li>
+<li>GIT 与 GITHUB<ul>
+<li>master 托管源文件</li>
+<li>gh-pages 托管部署文件</li>
+<li>在github搭建自己的blog</li>
+</ul>
+</li>
+</ul>
+<h2 id="为什么要有自动化的流程"><a href="#为什么要有自动化的流程" class="headerlink" title="为什么要有自动化的流程"></a>为什么要有自动化的流程</h2><ul>
+<li>在我们的开发过程中有大量的重复操作</li>
+<li>DRY  Don’t repeat yourself</li>
+<li><p>开发人员的精力应放在哪？创造，新的一切</p>
+</li>
+<li><p>前端开发的编译操作</p>
+</li>
+</ul>
+<h2 id="1-Node环境"><a href="#1-Node环境" class="headerlink" title="1.Node环境"></a>1.Node环境</h2><h3 id="1-1-什么是Node"><a href="#1-1-什么是Node" class="headerlink" title="1.1.什么是Node"></a>1.1.什么是Node</h3><ul>
+<li>Node.js 可能类似jquery.js</li>
+<li>不是JS文件，也不是一个JS框架（）</li>
+<li>而是Server side Javascript runtime, 服务端的一个JS运行时</li>
+<li>我们可以在NODE运行JS代码</li>
+<li>alert();ECMAScript  JS- ES  BOM  DOM</li>
+<li>node中只能运行ECMAScript，无法使用 BOM 和 DOM</li>
+<li>目前我们的JS是运行在浏览器内核中</li>
+<li>PHP是什么？是一门脚本语言也是一个运行环境</li>
+<li><p>为什么Node选中了JS，</p>
+</li>
+<li><p>说到底就是一个JS运行环境</p>
+</li>
+<li><p>目前有两个分支</p>
+<ul>
+<li>Node.js 0.12.7 官方版本 要求尽善尽美</li>
+<li>IO.js 是社区的产物，不是官方的东西，io.js有很多新特性，迭代非常快，社区推进非常快</li>
+<li>15年两者合并，发布node第一个正式版 4.0， 迭代速度又慢了</li>
+<li>node 5.x == io.js</li>
+<li>node 4.0 == node</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-Node环境搭建"><a href="#1-2-Node环境搭建" class="headerlink" title="1.2.Node环境搭建"></a>1.2.Node环境搭建</h3><h4 id="1-2-1-Mac"><a href="#1-2-1-Mac" class="headerlink" title="1.2.1.Mac"></a>1.2.1.Mac</h4><ul>
+<li>安装包的方式<ul>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0.pkg" target="_blank" rel="external">pkg</a></li>
+</ul>
+</li>
+<li><p>NVM（Node Version Manager）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'. ~/.nvm/nvm.sh'</span> &gt;&gt; .bash_profile</div><div class="line">$ nvm install stable</div><div class="line">$ nvm <span class="built_in">alias</span> default stable</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="1-2-2-Windows"><a href="#1-2-2-Windows" class="headerlink" title="1.2.2.Windows"></a>1.2.2.Windows</h4><ul>
+<li>安装包的方式<ul>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0-x64.msi" target="_blank" rel="external">msi_x64</a></li>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0-x86.msi" target="_blank" rel="external">msi_x86</a></li>
+</ul>
+</li>
+<li>NVM（Node Version Manager）</li>
+<li>nvm(node version manager)</li>
+<li>因为NODE版本比较多，开发人员可能依赖很多版本</li>
+<li><p>通过NVM，可以轻松切换于不同的版本之间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>NVM_HOME=C:\Develop\nvm</p>
+<p>NVM_SYMLINK=C:\Develop\nodejs</p>
+<p>NPM_HOME=C:\Develop\nvm\npm</p>
+<p>PATH=%NVM_HOME%;%NVM_SYMLINK%;%NPM_HOME%</p>
+<h4 id="1-2-3-环境变量"><a href="#1-2-3-环境变量" class="headerlink" title="1.2.3.环境变量"></a>1.2.3.环境变量</h4><ul>
+<li><p>环境变量就是操作系统提供的系统级别用于存储变量的地方</p>
+</li>
+<li><p>系统变量和用户变量</p>
+</li>
+<li>系统变量指的是所用当前系统用户共享的变量</li>
+<li>自己的电脑一般只有一个用户</li>
+<li><p>建议将自己配置的环境变量放在用户变量中，用户变量比较干净</p>
+</li>
+<li><p>环境变量的变量名是不区分大小写的</p>
+</li>
+<li><p>变量间运行相互引用</p>
+</li>
+<li><p>特殊值：</p>
+</li>
+<li>PATH变量（不区分大小写）</li>
+<li>PATH 相当于一个路径的引用</li>
+<li><p>只要添加到PATH变量中的路径，都可以在任何目录下搜索</p>
+</li>
+<li><p>命令行</p>
+</li>
+<li>可以用来执行当前目录下的文件</li>
+<li>命令</li>
+</ul>
+<p>cd :change directory</p>
+<ul>
+<li>Node.js是一个轻内核（本身没有什么功能）的东东，所有的功能都要功能包提供</li>
+<li>node官方提供了一些最基础的包</li>
+</ul>
+<h3 id="1-3-Node用途"><a href="#1-3-Node用途" class="headerlink" title="1.3.Node用途"></a>1.3.Node用途</h3><h4 id="REPL环境（控制台环境）"><a href="#REPL环境（控制台环境）" class="headerlink" title="REPL环境（控制台环境）"></a>REPL环境（控制台环境）</h4><h4 id="1-3-1-开发Web应用程序"><a href="#1-3-1-开发Web应用程序" class="headerlink" title="1.3.1.开发Web应用程序"></a>1.3.1.开发Web应用程序</h4><ul>
+<li>做动态网站</li>
+<li>开发提供数据的服务端API</li>
+</ul>
+<h4 id="1-3-2-前端开发工具基础"><a href="#1-3-2-前端开发工具基础" class="headerlink" title="1.3.2.前端开发工具基础"></a>1.3.2.前端开发工具基础</h4><ul>
+<li>Node.js给前端乃至整个开发行业带来一场工业革命</li>
+<li>刀跟火种</li>
+</ul>
+<h3 id="1-4-Node开发Web应用Demo"><a href="#1-4-Node开发Web应用Demo" class="headerlink" title="1.4.Node开发Web应用Demo"></a>1.4.Node开发Web应用Demo</h3><h4 id="1-4-1-复习请求与响应"><a href="#1-4-1-复习请求与响应" class="headerlink" title="1.4.1.复习请求与响应"></a>1.4.1.复习请求与响应</h4><p>客户端发送到服务端的东西称之为请求报文<br>服务端返回给客户端的东西称之为响应报文</p>
+<h3 id="1-5-NPM"><a href="#1-5-NPM" class="headerlink" title="1.5.NPM"></a>1.5.NPM</h3><h4 id="1-5-1-什么是NPM"><a href="#1-5-1-什么是NPM" class="headerlink" title="1.5.1.什么是NPM"></a>1.5.1.什么是NPM</h4><p><a href="https://www.npmjs.com/" target="_blank" rel="external">https://www.npmjs.com/</a></p>
+<ul>
+<li>Node Package Manager</li>
+<li>Node应用程序依赖包的管理工具</li>
+<li>安装卸载更新之类的操作</li>
+</ul>
+<h4 id="1-5-2-为什么使用NPM"><a href="#1-5-2-为什么使用NPM" class="headerlink" title="1.5.2.为什么使用NPM"></a>1.5.2.为什么使用NPM</h4><ul>
+<li>包很多</li>
+<li>场景：我需要用一个A，A依赖B，B依赖C</li>
+<li>常见的包管理工具都有循环依赖的功能</li>
+<li>你只需记住你要什么东西</li>
+</ul>
+<h4 id="1-5-3-常见的NPM操作"><a href="#1-5-3-常见的NPM操作" class="headerlink" title="1.5.3.常见的NPM操作"></a>1.5.3.常见的NPM操作</h4><p>// 安装一个包，默认安装最新稳定版本<br>npm install package_name<br>// –save<br>// 初始化操作，给项目添加一个配置文件<br>npm init<br>// –yes参数走默认配置</p>
+<ul>
+<li>如果官方数据源太慢使用</li>
+<li><a href="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a></li>
+</ul>
+<hr>
+<h2 id="2-Bower"><a href="#2-Bower" class="headerlink" title="2.Bower"></a>2.Bower</h2><h3 id="2-1-什么是Bower"><a href="#2-1-什么是Bower" class="headerlink" title="2.1.什么是Bower"></a>2.1.什么是Bower</h3><ul>
+<li><a href="http://bower.io/" target="_blank" rel="external">官网</a></li>
+<li>web应用程序依赖项管理工具</li>
+</ul>
+<h3 id="2-2-为什么使用Bower"><a href="#2-2-为什么使用Bower" class="headerlink" title="2.2.为什么使用Bower"></a>2.2.为什么使用Bower</h3><ul>
+<li>方便便捷的方式管理包，zhuangbi</li>
+</ul>
+<h3 id="2-3-Bower实践"><a href="#2-3-Bower实践" class="headerlink" title="2.3.Bower实践"></a>2.3.Bower实践</h3><ul>
+<li><p>npm install -g bower // -g:global</p>
+</li>
+<li><p>修改npm全局路径，就是在用户目录下添加.npmrc文件</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-Sass-LESS"><a href="#3-Sass-LESS" class="headerlink" title="3.Sass/LESS"></a>3.Sass/LESS</h2><hr>
+<h2 id="4-Gulp"><a href="#4-Gulp" class="headerlink" title="4.Gulp"></a>4.Gulp</h2><h3 id="4-1-Gulp简介"><a href="#4-1-Gulp简介" class="headerlink" title="4.1.Gulp简介"></a>4.1.Gulp简介</h3><ul>
+<li>链接：<ul>
+<li><a href="http://gulpjs.com/" target="_blank" rel="external">官网</a></li>
+<li><a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">中文网</a></li>
+</ul>
+</li>
+<li>就是用来机械化的完成重复性质的工作</li>
+<li>gulp的机制就是将重复工作抽象成一个个的任务，</li>
+</ul>
+<h3 id="4-2-Gulp准备工作"><a href="#4-2-Gulp准备工作" class="headerlink" title="4.2.Gulp准备工作"></a>4.2.Gulp准备工作</h3><ul>
+<li>安装Node.js</li>
+<li>安装 gulp 命令行工具<ul>
+<li><code>npm install -g gulp</code></li>
+</ul>
+</li>
+<li>初始化 gulp 项目</li>
+<li>创建任务 - gulpfile.js</li>
+</ul>
+<h3 id="4-3-基本使用"><a href="#4-3-基本使用" class="headerlink" title="4.3.基本使用"></a>4.3.基本使用</h3><h3 id="4-4-常用插件"><a href="#4-4-常用插件" class="headerlink" title="4.4.常用插件"></a>4.4.常用插件</h3><ul>
+<li><a href="https://www.npmjs.com/package/gulp-less" target="_blank" rel="external">编译 Less：gulp-less</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-connect" target="_blank" rel="external">创建本地服务器：gulp-connect</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-concat" target="_blank" rel="external">合并文件：gulp-concat</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-uglify" target="_blank" rel="external">最小化 js 文件：gulp-uglify</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-rename" target="_blank" rel="external">重命名文件：gulp-rename</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-minify-css" target="_blank" rel="external">最小化 css 文件：gulp-minify-css</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-minify-html" target="_blank" rel="external">压缩html文件 gulp-minify-html</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-imagemin" target="_blank" rel="external">最小化图像：gulp-imagemin</a></li>
+</ul>
+<hr>
+<h2 id="5-Git"><a href="#5-Git" class="headerlink" title="5.Git"></a>5.Git</h2><h3 id="5-1-什么是GIT，什么是GITHUB"><a href="#5-1-什么是GIT，什么是GITHUB" class="headerlink" title="5.1.什么是GIT，什么是GITHUB"></a>5.1.什么是GIT，什么是GITHUB</h3><ul>
+<li>GIT</li>
+<li>GITHUB</li>
+</ul>
+<h3 id="5-2-环境安装"><a href="#5-2-环境安装" class="headerlink" title="5.2.环境安装"></a>5.2.环境安装</h3><h3 id="5-3-GIT常用命令"><a href="#5-3-GIT常用命令" class="headerlink" title="5.3.GIT常用命令"></a>5.3.GIT常用命令</h3><hr>
+<h2 id="6-Markdown"><a href="#6-Markdown" class="headerlink" title="6.Markdown"></a>6.Markdown</h2><p><a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="external">https://guides.github.com/features/mastering-markdown/</a><br><a href="https://help.github.com/articles/github-flavored-markdown/" target="_blank" rel="external">https://help.github.com/articles/github-flavored-markdown/</a><br><a href="https://help.github.com/articles/markdown-basics/" target="_blank" rel="external">https://help.github.com/articles/markdown-basics/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Node群聊实现（基石版本）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2360,260 +2682,6 @@ public static void main(String[] args) throws IOException {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Java查漏补缺（四）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Qiang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="飞奔的小猿猴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/Java查漏补缺（四）/" itemprop="url">Java查漏补缺（四）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Java开始"><a href="#Java开始" class="headerlink" title="Java开始"></a>Java开始</h1><hr>
-<pre><code>书接上文，继续开始啦！^_+
-</code></pre><hr>
-<h2 id="第八部分"><a href="#第八部分" class="headerlink" title="第八部分"></a><strong>第八部分</strong></h2><ul>
-<li><strong>Date类：util包下面的这个</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        Date d1=new Date();</div><div class="line">        System.out.println(d1);//Thu Nov 24 09:19:16 CST 2016</div><div class="line">        long d1time=System.currentTimeMillis();</div><div class="line">        System.out.println(d1time);</div><div class="line">		//获取距离1970年那个毫秒值1479950356625</div><div class="line">        System.out.println(&quot;..........................&quot;);</div><div class="line">        Date d2=new Date(1479950356625L);</div><div class="line">        System.out.println(d2);</div><div class="line">		//获取的是根据1479950356625L（注意是long类型）对应的时间。</div><div class="line">        成员方法：</div><div class="line">        d1.getTime();</div><div class="line">		//效果等同于System.currentTimeMillis()</div><div class="line">        d1.setTime(time);</div><div class="line">		//效果等同于Date d2=new Date(1479950356625L);</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><p><strong>DateFormat:日期》》文本（字符串）</strong><br>但是其没有构造方法，要使用其子类：SimpleDateFormat.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Date date=new Date();</div><div class="line">      SimpleDateFormat sdf=new SimpleDateFormat();</div><div class="line">      String date2=sdf.format(date);</div><div class="line">      System.out.println(date2);</div><div class="line">//16-11-24 上午9:32</div><div class="line">      //字符串格式到date格式》》》parse（）。</div><div class="line">      Date date3=sdf.parse(date2);</div><div class="line">      System.out.println(date3);</div><div class="line">//Thu Nov 24 09:34:00 CST 2016</div></pre></td></tr></table></figure>
-</li>
-<li><p>对象数组：但是数组存对象必须开始数量就是固定的。例如Person[] pp=new Person[3];但是如果数量不确定时候，集合 就是很好的选择。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) throws ParseException &#123;</div><div class="line">        //对象数组</div><div class="line">        Person[] pp=new Person[3];//注意此处写法。</div><div class="line">        Person p=new Person(&quot;哈哈&quot;, 12);</div><div class="line">        Person p1=new Person(&quot;哈哈1&quot;, 13);</div><div class="line">        Person p2=new Person(&quot;哈哈2&quot;, 14);</div><div class="line">        pp[0]=p;</div><div class="line">        pp[1]=p1;</div><div class="line">        pp[2]=p2;</div><div class="line">        for (int i = 0; i &lt; pp.length; i++) &#123;</div><div class="line">            System.out.println(pp[i].getAge()+&quot;.....&quot;+pp[i].getName());</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>集合:可以看作一组对象</strong><br>Collection:分为List和Set两种。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">	        // TODO Auto-generated method stub</div><div class="line">	        //Collection是抽象的不能实例化，所以利用多态。</div><div class="line">	        Collection c=new ArrayList();</div><div class="line">	        c.add(&quot;哈哈&quot;);</div><div class="line">	        c.add(&quot;哈哈1&quot;);</div><div class="line">	        c.add(&quot;哈哈2&quot;);</div><div class="line">	        //所以Collection的tostring肯定重写了</div><div class="line">	        System.out.println(c.size()+&quot;.....&quot;+c);</div><div class="line">			//3 [哈哈, 哈哈1, 哈哈2]</div><div class="line">	        c.clear();//清空</div><div class="line">	        System.out.println(c);</div><div class="line">	    &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>iterator:迭代器,是一个接口。</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">	        // TODO Auto-generated method stub</div><div class="line">	        //Collection是抽象的不能实例化，所以利用多态。</div><div class="line">	        Collection c=new ArrayList();</div><div class="line">	        c.add(&quot;哈哈&quot;);</div><div class="line">	        c.add(&quot;哈哈1&quot;);</div><div class="line">	        c.add(&quot;哈哈2&quot;);</div><div class="line">	        Iterator iterator=c.iterator();</div><div class="line">	        while (iterator.hasNext()) &#123;</div><div class="line">	            System.out.println(iterator.next());</div><div class="line">	        &#125;</div><div class="line">	    &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>List特性：utils包下</strong><br>  List:元素有序，可重复。（有序与否指的是，存储顺序是否等于取出顺序）<br>  Set:元素无序，唯一。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">List list=new ArrayList&lt;&gt;();</div><div class="line">       list.add(&quot;1&quot;);</div><div class="line">       list.add(&quot;2&quot;);</div><div class="line">       list.add(&quot;3&quot;);</div><div class="line">       //在制定位置添加，后面的向后推，此时输出1，我是添加的，2，3</div><div class="line">       list.add(1, &quot;我是添加的&quot;);</div><div class="line">       String aString=(String) list.set(2, &quot;我是修改的&quot;);</div><div class="line">	//修改指定位置内容，返回修改的是修改前的2.但是遍历时候已经修改。</div><div class="line">       System.out.println(aString);//输出2</div><div class="line">       Iterator iterator=list.iterator();</div><div class="line">       //和上面区别是从指定位置开始迭代，前面的都舍弃。。此时输出3</div><div class="line">       //ListIterator iterator=list.listIterator(2);</div><div class="line">       while (iterator.hasNext()) &#123;</div><div class="line">           System.out.println(iterator.next());</div><div class="line">       &#125;</div><div class="line">输出是：1，2，3有序的.</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>列表迭代器：ListIterator</strong><br>  和迭代器几乎没啥区别，但是其有特有功能。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        List list=new ArrayList&lt;&gt;();</div><div class="line">        list.add(&quot;1&quot;);</div><div class="line">        list.add(&quot;2&quot;);</div><div class="line">        list.add(&quot;3&quot;);</div><div class="line">//        ListIterator li=list.listIterator();</div><div class="line">//        while (li.hasNext()) &#123;</div><div class="line">//            String str = (String) li.next();</div><div class="line">//            if (&quot;2&quot;.equals(str)) &#123;</div><div class="line">//                li.add(&quot;我是添加的&quot;);</div><div class="line">//注意此处是列表迭代器特有的add方法。是在查询到的位置之后添加，而不是添加到最后</div><div class="line">//如果使用for循环遍历也行，添加也可以，但是会添加到最后。</div><div class="line">//            &#125;</div><div class="line">//        &#125;</div><div class="line">//        System.out.println(list);//输出[1, 2, 我是添加的, 3]</div><div class="line"></div><div class="line"></div><div class="line">       //会报错并发修改异常。</div><div class="line">       Iterator li=list.iterator();</div><div class="line">       while (li.hasNext()) &#123;</div><div class="line">           String str = (String) li.next();</div><div class="line">           if (&quot;2&quot;.equals(str)) &#123;</div><div class="line">               list.add(&quot;我是添加de&quot;);</div><div class="line">//此处添加是List的添加，</div><div class="line">  //但是普通迭代器是依靠集合进行迭代，但是此时没有集合在迭代期间变化，</div><div class="line">但是迭代器还是上面new的，还没变化</div><div class="line">  //这种并发修改会报错。此时就必须利用ListIterator进行迭代，而后使用其特有的add（）。</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       System.out.println(list);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">特有功能：</div><div class="line">public static void main(String[] args) &#123;</div><div class="line">        List list=new ArrayList&lt;&gt;();</div><div class="line">        list.add(&quot;1&quot;);</div><div class="line">        list.add(&quot;2&quot;);</div><div class="line">        list.add(&quot;3&quot;);</div><div class="line">        ListIterator li=list.listIterator();</div><div class="line">        while (li.hasNext()) &#123;</div><div class="line">            li.next();</div><div class="line">        &#125;</div><div class="line">        while (li.hasPrevious()) &#123;</div><div class="line">            String str = (String) li.previous();</div><div class="line">            System.out.println(str);//输出3，2，1</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>虽然成功逆向便利，但是有限制，使用previous必须先正向遍历,把游标从默认的最前方通过正向遍历移动到最后面，而后hasPrevious才有效果的。</p>
-</blockquote>
-<h2 id="第九部分"><a href="#第九部分" class="headerlink" title="第九部分"></a><strong>第九部分</strong></h2><ul>
-<li><p><strong>线程安全（同步）：</strong><br>  List三个儿子特点：<br>  ArrayList:底层数据结构是数组，不同步效率高，查询快增删慢，长度可变的s数组<br>  Vector:底层数据结构是数组，同步效率低，查询快增删慢（不常用）<br>  LinkedList:底层数据结构是链表，不同步效率高，查询慢，增删快。</p>
-</li>
-<li><p><strong>增强for:用来替换迭代器，用于遍历集合和集合</strong></p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        // 增强for</div><div class="line">        int[] arr=&#123;1,2,3&#125;;</div><div class="line">        for(int x:arr)&#123;</div><div class="line">            System.out.println(x);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>增强for是对iterator的封装，所以也不能并发修改，不然也会报错。</p>
-</blockquote>
-<ul>
-<li><strong>泛型方法，泛型类：</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">public class Demo &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Tool sTool=new Tool();</div><div class="line">        sTool.show(&quot;heh&quot;);</div><div class="line">        sTool.show(12);//这地方内含自动装箱传递是INterger.</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//泛型方法</div><div class="line">class Tool&#123;</div><div class="line">    public&lt;BYD&gt; void show(BYD byd)&#123;</div><div class="line">        System.out.println(byd);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//泛型类</div><div class="line">class Tool&lt;BYD&gt;&#123;</div><div class="line">    public void show(BYD byd)&#123;</div><div class="line">        System.out.println(byd);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">补充：泛型接口：</div><div class="line">public class Demo &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        MyTools sTool=new MyTools();</div><div class="line">        sTool.show(&quot;heh&quot;);</div><div class="line">        sTool.show(12);//这地方内含自动装箱传递是INterger.</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">interface Tool&lt;BYD&gt;&#123;</div><div class="line">    public void show(BYD byd);</div><div class="line">&#125;</div><div class="line">class MyTools implements Tool&#123;</div><div class="line">    @Override</div><div class="line">    public void show(Object byd) &#123;//也可以写成BYD byd</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        System.out.println(byd);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>Set:不包含重复元素的集合，无序。是接口和list一样，所以需要实现类</strong><ol>
-<li><blockquote>
-<p>HashSet:底层哈希表，不同步效率高，无序，最主要的不保证每次无序效果相同。</p>
-</blockquote>
-</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        Set&lt;String&gt; s=new HashSet&lt;String&gt;();</div><div class="line">        s.add(&quot;hello&quot;);</div><div class="line">        s.add(&quot;world&quot;);</div><div class="line">        s.add(&quot;java&quot;);</div><div class="line">        s.add(&quot;java&quot;);</div><div class="line">        for(String ss:s)&#123;</div><div class="line">            System.out.println(ss);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>输出：world java hello，无序而且不重复。</p>
-</blockquote>
-<pre><code>2.  &gt; TreeSet:不同步，使用自然顺序（字典顺序）排序。
-</code></pre><hr>
-<pre><code>底层是二叉树结构。
-小往右放，大往左放，这也是TreeSet按照字典排序的原因。
-注意：TreeSet是按照自然排序进行的排序，如果传入的泛型是student这种类型
-那么此时有各种属性，没法单纯的按照字典顺序排序，需要在对应的student类中
-实现Comparator接口而后重写compare方法，根据需要更改这个方法内部逻辑。
-方式二、而后新建类实现Comparator接口、而后重写compare（）。其实和上面方式几乎相同
-但是可以避免经常修改student对象代码。
-</code></pre><hr>
-<h2 id="第十部分"><a href="#第十部分" class="headerlink" title="第十部分"></a>第十部分</h2><ul>
-<li><strong>Map集合：无序，体现一一对应关系，这是List和Set不能体现的。是个接口</strong><br>  特点：键不能重复。<br>  Map:双列值集合，键不可重复。<br>  Collection:单列值集合。<blockquote>
-<p>案例：</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">       // TODO Auto-generated method stub</div><div class="line">       Map&lt;String, String&gt; m=new HashMap&lt;&gt;();</div><div class="line">       m.put(&quot;hehe1&quot;, &quot;01&quot;);</div><div class="line">       m.put(&quot;hehe2&quot;, &quot;02&quot;);</div><div class="line">       m.put(&quot;hehe3&quot;, &quot;03&quot;);</div><div class="line">       System.out.println(m);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：还可以存储自定义对象。<br>重要：注意为保证唯一，要重写student中的equals和hash code方法。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">		//题目，自定义student类为键，string位值，但是保证唯一性</div><div class="line">        //后面《》内部可省略，但是最好写上，jdk7新特性</div><div class="line">        Map&lt;Student, String&gt; m=new HashMap&lt;&gt;();</div><div class="line">        Student s1=new Student(12, &quot;武则天&quot;);</div><div class="line">        Student s2=new Student(13, &quot;物件通&quot;);</div><div class="line">        Student s3=new Student(12, &quot;武则天&quot;);</div><div class="line">        Student s4=new Student(20, &quot;武则天&quot;);</div><div class="line">        m.put(s1, &quot;01&quot;);</div><div class="line">        m.put(s2, &quot;02&quot;);</div><div class="line">        m.put(s3, &quot;03&quot;);</div><div class="line">        m.put(s4, &quot;04&quot;);</div><div class="line">        //补充知识点：m.entrySet()；返回的是键值对集合，即把全都返回来了。</div><div class="line">        Set&lt;Student&gt; s=m.keySet();//获取键集合</div><div class="line">        for(Student r:s)&#123;</div><div class="line">            String value=m.get(r);//注意此处。</div><div class="line">            System.out.println(r.getName()+&quot;...&quot;+r.getAge()+&quot;...&quot;+value);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>TreeMap:二叉树结构，所以保证唯一性，重写Compare()方法.</li>
-<li>HashMap和Hashtable区别：</li>
-<li>Hashtable：线程安全，效率低，不允许null键和值</li>
-<li>HashMap：线程不安全，效率高，允许null键和值<blockquote>
-<p>注意：Map集合可以嵌套，即Map可以作为键或值传入另一个Map。</p>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li><strong>异常：</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">finally&#123;</div><div class="line">    释放资源（数据库，IO）</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li><strong>IO文件</strong><blockquote>
-<p>1字符=2字节</p>
-</blockquote>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">       // TODO Auto-generated method stub</div><div class="line">       //方式一、这只是指向变化，不会创建文件</div><div class="line">       //fw.createNewFile();这个才是创建文件。</div><div class="line">       File f1=new File(&quot;c:\\a.txt&quot;);//文件，如果不写路径，在当前目录创建</div><div class="line">       File fw=new File(&quot;c:\\a&quot;);//文件夹</div><div class="line">       //方式二、</div><div class="line">       File f2=new File(&quot;c:\\&quot;,&quot;a.txt&quot;);//文件</div><div class="line">       File fw2=new File(&quot;c:\\&quot;,&quot;a.txt&quot;);//文件夹</div><div class="line">       //方式二、</div><div class="line">       File f=new File(&quot;c:\\&quot;);</div><div class="line">       File f3=new File(f,&quot;a.txt&quot;);//文件</div><div class="line">       File fw3=new File(f,&quot;a.txt&quot;);//文件夹</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>补充：
-创建多级目录
-File fw=new File(&quot;aaa\\bbb\\ccc&quot;);//文件夹
-fw.mkdirs();//创建文件夹，单级目录
-File fw=new File(&quot;aaa&quot;);//文件夹
-fw.mkdir();//注意此处不是mkdirs().
-删除文件或文件夹：file.delete();
-//删除什么取决于谁掉哦用，水调用就删除谁。
-多级目录删除：必须从内部一级级删除，且删除不走回收站。
-</code></pre><hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2664,7 +2732,7 @@ fw.mkdir();//注意此处不是mkdirs().
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2675,7 +2743,7 @@ fw.mkdir();//注意此处不是mkdirs().
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>

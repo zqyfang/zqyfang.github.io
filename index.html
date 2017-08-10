@@ -260,6 +260,196 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/10/Python知识点二(对象)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/10/Python知识点二(对象)/" itemprop="url">Python知识点二(对象)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-10T20:43:30+08:00">
+                2017-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="self"><a href="#self" class="headerlink" title="self"></a>self</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class Cat:</div><div class="line">    def eat(self):</div><div class="line">        print(&quot;猫吃鱼&quot;)</div><div class="line"></div><div class="line">    def instrouce(self):</div><div class="line">        print(&quot;%s的年纪是：%d&quot; % (self.name, self.age))</div><div class="line">        #self代表传入对象，约定写法是self，但是也可以是其他任何变量</div><div class="line"></div><div class="line">tom = Cat()</div><div class="line">tom.eat()</div><div class="line">tom.name = &quot;阿强&quot;</div><div class="line">tom.age = 13</div><div class="line">tom.instrouce()</div></pre></td></tr></table></figure>
+<h1 id="init"><a href="#init" class="headerlink" title="init"></a><strong>init</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Cat:</div><div class="line">    def __init__(self,name,age):</div><div class="line">        self.name=name</div><div class="line">        self.age=age</div><div class="line"></div><div class="line">    def eat(self):</div><div class="line">        print(&quot;%s猫吃鱼&quot;%(self.name))</div><div class="line"></div><div class="line">    def instrouce(self):</div><div class="line">        print(&quot;%s的年纪是：%d&quot; % (self.name, self.age))</div><div class="line"></div><div class="line">tom = Cat(&quot;强&quot;,13)</div><div class="line">tom.eat()</div><div class="line">tom.instrouce()</div><div class="line">补充：__init__方法在创建对象时候就会被调用</div></pre></td></tr></table></figure>
+<h1 id="str"><a href="#str" class="headerlink" title="str"></a><strong>str</strong></h1><blockquote>
+<p>类似于重写java的tostring方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class Cat:</div><div class="line">    def __init__(self, name):</div><div class="line">        self.name = name</div><div class="line"></div><div class="line">    def __str__(self):</div><div class="line">        return &quot;%s&quot; % (self.name)</div><div class="line">tom = Cat(&quot;强&quot;)</div><div class="line">print(tom)//强，如果不重写str方法，则输出内存地址相关信息</div></pre></td></tr></table></figure>
+<h1 id="隐藏属性"><a href="#隐藏属性" class="headerlink" title="隐藏属性"></a>隐藏属性</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Cat:</div><div class="line">    def set_age(self, age):</div><div class="line">        if age &gt; 0 and age &lt; 100:</div><div class="line">            self.age = age</div><div class="line">        else:</div><div class="line">            self.age = 0</div><div class="line">tom = Cat()</div><div class="line">tom.set_age(-10)</div><div class="line">print(tom.age)</div></pre></td></tr></table></figure>
+<h1 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class Cat:</div><div class="line">    def __send_msg(self):</div><div class="line">        print(&quot;发送短信。。。。&quot;)</div><div class="line">    def checkMoney(self,num):</div><div class="line">        if num&gt;100:</div><div class="line">            self.__send_msg()</div><div class="line">        else:</div><div class="line">            print(&quot;请先充值!&quot;)</div><div class="line">tom = Cat()</div><div class="line">#tom.__send_msg() 双下划线开头的是私有方法，不能外部直接调用，只能类内部使用</div><div class="line">tom.checkMoney(100)</div></pre></td></tr></table></figure>
+<h1 id="del"><a href="#del" class="headerlink" title="del"></a><strong>del</strong></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">案例一：</div><div class="line">class Person:</div><div class="line">    def __del__(self):</div><div class="line">        print(&quot;对象被销毁&quot;)</div><div class="line">p1 = Person()</div><div class="line">p2 = p1</div><div class="line">del p1</div><div class="line">print(&quot;=======================&quot;)</div><div class="line">#=======================</div><div class="line">#对象被销毁</div><div class="line"></div><div class="line">案例二：</div><div class="line">class Person:</div><div class="line">    def __del__(self):</div><div class="line">        print(&quot;对象被销毁&quot;)</div><div class="line">p1 = Person()</div><div class="line">p2 = p1</div><div class="line">del p1</div><div class="line">del p2</div><div class="line">print(&quot;=======================&quot;)</div><div class="line"></div><div class="line">对象被销毁</div><div class="line">=======================</div></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：del是删除引用计数的，当对象引用是0的时候就会调用内部<strong>del_</strong>方法进行销毁，否则就是程序执行完毕进行销毁。</p>
+</blockquote>
+<hr>
+<p>  补充：<br>  import sys<br>  class Person:<br>      def <strong>del</strong>(self):<br>          print(“对象被销毁”)<br>  p1 = Person()<br>  p2 = p1<br>  print(sys.getrefcount(p1))#3  回避实际引用大一(该方法就是得到引用技术)<br>  del p1<br>  del p2</p>
+<p>  #如果已经删除完了引用，则此时在使用sys.getrefcount()会报错<br>  print(“=======================”)</p>
+<p>  #对象被销毁</p>
+<p>  #=======================</p>
+<hr>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Person:</div><div class="line">    def test(self):</div><div class="line">        print(&quot;测试&quot;)</div><div class="line">class Qiang(Person):</div><div class="line">    pass</div><div class="line"></div><div class="line">q=Qiang()</div><div class="line">q.test()</div><div class="line">注意：可以多重继承</div></pre></td></tr></table></figure>
+<h1 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">class Person:</div><div class="line">    def test(self):</div><div class="line">        print(&quot;测试&quot;)</div><div class="line">class Qiang(Person):</div><div class="line">    def test(self):</div><div class="line">        print(&quot;强测试&quot;)</div><div class="line"></div><div class="line">q=Qiang()</div><div class="line">q.test()#强测试</div><div class="line"></div><div class="line">案例：重写同时，调用父类的被重写方法</div><div class="line">说明：理论上重写之后，父类同名方法不会被执行</div><div class="line"></div><div class="line">方式一：</div><div class="line">class Person:</div><div class="line">    def test(self):</div><div class="line">        print(&quot;测试&quot;)</div><div class="line">class Qiang(Person):</div><div class="line">    def test(self):</div><div class="line">        print(&quot;强测试&quot;)</div><div class="line">        super().test()</div><div class="line">q=Qiang()</div><div class="line">q.test()</div><div class="line"># 强测试</div><div class="line"># 测试</div><div class="line"></div><div class="line">方式二：</div><div class="line">class Person:</div><div class="line">    def test(self):</div><div class="line">        print(&quot;测试&quot;)</div><div class="line">class Qiang(Person):</div><div class="line">    def test(self):</div><div class="line">        print(&quot;强测试&quot;)</div><div class="line">        Person.test(self)</div><div class="line">q=Qiang()</div><div class="line">q.test()</div><div class="line"># 强测试</div><div class="line"># 测试</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 补充：私有方法和属性不会被继承，即使子类没有实现<strong>init</strong>方法，也会继承父类的init<br>方法，但是私有的还是不能使用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">class Person:</div><div class="line">    def __test(self):</div><div class="line">        print(&quot;私有方法&quot;)</div><div class="line"></div><div class="line">    def __init__(self):</div><div class="line">        self.a = 200</div><div class="line">        self.__b = 100</div><div class="line"></div><div class="line">    def test2(self):</div><div class="line">        print(&quot;公有方法%d&quot; % (self.__b))</div><div class="line"></div><div class="line"></div><div class="line">class Qiang(Person):</div><div class="line">    def test1(self):</div><div class="line">        self.test2()</div><div class="line">q=Qiang()</div><div class="line">q.test1()#调用test2是公有方法，test2内部调用私有的__b是可行的，因为在同一个类。</div><div class="line">#如果q.__test()是不行的，报错，继承不继承私有方法和属性</div><div class="line"></div><div class="line">案例：多继承案例</div><div class="line">class Person:</div><div class="line">    def test(self):</div><div class="line">        print(&quot;person&quot;)</div><div class="line">class Nan(Person):</div><div class="line">    def test(self):</div><div class="line">        print(&quot;nan&quot;)</div><div class="line">class Nv(Person):</div><div class="line">    def test(self):</div><div class="line">        print(&quot;nv&quot;)</div><div class="line">class Qiang(Nan,Nv):</div><div class="line">    def test(self):</div><div class="line">        print(&quot;qiang&quot;)</div><div class="line">q=Qiang()</div><div class="line">q.test()#qiang</div><div class="line">print(Qiang.__mro__)</div><div class="line">#(&lt;class &apos;__main__.Qiang&apos;&gt;, &lt;class &apos;__main__.Nan&apos;&gt;, &lt;class &apos;__main__.Nv&apos;&gt;, &lt;class &apos;__main__.Person&apos;&gt;, &lt;class &apos;object&apos;&gt;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：类名.<strong>mro</strong>查询之后调用顺序，即多继承出现同名方法，子类有则调用子类的<br>如果子类没有，则是使用多继承中第一个，然后第二个，然后父类的父类，然后object类，可以根据<strong>mro</strong>查询顺序验证</p>
+</blockquote>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class Person:</div><div class="line">    def test(self):</div><div class="line">        print(&quot;person&quot;)</div><div class="line">class Student:</div><div class="line">    def test(self):</div><div class="line">        print(&quot;student&quot;)</div><div class="line"></div><div class="line">#下面是函数，类内部的才是方法</div><div class="line">def show(temp):</div><div class="line">    temp.test()</div><div class="line"></div><div class="line">show(Person())#person</div><div class="line">show(Student())#student</div><div class="line">说明：和java多态不同，不是父类对象指向子类对象，python中多态指的是在运行时候才确定类型</div></pre></td></tr></table></figure>
+<h1 id="类相关"><a href="#类相关" class="headerlink" title="类相关"></a>类相关</h1><hr>
+<p>  类：类对象<br>  对象：实例对象<br>  类中属性：类属性<br>  类属性是实例对象共用的。<br>  实例属性是对应实例对象独属的。<br>  类属性只会定义一次，对象属性会根据对象创建而创建，可能多次</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">class Person:</div><div class="line">    num=0 #类属性</div><div class="line">    def __init__(self):</div><div class="line">        self.a=200  #实例属性</div><div class="line">        Person.num+=1  #类属性自增，必须类型.属性</div><div class="line">p1=Person()</div><div class="line">p2=Person()</div><div class="line">print(Person.num)  #2 因为每一次创建对象都会调用__init__方法，然而类属性的num是不变的，只创建一次</div></pre></td></tr></table></figure>
+<h1 id="类方法和静态方法"><a href="#类方法和静态方法" class="headerlink" title="类方法和静态方法"></a>类方法和静态方法</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">类方法案例：</div><div class="line">class Person:</div><div class="line">    #类属性</div><div class="line">    num=0</div><div class="line">    #实例方法</div><div class="line">    def __init__(self):</div><div class="line">        #实例属性</div><div class="line">        self.name=&quot;qiang&quot;</div><div class="line"></div><div class="line">    @classmethod</div><div class="line">    def test(cls):</div><div class="line">        Person.num=100</div><div class="line"></div><div class="line">p=Person()</div><div class="line">#p.test()</div><div class="line">Person.test()</div><div class="line">print(Person.num)#100</div><div class="line">补充：类方法既可以对象调用还可以类调用，其中参数cls也是约定不是规定</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">静态方法案例：</div><div class="line">静态方法一般和类没关系和实例也没关系，类似于工具类</div><div class="line">class Person:</div><div class="line">    @staticmethod</div><div class="line">    def test():</div><div class="line">        pass</div><div class="line">p=Person()</div><div class="line">p.test()</div><div class="line">Person.test()</div><div class="line">补充：静态方法可以没有参数，调用通过对象或者类均可。</div></pre></td></tr></table></figure>
+<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">class CarStore(object):</div><div class="line">    def __init__(self):</div><div class="line">        self.factory = Factory()</div><div class="line"></div><div class="line">    def order(self, car_type):</div><div class="line">        return self.factory.select_car_by_type(car_type)</div><div class="line"></div><div class="line"></div><div class="line">class Factory(object):</div><div class="line">    def select_car_by_type(self,car_type):</div><div class="line">        if car_type == &quot;索纳塔&quot;:</div><div class="line">            return Suonata()</div><div class="line">        elif car_type == &quot;名图&quot;:</div><div class="line">            return Mingtu()</div><div class="line"></div><div class="line"></div><div class="line">class Car:</div><div class="line">    def move(self):</div><div class="line">        print(&quot;车在移动&quot;)</div><div class="line"></div><div class="line"></div><div class="line">class Suonata(Car):</div><div class="line">    pass</div><div class="line"></div><div class="line"></div><div class="line">class Mingtu(Car):</div><div class="line">    pass</div><div class="line"></div><div class="line"></div><div class="line">car_store = CarStore()</div><div class="line">car = car_store.order(&quot;索纳塔&quot;)</div><div class="line">car.move()</div></pre></td></tr></table></figure>
+<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">class Store(object):</div><div class="line">    def select_car(self):</div><div class="line">        pass</div><div class="line"></div><div class="line">    def order(self, car_type):</div><div class="line">        return self.select_car(car_type)</div><div class="line"></div><div class="line"></div><div class="line">class BMWCarStore(Store):</div><div class="line">    def select_car(self, car_type):</div><div class="line">        return BMWFactory.select_car_by_type(car_type)</div><div class="line"></div><div class="line"></div><div class="line">class MINICarStore(Store):</div><div class="line">    def select_car(self, car_type):</div><div class="line">        return self.select_car(car_type)</div><div class="line"></div><div class="line"></div><div class="line">class BMWFactory(object):</div><div class="line">    def select_car_by_type(self, car_type):</div><div class="line">        # 此处省略不写，使用pass代替，实际开发中，此处是类型判断</div><div class="line">        pass</div><div class="line"></div><div class="line"></div><div class="line">class Factory(object):</div><div class="line">    def select_car_by_type(self, car_type):</div><div class="line">        pass</div></pre></td></tr></table></figure>
+<h1 id="new方法"><a href="#new方法" class="headerlink" title="new方法"></a><strong>new</strong>方法</h1><hr>
+<p>  <strong>new</strong>方法负责创建<br>  <strong>init</strong>方法负责初始化<br>  在Java中构造方法既创建对象，又初始化对象，也就是说python中上面两个方法合起来等效于<br>  构造方法<br>  但是一般写代码时候没有使用<strong>new</strong>方法，是因为会默认调用父类(object)的<strong>new</strong>方法，如果一但<br>  在当前类重写了<strong>new</strong>方法，必须显示的调用父类的<strong>new</strong>方法，否则无法创建该对象。</p>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">class Dog(object):</div><div class="line">    def __init__(self):</div><div class="line">        print(&quot;init&quot;)</div><div class="line">    def __new__(cls):</div><div class="line">        return object.__new__(cls)</div><div class="line"></div><div class="line">xtq=Dog()</div></pre></td></tr></table></figure>
+<hr>
+<p>  说明：object.<strong>new</strong>(cls)返回创建对象的引用，也就是<strong>init</strong>中的参数self<br>  执行流程：<br>  Dog()会首先执行<strong>new</strong>方法（子类没有则使用父类的）然后返回值就是创建对象引用<br>  当作参数传递给<strong>init</strong>方法，然后执行<strong>init</strong>方法，<strong>init</strong>返回值传给xtq变量<br>  注意<strong>init</strong>此处<strong>init</strong>虽然没有给明确返回值，但是内部做了处理。</p>
+<hr>
+<h1 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">class Dog(object):</div><div class="line">    __instance = None</div><div class="line"></div><div class="line">    def __new__(cls):</div><div class="line">        if cls.__instance == None:</div><div class="line">            cls.__instance = object.__new__(cls)</div><div class="line">            return cls.__instance</div><div class="line">        else:</div><div class="line">            return cls.__instance</div><div class="line"></div><div class="line"></div><div class="line">d1 = Dog()</div><div class="line">d2 = Dog()</div><div class="line">print(&quot;%d,,,,%d&quot; % (id(d1), id(d2)))</div><div class="line">#2167324120680,,,,216732412068</div><div class="line"></div><div class="line">变化案例：</div><div class="line">class Dog(object):</div><div class="line">    __instance = None</div><div class="line"></div><div class="line">    def __new__(cls,name):</div><div class="line">        if cls.__instance == None:</div><div class="line">            cls.__instance = object.__new__(cls)</div><div class="line">            return cls.__instance</div><div class="line">        else:</div><div class="line">            return cls.__instance</div><div class="line">    def __init__(self,name):</div><div class="line">        self.name=name</div><div class="line"></div><div class="line">d1 = Dog(&quot;狗一&quot;)</div><div class="line">print(d1.name)</div><div class="line">d2 = Dog(&quot;狗二&quot;)</div><div class="line">print(d2.name)</div><div class="line">print(d1.name)</div><div class="line">print(id(d1))</div><div class="line">print(id(d2))</div><div class="line">解析：</div><div class="line">输出狗一，狗二，狗二，但是id还是相同的</div><div class="line">之所以会如此是，__new__和__init__是分开的，因为__new__单利，所以</div><div class="line">对象是同一个对象，在调用__init__方法的时候，指向同一个对象，同一片内存空间，</div><div class="line">头一次，是创建name属性，并赋值为狗一，第二次__init__方法会覆盖上一次的值</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">最终单例：</div><div class="line">class Dog(object):</div><div class="line">    __instance = None</div><div class="line">    __flag=True</div><div class="line"></div><div class="line">    def __new__(cls,name):</div><div class="line">        if cls.__instance == None:</div><div class="line">            cls.__instance = object.__new__(cls)</div><div class="line">            return cls.__instance</div><div class="line">        else:</div><div class="line">            return cls.__instance</div><div class="line">    def __init__(self,name):</div><div class="line">        if self.__flag:</div><div class="line">            self.name=name</div><div class="line">            self.__flag=False</div><div class="line"></div><div class="line">d1 = Dog(&quot;狗一&quot;)</div><div class="line">print(d1.name)</div><div class="line">d2 = Dog(&quot;狗二&quot;)</div><div class="line">print(d2.name)</div><div class="line">print(d1.name)</div><div class="line">print(id(d1))</div><div class="line">print(id(d2))</div><div class="line">说明：都输出狗一</div></pre></td></tr></table></figure>
+<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">python3多异常捕获，利用元组</div><div class="line">try:</div><div class="line">    open(&quot;xxx.txt&quot;)</div><div class="line">except (NameError,FileNotFoundError):</div><div class="line">    print(&quot;异常&quot;)</div><div class="line"></div><div class="line">python2多异常捕获</div><div class="line">try:</div><div class="line">    open(&quot;xxx.txt&quot;)</div><div class="line">except NameError,FileNotFoundError:</div><div class="line">    print(&quot;异常&quot;)</div><div class="line"></div><div class="line">补充：</div><div class="line">try:</div><div class="line">    open(&quot;xxx.txt&quot;)</div><div class="line">except (NameError,FileNotFoundError):</div><div class="line">    print(&quot;异常&quot;)</div><div class="line">except Exception as name:</div><div class="line">    print(&quot;所有异常我都抓&quot;)</div><div class="line">	print(name)  #name是任意变量名称，打印出来是异常名称，例如filenotfoundexception</div><div class="line">else:</div><div class="line">	print(&quot;没有异常才会执行&quot;)</div><div class="line">finally:</div><div class="line">	print(&quot;最后肯定会执行&quot;)</div><div class="line">	说明：上面异常没捕获到的，最后那个exception都可以捕获</div><div class="line">注意：try可以嵌套，另外time.sleep(2) 是延时2秒钟</div><div class="line">import time</div><div class="line">time.sleep(2)</div><div class="line">print(&quot;测试&quot;)</div><div class="line"></div><div class="line">抛出异常：raise</div></pre></td></tr></table></figure>
+<h1 id="真假"><a href="#真假" class="headerlink" title="真假"></a>真假</h1><blockquote>
+<p> None  “”  0   [] {} 等等都是代表假，相当于False</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/CSharp线程和通信/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2666,234 +2856,6 @@ public partial class Person{}
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Vue文档初读（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Qiang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="飞奔的小猿猴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/Vue文档初读（一）/" itemprop="url">Vue文档初读（一）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Vue初涉"><a href="#Vue初涉" class="headerlink" title="Vue初涉"></a><strong>Vue初涉</strong></h1><h2 id="一、Vue简介"><a href="#一、Vue简介" class="headerlink" title="一、Vue简介"></a>一、<strong>Vue简介</strong></h2><p>###构建单页面应用的渐进式框架，与其他重量级框架不同的是，Vue 采用自底向上增量开发的设计。Vue 的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合。</p>
-<blockquote>
-<p><a href="https://cn.vuejs.org" target="_blank" rel="external">Vue官网</a></p>
-</blockquote>
-<h2 id="二、Vue起步"><a href="#二、Vue起步" class="headerlink" title="二、Vue起步"></a>二、<strong>Vue起步</strong></h2><hr>
-<pre><code>新手使用建议本地引用，下载js文件，正常引用即可。
-</code></pre><hr>
-<ul>
-<li>废话不多说，直接上手</li>
-<li><p>数据绑定</p>
-<blockquote>
-<p>html代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app&quot;&gt;</div><div class="line">			&#123;&#123; message &#125;&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>js代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var app = new Vue(&#123;</div><div class="line">	  el: &apos;#app&apos;,</div><div class="line">	  data: &#123;</div><div class="line">	    message: &apos;Hello Vue!&apos;</div><div class="line">	  &#125;</div><div class="line">	&#125;)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><em>解析：el相当于element,故而按照js可以得到类名，id名等；data相当于数据，这两个命名规则是已定的。</em></p>
-<ul>
-<li><p>DOM元素绑定</p>
-<blockquote>
-<p>html代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app-2&quot;&gt;</div><div class="line">  &lt;span v-bind:title=&quot;message&quot;&gt;</div><div class="line">    &#123;&#123;info&#125;&#125;</div><div class="line">  &lt;/span&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>js代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var app2 = new Vue(&#123;</div><div class="line">  el: &apos;#app-2&apos;,</div><div class="line">  data: &#123;</div><div class="line">   message:&apos;我是鼠标悬浮提示信息&apos;,</div><div class="line">	info:&apos;哈哈&apos;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-</li>
-<li><p>条件</p>
-<blockquote>
-<p>html代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app-3&quot;&gt;</div><div class="line">  &lt;p v-if=&quot;seen&quot;&gt;Now you see me&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>js代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var app3 = new Vue(&#123;</div><div class="line">	  el: &apos;#app-3&apos;,</div><div class="line">	  data: &#123;</div><div class="line">	    seen: true</div><div class="line">	  &#125;</div><div class="line">	&#125;)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><em>解析：if是条件指令，seen是固定的，true显示，false不显示</em></p>
-<ul>
-<li><p>循环</p>
-<blockquote>
-<p>html代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app-4&quot;&gt;</div><div class="line">  &lt;ol&gt;</div><div class="line">    &lt;li v-for=&quot;todo in todos&quot;&gt;</div><div class="line">      &#123;&#123; todo.text &#125;&#125;</div><div class="line">    &lt;/li&gt;</div><div class="line">  &lt;/ol&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>js代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var app4 = new Vue(&#123;</div><div class="line">  el: &apos;#app-4&apos;,</div><div class="line">  data: &#123;</div><div class="line">    todos: [</div><div class="line">      &#123; text: &apos;Learn JavaScript&apos; &#125;,</div><div class="line">      &#123; text: &apos;Learn Vue&apos; &#125;,</div><div class="line">      &#123; text: &apos;Build something awesome&apos; &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><em>解析：todos对应下面数据，至于todo随意命名即可</em></p>
-<ul>
-<li><p>数据处理</p>
-<blockquote>
-<p>js代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var app5 = new Vue(&#123;</div><div class="line">  el: &apos;#app-5&apos;,</div><div class="line">  data: &#123;</div><div class="line">    message: &apos;Hello Vue.js!&apos;</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    reverseMessage: function () &#123;</div><div class="line">      this.message = this.message.split(&apos;&apos;).reverse().join(&apos;&apos;)</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>html代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app-5&quot;&gt;</div><div class="line">  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;</div><div class="line">  &lt;button v-on:click=&quot;reverseMessage&quot;&gt;Reverse Message&lt;/button&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><em>解析：vue使用简单，onclick事件在此处对应v-on指令的click</em></p>
-<ul>
-<li><p>数据双向绑定</p>
-<blockquote>
-<p>html代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;app-6&quot;&gt;</div><div class="line">  &lt;p&gt;&#123;&#123; message &#125;&#125;&lt;/p&gt;</div><div class="line">  &lt;input v-model=&quot;message&quot;&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>js代码</p>
-</blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var app6 = new Vue(&#123;</div><div class="line">  el: &apos;#app-6&apos;,</div><div class="line">  data: &#123;</div><div class="line">    message: &apos;Hello Vue!&apos;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><em>解析：v-model指令代表数据双向绑定，整个页面其绑定的数据都会同时变化</em></p>
-<h2 id="三、综合案例"><a href="#三、综合案例" class="headerlink" title="三、综合案例"></a>三、<strong>综合案例</strong></h2><blockquote>
-<p>不赘述，直接上代码</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">		&lt;html lang=&quot;en&quot;&gt;</div><div class="line">		&lt;head&gt;</div><div class="line">		  &lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">		  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</div><div class="line">		  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</div><div class="line">		  &lt;title&gt;Document&lt;/title&gt;</div><div class="line">		&lt;/head&gt;</div><div class="line">		&lt;body&gt;</div><div class="line">		  &lt;div class=&quot;app&quot; v-bind:title=&quot;info&quot;&gt;</div><div class="line">		    &#123;&#123;message&#125;&#125;</div><div class="line">		    &lt;p v-if=&quot;seen&quot;&gt;&#123;&#123;hide&#125;&#125;&lt;/p&gt;</div><div class="line">		    &lt;ol&gt;</div><div class="line">		      &lt;li v-for=&quot;todo in todos&quot; &gt;</div><div class="line">		        &#123;&#123;todo.text&#125;&#125;</div><div class="line">		      &lt;/li&gt;</div><div class="line">		    &lt;/ol&gt;</div><div class="line">		    &lt;button type=&quot;button&quot; v-on:click=&quot;revers&quot;&gt;Reverse&lt;/button&gt;&lt;br/&gt;</div><div class="line">		    &lt;input v-model=&quot;message&quot; type=&quot;text&quot;&gt;</div><div class="line">		  &lt;/div&gt;</div><div class="line">		&lt;/body&gt;</div><div class="line">		&lt;/html&gt;</div><div class="line">		&lt;script src=&quot;./src/vue.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</div><div class="line">		&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">		  var app=new Vue(&#123;</div><div class="line">		    el:&apos;.app&apos;,</div><div class="line">		    data:&#123;</div><div class="line">		      seen:true,</div><div class="line">		      message:&apos;Hello Vue!&apos;,</div><div class="line">		      info:&apos;mourse&apos;,</div><div class="line">		      hide:&apos;我显示咯！&apos;,</div><div class="line">		      todos:[</div><div class="line">		        &#123;text:&apos;a&apos;&#125;,</div><div class="line">		        &#123;text:&apos;b&apos;&#125;,</div><div class="line">		        &#123;text:&apos;c&apos;&#125;</div><div class="line">		      ]</div><div class="line">		    &#125;,</div><div class="line">		    methods:&#123;</div><div class="line">		      revers:function () &#123;</div><div class="line">		        this.info=this.info.split(&apos;&apos;).reverse().join(&apos;&apos;);</div><div class="line">		      &#125;</div><div class="line">		    &#125;</div><div class="line">		  &#125;)</div><div class="line">		&lt;/script&gt;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2944,7 +2906,7 @@ public partial class Person{}
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2955,7 +2917,7 @@ public partial class Person{}
             
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
