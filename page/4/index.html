@@ -280,6 +280,302 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Java查漏补缺（五）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/Java查漏补缺（五）/" itemprop="url">Java查漏补缺（五）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Java开始"><a href="#Java开始" class="headerlink" title="Java开始"></a>Java开始</h1><hr>
+<pre><code>书接上文，继续开始啦！^_+
+</code></pre><hr>
+<h2 id="第十一部分"><a href="#第十一部分" class="headerlink" title="第十一部分"></a><strong>第十一部分</strong></h2><h3 id="递归：方法调用方法本身"><a href="#递归：方法调用方法本身" class="headerlink" title="递归：方法调用方法本身"></a>递归：方法调用方法本身</h3><blockquote>
+<p>构造方法不能递归调用。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public class Demo20 &#123;</div><div class="line">    private static int sum=0;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        add(10);</div><div class="line">        System.out.println(sum);</div><div class="line">    &#125;</div><div class="line">    public static void add(int n) &#123;</div><div class="line">        if (n&gt;0) &#123;</div><div class="line">            sum+=n;</div><div class="line">            add(n-1);</div><div class="line">        &#125; else &#123;</div><div class="line">            System.out.println(&quot;结束了&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;c</div><div class="line">&#125;</div><div class="line">输出：结束了，55.</div></pre></td></tr></table></figure>
+<blockquote>
+<p>重要案例：裴波那挈数列，1，1，2，3，5，8…..</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class Demo20 &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        System.out.println(add(20));</div><div class="line">    &#125;</div><div class="line">    //1，1，2，3，5，8</div><div class="line">    public static int add(int n) &#123;</div><div class="line">        if (n==1) &#123;</div><div class="line">            return 1;</div><div class="line">        &#125; else if(n==2) &#123;</div><div class="line">            return 1;</div><div class="line">        &#125;else&#123;</div><div class="line">            return add(n-1)+add(n-2);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="IO操作"><a href="#IO操作" class="headerlink" title="IO操作"></a>IO操作</h3><hr>
+<pre><code>IO流：分为字节流（字节输入输出流），字符流（字符输入输出流）
+都是相对java代码来说明是输入还是输出
+下面四个都是基本流
+字节输入流：读取数据 InputStream
+字节输出流：写入数据 OutputStream
+字符输入流：读取数据 Reader
+字符输出流：写入数据 Writer
+Writer是接口，需要使用子类对象实例化，或者多态。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">    //FileWriter底层有自动创建文件的操作。</div><div class="line">    //FileWriter fw=new FileWriter(&quot;a.txt&quot;,true);//这是追加写入，不写默认false</div><div class="line">        FileWriter fw=new FileWriter(&quot;a.txt&quot;);//此种方式会覆盖上一次写的。</div><div class="line">        fw.write(&quot;我是写入的字符\n&quot;);//换行操作，windows记事本要写\r\n.</div><div class="line">        //按理说上面两步就是写入成功了，但是，因为文件都是以字节存数据</div><div class="line">        //但是此时是字符（2字节）操作，所以需要借助缓冲区，必须刷新缓冲区才有效</div><div class="line">        fw.write(&quot;我还行啦&quot;);</div><div class="line">        fw.flush();</div><div class="line">        //操作完成必须关闭流</div><div class="line">        fw.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：flush和close区别。<br>都可以刷新缓冲区，但是close刷洗之后，流也关闭了不可继续使用，但是flush还可以使用。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">方式一、</div><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">        FileReader fw=new FileReader(&quot;笔记10.txt&quot;);</div><div class="line">        char[] chs=new char[1024];</div><div class="line">        int len=fw.read(chs);//将字符读入数组。</div><div class="line">        while (len!=-1) &#123;</div><div class="line">            System.out.println(new String(chs,0,len));</div><div class="line">            len=fw.read(chs);//此句如果不写，会陷入死循环，而且每次读取的都是最开始的1024字节内容。</div><div class="line">        &#125;</div><div class="line">        fw.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">方式二、</div><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">        FileReader fw=new FileReader(&quot;笔记10.txt&quot;);</div><div class="line">        char[] chs=new char[1024];//定义一个长度为1024的数组</div><div class="line">        int len=0;</div><div class="line">        while ((len=fw.read(chs))!=-1) &#123;//read读取传入长度1024数组，指的是读取一次读取这么长度的内容</div><div class="line">            //并且每次读取的内容存储在chs字符数组中</div><div class="line">            //而且每次读取之后，下一次从上一次读取末尾继续开始读取。</div><div class="line">            System.out.println(new String(chs,0,len));</div><div class="line">//new String是把字符数组转换为字符串，加上0，len，是截取，也是为了在第一次读取时候，长度不够1024时候也不出错。。</div><div class="line">        &#125;</div><div class="line">        fw.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="3-字节流"><a href="#3-字节流" class="headerlink" title="3.字节流"></a>3.字节流</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">写数据：</div><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">        //此句也会在文件不纯在时候自动创建文件，因为和读不一样，写必须有接收方</div><div class="line">        FileOutputStream fos=new FileOutputStream(&quot;a.txt&quot;);</div><div class="line">        byte[] by=&#123;98,99,100,&apos;b&apos;&#125;;//写入的是bcdb，‘b&apos;会自动转换成对应数字，存储时候，自动转回来，都以字幕存储。</div><div class="line">        byte[] by1=&quot;abcd&quot;.getBytes();//字符串转换成字符数组</div><div class="line">        fos.write(by,1,3);//从1开始，写三个</div><div class="line">        fos.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">读数据：</div><div class="line">FileInputStream fis=new FileInputStream(&quot;a.txt&quot;);</div><div class="line">        byte[] bys=new byte[1024];//对应的是字节，用byte</div><div class="line">        int len=0;</div><div class="line">        while ((len=fis.read(bys))!=-1) &#123;</div><div class="line">            System.out.println(new String(bys,0,len));</div><div class="line">        &#125;</div><div class="line">        fis.close();</div></pre></td></tr></table></figure>
+<h3 id="4-缓冲流：高效的带缓冲区的流-可以指定缓冲区大小，不写也有默认值"><a href="#4-缓冲流：高效的带缓冲区的流-可以指定缓冲区大小，不写也有默认值" class="headerlink" title="4.缓冲流：高效的带缓冲区的流,可以指定缓冲区大小，不写也有默认值"></a>4.缓冲流：高效的带缓冲区的流,可以指定缓冲区大小，不写也有默认值</h3><hr>
+<pre><code>缓冲流属于高级流，本身没有读写功能，必须依靠其他实现读写，本身只提供高效的缓冲，提高读写效率
+缓冲流参数只能接收字符流，不能接收字节流
+BufferedReader
+BufferedWriter
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">        FileReader fr=new FileReader(&quot;笔记10.txt&quot;);</div><div class="line">        BufferedReader br=new BufferedReader(fr);</div><div class="line">        char[] bys=new char[1024];//对应的是字符，用char</div><div class="line">        int len=0;</div><div class="line">        while ((len=br.read(bys))!=-1) &#123;</div><div class="line">            System.out.print(new String(bys,0,len));</div><div class="line">        &#125;</div><div class="line">        br.close();//应为是高级流，本身读取操作是用的fr的，所以，br关闭，fr就关闭了。</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">案例1：</div><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">        FileReader fr=new FileReader(&quot;笔记10.txt&quot;);</div><div class="line">        BufferedReader br=new BufferedReader(fr);</div><div class="line">        String result=null;</div><div class="line">        while ((result=br.readLine())!=null) &#123;</div><div class="line">            System.out.println(result);//注意此处要加ln换行，不然，因为虽然</div><div class="line">            //readLine读取是一整行内容，但是只读取内容，不包括换行符。</div><div class="line">        &#125;</div><div class="line">        br.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>补充：BufferedWriter有newLine()方法：根据平台自动加入换行符。</p>
+</blockquote>
+<h2 id="第十二部分"><a href="#第十二部分" class="headerlink" title="第十二部分"></a><strong>第十二部分</strong></h2><h3 id="1-多线程实现方式"><a href="#1-多线程实现方式" class="headerlink" title="1.多线程实现方式"></a>1.多线程实现方式</h3><blockquote>
+<p>A：方式一、</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">步骤：1.类继承Thread，重写run方法</div><div class="line">public class MyThread extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        super.run();</div><div class="line">        for (int i = 0; i &lt; 200; i++) &#123;</div><div class="line">            System.out.println(i);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//注意：run内部的才算运行在子线程，该类其他方法不算。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">步骤2：</div><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">        MyThread m1=new MyThread();</div><div class="line">        m1.start();//先开启该线程，然后调用run方法。</div><div class="line">//        m1.run();这种只是普通调用，没有开启线程，不会用多线程效果</div><div class="line">        MyThread m2=new MyThread();</div><div class="line">        m2.start();</div><div class="line">        //如上new两次，而后start可以启动多线程</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>B：方式二：实现Runnable接口，重写run方法。</p>
+</blockquote>
+<hr>
+<pre><code>补充：并行：同一时间段cpu执行的线程。并发：同一时间点cpu执行的线程。
+获取不是Thread子类的类的线程名称：Thread.currentThread().getName();
+如果是Thread子类，直接用getname()即可。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">public static void main(String[] args) &#123;</div><div class="line">注意初始化，是把实现Runnable接口的类对象作为参数传入</div><div class="line">        MyThread m=new MyThread();</div><div class="line">        Thread t1=new Thread(m);</div><div class="line">        Thread t2=new Thread(m);</div><div class="line">//        Thread t2=new Thread(m,&quot;嘿嘿&quot;);</div><div class="line">        t1.setName(&quot;呵呵&quot;);</div><div class="line">        t2.setName(&quot;嘿嘿&quot;);</div><div class="line">        t1.start();</div><div class="line">        t2.start();</div><div class="line">    &#125;</div><div class="line">    ——————————————————————————————</div><div class="line">    public class MyThread implements Runnable&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        for (int i = 0; i &lt; 200; i++) &#123;</div><div class="line">            System.out.println(i+Thread.currentThread().getName());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">补充：方式二：避免了单继承的局限性，而且体现了面向对象的思想。</div></pre></td></tr></table></figure>
+<h3 id="2-线程调度："><a href="#2-线程调度：" class="headerlink" title="2.线程调度："></a>2.线程调度：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">    public static void main(String[] args) throws IOException &#123;</div><div class="line">        MyThread m1=new MyThread();</div><div class="line">        m1.start();</div><div class="line">        m1.setName(&quot;强哥&quot;);//设置线程名称</div><div class="line">        m1.setPriority(1);//设置线程优先级，java是抢占式调度，故而依靠线程优先级</div><div class="line">        //优先级高的，获取cpu几率多，但是不是绝对的，要多次运行，才能得出普遍结论</div><div class="line">        MyThread m2=new MyThread();</div><div class="line">        m2.start();</div><div class="line">        m2.setName(&quot;曾哥&quot;);</div><div class="line">        m2.setPriority(10);</div><div class="line">//线程优先级默认5，可以取范围1-10.        </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>线程睡眠：Thread.sleep(1000);//参数是毫秒值<br>线程加入：必须等到加入的额线程执行完毕，才执行其他线程</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">        MyThread m1=new MyThread();</div><div class="line">        MyThread m2=new MyThread();</div><div class="line">        m1.setName(&quot;强哥&quot;);</div><div class="line">        m2.setName(&quot;曾哥&quot;);</div><div class="line">        //注意：先设置县城名字，不然设置无效，而后m1启动，加入m1，最后在启动m2不然达不到效果。</div><div class="line">        m1.start();</div><div class="line">        try &#123;</div><div class="line">            m1.join();</div><div class="line">        &#125; catch (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        m2.start();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>线程礼让：让线程执行更接近于你一次我i次，但是不能百分百保证。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class MyThread extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        super.run();</div><div class="line">        for (int i = 0; i &lt; 200; i++) &#123;</div><div class="line">            System.out.println(i+getName());</div><div class="line">//            Thread.sleep(1000);线程睡眠</div><div class="line">            Thread.yield();//线程礼让</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>线程守护：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">        MyThread m1=new MyThread();</div><div class="line">        MyThread m2=new MyThread();</div><div class="line">        m1.setName(&quot;强哥&quot;);</div><div class="line">        m2.setName(&quot;曾哥&quot;);</div><div class="line">        //设置守护线程，必须在启动前调用，假如还有一个线程，曾强哥，但是只循环3次</div><div class="line">        //则给上面俩加守护线程，则，在第三个曾强哥死掉的时候，这俩也会死掉，例如坦克大战</div><div class="line">        //如果老巢被攻破。坦克直接挂掉。</div><div class="line">        m1.setDaemon(true);</div><div class="line">        m2.setDaemon(true);</div><div class="line">        m1.start();</div><div class="line">        m2.start();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>线程中断：此案例不会停止10秒，在3秒后就会直接中断。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">        MyThread m1=new MyThread();</div><div class="line">        m1.setName(&quot;强哥&quot;);</div><div class="line">        m1.start();</div><div class="line">        try &#123;</div><div class="line">            Thread.sleep(3000);</div><div class="line">            m1.interrupt();</div><div class="line">        &#125; catch (InterruptedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    ——————————————————————————————————</div><div class="line">    public class MyThread extends Thread&#123;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        super.run();</div><div class="line">        System.out.println(&quot;开始执行：&quot;+System.currentTimeMillis());</div><div class="line">        try &#123;</div><div class="line">            Thread.sleep(10000);</div><div class="line">        &#125; catch (InterruptedException e) &#123;</div><div class="line">            System.out.println(&quot;三秒出来&quot;);</div><div class="line">        &#125;</div><div class="line">        System.out.println(&quot;停止执行：&quot;+System.currentTimeMillis());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>线程生命周期：
+新建：创建线程对象
+就绪：有执行资格，没有执行权
+运行：有执行资格和执行权
+     阻塞：但是运行中可能出现意外，没有执行资格，没有执行权
+     但是激活后，就处于就绪状态
+ 死亡：线程对象变成垃圾，等待被回收。
+</code></pre><hr>
+<h3 id="3-两种卖票案例对比"><a href="#3-两种卖票案例对比" class="headerlink" title="3.两种卖票案例对比"></a>3.两种卖票案例对比</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public class MyThread implements Runnable&#123;</div><div class="line">    private int piao=100;</div><div class="line">    private boolean blog=true;</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        while (blog) &#123;</div><div class="line">            if (piao&gt;0) &#123;</div><div class="line">                System.out.println(Thread.currentThread().getName()+piao--);</div><div class="line">            &#125;else &#123;</div><div class="line">                blog=false;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">_____________________________</div><div class="line">public class Demo &#123;</div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        MyThread m=new MyThread();</div><div class="line">        Thread t1=new Thread(m);</div><div class="line">        Thread t2=new Thread(m);</div><div class="line">        t1.setName(&quot;呵呵&quot;);</div><div class="line">        t2.setName(&quot;嘿嘿&quot;);</div><div class="line">        t1.start();</div><div class="line">        t2.start();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>不写第一种方案：因为这种公用一个资源的方案是不可行的，new两次，相当于两个piao变量，即使把piao定义为static也不可行。
+但是现在这种是可行的，只new一次。
+</code></pre><hr>
+<h3 id="4-线程同步-多个线程必须同一把锁。"><a href="#4-线程同步-多个线程必须同一把锁。" class="headerlink" title="4.线程同步:多个线程必须同一把锁。"></a>4.线程同步:多个线程必须同一把锁。</h3><blockquote>
+<p>上面案例：如果在卖票之前，就可以睡眠一下。这样上面代码会出错。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">public class MyThread implements Runnable&#123;</div><div class="line">    private int piao=100;</div><div class="line">    private boolean blog=true;</div><div class="line">    //新建一个对象作为锁，对象可以随意，但是要保证是同一把锁。</div><div class="line">    //如果在下面》》部分改为new Object()会出错，因为这样就相当于每次都新建对象，是不同锁。</div><div class="line">    private Object object=new Object();</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        while (blog) &#123;</div><div class="line">            synchronized (object) &#123;》》改为new Object()会出错</div><div class="line">                if (piao&gt;0) &#123;</div><div class="line">                    try &#123;</div><div class="line">                        Thread.sleep(1000);</div><div class="line">                    &#125; catch (InterruptedException e) &#123;</div><div class="line">                        // TODO Auto-generated catch block</div><div class="line">                        e.printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                    System.out.println(Thread.currentThread().getName()+piao--);</div><div class="line">                &#125;else &#123;</div><div class="line">                    blog=false;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">——————————————————————————————</div><div class="line">public  static void main(String[] args) &#123;</div><div class="line">        MyThread m=new MyThread();</div><div class="line">        Thread t1=new Thread(m);</div><div class="line">        Thread t2=new Thread(m);</div><div class="line">        t1.setName(&quot;呵呵&quot;);</div><div class="line">        t2.setName(&quot;嘿嘿&quot;);</div><div class="line">        t1.start();</div><div class="line">        t2.start();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>补充：同步方法，很简单</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">public synchronized void method()&#123;//或者放在public/private之前也可</div><div class="line">try &#123;</div><div class="line">    Thread.sleep(1000);</div><div class="line">    &#125; catch (InterruptedException e) &#123;</div><div class="line">        / TODO Auto-generated catch block</div><div class="line">        e.printStackTrace();</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>补充：同步方法的锁对象是什么呢？this.<br>但是静态方法的锁不是this，因为静态方法随类加载而加载，不存在this，是当前类class.<br>例如：MyThread.class.<br>线程安全类:StringBuffer,Vector,Hashtable.<br>但是线程不安全类可以转换成安全类：Collections.synchronizedList。<br>List list2=(List) Collections.synchronizedList(new ArrayList<string>());//这样就线程安全了。<br>所以不会在使用Vector了。<br>还有Collections.synchronizedMap等等。。。。。</string></p>
+</blockquote>
+<h2 id="第十三部分"><a href="#第十三部分" class="headerlink" title="第十三部分"></a><strong>第十三部分</strong></h2><h3 id="1-lock接口的锁，这种和前面的几乎等效，但是更新api是接口所以实现子类"><a href="#1-lock接口的锁，这种和前面的几乎等效，但是更新api是接口所以实现子类" class="headerlink" title="1.lock接口的锁，这种和前面的几乎等效，但是更新api是接口所以实现子类"></a>1.lock接口的锁，这种和前面的几乎等效，但是更新api是接口所以实现子类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">public class MyThread implements Runnable&#123;</div><div class="line">    private int tickets=100;</div><div class="line">    private Lock lock=new ReentrantLock();</div><div class="line">    @Override</div><div class="line">    public void run() &#123;</div><div class="line">        while (true) &#123;</div><div class="line">            try &#123;</div><div class="line">                //加锁</div><div class="line">                lock.lock();</div><div class="line">                if (tickets&gt;0) &#123;</div><div class="line">                    try &#123;</div><div class="line">                        Thread.sleep(100);</div><div class="line">                    &#125; catch (InterruptedException e) &#123;</div><div class="line">                        // TODO Auto-generated catch block</div><div class="line">                        e.printStackTrace();</div><div class="line">                    &#125;</div><div class="line">                    System.out.println(Thread.currentThread().getName()+tickets--);</div><div class="line">                &#125;</div><div class="line">            &#125; finally &#123;</div><div class="line">                //为了防止上面代码出错，而后无法执行到释放锁，所以释放锁放在此处</div><div class="line">                lock.unlock();//释放锁</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">        MyThread mt=new MyThread();</div><div class="line">        Thread t1=new Thread(mt);</div><div class="line">        Thread t2=new Thread(mt);</div><div class="line">        t1.setName(&quot;呵呵&quot;);</div><div class="line">        t2.setName(&quot;嘿嘿&quot;);</div><div class="line">        t1.start();</div><div class="line">        t2.start();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="2-设计模式-是一种思想，是一种经验的总结"><a href="#2-设计模式-是一种思想，是一种经验的总结" class="headerlink" title="2.设计模式:是一种思想，是一种经验的总结"></a>2.设计模式:是一种思想，是一种经验的总结</h3><h4 id="2-1：简单工厂模式-静态工程模式"><a href="#2-1：简单工厂模式-静态工程模式" class="headerlink" title="2.1：简单工厂模式,静态工程模式"></a>2.1：简单工厂模式,静态工程模式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">_________________________________</div><div class="line">public abstract class Animal &#123;</div><div class="line">    public abstract void show();</div><div class="line">&#125;</div><div class="line">__________________________________</div><div class="line">public class Dog extends Animal &#123;</div><div class="line">    @Override</div><div class="line">    public void show() &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        System.out.println(&quot;狗吃肉&quot;);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div><div class="line">public class Cat extends Animal &#123;</div><div class="line">    @Override</div><div class="line">    public void show() &#123;</div><div class="line">        // TODO Auto-generated method stub</div><div class="line">        System.out.println(&quot;猫吃鱼&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">__________________________________________</div><div class="line">public class AniamlFactory &#123;</div><div class="line">    public Animal create(String type) &#123;</div><div class="line">        if (&quot;dog&quot;.equals(type)) &#123;</div><div class="line">            return new Dog();</div><div class="line">        &#125; else if (&quot;cat&quot;.equals(type)) &#123;</div><div class="line">            return new Cat();</div><div class="line">        &#125;else&#123;</div><div class="line">            return null;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">____________________________________________</div><div class="line">public static void main(String[] args) &#123;</div><div class="line">        AniamlFactory af=new AniamlFactory();</div><div class="line">        Animal animal1=af.create(&quot;dog&quot;);</div><div class="line">        Animal animal2=af.create(&quot;cat&quot;);</div><div class="line">        animal1.show();</div><div class="line">        animal2.show();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="2-2工厂方法模式"><a href="#2-2工厂方法模式" class="headerlink" title="2.2工厂方法模式"></a>2.2工厂方法模式</h4><blockquote>
+<p>虽然解耦和，但是每次新建一个动物，都要新建一个对应动物类和工厂，工作量大。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">public abstract class Animal &#123;</div><div class="line">    public abstract void show() ;</div><div class="line">&#125;</div><div class="line">public class Dog extends Animal &#123;</div><div class="line">    @Override</div><div class="line">    public void show() &#123;</div><div class="line">        System.out.println(&quot;狗吃肉&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public interface Factory &#123;</div><div class="line">    public abstract Animal create();</div><div class="line">&#125;</div><div class="line">public class DogFactory implements Factory &#123;</div><div class="line">    @Override</div><div class="line">    public Animal create() &#123;</div><div class="line">        return new Dog();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public static void main(String[] args) &#123;</div><div class="line">        DogFactory df=new DogFactory();</div><div class="line">        df.create().show();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h4 id="2-3-单例设计模式：该类内存中只能有一个对象，必须自动创建，并对外提供。"><a href="#2-3-单例设计模式：该类内存中只能有一个对象，必须自动创建，并对外提供。" class="headerlink" title="2.3:单例设计模式：该类内存中只能有一个对象，必须自动创建，并对外提供。"></a>2.3:单例设计模式：该类内存中只能有一个对象，必须自动创建，并对外提供。</h4><hr>
+<pre><code>补充：如何保证内存中只有一个对象？
+A:把构造方法私有
+B：在成员位置创建一个对象
+C:通过一个公共方法提供访问
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">案例：饿汉式，一进来就在成员中造对象。开发中使用，不会出问题</div><div class="line">public class Student &#123;</div><div class="line">    //1.私有构造方法，避免外部创建对象</div><div class="line">    private Student()&#123;&#125;;</div><div class="line">    //2.成员中创建对象,但是为了避免外部直接修改s值，需要私有,静态是因为下面方法静态。</div><div class="line">    private static Student s=new Student();</div><div class="line">    //3.提供对外访问</div><div class="line">    public static Student get() &#123;</div><div class="line">        return s;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public static void main(String[] args) &#123;</div><div class="line">        Student s=Student.get();</div><div class="line">        Student s1=Student.get();</div><div class="line">        System.out.println(s==s1);//true</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">案例：懒汉式，用的时候才创建对象,面试时使用，可能出问题</div><div class="line">public class Student &#123;</div><div class="line">    private Student()&#123;&#125;;</div><div class="line">    private static Student s=null;</div><div class="line">    public static Student get() &#123;</div><div class="line">        if (s==null) &#123;</div><div class="line">            s=new Student();</div><div class="line">        &#125;</div><div class="line">        return s;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">public static void main(String[] args) &#123;</div><div class="line">        Student s=Student.get();</div><div class="line">        Student s1=Student.get();</div><div class="line">        System.out.println(s==s1);//true</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h2 id="第十四部分"><a href="#第十四部分" class="headerlink" title="第十四部分"></a><strong>第十四部分</strong></h2><h3 id="一-网络编程"><a href="#一-网络编程" class="headerlink" title="一.网络编程"></a>一.网络编程</h3><h4 id="1-网络三要素："><a href="#1-网络三要素：" class="headerlink" title="1.网络三要素："></a>1.网络三要素：</h4><hr>
+<pre><code>A：IP地址（每台计算机在网络中的唯一标识）
+B：端口(分区电脑每一个程序)
+C:协议（例如说话规则，英语还是汉语）    
+</code></pre><hr>
+<h4 id="2-InetAddress类：两种Inet4Address和Inet6Address"><a href="#2-InetAddress类：两种Inet4Address和Inet6Address" class="headerlink" title="2.InetAddress类：两种Inet4Address和Inet6Address."></a>2.InetAddress类：两种Inet4Address和Inet6Address.</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">基本使用：</div><div class="line">public static void main(String[] args) throws UnknownHostException &#123;</div><div class="line">        // 根据ip地址或则主机名（liuyi），获取IP对象</div><div class="line">        Inet4Address i4=(Inet4Address) Inet4Address.getByName(&quot;192.168.42.1&quot;);</div><div class="line">        //获取主机名</div><div class="line">        String name=i4.getHostName();</div><div class="line">        //获取主机地址（IP）</div><div class="line">        String address=i4.getHostAddress();</div><div class="line">        System.out.println(name+&quot;...........&quot;+address);</div><div class="line">        //输出：zengqiang...........192.168.42.1</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="3-协议两种"><a href="#3-协议两种" class="headerlink" title="3.协议两种"></a>3.协议两种</h4><hr>
+<pre><code>UDP:无连接，数据打包限制64K，速度快，不可靠。
+TCP：有链接（建立连接通道），数据无限制，速度慢，可靠。也叫三次握手协议。
+Socket：套接字编程，网络编程。
+Socket:包含，IP地址和端口。
+通信过程：通信两端都有Socket，网络通信其实是socket的通信，
+数据在两个socket间在某种协议下通过IO传输。
+</code></pre><hr>
+<h4 id="4-UDP协议"><a href="#4-UDP协议" class="headerlink" title="4.UDP协议"></a>4.UDP协议</h4><blockquote>
+<p>发送和接受数据，键盘录入案例。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">        // 创建接收端</div><div class="line">        //1.创建socket对象</div><div class="line">        DatagramSocket ds=new DatagramSocket(10086);//10086对应发送端发送到哪个端口。</div><div class="line">        while (true) &#123;</div><div class="line">            //2.创建包</div><div class="line">            byte[] bys=new byte[1024];</div><div class="line">            DatagramPacket dp=new DatagramPacket(bys, bys.length);</div><div class="line">            //3.接收数据，并解析</div><div class="line">            ds.receive(dp);</div><div class="line">            byte[] bys2=dp.getData();//得到缓冲区数据</div><div class="line">            Inet4Address i4=(Inet4Address) dp.getAddress();</div><div class="line">            String name=i4.getHostName();</div><div class="line">            String string=new String(bys2, 0, bys2.length);</div><div class="line">            System.out.println(name+&quot;发送的数据是：&quot;+string);</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">//        ds.close();//释放资源，这行注释，因为接收端要一直开着</div><div class="line">    &#125;</div><div class="line">public static void main(String[] args) throws IOException &#123;</div><div class="line">        // 发送端</div><div class="line">        //1.创建socket对象</div><div class="line">        DatagramSocket ds=new DatagramSocket();</div><div class="line">        Scanner sn=new Scanner(System.in);</div><div class="line">        String string=null;</div><div class="line">        while ((string=sn.next())!=null) &#123;</div><div class="line">            if (string.equals(&quot;886&quot;)) &#123;</div><div class="line">                break;</div><div class="line">            &#125;</div><div class="line">            //2.创建包</div><div class="line">            byte[] bys=string.getBytes();</div><div class="line">            Inet4Address i4=(Inet4Address) Inet4Address.getByName(&quot;192.168.42.1&quot;);</div><div class="line">            int port=10086;//端口号</div><div class="line">            DatagramPacket dp=new DatagramPacket(bys, bys.length,i4,port);</div><div class="line">            //3.发送和关闭</div><div class="line">            ds.send(dp);</div><div class="line">        &#125;</div><div class="line">        ds.close();</div><div class="line">    &#125;</div><div class="line">    如果实现同一窗口，即接收又发送，利用多线程即可。</div></pre></td></tr></table></figure>
+<h4 id="5-TCP协议"><a href="#5-TCP协议" class="headerlink" title="5.TCP协议"></a>5.TCP协议</h4><pre><code>案例：注意没有发送哪一步骤，只有监听。
+public static void main(String[] args) throws IOException {
+        // 服务器端
+        //1.获取服务器端对象
+        ServerSocket ss=new ServerSocket(10086);
+        //2.阻塞式方法，一直等待监听链接，并返回socket对象
+        Socket s=ss.accept();
+        //3.得到发送过来的流
+        InputStream is=s.getInputStream();
+        byte[] bys=new byte[1024];
+        int len=is.read(bys);
+        String string=new String(bys, 0, len);
+        System.out.println(string);
+        s.close();
+//        ss.close();因为是服务器端，所以此处不应该关闭，没听过服务器关闭的。
+    }
+public static void main(String[] args) throws IOException {
+        // 发送端
+        //1.创建对象
+        Socket s=new Socket(&quot;192.168.42.1&quot;, 10086);
+        //2.获取输出流，写数据
+        OutputStream os=s.getOutputStream();
+        os.write(&quot;哈哈哈，我是发送的数据哦！&quot;.getBytes());
+        //3.释放资源
+        os.close();
+    }
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Java查漏补缺（四）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2261,303 +2557,6 @@ int (*sum)(int ,int)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/C语言笔记_03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Qiang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="飞奔的小猿猴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/C语言笔记_03/" itemprop="url">C语言笔记_03(数组相关)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C语言/" itemprop="url" rel="index">
-                    <span itemprop="name">C语言</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="数组：存储同一类型的数据"><a href="#数组：存储同一类型的数据" class="headerlink" title="数组：存储同一类型的数据"></a>数组：存储同一类型的数据</h1><hr>
-<pre><code> 定义方式
-    //定义方式一：
-    int arr[3];
-    arr[0]=1;
-    arr[1]=2;
-    arr[2]=3;
-    //定义方式二：
-    int arr1[3]={1,2,3};
-    //部分初始化：
-    int arr2[3]={1,2};
-    printf(&quot;%i\n&quot;,arr2[2]);//部分初始化时候，未初始化的元素，默认值是0
-注意：如果没有对数组进行初始化(完全初始化和部分初始化)，则内部可能是垃圾
-值，不要使用。另外，数组的元素个数不能使用变量，不然的话数组中元素是一些
-随机值。
-如果定义的同时进行初始化，元素的个数可以省略
-</code></pre><hr>
-<hr>
-<pre><code>例如：int arr[]={1,2};
-案例：给数组指定位置元素赋值
-方式一：arr[100]=100
-方式二：int arr[100]={[99]=99,[100]=100};
-错误案例：不能再定义之后在进行整体初始化，会报错，只能单个赋值。
-int arr[3];
-arr={1,2,3};//此处是错误的。
-</code></pre><hr>
-<h1 id="遍历数组"><a href="#遍历数组" class="headerlink" title="遍历数组"></a>遍历数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">int arr[3];</div><div class="line">   arr[0]=1;</div><div class="line">   arr[1]=2;</div><div class="line">   arr[2]=3;</div><div class="line">   for(int a=0;a&lt;sizeof(arr)/sizeof(arr[0]);a++)&#123;</div><div class="line">       printf(&quot;第%i个元素是%d:\n &quot;,a,arr[a]);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<h1 id="数组分类"><a href="#数组分类" class="headerlink" title="数组分类"></a>数组分类</h1><hr>
-<pre><code>数值数组  存储数值的
-字符数组  存储字符
-指针数组  存储指针(地址)
-结构数组  存储结构体类型的数据
-</code></pre><hr>
-<h2 id="数组说明"><a href="#数组说明" class="headerlink" title="数组说明"></a>数组说明</h2><hr>
-<pre><code>变量内存寻址从大到小，所以存储数据时会从高字节开始存储
-数组存储内存寻址从小到大，从所占用字节的低字节开始。
-说明案例：
-    int arr[3];
-    arr[0]=1;
-    arr[1]=2;
-    arr[2]=3;
-    for(int a=0;a&lt;sizeof(arr)/sizeof(arr[0]);a++){
-        printf(&quot;内存地址%d\n&quot;,&amp;arr[a]);
-    }
-输出：内存地址1606416428，内存地址1606416432，内存地址1606416436
-可知数组是从数组所占用字节的低字节开始存储。
-注意：数组地址是其所占用存储空间最小的一个地址，即数组的地址就是数
-组第一个元素的地址，另外数组名就是数组地址，&amp;arr和arr都是输出数组地址值。
-另外，数组中元素存储和变量一模一样，从高字节到低字节存储。
-</code></pre><hr>
-<h2 id="数组注意点"><a href="#数组注意点" class="headerlink" title="数组注意点"></a>数组注意点</h2><hr>
-<pre><code>int arr[3]={1,2,3};
-int arr1[2]={4,5};
-arr1[2]=44;
-printf(&quot;%d\n&quot;,arr[0]);//44
-说明：数组本身相当于一个变量，所以这两个数组是从大到小寻址，加入内存类似
-于excel表，从上往下分别是从0开始变大，则arr位于arr1的下方，但是此时arr1
-没有索引为2的元素，此时给arr1赋值为44，则直接赋值给arr1下面的arr数组的
-第一个元素，所以arr【0】值为44. 
-函数中的形参数组传递：因为数组名称就是数组地址，所以当把数组传递给函数时
-候，传递过去的是地址引用，所以在那个函数中修改了数组的元素的值就是修改的
-原来的数组的对应元素的值，因为地址指向同一片内存，此处要和变量区分，基本
-数据类型传递的时候，相当于新开辟一段内存，在函数结束的时候，那片内存地址
-就会收回，所以这是(值传递)，类似于copy不能修改原来的值，这就是变量形参
-和数组形参的区别。
-</code></pre><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">案例：指针在内存中永远是占用8个字节</div><div class="line">void getArrInfo(int arr[3])&#123;</div><div class="line">    for (int a=0; a&lt;sizeof(arr)/sizeof(arr[0]); a++) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,arr[a]);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int arr[3]=&#123;1,2,3&#125;;</div><div class="line">    getArrInfo(arr);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>解析：此案例不论数组长度多么的大，都是只输出两个元素，因为数组名称就是地址，
-也就是指针，指针在C语言中永远都是占据8个字节，而后面具体int元素，都是四个字节
-，所以一直计算的值就是2.
-解决：可以外接计算好长度，传递多参数过来解决。
-</code></pre><hr>
-<h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><blockquote>
-<p>找到最小的，存储起来，然后再剩余的元素中查找最小的存储起来(两个元素互换值)，循环往复。</p>
-</blockquote>
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><blockquote>
-<p>相邻两个元素比较，完全比较完一次，最值出现在末尾。</p>
-</blockquote>
-<h1 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h1><blockquote>
-<p>必须是有序数组</p>
-</blockquote>
-<h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><hr>
-<pre><code>int arr[3][3]={{1,2,3},{1,3,5}};
-二维数组内存寻址也是从小到大，但是多个二维数组之间内存寻址还是从大到小。
-注意点：
-如下写法正确：如果在定义的同时初始化，可以省略第一个【】内数字
-int arr[][3]={{1,2,3},{1,3,5}};
-</code></pre><hr>
-<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><hr>
-<pre><code>定义字符串变量
-char str[]=&quot;qiang&quot;;
-注意：字符串变量和字符数组有区别，C语言规定，字符串变量必须以\0结束
-，所以字符串变量的元素个数比字符数组元素个数大一，多一个\0；
-char str[]={&apos;a&apos;,&apos;b&apos;};//这里是字符数组，不是字符串变量
-输出字符串：%s。从传入的地址开始逐个取出，直到遇到\0为止。
-</code></pre><hr>
-<hr>
-<pre><code>案例：
-char str[]=&quot;lnj&quot;;
-char str2[]={&apos;x&apos;,&apos;m&apos;,&apos;g&apos;};
-printf(&quot;%s\n&quot;,str2);//xmglnj
-解析：str和str2作为变量内存寻址是从大到小，所以内存中str2位于str上面，
-而%s遇到\0才结束，此时取出完毕str2元素时候，没有遇到\0，会继续取出str
-元素直到遇到\0。
-其他初始化方式：
-char str[]={&apos;l&apos;,&apos;m&apos;.&apos;j&apos;,&apos;\0&apos;};//只要显示指出\0此时就是字符串变量
-char str[10]={&apos;l&apos;,&apos;m&apos;,&apos;j&apos;};
-这也是字符串变量，因为未完全初始化的数组，后面默认值是0.而字符\0的ascii对应值就是0.
-</code></pre><hr>
-<h2 id="输出字符串"><a href="#输出字符串" class="headerlink" title="输出字符串"></a>输出字符串</h2><hr>
-<pre><code>方式一：通过printf（“%s”,str）;输出字符串
-缺点：如果想换行，必须加上\n。
-优点：可以自定义字符串输出格式
-方式二：puts()
-优点：会自动换行
-缺点：无法自定义格式，只能原样输出
-</code></pre><hr>
-<h2 id="输入字符串"><a href="#输入字符串" class="headerlink" title="输入字符串"></a>输入字符串</h2><hr>
-<pre><code>方式一：
-char buf[10];
-scanf(&quot;%s&quot;,buf);
-注意点：会以空格，tab，enter作为接收符号。
-方式二：gets()
-说明：通过此方法输入系统会报警告，因为可能超出范围。
-char buf[10];
-gets(buf);
-优点：可以利用gets接收字符串，并且可以在字符串中输入空格，tab。
-</code></pre><hr>
-<hr>
-<pre><code>获取字符串长度：首先引入头文件&lt;string.h&gt;，然后使用strlen()方法获取字符串长度(不包括\0)
-    char buf[]=&quot;qiangge&quot;;
-    size_t length=strlen(buf);
-    for (int a=0; a&lt;length; a++) {
-        printf(&quot;%c\n&quot;,buf[a]);
-    }
-
-strcat（dest,src）：字符串连接,将src数据拼接到dest后面
-注意：要想使用拼接函数，dest必须是数组，而且数组的长度必须大于拼接之后的长度。
-strncat(char*,const char*,size_t):参数一二和上面方法参数意思一样，参数三，指的是需要拼接的个数。
-例如：size为1的时候，只会把参数二的第一个字符拼接到参数一中。
-strcpy: 字符串拷贝。
-    char str1[10]=&quot;lnjads&quot;;
-    char str2[]=&quot;cool&quot;;
-    strcpy(str1, str2);//会把str2的内容拷贝并覆盖到str1.
-    printf(&quot;%s\n&quot;,str1);//cool
-注意点：目标容积必须能够存放拷贝的数据。
-strncpy(char*,const char*,size_t):参数三，需要拷贝几个字符。
-注意：此处比如说只拷贝一个字符，则只会逐个替换（结果为cnjads）.
-strcmp（str1,str2）: 字符串比较,返回值为整型的值(值=0则字符串相等，&lt;0则str1&lt;str2).
-原理：取出每一个字符，进行逐个比较，如果发现不相等就不会再继续往下比较了。
-例如：“abc”和&quot;acc&quot;比较，逐个取出字符，a和a比较相等，b和c比较已经不相等，返回负数，后面的c已经不比较了。
-</code></pre><hr>
-<h1 id="字符串数组：就是二维数组"><a href="#字符串数组：就是二维数组" class="headerlink" title="字符串数组：就是二维数组"></a>字符串数组：就是二维数组</h1><blockquote>
-<p>char names[5][5]={“lnj”,”xb”,”lmj”};</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2608,7 +2607,7 @@ strcmp（str1,str2）: 字符串比较,返回值为整型的值(值=0则字符�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

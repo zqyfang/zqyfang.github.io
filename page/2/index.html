@@ -280,6 +280,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/回调机制浅尝/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/回调机制浅尝/" itemprop="url">回调机制浅尝</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="回调机制浅尝"><a href="#回调机制浅尝" class="headerlink" title="回调机制浅尝"></a>回调机制浅尝</h1><h2 id="回调处于同步和异步之间，回调是异步的基础"><a href="#回调处于同步和异步之间，回调是异步的基础" class="headerlink" title="回调处于同步和异步之间，回调是异步的基础"></a>回调处于同步和异步之间，回调是异步的基础</h2><blockquote>
+<p>回调使用场景：简单说来，延时操作，例如写完代码，运行模拟器测试，运行之后，你可以去干其他事情，当运行完毕，弹出提示运行完毕，这时候在可以去看结果显示。</p>
+</blockquote>
+<h2 id="案例说明："><a href="#案例说明：" class="headerlink" title="案例说明："></a>案例说明：</h2><blockquote>
+<p>小王有作业，计算数学题目，但是他有别的事情，他打电话给小明,让小明计算，而他自己去忙别的事情，等计算完成之后，小明在打电话回来告诉小王答案。</p>
+</blockquote>
+<h2 id="代码说明："><a href="#代码说明：" class="headerlink" title="代码说明："></a>代码说明：</h2><blockquote>
+<p>回调函数接口：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface CallBack &#123;</div><div class="line">	void sayResult(int str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>定义小王：也就是调用者，其内部有回调函数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public class Wang implements CallBack&#123;</div><div class="line">	private Li li;</div><div class="line">	public Wang (Li li) &#123;</div><div class="line">		this.li=li;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	//小王调用小明的计算方法（此处十分重要，必须开子线程）</div><div class="line">	//回掉使用就是为了延时操作，如果不单开线程则li调用的对应方法耗时的时候，wnag这边也会阻塞在这，也就是说wang想出去玩是不可能的，所以单开线程，使之异步，则小王后面干吗还是不影响的，同时小李也在运算。</div><div class="line">	public void sendToLi() &#123;</div><div class="line">		new Thread(new Runnable() &#123;  </div><div class="line">            @Override  </div><div class="line">            public void run() &#123;   </div><div class="line">              li.addMethod(Wang.this,101);</div><div class="line">            &#125;  </div><div class="line">        &#125;).start();  </div><div class="line">	&#125;</div><div class="line">	//此处就是回调函数</div><div class="line">		public void sayResult(int result) &#123;</div><div class="line">			System.out.println(&quot;计算结果是：&quot;+result);</div><div class="line">		&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>解析：要实现回调函数接口，要有被调用者的引用，此时就是li</p>
+<hr>
+<blockquote>
+<p>定义小明：也就是被调用者</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Li &#123;</div><div class="line">	//计算方法</div><div class="line">	public void addMethod(Wang wang, int num) &#123;</div><div class="line">		int sum=0;</div><div class="line">		for (int i = 0; i &lt; num; i++) &#123;</div><div class="line">			sum+=num;</div><div class="line">		&#125;</div><div class="line">		//调用回调函数，把答案回传回去</div><div class="line">		wang.sayResult(sum);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>测试主函数：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		Li li=new Li();</div><div class="line">		Wang wang=new Wang(li);</div><div class="line">		wang.sendToLi();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>总结：回调，就是调用者（有被调用者的引用）有两个函数，一个是调用被调用者的方法，一个是回调函数。调用者（有调用者的引用），有真正的执行方法，执行完毕之后，通过调用者的引用然后回调调用者的回调方法。</p>
+<hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Vue文档初读（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2827,230 +2996,6 @@ Person *p=[Person new];
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Node知识点(一)md/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Qiang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="飞奔的小猿猴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/Node知识点(一)md/" itemprop="url">Node知识点(一)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><blockquote>
-<p>global:全局对象<br>process:表示node所处的当前进程，可以从此取出相应数据。<br>Buffer():用于操作二进制数据。</p>
-</blockquote>
-<hr>
-<pre><code>__filename:当前运行的脚本文件名。
-//C:\Users\Administrator\Desktop\Demo\a.js
-__dirname:当前运行的脚本所在的目录。
-//C:\Users\Administrator\Desktop\Demo
-如果有package.json文件会根据main对应进行加载，如果没有，则加载index.js或index.node.
-</code></pre><hr>
-<h2 id="主要模块："><a href="#主要模块：" class="headerlink" title="主要模块："></a>主要模块：</h2><blockquote>
-<p>http:提供http服务功能。<br>url:解析URL。<br>fs：文件系统。<br>querystring :解析URL的查询字符串。<br>util:实用小工具。<br>path:处理文件路径。<br>cryto:加密解密。<br>module.exports:对外输出，供引用。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">var a=&#123;&#125;;</div><div class="line">function method(name) &#123;</div><div class="line">  console.log(name);</div><div class="line">&#125;</div><div class="line">a.show=method;</div><div class="line">module.exports=a;</div><div class="line">把对象a的show属性指向method函数。</div><div class="line">调用：</div><div class="line">var m=require(&apos;./test.js&apos;);</div><div class="line">m.show(&quot;呵呵&quot;);</div></pre></td></tr></table></figure>
-<h2 id="异常处理："><a href="#异常处理：" class="headerlink" title="异常处理："></a><strong>异常处理：</strong></h2><ul>
-<li>A：throw抛出错误对象。</li>
-<li>B:回调负责发出错误。</li>
-<li>C:通过EventEmitter接口，发出error事件。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">C案例：</div><div class="line">var EventEmitter=require(&apos;events&apos;).EventEmitter;</div><div class="line">var emitter=new EventEmitter();</div><div class="line">emitter.emit(&apos;error&apos;,new Error(&apos;something do help&apos;));</div><div class="line">emitter.on(&apos;error&apos;,function (err) &#123;</div><div class="line">  console.log(err.message);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>补充：当如果出现异常未捕获时候，则可以使用uncaughtException，同时退出node进程。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">process.on(&apos;uncaughtException&apos;,function(err) &#123;</div><div class="line">  console.error(err);</div><div class="line">  process.exit(1);//退出</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h1 id="二、module对象"><a href="#二、module对象" class="headerlink" title="二、module对象"></a>二、module对象</h1><hr>
-<pre><code>node.js都是模块性质，所以函数变量都是私有性质，
-虽然可以通过global.x这种方式设置为全局，但是不推荐。
-module:代表当前模块，module有个属性exports，是对外的接口。
-加载模块其实就是加载该模块的module.exports属性。
-</code></pre><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">test.js:</div><div class="line">var EventEmitter=require(&apos;events&apos;).EventEmitter;</div><div class="line">var emitter=new EventEmitter();</div><div class="line">module.exports=emitter;</div><div class="line">setTimeout(function () &#123;</div><div class="line">  emitter.emit(&apos;ready&apos;);</div><div class="line">&#125;,1000);</div><div class="line"></div><div class="line">a.js:</div><div class="line">var test=require(&apos;./test.js&apos;);</div><div class="line">test.on(&apos;ready&apos;,function () &#123;</div><div class="line">  console.log(&apos;接收到了&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>注意：module.exports可以直接module.exports=fun(){},
-也可以module.exports.x=.....;但是按照第一种，只能输出一个的情况下试用。
-require.resolve():将模块名解析到一个绝对路径.
-</code></pre><hr>
-<h1 id="三、fs模块"><a href="#三、fs模块" class="headerlink" title="三、fs模块"></a>三、fs模块</h1><blockquote>
-<p>根据系统来判断行结尾</p>
-</blockquote>
-<hr>
-<pre><code>windows系统下面：process.platform，输出win32.
-使用：var a=(process.platform===&apos;win32&apos;?&apos;\r\n&apos; : &apos;\n&apos;);
-</code></pre><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.readFile(&apos;./快捷键.txt&apos;,(err,data)=&gt;&#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  console.log(data);</div><div class="line">&#125;);</div><div class="line">fs.writeFile(&apos;./test.js&apos;,&apos;hello world&apos;,&apos;utf-8&apos;,function (err) &#123;</div><div class="line">  console.log(err);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>创建删除文件夹：如果文件夹存在则报错，同理删除时候如果不存在也会报错。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.mkdir(&apos;./hehe&apos;,0777,function (err) &#123;//0777是权限值</div><div class="line">  console.log(err);</div><div class="line">&#125;);</div><div class="line">fs.rmdir(&apos;./hahaa&apos;,function(err) &#123;</div><div class="line">  console.log(err);</div><div class="line">&#125;);</div><div class="line">读取文件：var fs=require(&apos;fs&apos;);</div><div class="line">fs.readFile(&apos;./test.js&apos;,function (err,data) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  console.log(data.toString(&apos;utf-8&apos;));//注意data此时是buffer对象.在toString(&apos;utf-8&apos;);记得传入编码格式。</div><div class="line">&#125;);</div><div class="line">补充：process.cwd()；</div><div class="line">输出：C:\Users\Administrator\Desktop\Demo</div><div class="line">读取目录：readdir();</div><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.readdir(process.cwd(),function (err,files) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    console.log(err);</div><div class="line">    return;</div><div class="line">  &#125;</div><div class="line">  files.forEach(function (file) &#123;</div><div class="line">    console.log(typeof file);//全是string</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line">status:参数是文件或目录，判断到底是文件还是文件夹</div></pre></td></tr></table></figure>
-<blockquote>
-<p>案例：判断一个目录内到底是文件还是文件夹。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.readdir(&apos;./&apos;,function (err,files) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  files.forEach(function (file) &#123;</div><div class="line">  //注意此处还要+file,这样才算传入了要查询状态的文件或目录名称。</div><div class="line">    fs.stat(&apos;./&apos;+file,function (err,status) &#123;</div><div class="line">      if (err) &#123;throw err;&#125;</div><div class="line">      if (status.isFile()) &#123;</div><div class="line">        console.log(file+&quot;我是文件&quot;);</div><div class="line">      &#125; else &#123;</div><div class="line">        console.log(file+&quot;我是文件夹&quot;);</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>监听文件：watchFile()</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">fs.watchFile(&apos;./笔记/笔记2.txt&apos;,function (curr,pre) &#123;</div><div class="line">  console.log(&apos;当前时间&apos;+curr.mtime);</div><div class="line">  console.log(&apos;上次修改时间&apos;+pre.mtime);</div><div class="line">&#125;);</div><div class="line">fs.writeFile(&apos;./笔记/笔记2.txt&apos;,&quot;changed&quot;,function (err) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    throw err;</div><div class="line">  &#125;</div><div class="line">  console.log(&apos;file write complete&apos;);</div><div class="line">&#125;);</div><div class="line">unwatchfile方法用于解除对文件的监听.</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>createReadStream:打开大文件创建读取操作数据流。
-如果多的话，会按照多个data发送多次。
-其中发送之后触发data事件，发送结束后触发end事件。
-</code></pre><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">var input=fs.createReadStream(&apos;./test.js&apos;);</div><div class="line">input.on(&apos;data&apos;,function (data) &#123;</div><div class="line">  console.log(data.toString(&apos;utf-8&apos;));</div><div class="line">&#125;);</div><div class="line">input.on(&apos;end&apos;,function () &#123;</div><div class="line">  console.log(&apos;结束了&apos;);</div><div class="line">&#125;);</div><div class="line">createWriteStream:创建一个写入数据流对象。</div><div class="line">var fs=require(&apos;fs&apos;);</div><div class="line">var input=fs.createReadStream(&apos;./笔记/阮一峰 01.txt&apos;);</div><div class="line">var output=fs.createWriteStream(&apos;./和.txt&apos;);</div><div class="line">input.on(&apos;data&apos;,function (data) &#123;</div><div class="line">  output.write(data);</div><div class="line">&#125;);</div><div class="line">input.on(&apos;error&apos;,function (err) &#123;</div><div class="line">  throw err;</div><div class="line">&#125;);</div><div class="line">input.on(&apos;end&apos;,function () &#123;</div><div class="line">  console.log(&apos;结束了&apos;);</div><div class="line">  output.end();//关闭写入流对象</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h1 id="四、path模块"><a href="#四、path模块" class="headerlink" title="四、path模块"></a>四、path模块</h1><blockquote>
-<p>join:按照系统添加路径分隔符。windows是’\’.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var path=require(&apos;path&apos;);</div><div class="line">var dir=path.join(__dirname,&apos;foo&apos;);</div><div class="line">console.log(dir);</div><div class="line">//C:\Users\Administrator\Desktop\Demo\foo</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>path.resolve():将相对路径转化为绝对路径
-该方法可以传入多个字符串参数（必须是字符串，不然无效），如果没给具体路径，以当前路径为参考。
-var path=require(&apos;path&apos;);
-var he=path.resolve(&apos;../&apos;,&apos;a/b&apos;,&apos;c&apos;,&apos;../d&apos;);
-console.log(he);
-//当前目录是：C:\Users\Administrator\Desktop\Demo
-输出：C:\Users\Administrator\Desktop\a\b\d
-</code></pre><hr>
-<blockquote>
-<p>path.relative方法接受两个参数，这两个参数都应该是绝对路径。<br>该方法返回第二个路径相对于第一个路径的那个相对路径。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">path.relative(&apos;/data/orandea/test/aaa&apos;, &apos;/data/orandea/impl/bbb&apos;)</div><div class="line">// &apos;../../impl/bbb&apos;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>path.parse():可以返回路径各部分的信息。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var path=require(&apos;path&apos;);</div><div class="line">var myFilePath=&apos;./someDir/someDir.json&apos;;</div><div class="line">var parse=path.parse(myFilePath);</div><div class="line">console.log(parse.base);//文件全称：someDir.json</div><div class="line">console.log(parse.name);//文件名字someDir</div><div class="line">console.log(parse.ext);//后缀json</div><div class="line">等于说：base等于name+ext。</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3101,7 +3046,7 @@ console.log(he);
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
