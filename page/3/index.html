@@ -280,6 +280,341 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/OC笔记_02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/OC笔记_02/" itemprop="url">OC语言笔记_02</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Object-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Object C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="oc的私有变量和方法"><a href="#oc的私有变量和方法" class="headerlink" title="oc的私有变量和方法"></a>oc的私有变量和方法</h1><hr>
+<pre><code>注意：属性(成员变量)名称和方法(针对所有方法）不要以new开头，有可能引发未知错误
+私有变量
+在@interface中声明的变量，默认是protected的，但是被@interface修饰的变量不论能不能访问，使用的时候代码都会提示所有
+变量，而@implementation也可以声明变量，但是默认是private的，而且和private不太一样，因为不会有代码提示。
+也就是说@implementation(不论用什么修饰)中定义的变量，只能在本类中使用。
+私有方法
+如果只有方法的实现，没有方法的声明，那么该方法就是私有方法，也就是oc中没有真正的私有方法
+因为如果是私有方法[p show]不能访问这个show私有方法，但是可以通过[p performSelector:@selector(show)]
+</code></pre><hr>
+<h1 id="property"><a href="#property" class="headerlink" title="property"></a>property</h1><blockquote>
+<p>编译器指令：生成get和set方法的声明（注意只是声明）<br>@property int age;<br>相当于：get和set的方法声明<br>-（void）setAge:(int)age;<br>-(int)age:<br>注意：虽然成员变量声明的时候为_age；但是property中不要加下划线</p>
+</blockquote>
+<h2 id="property增强"><a href="#property增强" class="headerlink" title="property增强"></a>property增强</h2><hr>
+<pre><code>在最新版xcode中，只写上@property即可生成set和get的声明以及定义
+注意点：property默认会把传入的属性赋值给_开头的成员。
+弊端：不会对数据进行过滤，比如age=-88;
+如果相对数据过滤，还是需要重写get和set方法
+注意：如果重写了set或者get方法中一个，那么property只会生成另外一个方法，如果两个都写了，那么property
+不会帮我们自动生成(_开头)私有的成员变量(如果没有声明成员变量的情况下)。
+如果不声明成员变量，系统会自动的给我们生成一个_开头的成员变量，例如@property int age;就会自动生成_age。
+</code></pre><hr>
+<h2 id="property修饰符"><a href="#property修饰符" class="headerlink" title="property修饰符"></a>property修饰符</h2><hr>
+<pre><code>readonly:只生成get方法 写法：property(readonly) int age;
+readwriter:get和set都声称，默认就是这个 写法：property(readwriter) int age;
+@property(getter=abc) int age:则生成的get方法名就是abc了，同理也有(setter=abc)
+</code></pre><hr>
+<h1 id="synthesize"><a href="#synthesize" class="headerlink" title="synthesize"></a>synthesize</h1><hr>
+<pre><code>编译器指令：get和set的方法定义
+@synthesize age
+注意：age必须和property相同
+但是只是生成空方法，返回值没有
+所以完整写法是@synthesize age=_age;
+</code></pre><hr>
+<h1 id="动态数据类型-id"><a href="#动态数据类型-id" class="headerlink" title="动态数据类型(id)"></a>动态数据类型(id)</h1><hr>
+<pre><code>类似于java中的object类型
+动态数据类型只有在运行时才知道真实的数据类型
+id==NSObject *万能指针
+id和NSObject *区别：id是动态数据类型，NSObject *是静态数据类型
+</code></pre><hr>
+<hr>
+<pre><code>例子：
+id obj=[Person new];
+[obj sleep];
+静态数据类型定义的变量，不能调用子类特有的方法
+动态数据类型定义的变量，可以调用子类特有方法
+注意：id可以调用私有方法(只有实现，没有声明)
+应用场景：一般用在多态，避免调用子类特有方法还需要强制转换的情况，减少代码
+弊端：id可以调用任意类方法，所以可能在运行时发出方法没有找到的错误提示。
+所以为了避免上面的错误，一般在使用之前，先判断当前变量是否能够调用这个方法
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">if([obj isKindOfClass:[Student class]])&#123;</div><div class="line">    //使用</div><div class="line">&#125;</div><div class="line">isKindOfClass：判断指定的对象是否是一个类，或者某个类的子类。</div><div class="line">类似的还有：</div><div class="line">if([obj isMemberOfClass:[Student class]])&#123;</div><div class="line">    //isMemberOfClass:判断指定的对象是否是当前指定类的实例</div><div class="line">&#125;</div><div class="line">if([obj isSubclassOfClass:[Student class]])&#123;</div><div class="line">    //isSubclassOfClass:判断指定的对象是否是当前类的子类</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>补充：new的内部原理
+new :1.开辟存储空间(alloc) 2.初始化所有的属性(成员变量)（init方法）3.返回对象的地址
+alloc：1.开辟内存空间 2.将所有属性设置为0 3.返回当前实例对象的地址
+init:1:初始化成员变量，但是默认情况下init的实现是什么也没有做，2.返回初始化后的实例对象地址
+注意：alloc和init返回的地址是同一个地址
+[Person new]==[[Person alloc] init]=Person *p
+</code></pre><hr>
+<h1 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h1><blockquote>
+<p>init开头的方法被称为构造方法：用于初始化一个对象，在这个对象一创建就拥有某些属性和值<br>重写init方法，在init方法中初始化成员变量</p>
+</blockquote>
+<hr>
+<pre><code>说明：
+    必须先初始化父类，在初始化子类
+    必须判断父类是否初始化成功，只有父类初始化成功才能继续初始化子类
+    返回当前对象的地址
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">格式：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">@property int age;</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">- (instancetype)init //instancetype也是和id类似也是万能指针</div><div class="line">&#123;</div><div class="line">    //初始化父类，只要初始化父类成功就会返回对应的地址，如果初始化失败，就会返回nil==0==假</div><div class="line">    self = [super init];</div><div class="line">    //判断父类是否初始化成功</div><div class="line">    if (self) &#123;</div><div class="line">        //初始化子类</div><div class="line">        _age=60;</div><div class="line">    &#125;</div><div class="line">    //返回子类</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">——————————</div></pre></td></tr></table></figure>
+<h2 id="instancetype和id的区别："><a href="#instancetype和id的区别：" class="headerlink" title="instancetype和id的区别："></a>instancetype和id的区别：</h2><blockquote>
+<p>都是万能指针<br>id在编译时候不能判断对象真实类型，instancetype可以在编译时候判断对象真实类型<br>instancetype可以把运行时错误提前到编译时<br>id可以用于定义变量，形参，返回值<br>instancetype只能当做返回值</p>
+</blockquote>
+<h2 id="自定义构造方法"><a href="#自定义构造方法" class="headerlink" title="自定义构造方法"></a>自定义构造方法</h2><hr>
+<pre><code>使用场景：解析网络传递的数据
+ 一定是对象方法
+ 一定返回id/instancetype
+ 方法名称一定以init开头
+ 例子：
+ @implementation Person
+- (instancetype)initWithAge:(int)age
+{
+    self = [super init];
+    if (self) {
+        _age=age;
+    }
+    return self;
+}
+@end
+——————————
+Person *p=[[Person alloc] initWithAge:20];
+注意：init重写的时候不需要再头文件声明，但是其他自定义构造方法必须在头文件声明
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">例子：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Person *p=[[Person alloc] initWithAge:300];</div><div class="line">    NSLog(@&quot;%d&quot;,p.age);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">——————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">@property int age;</div><div class="line">-(instancetype)initWithAge:(int)age;</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">- (instancetype)initWithAge:(int)age</div><div class="line">&#123;</div><div class="line">    self = [super init];</div><div class="line">    if (self) &#123;</div><div class="line">        _age=age;</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">注意；自定义构造方法可以有多个参数(和方法多个参数一样)</div></pre></td></tr></table></figure>
+<h2 id="自定义构造方法在继承上面的使用"><a href="#自定义构造方法在继承上面的使用" class="headerlink" title="自定义构造方法在继承上面的使用"></a>自定义构造方法在继承上面的使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">@property int age;</div><div class="line">-(instancetype)initWithAge:(int)age;//注意with中的w一定要大写</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">- (instancetype)initWithAge:(int)age</div><div class="line">&#123;</div><div class="line">    self = [super init];</div><div class="line">    if (self) &#123;</div><div class="line">        _age=age;</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">@interface Student :Person</div><div class="line">@property NSString *name;</div><div class="line">-(instancetype)initWithAge:(int)age addName:(NSString*)name;</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &quot;Student.h&quot;</div><div class="line"></div><div class="line">@implementation Student</div><div class="line">-(instancetype)initWithAge:(int)age addName:(NSString*)name&#123;</div><div class="line">    //之所以这样写，是因为age是父类的，自己事情自己干，所以直接super即可</div><div class="line">    if (self=[super initWithAge:300]) &#123;</div><div class="line">        _name=name;</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">#import &quot;Student.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Student *s=[[Student alloc] initWithAge:300 addName:@&quot;xiaoming&quot;];</div><div class="line">    NSLog(@&quot;%d----%@&quot;,s.age,s.name);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="类工厂方法"><a href="#类工厂方法" class="headerlink" title="类工厂方法"></a>类工厂方法</h1><blockquote>
+<p>是一种用于分配，初始化实例并返回一个它自己的实例的类方法，例如new<br>快速创建对象的类方法，给对象分配存储空间和初始化这块存储空间</p>
+</blockquote>
+<hr>
+<pre><code>说明：
+    一定以+开头(类方法)
+    方法名称以类名称开头，首字母小写
+    一定有返回值id/instancetype
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">@interface Person : NSObject</div><div class="line">+(instancetype)person;//定义类工厂方法</div><div class="line">@end</div><div class="line">——————————</div><div class="line">@implementation Person</div><div class="line">+(instancetype)person&#123;</div><div class="line">    Person *p=[Person alloc];</div><div class="line">    Person *p1=[p init];</div><div class="line">    return p1;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line"></div><div class="line">使用：Person *p=[Person person];</div><div class="line">上面只是简略说明：这样使用和new没区别，真实使用如下。</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Person *p=[Person personWithAge:300];</div><div class="line">    NSLog(@&quot;%d&quot;,p.age);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">——————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">@property int age;</div><div class="line">+(instancetype)personWithAge:(int)age;//定义类工厂方法</div><div class="line">@end</div><div class="line">——————————</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">+(instancetype)personWithAge:(int)age&#123;</div><div class="line">    Person *p=[[Person alloc]init];</div><div class="line">    p.age=age;</div><div class="line">    return p;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<h2 id="类工厂方法的继承"><a href="#类工厂方法的继承" class="headerlink" title="类工厂方法的继承"></a>类工厂方法的继承</h2><hr>
+<pre><code>案例：
+Student *s=[Student person];
+
+@implementation Person
++(instancetype)personWithAge:(int)age{
+    Person *p=[[Person alloc]init];
+    p.age=age;
+    return p;
+}
+@end
+注意这样会报错，因为[Student person]中student继承于person，[Student person]等价于[[Person alloc]init]
+所以如果利用s去操作student的数据，会找不到。
+解决办法:
+@implementation Person
++(instancetype)personWithAge:(int)age{
+    Person *p=[[self alloc]init];//替换为self即可
+    p.age=age;
+    return p;
+}
+</code></pre><hr>
+<h1 id="类对象"><a href="#类对象" class="headerlink" title="类对象"></a>类对象</h1><hr>
+<pre><code>获取类对象：
+Person *p=[[Person alloc]init];
+Person *p1=[[Person alloc]init];
+Class *c=[Person class];//这种也可以获取类对象
+Class *c=[p class];
+说明：c就是类对象，一个类在内存中只有一份类对象(所以p和p1,p2的类对象是一个)
+应用场景：
+用于创建实例对象
+Person *p3=[[c alloc] init]
+用于调用类方法
+[c test];
+</code></pre><hr>
+<h1 id="类的启动过程"><a href="#类的启动过程" class="headerlink" title="类的启动过程"></a>类的启动过程</h1><hr>
+<pre><code>只要程序启动就会将所有类的代码加载到内存中，放到代码区
+load方法会在当前类被加载到内存的时候调用，只调用一次
+如果存在继承关系，先调用父类的load再调用子类的load方法
++(void){
+
+}
+当当前类第一次被使用的时候会调用（创建类对象）initialize,只会被执行一次，因为类对象只有一个
+如果存在继承关系，先调用父类的initialize再调用子类的initialize方法
++(void)initialize{
+
+}
+</code></pre><hr>
+<h1 id="SEL类型"><a href="#SEL类型" class="headerlink" title="SEL类型"></a>SEL类型</h1><blockquote>
+<p>代表着方法的签名，在类对象的方法列表中存储着该签名与方法代码的对应关系<br>每个类的方法列表都存储在类对象中<br>每个方法都有一个与之对应的sel类型的对象<br>本剧一个sel对象就可以找到方法的地址，进而调用方法</p>
+</blockquote>
+<h2 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h2><h3 id="配合对象-类来检查对象-类中有没有实现某一个方法"><a href="#配合对象-类来检查对象-类中有没有实现某一个方法" class="headerlink" title="配合对象/类来检查对象/类中有没有实现某一个方法"></a>配合对象/类来检查对象/类中有没有实现某一个方法</h3><hr>
+<pre><code>SEL sel=@selector(setAge:);//setAge是方法名
+Person *p=[Person new];
+BOOL flag=[p respondsToSelector:sel];
+respondsToSelector：通过对象调用，判断对象p中有没有实现-号开头的setAge：方法，返回布尔值
+通过类调用，判断该类中有没有实现+号开头的setAge：方法，返回布尔值
+</code></pre><hr>
+<hr>
+<pre><code>配合对象/类来调用某一个sel方法
+SEL sel=@selector(show);//把show方法包装成sel类型对象
+Person *p=[Person new];
+[p performSelector:sel];
+performSelector:调用p对象中sel类型的的show方法
+如果包装的方法有参数
+SEL sel=@selector(show:);
+使用performSelector withObject方法
+[p performSelector:sel withObject:(id)]//其中（id）输入参数即可
+注意：此方法接受参数必须是对象类型，因为withObject只能传递对象（int不行，NSString可行）
+如果两个参数就选performSelector withObject withObject这个方法
+performSelector一些类方法，最多只能传递两个参数
+</code></pre><hr>
+<h3 id="配合对象将SEL类型作为方法的形参"><a href="#配合对象将SEL类型作为方法的形参" class="headerlink" title="配合对象将SEL类型作为方法的形参"></a>配合对象将SEL类型作为方法的形参</h3><pre><code>Car *car=[Car new];
+SEL sel=@selector(run);
+Person *p=[Person new];
+[p makeObject:c andSel:sel];//会执行run方法
+</code></pre><blockquote>
+<p>解析：p中有个方法makeObject所需第二个参数就是sel类型</p>
+</blockquote>
+<h1 id="class"><a href="#class" class="headerlink" title="@class"></a>@class</h1><hr>
+<pre><code>作用：简单的引用一个类，提升编译效率
+@class Dog;//注意加上;
+具体使用：
+    在.h文件中更实用@class引用一个类
+    在.m文件中使用#import包含这个类的.h文件
+@class 名称：仅仅告诉编译器名称是一个类，不会做任何copy操作。
+#import导入的文件，一但某个文件发生变化，那么这个变化文件的import也会重新copy
+重新编译，而且如果互相引用，会进入copy的死循环，而@class不会进行任何copy，仅仅只是
+告诉编译器这是一个类，而且不会进入死循环。
+</code></pre><hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Node知识点(一)md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2420,216 +2755,6 @@ go();
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Java查漏补缺（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Qiang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="飞奔的小猿猴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/Java查漏补缺（一）/" itemprop="url">Java查漏补缺（一）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<pre><code>Java不能少，隔三差五回头看看还是很有必要的，^_~
-准备用几篇文章对java来个泛复习。
-</code></pre><hr>
-<h1 id="Java开始"><a href="#Java开始" class="headerlink" title="Java开始"></a><strong>Java开始</strong></h1><h2 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a><strong>第一部分</strong></h2><blockquote>
-<ul>
-<li>关键字都是小写</li>
-<li>标识符：字母数字下划线，美元符号，不能用数字开头。</li>
-<li>一个二进制位被称为位，bit.1字节byte=8bit。</li>
-<li>二进制三位一组合形成八进制。</li>
-<li>二进制四位一组合形成十进制。</li>
-<li>二进制转八进制，十六进制，分别三位一组和，四位一组合计算出来十进制，拼接即可。</li>
-<li>正数源码，反码补码都相同，几乎相当于二进制，只是最前面一位是符号位，（正数符号位为0，负数符号位1）。负数的反码，符号位不变，其他取反，0变1，1变0.补码，符号位不变，在反码基础上加1.</li>
-<li>引用数据类型：类，接口，数组。</li>
-<li>基本数据类型（数值型）：byte short int long,分别是1字节，2字节，4字节，8字节。float:4字节，double8字节。<br>还有char:2字节，boolean：1字节。</li>
-<li>定义long=12748392834L必须加l或L。</li>
-<li>浮点型默认是double类型，所以定义float=12.5f必须加f或F。</li>
-<li>隐式转换：long虽然8字节，float是4字节，但是long会自动转换为float,因为float更精确，但是必须long的数字小于float才有效。</li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">**笔试题：**</div><div class="line">byte a=3;</div><div class="line">byte b=4;</div><div class="line">byte c=a+b;</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>解析：会报错，因为byte ,short ,int（但是不包括long）计算时候会自动转换成int在计算，所以此时相当于int复制给byte。但是byte c=3+4;不报错，因为对于常量，jvm会先计算常量计算结果在确定是否损失精度。
-</code></pre><hr>
-<blockquote>
-</blockquote>
-<ul>
-<li>ascii码：’a’:97,’A’:65 ,’0’:48。</li>
-<li>%：3%5=3;左边小于右边，值为左边，还有，如果有符号，不论什么情况下，都是值符号和左边数字一致。</li>
-<li>String s=5+5+”hello”;结果：10hello</li>
-<li>String s=”hello”+5+5;结果：hello55。之所以两种结果不同，是因为从左往右运算照成。对比：char a=’h’;</li>
-<li>System.out.println(a+1);结果为105.区分char加数字和字符串加数字。</li>
-<li>逻辑异或^:两边相同为假，不同为真。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Scanner scanner=new Scanner(System.in);</div><div class="line">int number=scanner.nextInt();</div></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li>switch中default可以放在任何位置，但是它是最后执行的，放在最后其break可以省略，但是放在前面时候不行，因为会紧接着不经过判断执行下一个紧挨着的，直到遇到下一个break才会停止。</li>
-<li>标号结束循环,可以使用break或者continue退出多层循环。</li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">wc:for (int i = 0; i &lt; 4; i++) &#123;</div><div class="line">			for (int j = 0; j &lt; 3; j++) &#123;</div><div class="line">				System.out.println(&quot;*&quot;);</div><div class="line">				break wc;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	另外注意，break和continue在非循环判断最好别使用，因为如下是错误的，会报错：</div><div class="line">	if(x&gt;2)&#123;</div><div class="line">		x=3;</div><div class="line">		break;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<h2 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a><strong>第二部分</strong></h2><blockquote>
-<ul>
-<li>函数结束是到return结束，而不是大括号结束。</li>
-<li>函数案例：<br>  public static int maxM(int a,int b) {<pre><code>return a&gt;b?a:b;
-</code></pre>  }<br>  注意形式参数必须有类型，为了能被调用最好是static。</li>
-<li>函数重载:函数名相同，参数列表不同（个数或类型不同）,与返回值无关。方法重载是让类以统一的方式处理不同类型数据的一种手段。多个同名函数同时存在，具有不同的参数个数/类型。<br>如果不是重载方法，同一类中不能存在函数名相同的函数（方法）。</li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public static void name(String name) &#123;</div><div class="line">	System.out.println(name);</div><div class="line">&#125;</div><div class="line">public static void name(String name,int number) &#123;</div><div class="line">	System.out.println(name+&quot;.....&quot;+number);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li>定义数组（引用类型：放在堆里面（new出来的），堆内存使用完毕不会立即回收，java虚拟机会在不确定时间回收，效率低，都有内存地址，都有默认值。而基本类型放在栈里,栈里面的存储局部变量，使用完毕会被回收，效率高）</li>
-<li>方式一、int[] arr=new int[5];</li>
-<li>变形：int arr[]=new int[5];</li>
-<li>方式二、int[] arr={1，2，3，4};</li>
-<li>方式三、int[] arr=new int[5]{};</li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">案例：int[] arr=&#123;&#125;;</div><div class="line">int[] arr=new int[5];</div><div class="line">System.out.println(arr[0]);</div><div class="line">第一个格式错误报错，第二个有默认值，会输出0.</div></pre></td></tr></table></figure>
-<blockquote>
-<ul>
-<li>二维数组<br>  -定义方式一、int[][] arr=new int[2][3];<br>  -定义方式二、int[][] arr=new int[2][];</li>
-<li>基本类型：形式参数值的改变对实际参数无影响。<br>引用类型：形式参数的改变直接影响实际参数。<br>注解：引用类型，赋给的是地址，所以改变就改变了，来自于同一个堆内存的的同一个区域。<br>基本类型，都是在栈内存开辟新的，对于原来无影响。</li>
-<li>属性：成员变量，类中方法外的变量。<br>行为：成员方法<br>成员变量和局部变量区别：<br>成员变量随对象存在而存在，对象不存在也消失<br>成员变量因为在另一个类使用时，也是先new出来其所在对象，所以即使成员变量<br>是类似于String这种类型，也是在堆内存中，所以都有初始值。<br>局部变量：方法中，或方法形式参数。<br>局部变量没有默认值，存储在栈中，随着方法而存在消失。</li>
-<li>匿名对象：<br>一、当对方法只进行一次调用时候使用。<br>二、作为实际参数进行传递时候使用。</li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"> ①public class three &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		//匿名对象</div><div class="line">		new Student().name();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">class Student&#123;</div><div class="line">	String name;</div><div class="line">	int age;</div><div class="line">	public void name() &#123;</div><div class="line">		System.out.println(&quot;名字是：&quot;+name);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">②public class three &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		Student student=new Student();</div><div class="line">		//匿名对象只调用一次时使用。同时包括作为实际参数传递时候使用。</div><div class="line">		new Test().show(student);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">class Student&#123;</div><div class="line">	String name;</div><div class="line">	int age;</div><div class="line">	public void name() &#123;</div><div class="line">		System.out.println(&quot;名字是：&quot;+name);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class Test&#123;</div><div class="line">	public void show(Student s) &#123;</div><div class="line">		s.name=&quot;哈哈&quot;;</div><div class="line">		s.name();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2680,7 +2805,7 @@ go();
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

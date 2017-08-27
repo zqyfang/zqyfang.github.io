@@ -280,6 +280,226 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/C语言笔记_04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/C语言笔记_04/" itemprop="url">C语言笔记_04(指针相关)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C语言/" itemprop="url" rel="index">
+                    <span itemprop="name">C语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="指针基本概念"><a href="#指针基本概念" class="headerlink" title="指针基本概念"></a>指针基本概念</h1><hr>
+<pre><code>指针就是用来专门(只能存储地址)保存地址的
+定义指针变量：数据类型 *变量名称.
+int *p;
+p=&amp;num；
+在64位编译器，指针占用8个字节
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">void change(int *v)&#123;</div><div class="line">//    v=50;这样写不对，这相当于把50存储到p当中，但是p是指针变量，只能存储指针(地址)</div><div class="line">    *v=50;//把50赋值给v存储的内存地址对应的内存空间</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int num=1;</div><div class="line">    change(&amp;num);</div><div class="line">    printf(&quot;%d\n&quot;,num);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">结论:*v==num  v=&amp;num</div><div class="line">案例：//编写函数交换两个变量的值</div><div class="line">void swf(int *v1,int *v2)&#123;</div><div class="line">    *v1=*v1^*v2;</div><div class="line">    *v2=*v1^*v2;</div><div class="line">    *v1=*v1^*v2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int a=1;</div><div class="line">    int b=2;</div><div class="line">    swf(&amp;a,&amp;b);</div><div class="line">    printf(&quot;%d...%d&quot;,a,b);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注意点：
+1.指针只能保存地址
+2.同一个变量可以有多个指针指向它
+3.指针的指向可以修改
+4.不要访问野指针
+5.指针类型是什么类型，就只能指向什么类型的数据
+</code></pre><hr>
+<h1 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    char charValue=&apos;l&apos;;</div><div class="line">    char *charValueP;</div><div class="line">    charValueP=&amp;charValue;</div><div class="line">    char **charValuePP;</div><div class="line">    charValuePP=&amp;charValueP;</div><div class="line">    //修改charValue的值</div><div class="line">    //charValue=&apos;n&apos;;</div><div class="line">//    *charValueP=&apos;n&apos;;</div><div class="line">//    **charValuePP=&apos;n&apos;;</div><div class="line">//    三者等效，都可以实现修改值</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="指针类型"><a href="#指针类型" class="headerlink" title="指针类型"></a>指针类型</h1><blockquote>
+<p>指针为什么要有类型？<br>系统会自动根据指针的类型来确定应该取多少个字节的值</p>
+</blockquote>
+<h1 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h1><blockquote>
+<p>指针+1：其实是加上指针类型所占用长度，例如int类型就是加4</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int arr[]=&#123;1,3,5&#125;;</div><div class="line">    int *p=arr;//arr就是数组内存地址，也是首元素地址</div><div class="line">    for (int a=0; a&lt;sizeof(arr)/sizeof(arr[0]); a++) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,*(p++));//p++就是p+1,p+1就是arr[值]的地址，加上*就是元素值。</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="指针和字符串"><a href="#指针和字符串" class="headerlink" title="指针和字符串"></a>指针和字符串</h1><hr>
+<pre><code>指针保存字符串：char *name=&quot;qiang&quot;;
+//通过指针保存一个字符串，其实保存的就是字符串第0个元素的地址，也是字符串的地址
+    char *name=&quot;qiang&quot;;
+    printf(&quot;%p\n&quot;,&amp;name[0]);//0x100000fa2
+    printf(&quot;%p\n&quot;,name);//0x100000fa2
+
+指针保存字符串和数组保存字符串区别：
+数组保存字符串是一个变量，可以修改，存储在栈中，作用域结束会被释放
+指针保存字符串是一个常量，不可修改，存储在常量区中，不会被释放，而且多个相同值对应地址相同。
+</code></pre><hr>
+<h1 id="指针数组"><a href="#指针数组" class="headerlink" title="指针数组"></a>指针数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> char *names[4]=&#123;</div><div class="line">        &quot;lmj&quot;,</div><div class="line">        &quot;lnj&quot;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h1 id="指针变量作用"><a href="#指针变量作用" class="headerlink" title="指针变量作用"></a>指针变量作用</h1><hr>
+<pre><code>案例：
+void change(int *arr){//此处传递过来是数组名，又因为数组名就是地址，所以也可以使用指针接收。
+    arr[0]=100;
+}
+int main(int argc,const char *argv[]) {
+    int arr[]={1,2,3,4};
+    change(arr);
+    printf(&quot;%d\n&quot;,arr[0]);
+    return 0;
+}
+案例二：
+char *get1(){
+    char *name=&quot;lnj&quot;;
+    return name;
+}
+char *get2(){
+    char name[]=&quot;lnj&quot;;
+    return name;
+}
+int main(int argc,const char *argv[]) {
+    char *v1=get1();
+    char *v2=get2();
+    printf(&quot;%s&quot;,v1);//输出lnj，此时v1是指针保存字符串，存储在常量区中不会被销毁
+    printf(&quot;%s&quot;,v2);//输出为空，此时v2是数组保存字符串，存储在栈中，即使返回了地址，但是栈中字符串随大括号结束被释放，地址已经无效了。
+    return 0;
+}
+案例三：实现strlen函数
+int myStrlen(char *str){
+    int count=0;
+    while(*str++){//因为如果到了最后\0的部分，\0字符的ascii编码是0，C语言中0就是代表假。
+        count++;
+    }
+    return count;
+}
+</code></pre><hr>
+<h1 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h1><hr>
+<pre><code>函数名就是函数的地址
+指向函数的指针的定义格式：
+void (*指针名称)()：没有返回值没有参数的函数指针
+int (*sum)(int ,int)
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">void test()&#123;</div><div class="line">    printf(&quot;执行了&quot;);</div><div class="line">&#125;</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    void(*functionP)();</div><div class="line">    functionP=test;//test函数名就是函数内存地址</div><div class="line">    (*functionP)();//*functionP代表就是指向函数内存空间。</div><div class="line">    //在mac上面functionP()等效于上面一句</div><div class="line">    printf(&quot;%p\n&quot;,test);</div><div class="line">    printf(&quot;%p\n&quot;,functionP);</div><div class="line">    printf(&quot;%p&quot;,*functionP);//三者输出地址一样</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">函数指针应用场景：通过案例说明</div><div class="line">int sum(int v1,int v2)&#123;</div><div class="line">    return v1+v2;</div><div class="line">&#125;</div><div class="line">int del(int v1,int v2)&#123;</div><div class="line">    return v1-v2;</div><div class="line">&#125;</div><div class="line">int demo(int v1,int v2,int (*p)(int ,int))&#123;</div><div class="line">    return p(v1,v2);</div><div class="line">&#125;</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    demo(1,2,sum);</div><div class="line">    demo(1,2,del);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/C语言笔记_03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1887,7 +2107,7 @@ public static void test2(params int[] num){}
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

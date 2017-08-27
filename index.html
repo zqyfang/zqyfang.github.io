@@ -280,6 +280,306 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/27/进程和线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/27/进程和线程/" itemprop="url">Python进程和线程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T20:28:00+08:00">
+                2017-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="多任务"><a href="#多任务" class="headerlink" title="多任务"></a>多任务</h1><hr>
+<pre><code>并发：看上去一起执行
+并行：真正一起执行
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">创建子进程案例：</div><div class="line">import os</div><div class="line">import time</div><div class="line">ret=os.fork()</div><div class="line">if ret==0:</div><div class="line">    while True:</div><div class="line">        print(&quot;------1-------&quot;)</div><div class="line">        time.sleep(1)</div><div class="line">else:</div><div class="line">    while True:</div><div class="line">        print(&quot;-------2-------&quot;)</div><div class="line">        time.sleep(1)</div><div class="line">说明：每隔1秒钟输出一次</div><div class="line">----2-----</div><div class="line">----1-----</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>解析：ret=os.fork()会在主进程前提下，在创建一个子进程。其中主进程返回值大于0，子进程返回值
+等于0，相当于有两份同样代码在不同内存空间执行，fork在mac和linux下可用。
+但是因为系统不同，硬件不同，父进程时先创建，但是不见得是先执行，所以执行结果不定。
+</code></pre><hr>
+<hr>
+<pre><code>补充：
+os.getpid() : 返回当前进程的进程号
+os.getppid() : 返回创建当前子进程的父进程的进程号。
+一般：父进程中fork的返回值就是刚刚创建出来的子进程的端口号
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">父子进程的先后顺序：</div><div class="line">import os</div><div class="line">import time</div><div class="line">ret=os.fork()</div><div class="line">if ret==0:</div><div class="line">        print(&quot;------1-------&quot;)</div><div class="line">        time.sleep(3)</div><div class="line">        print(&quot;------11-------&quot;)</div><div class="line">else:</div><div class="line">        print(&quot;-------2-------&quot;)</div><div class="line">        time.sleep(2)</div><div class="line"></div><div class="line">print(&quot;over&quot;)</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>说明：over输出两次，主进程输出2，然后子进程输出1，然后输出第一个over，之所以
+第一个over先输出是因为time.sleep(2)然后此时over输出代表主进程已经在要开始输出
+over之前已经结束，所以主进程不会因为子进程没有结束而等待。之后输出11，over，子进程结束。
+代码是同一份代码，但是数据是不同的数据，所以不同进程修改全局变量，是不共享的。
+</code></pre><hr>
+<h2 id="多个fork"><a href="#多个fork" class="headerlink" title="多个fork"></a>多个fork</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">import os</div><div class="line">ret=os.fork()</div><div class="line">if ret==0:</div><div class="line">        print(&quot;------1-------&quot;)</div><div class="line">else:</div><div class="line">        print(&quot;-------2-------&quot;)</div><div class="line">ret1=os.fork()</div><div class="line">if ret1==0:</div><div class="line">        print(&quot;----11------&quot;)</div><div class="line">else:</div><div class="line">        print(&quot;-----22------&quot;)</div><div class="line">print(&quot;----执行----&quot;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：多个fork就像二叉树一样，分支结构，例如此时执行输出4次，如果是三层fork则输出8次。<br>上的输出结果是 1,2各一次，11，22各两次。</p>
+</blockquote>
+<h2 id="fork炸弹"><a href="#fork炸弹" class="headerlink" title="fork炸弹"></a>fork炸弹</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">import os</div><div class="line">while True:</div><div class="line">        ret=os.fork()</div><div class="line">说明：会系统崩溃。</div></pre></td></tr></table></figure>
+<h2 id="跨平台的多进程"><a href="#跨平台的多进程" class="headerlink" title="跨平台的多进程"></a>跨平台的多进程</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">from multiprocessing import Process</div><div class="line">import time</div><div class="line"></div><div class="line"></div><div class="line">def test():</div><div class="line">    while True:</div><div class="line">        print(&quot;---test-----&quot;)</div><div class="line">        time.sleep(1)</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    p = Process(target=test)</div><div class="line">    p.start()</div><div class="line">    while True:</div><div class="line">        print(&quot;-----main-----&quot;)</div><div class="line">        time.sleep(1)</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>说明：Process模块是对不同平台下多进程的封装，在不同平台下，实现不同，但是上层代码相同。
+输出：
+----main-------
+----test------
+每隔一秒钟输出一次。
+</code></pre><hr>
+<h1 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><hr>
+<pre><code>Process([group [, target [, name [, args [, kwargs]]]]])
+target：表示这个进程实例所调用对象；
+args：表示调用对象的位置参数元组；
+kwargs：表示调用对象的关键字参数字典；
+name：为当前进程实例的别名；
+group：大多数情况下用不到；
+</code></pre><hr>
+<h2 id="Process类常方法："><a href="#Process类常方法：" class="headerlink" title="Process类常方法："></a>Process类常方法：</h2><hr>
+<pre><code>is_alive()：判断进程实例是否还在执行；
+join([timeout])：是否等待进程实例执行结束，或等待多少秒；
+start()：启动进程实例（创建子进程）；
+run()：如果没有给定target参数，对这个对象调用start()方法时，就将执行对象中的run()方法；
+terminate()：不管任务是否完成，立即终止；
+说明：参数带有[]是代表可写可不写。
+</code></pre><hr>
+<h3 id="join案例："><a href="#join案例：" class="headerlink" title="join案例："></a>join案例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">join：阻塞进程，当join标记的进程执行完毕之后，才开始执行下面的进程。</div><div class="line">from multiprocessing import Process</div><div class="line">import time</div><div class="line"></div><div class="line"></div><div class="line">def test():</div><div class="line">   for x in range(10):</div><div class="line">        print(&quot;---test-----&quot;)</div><div class="line">        time.sleep(1)</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    p = Process(target=test)</div><div class="line">    p.start()</div><div class="line">    p.join()</div><div class="line">    while True:</div><div class="line">        print(&quot;-----main-----&quot;)</div><div class="line">        time.sleep(1)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>说明：先执行10次test输出，才开始main输出。<br>补充：如果进程操作有很多附属内容，则可以使用新建类继承Process然后根据需要编写(例如 ：重写run方法等等)</p>
+</blockquote>
+<h2 id="进程池"><a href="#进程池" class="headerlink" title="进程池"></a>进程池</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">from multiprocessing import Pool</div><div class="line">import time</div><div class="line"></div><div class="line"></div><div class="line">def work(num):</div><div class="line">    for i in range(3):</div><div class="line">        print(&quot;----%d--&quot; % num)</div><div class="line">        time.sleep(1)</div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    p = Pool(3) #进程池最大容纳的进程个数</div><div class="line">    for i in range(6):</div><div class="line">        print(&quot;----%d&quot; % i)</div><div class="line">        p.apply_async(work, (i,)) #往进程池里面添加操作，后面(i,)是元组形式参数，给参数一的参数</div><div class="line">		#此时代表给上面的num,注意一定要用元组形式</div><div class="line">    p.close() #关闭进程池之后，不能再添加进程了</div><div class="line">    p.join() #进程池中主线程不会等待子进程执行完毕，而主进程一旦执行完毕，子进程无法执行，所以</div><div class="line">	#此时让主进程阻塞，然后等待子进程执行完毕，才停止。</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>    说明：进程池此时最大容纳3个进程，但是添加不会阻塞，是一下子都添加进去，而前面一下子只能3个同时
+    执行，完成一个，下一个进来执行。
+输出：
+----0
+----1
+----2
+----3
+----4
+----5
+----5868---0--
+----3144---1--
+----1100---2--
+----5868---0--
+----3144---1--
+----1100---2--
+----5868---0--
+----3144---1--
+----1100---2--
+----5868---3--
+----3144---4--
+----1100---5--
+----5868---3--
+----3144---4--
+----1100---5--
+----5868---3--
+----3144---4--
+----1100---5--
+</code></pre><hr>
+<h3 id="apply阻塞式添加"><a href="#apply阻塞式添加" class="headerlink" title="apply阻塞式添加"></a>apply阻塞式添加</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">from multiprocessing import Pool</div><div class="line">import os</div><div class="line">import time</div><div class="line"></div><div class="line"></div><div class="line">def work(num):</div><div class="line">    for i in range(3):</div><div class="line">        print(&quot;----%d---%d--&quot; %(os.getpid(),num))</div><div class="line">        time.sleep(1)</div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    p = Pool(3)</div><div class="line">    for i in range(6):</div><div class="line">        print(&quot;----%d&quot; % i)</div><div class="line">        p.apply(work, (i,))</div><div class="line">    p.close()</div><div class="line">    p.join()</div><div class="line"></div><div class="line">输出：</div><div class="line">----0</div><div class="line">----8232---0--</div><div class="line">----8232---0--</div><div class="line">----8232---0--</div><div class="line">----1</div><div class="line">----5580---1--</div><div class="line">----5580---1--</div><div class="line">----5580---1--</div><div class="line">----2</div><div class="line">----5816---2--</div><div class="line">----5816---2--</div><div class="line">----5816---2--</div><div class="line">----3</div><div class="line">----8232---3--</div><div class="line">----8232---3--</div><div class="line">----8232---3--</div></pre></td></tr></table></figure>
+<h2 id="Quenue进程间通信"><a href="#Quenue进程间通信" class="headerlink" title="Quenue进程间通信"></a>Quenue进程间通信</h2><p>队列：先进先出<br>栈：先进后出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">from multiprocessing import Queue</div><div class="line">q=Queue(3) #最多存储三条信息 ，如果没有参数，则不限制个数</div><div class="line">print(q.qsize()) #0</div><div class="line">q.put(&quot;测试1&quot;)</div><div class="line">q.put(&quot;测试2&quot;)</div><div class="line">q.put(&quot;测试3&quot;)</div><div class="line">print(q.qsize()) #3</div><div class="line">print(q.get()) #测试1</div><div class="line">print(q.qsize()) #2</div><div class="line">q.put(&quot;测试4&quot;)</div><div class="line">q.put(&quot;测试5&quot;) #不会报错，但是线程阻塞，等待先取出一个，才能添加进去</div><div class="line">q.full()#判断队列是否已经满了</div><div class="line">q.empty()#判断队列是否为空</div><div class="line">补充：此时get如果为空会阻塞。put满了也会阻塞，但是如果put_nowait(),get_nowait()不会阻塞，但是会异常</div><div class="line">所以最好放在try里面。</div><div class="line">put/put_nowait时候，可以放入任何，[] &#123;&#125;甚至对象。</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>使用：
+from multiprocessing import Process,Queue
+q=Queue(3)
+p=Process(work,args=(q,))
+这样就可以把p传递过去给其他进程，但是最好一个传递端，一个接收端，否则可能实现数据接收不全面的问题。
+
+对比：进程池中进程通信
+from multiprocessing import Manager,Pool
+q=Manager().Queue(3) 
+必须使用manager创建队列Quenue，其他相同。
+</code></pre><hr>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">基本案例：</div><div class="line">from threading import Thread</div><div class="line">import time</div><div class="line"></div><div class="line">def test():</div><div class="line">    print(&quot;-----测试------&quot;)</div><div class="line">    time.sleep(1)</div><div class="line"></div><div class="line">for i in range(5):</div><div class="line">    t=Thread(target=test)</div><div class="line">    t.start()</div><div class="line">输出：</div><div class="line">-----测试------</div><div class="line">-----测试------</div><div class="line">-----测试------</div><div class="line">-----测试------</div><div class="line">-----测试------</div><div class="line">如果不开多线程，则最快五秒执行完毕，因为每次睡眠1秒钟，此时，会接近一秒，因为时多线程，输出互相不影响。</div></pre></td></tr></table></figure>
+<h2 id="继承多线程的类"><a href="#继承多线程的类" class="headerlink" title="继承多线程的类"></a>继承多线程的类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这样类可以封装很多其他操作</div><div class="line">import threading</div><div class="line">import time</div><div class="line"></div><div class="line"></div><div class="line">class Method(threading.Thread):</div><div class="line">    def run(self):</div><div class="line">        for i in range(5):</div><div class="line">            time.sleep(1)</div><div class="line">            info = &quot;当前线程名称：&quot; + self.name+&quot;..&quot;+str(i)</div><div class="line">            print(info)</div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    for i in range(2):</div><div class="line">        m = Method()</div><div class="line">        m.start()</div><div class="line"></div><div class="line">输出：</div><div class="line">当前线程名称：Thread-1..0</div><div class="line">当前线程名称：Thread-2..0</div><div class="line">当前线程名称：Thread-1..1</div><div class="line">当前线程名称：Thread-2..1</div><div class="line">当前线程名称：Thread-2..2</div><div class="line">当前线程名称：Thread-1..2</div><div class="line">当前线程名称：Thread-2..3</div><div class="line">当前线程名称：Thread-1..3</div><div class="line">当前线程名称：Thread-1..4</div><div class="line">当前线程名称：Thread-2..4</div><div class="line">说明：start会默认调用run方法。而且线程的执行顺序不一定。此时其实时三个线程，因为还有一个主线程去创建</div><div class="line">线程。</div></pre></td></tr></table></figure>
+<h2 id="多线程的全局变量共享问题"><a href="#多线程的全局变量共享问题" class="headerlink" title="多线程的全局变量共享问题"></a>多线程的全局变量共享问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">from threading import Thread</div><div class="line"></div><div class="line">g_num = 100</div><div class="line"></div><div class="line"></div><div class="line">def work_01():</div><div class="line">    global g_num</div><div class="line">    for i in range(3):</div><div class="line">        g_num += 1</div><div class="line">    print(&quot;work_01..&quot;+str(g_num))</div><div class="line"></div><div class="line"></div><div class="line">def work_02():</div><div class="line">    global g_num</div><div class="line">    for i in range(3):</div><div class="line">        g_num += 1</div><div class="line">    print(&quot;work_02..&quot;+str(g_num))</div><div class="line"></div><div class="line"></div><div class="line">print(&quot;全局&quot; + str(g_num))</div><div class="line">t1 = Thread(target=work_01)</div><div class="line">t1.start()</div><div class="line"></div><div class="line">t2 = Thread(target=work_02)</div><div class="line">t2.start()</div><div class="line">输出：</div><div class="line">全局100</div><div class="line">work_01..103</div><div class="line">work_02..106</div><div class="line">说明：多进程，哪怕全局变量也不是共享的，但是多线程全局变量时共享的。</div></pre></td></tr></table></figure>
+<h2 id="共享全局变量问题"><a href="#共享全局变量问题" class="headerlink" title="共享全局变量问题"></a>共享全局变量问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">def work_01():</div><div class="line">    global g_num</div><div class="line">    for i in range(1000000):</div><div class="line">        g_num += 1</div><div class="line">    print(&quot;work_01..&quot;+str(g_num))</div><div class="line"></div><div class="line"></div><div class="line">def work_02():</div><div class="line">    global g_num</div><div class="line">    for i in range(1000000):</div><div class="line">        g_num += 1</div><div class="line">    print(&quot;work_02..&quot;+str(g_num))</div><div class="line"></div><div class="line"></div><div class="line">print(&quot;全局&quot; + str(g_num))</div><div class="line">t1 = Thread(target=work_01)</div><div class="line">t1.start()</div><div class="line">#time.sleep(1)</div><div class="line">t2 = Thread(target=work_02)</div><div class="line">t2.start()</div><div class="line">输出：</div><div class="line">全局100</div><div class="line">work_01..1159900</div><div class="line">work_02..1307250</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>说明：多线程在修改同一个值的时候，当操作次数很多时候，可能造成错误，当
+注释代码，即主线程睡眠一秒钟，在去执行t2很可能，t1已经执行完毕，此时数据
+就是正确的，但是一般不会采用这种方式。
+</code></pre><hr>
+<h2 id="参数传递的数据共享"><a href="#参数传递的数据共享" class="headerlink" title="参数传递的数据共享"></a>参数传递的数据共享</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">from threading import Thread</div><div class="line">num=[1,2,3]</div><div class="line">def work_01(num):</div><div class="line">    num.append(4)</div><div class="line">    print(num)</div><div class="line"></div><div class="line"></div><div class="line">def work_02(num):</div><div class="line">    print(num)</div><div class="line"></div><div class="line">t1 = Thread(target=work_01,args=(num,))</div><div class="line">t1.start()</div><div class="line">t2 = Thread(target=work_02,args=(num,))</div><div class="line">t2.start()</div><div class="line">输出：</div><div class="line">[1, 2, 3, 4]</div><div class="line">[1, 2, 3, 4]</div></pre></td></tr></table></figure>
+<h2 id="加锁"><a href="#加锁" class="headerlink" title="加锁"></a>加锁</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">from threading import Thread, Lock</div><div class="line"></div><div class="line">num = 0</div><div class="line"></div><div class="line"></div><div class="line">def work_01():</div><div class="line">    global num</div><div class="line">    for i in range(100000):</div><div class="line">        mutex.acquire()</div><div class="line">		num += 1</div><div class="line">		mutex.release()</div><div class="line">    print(num)</div><div class="line"></div><div class="line"></div><div class="line">def work_02():</div><div class="line">    global num</div><div class="line">    for i in range(100000):</div><div class="line">		mutex.acquire()</div><div class="line">        num += 1</div><div class="line">		mutex.release()</div><div class="line">    print(num)</div><div class="line"></div><div class="line">mutex = Lock()</div><div class="line">t1=Thread(target=work_01)</div><div class="line">t2=Thread(target=work_02)</div><div class="line">t1.start()</div><div class="line">t2.start()</div><div class="line">输出：</div><div class="line">100000</div><div class="line">200000</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>说明：首先mutex = Lock()全局初始化锁，然后在子线程内部mutex.acquire()开启锁，则即使work-02执行，
+到mutex.acquire()也会因为无法加锁成功而阻塞，直到work))_01的 mutex.release()执行，释放锁，然后才
+work_02加锁成功，向下执行。
+总结：貌似work_01和02加锁之后同一时间还是只有一个在同时执行，但是此时其实还有一个主线程在不受阻塞的
+向下执行。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">对比案例：</div><div class="line">from threading import Thread, Lock</div><div class="line">import time</div><div class="line">num = 0</div><div class="line"></div><div class="line"></div><div class="line">def work_01():</div><div class="line">    global num</div><div class="line">    for i in range(10):</div><div class="line">        mutex.acquire()</div><div class="line">        time.sleep(1)</div><div class="line">        num += 1</div><div class="line">        mutex.release()</div><div class="line">    print(num)</div><div class="line"></div><div class="line"></div><div class="line">def work_02():</div><div class="line">    global num</div><div class="line">    for i in range(10):</div><div class="line">        mutex.acquire()</div><div class="line">        time.sleep(1)</div><div class="line">        num += 1</div><div class="line">        mutex.release()</div><div class="line">    print(num)</div><div class="line"></div><div class="line">mutex = Lock()</div><div class="line">t1=Thread(target=work_01)</div><div class="line">t2=Thread(target=work_02)</div><div class="line">t1.start()</div><div class="line">t2.start()</div><div class="line"># mutex.acquire()</div><div class="line">print(&quot;----------------&quot;)</div><div class="line"># mutex.release()</div><div class="line">输出：</div><div class="line">----------------</div><div class="line">12</div><div class="line">20</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">对比案例：</div><div class="line">from threading import  Thread</div><div class="line">import threading</div><div class="line">import  time</div><div class="line">def test():</div><div class="line">    name=threading.current_thread().name</div><div class="line">    print(&quot;---thread name is %s&quot;%name)</div><div class="line">    num=100</div><div class="line">    if name==&apos;Thread-1&apos;:</div><div class="line">        num+=1</div><div class="line">    else:</div><div class="line">        time.sleep(2)</div><div class="line">    print(&quot;---thread is %s  ----num=%d&quot;%(name,num))</div><div class="line">p1=Thread(target=test)</div><div class="line">p2=Thread(target=test)</div><div class="line">p1.start()</div><div class="line">p2.start()</div><div class="line">输出：</div><div class="line">---thread name is Thread-1</div><div class="line">---thread is Thread-1  ----num=101</div><div class="line">---thread name is Thread-2</div><div class="line">---thread is Thread-2  ----num=100</div><div class="line">说明：即使同一个方法，多线程变量也是各自时各自的，互不干涉。</div></pre></td></tr></table></figure>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">from threading import Thread, Lock</div><div class="line">import time</div><div class="line">emtut1 = Lock()</div><div class="line">emtut2 = Lock()</div><div class="line"></div><div class="line"></div><div class="line">def test1():</div><div class="line">    if emtut1.acquire():</div><div class="line">        print(&quot;test1&quot;)</div><div class="line">        time.sleep(1)</div><div class="line">        if emtut2.acquire(timeout=1):</div><div class="line">            print(&quot;111&quot;)</div><div class="line">        emtut1.release()</div><div class="line"></div><div class="line"></div><div class="line">def test2():</div><div class="line">    if emtut2.acquire():</div><div class="line">        print(&quot;test2&quot;)</div><div class="line">        if emtut1.acquire(timeout=1): #timeout=3</div><div class="line">            print(&quot;222&quot;)</div><div class="line">        emtut2.release()</div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    t1 = Thread(target=test1)</div><div class="line">    t2 = Thread(target=test2)</div><div class="line">    t1.start()</div><div class="line">    t2.start()</div><div class="line">输出：</div><div class="line">test1</div><div class="line">test2</div><div class="line">111</div><div class="line">如果参数时注释处的值，则输出</div><div class="line">test1</div><div class="line">test2</div><div class="line">222</div><div class="line">这是因为，时间不同例如注释处，3秒才超时，但是上面test1中if emtut2.acquire(timeout=1):</div><div class="line">时1秒超时，超时之后，111不会输出，直接超时直接下面 emtut1.release()，但是此时</div><div class="line"> if emtut1.acquire(timeout=3):还没有超时，但是锁1被释放，符合条件，然后进入if循环输出222</div></pre></td></tr></table></figure>
+<h2 id="生产者消费者"><a href="#生产者消费者" class="headerlink" title="生产者消费者"></a>生产者消费者</h2><blockquote>
+<p>利用Queue实现解耦<br>py2:from Queue import Queue<br>py3:from queue import Queue</p>
+</blockquote>
+<h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">目的：多进程时候，全局变量，应该会被两个线程修改，但是有时候需要实现不同线程区分保存对象</div><div class="line"></div><div class="line">基本案例：</div><div class="line">import threading</div><div class="line"></div><div class="line">thread_local = threading.local()</div><div class="line"></div><div class="line"></div><div class="line">def get_info():</div><div class="line">    info = thread_local.name</div><div class="line">    print(&quot;name is %s,thread is %s&quot;%(info,threading.current_thread().name))</div><div class="line"></div><div class="line"></div><div class="line">def process_thread(name):</div><div class="line">    thread_local.name = name</div><div class="line">    get_info()</div><div class="line"></div><div class="line"></div><div class="line">t1 = threading.Thread(target=process_thread, args=(&quot;laowangA&quot;,), name=&apos;Thread-A&apos;)</div><div class="line">t2 = threading.Thread(target=process_thread, args=(&quot;laowangB&quot;,), name=&apos;Thread-B&apos;)</div><div class="line">t1.start()</div><div class="line">t2.start()</div><div class="line"></div><div class="line">输出： </div><div class="line">name is laowangA,thread is Thread-A</div><div class="line">name is laowangB,thread is Thread-B</div><div class="line">说明：理论上应该都输出后者，但是threading.local()创建的全局对象，则会分别保存相关信息。</div></pre></td></tr></table></figure>
+<h1 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">基本案例：</div><div class="line">from multiprocessing import Pool</div><div class="line">import time</div><div class="line">import os</div><div class="line"></div><div class="line"></div><div class="line">def test():</div><div class="line">    print(&quot;---进程池中的进程---pid=%d,ppid=%d&quot; % (os.getpid(), os.getppid()))</div><div class="line">    for i in range(3):</div><div class="line">        print(&quot;----%d----&quot; % i)</div><div class="line">        time.sleep(1)</div><div class="line">    return &quot;haha&quot;</div><div class="line"></div><div class="line"></div><div class="line">def test2(args):</div><div class="line">    print(&quot;----callback func ----pid=%d&quot; % os.getpid())</div><div class="line">    print(&quot;---callbacl----- args=%s&quot; % args)</div><div class="line"></div><div class="line"></div><div class="line">if __name__==&apos;__main__&apos;:</div><div class="line">    pool = Pool(3)</div><div class="line">    pool.apply_async(func=test, callback=test2)</div><div class="line">    pool.apply_async(func=test, callback=test2)</div><div class="line">    pool.apply_async(func=test, callback=test2)</div><div class="line">    while True:</div><div class="line">        time.sleep(1)</div><div class="line">        print(&quot;----主进程-----pid=%d---&quot; % os.getpid())</div><div class="line"></div><div class="line">输出：</div><div class="line">---进程池中的进程---pid=6280,ppid=3024</div><div class="line">----0----</div><div class="line">---进程池中的进程---pid=2524,ppid=3024</div><div class="line">----0----</div><div class="line">---进程池中的进程---pid=5156,ppid=3024</div><div class="line">----0----</div><div class="line">----主进程-----pid=3024---</div><div class="line">----1----</div><div class="line">----1----</div><div class="line">----1----</div><div class="line">----主进程-----pid=3024---</div><div class="line">----2----</div><div class="line">----2----</div><div class="line">----2----</div><div class="line">----主进程-----pid=3024---</div><div class="line">----callback func ----pid=3024</div><div class="line">---callbacl----- args=haha</div><div class="line">----callback func ----pid=3024</div><div class="line">---callbacl----- args=haha</div><div class="line">----callback func ----pid=3024</div><div class="line">---callbacl----- args=haha</div><div class="line">----主进程-----pid=3024---</div><div class="line">----主进程-----pid=3024---</div><div class="line">----主进程-----pid=3024---</div><div class="line">----主进程-----pid=3024---</div></pre></td></tr></table></figure>
+<hr>
+<p>说明：异步意思，就是本来我干着我的事情，突然让我暂停现在的事情<br>去干另外一件事情，例如此时，本来主线程在睡眠和打印log，但是当有callback<br>时候，主线程会去执行test2然后执行完毕，在回来执行以前的操作。<br>可以通过—-callback func —-pid=3024可知和上面ppid输出值一样，也就是说<br>是主线程先暂停之前操作，先去执行callback。</p>
+<hr>
+<h1 id="GIL说明"><a href="#GIL说明" class="headerlink" title="GIL说明"></a>GIL说明</h1><hr>
+<p>首先强调背景：</p>
+<ol>
+<li>GIL是什么？</li>
+</ol>
+<p>  GIL的全称是Global Interpreter Lock(全局解释器锁)，来源是python设计之初的考虑，为了数据安全所做的决定。</p>
+<ol>
+<li><p>每个CPU在同一时间只能执行一个线程</p>
+<p>在单核CPU下的多线程其实都只是并发，不是并行，并发和并行从宏观上来讲都是同时处理多路请求的概念。但并发和并行又有区别，并行是指两个或者多个事件在同一时刻发生；<br>而并发是指两个或多个事件在同一时间间隔内发生。</p>
+</li>
+</ol>
+<p>在Python多线程下，每个线程的执行方式：</p>
+<p>获取GIL</p>
+<p>执行代码直到sleep或者是python虚拟机将其挂起。</p>
+<p>释放GIL</p>
+<p>可见，某个线程想要执行，必须先拿到GIL，我们可以把GIL看作是“通行证”，并且在一个python进程中，GIL只有一个。拿不到通行证的线程，就不允许进入CPU执行。</p>
+<p>在Python2.x里，GIL的释放逻辑是当前线程遇见IO操作或者ticks计数达到100（ticks可以看作是Python自身的一个计数器，专门作用于GIL，每次释放后归零，<br>这个计数可以通过 sys.setcheckinterval 来调整），进行释放。</p>
+<p>而每次释放GIL锁，线程进行锁竞争、切换线程，会消耗资源。并且由于GIL锁存在，python里一个进程永远只能同时执行一个线程(拿到GIL的线程才能执行)，<br>这就是为什么在多核CPU上，python的多线程效率并不高。</p>
+<p>那么是不是python的多线程就完全没用了呢？</p>
+<p>在这里我们进行分类讨论：</p>
+<p>CPU密集型代码(各种循环处理、计数等等)，在这种情况下，由于计算工作多，ticks计数很快就会达到阈值，然后触发GIL的释放与再竞争<br>（多个线程来回切换当然是需要消耗资源的），所以python下的多线程对CPU密集型代码并不友好。</p>
+<p>IO密集型代码(文件处理、网络爬虫等)，多线程能够有效提升效率(单线程下有IO操作会进行IO等待，造成不必要的时间浪费，而开启多线程能在线程A等待时，</p>
+<p>自动切换到线程B，可以不浪费CPU的资源，从而能提升程序执行效率)。所以python的多线程对IO密集型代码比较友好。</p>
+<p>而在python3.x中，GIL不使用ticks计数，改为使用计时器（执行时间达到阈值后，当前线程释放GIL），这样对CPU密集型程序更加友好，但依然没有解决GIL导<br>致的同一时间只能执行一个线程的问题，所以效率依然不尽如人意。</p>
+<p>请注意：多核多线程比单核多线程更差，原因是单核下的多线程，每次释放GIL，唤醒的那个线程都能获取到GIL锁，所以能够无缝执行，但多核下，CPU0释放GIL后<br>，其他CPU上的线程都会进行竞争，但GIL可能会马上又被CPU0拿到，导致其他几个CPU上被唤醒后的线程会醒着等待到切换时间后又进入待调度状态，这样会造成线程颠簸(thrashing)，导致效率更低。</p>
+<p>回到最开始的问题：经常我们会听到老手说：“python下想要充分利用多核CPU，就用多进程”，原因是什么呢？</p>
+<p>原因是：每个进程有各自独立的GIL，互不干扰，这样就可以真正意义上的并行执行，所以在python中，多进程的执行效率优于多线程(仅仅针对多核CPU而言)。</p>
+<p>所以在这里说结论：多核下，想做并行提升效率，比较通用的方法是使用多进程，能够有效提高执行效率</p>
+<hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/19/Python高级/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2878,209 +3178,6 @@ public partial class Person{}
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/基于Gulp的自动化工作流/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Qiang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="飞奔的小猿猴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/基于Gulp的自动化工作流/" itemprop="url">基于Gulp的自动化工作流</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">Gulp中文网</a></p>
-</blockquote>
-<hr>
-<pre><code>全局安装：npm install --global gulp
-切换到项目目录：npm install gulp --save-dev
-在项目根目录下创建一个名为 gulpfile.js 的文件
-以下步骤都是在gulpfile.js中。
-</code></pre><hr>
-<h1 id="Gulp说明："><a href="#Gulp说明：" class="headerlink" title="Gulp说明："></a><strong>Gulp说明：</strong></h1><ul>
-<li>gulp主文件，用于注册任务</li>
-<li>gulp的作用机械化的完成重复性的工作</li>
-<li>代码都是由node执行</li>
-</ul>
-<h1 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a><strong>简单使用</strong></h1><ul>
-<li>载入gulp模块</li>
-</ul>
-<blockquote>
-<p>var gulp=require(‘gulp’);</p>
-</blockquote>
-<ul>
-<li>注册任务，say是任务名</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  gulp.task(&apos;copy&apos;,function()&#123;</div><div class="line">  //当gulp执行say任务时，会自动执行该函数</div><div class="line">  //console.log(&apos;say&apos;);</div><div class="line">  //合并，压缩之类的操作</div><div class="line">  //gulp.src：取一个文件</div><div class="line">  gulp.src(&apos;./src/index.html&apos;)</div><div class="line">  .pipe(gulp.dest(&apos;dist/&apos;));//将此处需要的操作传递进去,相当于一个环节</div><div class="line">  //.pipe()可以多次，比如先压缩再放入另一个文件夹</div><div class="line">  //dest是目的地的意思，不需要写文件名，原来是什么名字现在就是什么名字。</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">gulp.task(&apos;dist&apos;,function () &#123;</div><div class="line">  gulp.watch(&apos;./src/index.html&apos;,[&apos;copy&apos;]);</div><div class="line">  //watch是监视参数一文件，一旦发生变法，执行参数二任务。</div><div class="line">  gulp.watch(&apos;./styles/demo.less&apos;,[&apos;style&apos;]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>执行</li>
-</ul>
-<hr>
-<pre><code>然后切换到项目目录，因为在之前已经全局安装了gulp
-此处执行gulp 任务名即可
-</code></pre><hr>
-<h1 id="gulp插件"><a href="#gulp插件" class="headerlink" title="gulp插件"></a><strong>gulp插件</strong></h1><hr>
-<pre><code>转换less到css，需要用到插件gulp-less
-切换到项目目录： npm install gulp-less --save-dev
-</code></pre><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var less=require(&apos;gulp-less&apos;);</div><div class="line">gulp.task(&apos;style&apos;,function () &#123;</div><div class="line">  gulp.src(&apos;./styles/*.less&apos;)//*通配所有less文件</div><div class="line">  .pipe(less())</div><div class="line">  .pipe(gulp.dest(&apos;dist/css/&apos;));</div><div class="line">&#125;);</div><div class="line">//css压缩，插件gulp-cssnano</div><div class="line">//多个文件合并：gulp-concat</div><div class="line">var concat=require(&apos;gulp-concat&apos;);</div><div class="line">gulp.task(&apos;scripts&apos;,function () &#123;</div><div class="line">  return gulp.src(&apos;./lib/*.js&apos;)</div><div class="line">  .pipe(concat(&apos;all.js&apos;))</div><div class="line">  .pipe(gulp.dest(&apos;./dist/&apos;));</div><div class="line">  //把lib文件下所有js文件，合并到all.js并且输出到dist文件夹下面，名称还是all。</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<blockquote>
-<p>gulp四个api：watch task dest src .</p>
-</blockquote>
-<h1 id="其他常用gulp插件"><a href="#其他常用gulp插件" class="headerlink" title="其他常用gulp插件"></a>其他常用gulp插件</h1><ol>
-<li>最小化js:gulp-uglify</li>
-<li>创建本地服务器：gulp-connect</li>
-<li>重命名文件：gulp-rename</li>
-<li>压缩html:gulp-minify-html</li>
-<li>最小化图像：gulp-imagemin</li>
-</ol>
-<h1 id="强大gulp插件"><a href="#强大gulp插件" class="headerlink" title="强大gulp插件"></a>强大gulp插件</h1><h2 id="browsersync功能强大（gulp-connect没有其强大）"><a href="#browsersync功能强大（gulp-connect没有其强大）" class="headerlink" title="browsersync功能强大（gulp-connect没有其强大）"></a>browsersync功能强大（gulp-connect没有其强大）</h2><blockquote>
-<p><a href="https://browsersync.io/docs/gulp" target="_blank" rel="external">https://browsersync.io/docs/gulp</a></p>
-</blockquote>
-<h3 id="使用步骤："><a href="#使用步骤：" class="headerlink" title="使用步骤："></a>使用步骤：</h3><ul>
-<li>切换到项目目录</li>
-<li>执行npm install browser-sync gulp –save-dev</li>
-<li>代码</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var gulp        = require(&apos;gulp&apos;);</div><div class="line">var browserSync = require(&apos;browser-sync&apos;).create();</div><div class="line">gulp.task(&apos;browser-sync&apos;, function() &#123;</div><div class="line">    browserSync.init(&#123;</div><div class="line">        server: &#123;</div><div class="line">            baseDir: &quot;./&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>其中baseDir./指的是当前项目根目录
-当执行完毕之后，多个窗口可以同步滚动，而且保存代码之后不需要刷新
-另外命令行UI关键字之后会打印出本机管理页面的地址，复制到浏览器可以进入browserSync后台
-其他几个关键字，还包括，其他人要访问后台的ip地址等，大家可以试试。
-</code></pre><hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3131,7 +3228,7 @@ public partial class Person{}
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

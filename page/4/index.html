@@ -280,6 +280,216 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Java查漏补缺（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/Java查漏补缺（一）/" itemprop="url">Java查漏补缺（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<pre><code>Java不能少，隔三差五回头看看还是很有必要的，^_~
+准备用几篇文章对java来个泛复习。
+</code></pre><hr>
+<h1 id="Java开始"><a href="#Java开始" class="headerlink" title="Java开始"></a><strong>Java开始</strong></h1><h2 id="第一部分"><a href="#第一部分" class="headerlink" title="第一部分"></a><strong>第一部分</strong></h2><blockquote>
+<ul>
+<li>关键字都是小写</li>
+<li>标识符：字母数字下划线，美元符号，不能用数字开头。</li>
+<li>一个二进制位被称为位，bit.1字节byte=8bit。</li>
+<li>二进制三位一组合形成八进制。</li>
+<li>二进制四位一组合形成十进制。</li>
+<li>二进制转八进制，十六进制，分别三位一组和，四位一组合计算出来十进制，拼接即可。</li>
+<li>正数源码，反码补码都相同，几乎相当于二进制，只是最前面一位是符号位，（正数符号位为0，负数符号位1）。负数的反码，符号位不变，其他取反，0变1，1变0.补码，符号位不变，在反码基础上加1.</li>
+<li>引用数据类型：类，接口，数组。</li>
+<li>基本数据类型（数值型）：byte short int long,分别是1字节，2字节，4字节，8字节。float:4字节，double8字节。<br>还有char:2字节，boolean：1字节。</li>
+<li>定义long=12748392834L必须加l或L。</li>
+<li>浮点型默认是double类型，所以定义float=12.5f必须加f或F。</li>
+<li>隐式转换：long虽然8字节，float是4字节，但是long会自动转换为float,因为float更精确，但是必须long的数字小于float才有效。</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">**笔试题：**</div><div class="line">byte a=3;</div><div class="line">byte b=4;</div><div class="line">byte c=a+b;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>解析：会报错，因为byte ,short ,int（但是不包括long）计算时候会自动转换成int在计算，所以此时相当于int复制给byte。但是byte c=3+4;不报错，因为对于常量，jvm会先计算常量计算结果在确定是否损失精度。
+</code></pre><hr>
+<blockquote>
+</blockquote>
+<ul>
+<li>ascii码：’a’:97,’A’:65 ,’0’:48。</li>
+<li>%：3%5=3;左边小于右边，值为左边，还有，如果有符号，不论什么情况下，都是值符号和左边数字一致。</li>
+<li>String s=5+5+”hello”;结果：10hello</li>
+<li>String s=”hello”+5+5;结果：hello55。之所以两种结果不同，是因为从左往右运算照成。对比：char a=’h’;</li>
+<li>System.out.println(a+1);结果为105.区分char加数字和字符串加数字。</li>
+<li>逻辑异或^:两边相同为假，不同为真。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Scanner scanner=new Scanner(System.in);</div><div class="line">int number=scanner.nextInt();</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>switch中default可以放在任何位置，但是它是最后执行的，放在最后其break可以省略，但是放在前面时候不行，因为会紧接着不经过判断执行下一个紧挨着的，直到遇到下一个break才会停止。</li>
+<li>标号结束循环,可以使用break或者continue退出多层循环。</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">wc:for (int i = 0; i &lt; 4; i++) &#123;</div><div class="line">			for (int j = 0; j &lt; 3; j++) &#123;</div><div class="line">				System.out.println(&quot;*&quot;);</div><div class="line">				break wc;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	另外注意，break和continue在非循环判断最好别使用，因为如下是错误的，会报错：</div><div class="line">	if(x&gt;2)&#123;</div><div class="line">		x=3;</div><div class="line">		break;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h2 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a><strong>第二部分</strong></h2><blockquote>
+<ul>
+<li>函数结束是到return结束，而不是大括号结束。</li>
+<li>函数案例：<br>  public static int maxM(int a,int b) {<pre><code>return a&gt;b?a:b;
+</code></pre>  }<br>  注意形式参数必须有类型，为了能被调用最好是static。</li>
+<li>函数重载:函数名相同，参数列表不同（个数或类型不同）,与返回值无关。方法重载是让类以统一的方式处理不同类型数据的一种手段。多个同名函数同时存在，具有不同的参数个数/类型。<br>如果不是重载方法，同一类中不能存在函数名相同的函数（方法）。</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public static void name(String name) &#123;</div><div class="line">	System.out.println(name);</div><div class="line">&#125;</div><div class="line">public static void name(String name,int number) &#123;</div><div class="line">	System.out.println(name+&quot;.....&quot;+number);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>定义数组（引用类型：放在堆里面（new出来的），堆内存使用完毕不会立即回收，java虚拟机会在不确定时间回收，效率低，都有内存地址，都有默认值。而基本类型放在栈里,栈里面的存储局部变量，使用完毕会被回收，效率高）</li>
+<li>方式一、int[] arr=new int[5];</li>
+<li>变形：int arr[]=new int[5];</li>
+<li>方式二、int[] arr={1，2，3，4};</li>
+<li>方式三、int[] arr=new int[5]{};</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">案例：int[] arr=&#123;&#125;;</div><div class="line">int[] arr=new int[5];</div><div class="line">System.out.println(arr[0]);</div><div class="line">第一个格式错误报错，第二个有默认值，会输出0.</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>二维数组<br>  -定义方式一、int[][] arr=new int[2][3];<br>  -定义方式二、int[][] arr=new int[2][];</li>
+<li>基本类型：形式参数值的改变对实际参数无影响。<br>引用类型：形式参数的改变直接影响实际参数。<br>注解：引用类型，赋给的是地址，所以改变就改变了，来自于同一个堆内存的的同一个区域。<br>基本类型，都是在栈内存开辟新的，对于原来无影响。</li>
+<li>属性：成员变量，类中方法外的变量。<br>行为：成员方法<br>成员变量和局部变量区别：<br>成员变量随对象存在而存在，对象不存在也消失<br>成员变量因为在另一个类使用时，也是先new出来其所在对象，所以即使成员变量<br>是类似于String这种类型，也是在堆内存中，所以都有初始值。<br>局部变量：方法中，或方法形式参数。<br>局部变量没有默认值，存储在栈中，随着方法而存在消失。</li>
+<li>匿名对象：<br>一、当对方法只进行一次调用时候使用。<br>二、作为实际参数进行传递时候使用。</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"> ①public class three &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		//匿名对象</div><div class="line">		new Student().name();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">class Student&#123;</div><div class="line">	String name;</div><div class="line">	int age;</div><div class="line">	public void name() &#123;</div><div class="line">		System.out.println(&quot;名字是：&quot;+name);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">②public class three &#123;</div><div class="line"></div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		// TODO Auto-generated method stub</div><div class="line">		Student student=new Student();</div><div class="line">		//匿名对象只调用一次时使用。同时包括作为实际参数传递时候使用。</div><div class="line">		new Test().show(student);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">class Student&#123;</div><div class="line">	String name;</div><div class="line">	int age;</div><div class="line">	public void name() &#123;</div><div class="line">		System.out.println(&quot;名字是：&quot;+name);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">class Test&#123;</div><div class="line">	public void show(Student s) &#123;</div><div class="line">		s.name=&quot;哈哈&quot;;</div><div class="line">		s.name();</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Java查漏补缺（五）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2337,226 +2547,6 @@ void change(struct Person *p){};//指针，会属性修改值
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/C语言笔记_04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Qiang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="飞奔的小猿猴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/C语言笔记_04/" itemprop="url">C语言笔记_04(指针相关)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C语言/" itemprop="url" rel="index">
-                    <span itemprop="name">C语言</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="指针基本概念"><a href="#指针基本概念" class="headerlink" title="指针基本概念"></a>指针基本概念</h1><hr>
-<pre><code>指针就是用来专门(只能存储地址)保存地址的
-定义指针变量：数据类型 *变量名称.
-int *p;
-p=&amp;num；
-在64位编译器，指针占用8个字节
-</code></pre><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">void change(int *v)&#123;</div><div class="line">//    v=50;这样写不对，这相当于把50存储到p当中，但是p是指针变量，只能存储指针(地址)</div><div class="line">    *v=50;//把50赋值给v存储的内存地址对应的内存空间</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int num=1;</div><div class="line">    change(&amp;num);</div><div class="line">    printf(&quot;%d\n&quot;,num);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">结论:*v==num  v=&amp;num</div><div class="line">案例：//编写函数交换两个变量的值</div><div class="line">void swf(int *v1,int *v2)&#123;</div><div class="line">    *v1=*v1^*v2;</div><div class="line">    *v2=*v1^*v2;</div><div class="line">    *v1=*v1^*v2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int a=1;</div><div class="line">    int b=2;</div><div class="line">    swf(&amp;a,&amp;b);</div><div class="line">    printf(&quot;%d...%d&quot;,a,b);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>注意点：
-1.指针只能保存地址
-2.同一个变量可以有多个指针指向它
-3.指针的指向可以修改
-4.不要访问野指针
-5.指针类型是什么类型，就只能指向什么类型的数据
-</code></pre><hr>
-<h1 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    char charValue=&apos;l&apos;;</div><div class="line">    char *charValueP;</div><div class="line">    charValueP=&amp;charValue;</div><div class="line">    char **charValuePP;</div><div class="line">    charValuePP=&amp;charValueP;</div><div class="line">    //修改charValue的值</div><div class="line">    //charValue=&apos;n&apos;;</div><div class="line">//    *charValueP=&apos;n&apos;;</div><div class="line">//    **charValuePP=&apos;n&apos;;</div><div class="line">//    三者等效，都可以实现修改值</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="指针类型"><a href="#指针类型" class="headerlink" title="指针类型"></a>指针类型</h1><blockquote>
-<p>指针为什么要有类型？<br>系统会自动根据指针的类型来确定应该取多少个字节的值</p>
-</blockquote>
-<h1 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h1><blockquote>
-<p>指针+1：其实是加上指针类型所占用长度，例如int类型就是加4</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int arr[]=&#123;1,3,5&#125;;</div><div class="line">    int *p=arr;//arr就是数组内存地址，也是首元素地址</div><div class="line">    for (int a=0; a&lt;sizeof(arr)/sizeof(arr[0]); a++) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,*(p++));//p++就是p+1,p+1就是arr[值]的地址，加上*就是元素值。</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="指针和字符串"><a href="#指针和字符串" class="headerlink" title="指针和字符串"></a>指针和字符串</h1><hr>
-<pre><code>指针保存字符串：char *name=&quot;qiang&quot;;
-//通过指针保存一个字符串，其实保存的就是字符串第0个元素的地址，也是字符串的地址
-    char *name=&quot;qiang&quot;;
-    printf(&quot;%p\n&quot;,&amp;name[0]);//0x100000fa2
-    printf(&quot;%p\n&quot;,name);//0x100000fa2
-
-指针保存字符串和数组保存字符串区别：
-数组保存字符串是一个变量，可以修改，存储在栈中，作用域结束会被释放
-指针保存字符串是一个常量，不可修改，存储在常量区中，不会被释放，而且多个相同值对应地址相同。
-</code></pre><hr>
-<h1 id="指针数组"><a href="#指针数组" class="headerlink" title="指针数组"></a>指针数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> char *names[4]=&#123;</div><div class="line">        &quot;lmj&quot;,</div><div class="line">        &quot;lnj&quot;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h1 id="指针变量作用"><a href="#指针变量作用" class="headerlink" title="指针变量作用"></a>指针变量作用</h1><hr>
-<pre><code>案例：
-void change(int *arr){//此处传递过来是数组名，又因为数组名就是地址，所以也可以使用指针接收。
-    arr[0]=100;
-}
-int main(int argc,const char *argv[]) {
-    int arr[]={1,2,3,4};
-    change(arr);
-    printf(&quot;%d\n&quot;,arr[0]);
-    return 0;
-}
-案例二：
-char *get1(){
-    char *name=&quot;lnj&quot;;
-    return name;
-}
-char *get2(){
-    char name[]=&quot;lnj&quot;;
-    return name;
-}
-int main(int argc,const char *argv[]) {
-    char *v1=get1();
-    char *v2=get2();
-    printf(&quot;%s&quot;,v1);//输出lnj，此时v1是指针保存字符串，存储在常量区中不会被销毁
-    printf(&quot;%s&quot;,v2);//输出为空，此时v2是数组保存字符串，存储在栈中，即使返回了地址，但是栈中字符串随大括号结束被释放，地址已经无效了。
-    return 0;
-}
-案例三：实现strlen函数
-int myStrlen(char *str){
-    int count=0;
-    while(*str++){//因为如果到了最后\0的部分，\0字符的ascii编码是0，C语言中0就是代表假。
-        count++;
-    }
-    return count;
-}
-</code></pre><hr>
-<h1 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h1><hr>
-<pre><code>函数名就是函数的地址
-指向函数的指针的定义格式：
-void (*指针名称)()：没有返回值没有参数的函数指针
-int (*sum)(int ,int)
-</code></pre><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">void test()&#123;</div><div class="line">    printf(&quot;执行了&quot;);</div><div class="line">&#125;</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    void(*functionP)();</div><div class="line">    functionP=test;//test函数名就是函数内存地址</div><div class="line">    (*functionP)();//*functionP代表就是指向函数内存空间。</div><div class="line">    //在mac上面functionP()等效于上面一句</div><div class="line">    printf(&quot;%p\n&quot;,test);</div><div class="line">    printf(&quot;%p\n&quot;,functionP);</div><div class="line">    printf(&quot;%p&quot;,*functionP);//三者输出地址一样</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">函数指针应用场景：通过案例说明</div><div class="line">int sum(int v1,int v2)&#123;</div><div class="line">    return v1+v2;</div><div class="line">&#125;</div><div class="line">int del(int v1,int v2)&#123;</div><div class="line">    return v1-v2;</div><div class="line">&#125;</div><div class="line">int demo(int v1,int v2,int (*p)(int ,int))&#123;</div><div class="line">    return p(v1,v2);</div><div class="line">&#125;</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    demo(1,2,sum);</div><div class="line">    demo(1,2,del);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2607,7 +2597,7 @@ int (*sum)(int ,int)
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">46</span>
+                <span class="site-state-item-count">47</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
