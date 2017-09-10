@@ -280,6 +280,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/java和node.js基于tcp通信/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/java和node.js基于tcp通信/" itemprop="url">java和node.js基于tcp通信</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="java和node-js基于tcp通信"><a href="#java和node-js基于tcp通信" class="headerlink" title="java和node.js基于tcp通信"></a>java和node.js基于tcp通信</h1><h2 id="案例说明：tcp发送数据给服务器并接收回返数据，关闭socket"><a href="#案例说明：tcp发送数据给服务器并接收回返数据，关闭socket" class="headerlink" title="案例说明：tcp发送数据给服务器并接收回返数据，关闭socket"></a>案例说明：tcp发送数据给服务器并接收回返数据，关闭socket</h2><blockquote>
+<p>java代码部分</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">public class test &#123;</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">	//字符串缓冲流,StringBuffer必须这样初始化</div><div class="line">	//直接StringBuffer sBuffer；是无效的，会报空指针</div><div class="line">	StringBuffer sBuffer=new StringBuffer();</div><div class="line">	String sayString=&quot;我是客户端发送的数据&quot;;</div><div class="line">	Socket socket;</div><div class="line">	try &#123;</div><div class="line">		socket = new Socket();</div><div class="line">		//之所以不直接把ip端口号放到构造方法就是为了设置socket请求超时时间</div><div class="line">		  SocketAddress endpoint = new InetSocketAddress(&quot;192.168.0.27&quot;,3000);</div><div class="line">        socket.connect(endpoint, 4000);//设置连接服务器超时为4秒钟</div><div class="line">		//这个超时指的是，接收到输入流之后read耗费的超时时间</div><div class="line">		socket.setSoTimeout(1000);</div><div class="line">		//输出流</div><div class="line">		OutputStream osStream=socket.getOutputStream();</div><div class="line">		osStream.write(sayString.getBytes());</div><div class="line">		//输入流</div><div class="line">		InputStream isInputStream=socket.getInputStream();</div><div class="line">		//这只是一个包装流，直接使用InputStream也是一样的</div><div class="line">		DataInputStream dsStream=new DataInputStream(isInputStream);</div><div class="line">		int len=0;</div><div class="line">		byte[] by=new byte[1024];</div><div class="line">		while ((len=dsStream.read(by))!=-1) &#123;</div><div class="line">			String infoString=new String(by,0,len);</div><div class="line">			sBuffer.append(infoString);</div><div class="line">		&#125;</div><div class="line">		dsStream.close();</div><div class="line">		isInputStream.close();</div><div class="line">	&#125;catch (IOException e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">	&#125;</div><div class="line">	System.out.println(sBuffer.toString());</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>node.js服务端部分</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">const net=require(&apos;net&apos;);</div><div class="line">net.createServer(function (socket) &#123;</div><div class="line">    console.log(&apos;端口：&apos;+socket.remotePort+&apos; 连接了服务器！&apos;);</div><div class="line">    socket.on(&apos;data&apos;,function (data) &#123;</div><div class="line">        console.log(&apos;client say:&apos;+data.toString(&apos;utf-8&apos;));</div><div class="line">        socket.write(&apos;服务器：&apos;+data);</div><div class="line">        socket.end();</div><div class="line">    &#125;);</div><div class="line">    socket.on(&apos;close&apos;,function() &#123;</div><div class="line">         console.log(&apos;端口：&apos;+socket.remotePort+&apos; 断开了服务器！&apos;);</div><div class="line">     &#125;);</div><div class="line">&#125;).listen(3000,&apos;192.168.0.27&apos;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>该日志意义所在，inputstream在通过while然后read返回－1在读取文件时候<br>是可行的，因为文件有结束标志，但是此时是server端返回的是没有结束标志的<br>而inputstream会因此而一直阻塞在此，但是我们需求是在接收完数据，while<br>之后，我们需要关闭socket通信，但是java代码这边因为阻塞，一直停留在<br>while的（）那不动，故而后面代码是无法执行的，也就是说即使后面关闭连接也<br>无效.但是此时在node.js之后添加一句socket.end();就会关闭此时端口<br>socket，而java代码部分，在此句之后，会接收到结束标志,也就是判断结果会<br>为－1从而执行后面关闭代码。</p>
+</blockquote>
+<h2 id="对比文件读取"><a href="#对比文件读取" class="headerlink" title="对比文件读取"></a>对比文件读取</h2><blockquote>
+<p>java代码部分：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">//文件读取部分</div><div class="line">		StringBuffer sbBuffer=new StringBuffer();</div><div class="line">		BufferedReader brReader=null;</div><div class="line">		try &#123;</div><div class="line">			//类似的有FileWriter，注意FileWriter如果文件不存在会自动创建</div><div class="line">			FileReader frReader=new FileReader(&quot;b.txt&quot;);</div><div class="line">			//包装而已，为了高效，也可以直接使用FileReader</div><div class="line">			brReader=new BufferedReader(frReader);</div><div class="line">			int len=0;</div><div class="line">			char[] by=new char[1024];</div><div class="line">				while ((len=brReader.read(by))!=-1) &#123;</div><div class="line">					String info=new String(by,0,len);</div><div class="line">					sbBuffer.append(info);</div><div class="line">				&#125;</div><div class="line">		&#125; catch (IOException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;finally&#123;</div><div class="line">			//如果流为空关闭即可</div><div class="line">			if (brReader==null) &#123;</div><div class="line">				try &#123;</div><div class="line">					brReader.close();</div><div class="line">				&#125; catch (IOException e) &#123;</div><div class="line">					// TODO Auto-generated catch block</div><div class="line">					e.printStackTrace();</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		System.out.println(sbBuffer.toString());</div></pre></td></tr></table></figure>
+<blockquote>
+<p>此代码是直接可以结束的，因为文件读取有结束标志</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Java查漏补缺（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2359,194 +2518,6 @@ int const num=2;
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/C语言笔记_05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Qiang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="飞奔的小猿猴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/C语言笔记_05/" itemprop="url">C语言笔记_05(结构体相关)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C语言/" itemprop="url" rel="index">
-                    <span itemprop="name">C语言</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="结构体基本概念"><a href="#结构体基本概念" class="headerlink" title="结构体基本概念"></a>结构体基本概念</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">定义结构体：</div><div class="line">struct 结构体类型名称&#123;</div><div class="line">    属性</div><div class="line">&#125;;</div><div class="line">例如：</div><div class="line">struct Person&#123;//定义结构体类型</div><div class="line">    //char name[20];//这是数组，所以下面不能在定义之后，进行一次性初始化</div><div class="line">    char *name;//最后定义指针，这样下面就可以这样初始化，p.name=&quot;lnj&quot;;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>struct Person p;//定义结构体变量<br>定义同时初始化:struct Dog={“wc”,12,5.0};<br>先定义之后，然后一次性初始化：<br>struct Dog d1;<br>d1=(struct Dog){“xq”,6,7.0};类似于强制类型装换<br>还可以通过结构体名，逐个初始化例如：d1.name=”xc”；<br>将值赋值给指定属性：<br>struct Dog d1={.height=1.73，.name=”wc”};</p>
-</blockquote>
-<hr>
-<pre><code>注意：
-结构体内部属性内存寻址是从小到大
-结构体名称并不是结构体地址
-结构体地址第0个属性的地址
-结构体占用内存空间：查找所有属性中占用内存空间最大的属性，然后按照
-属性的倍数(比如说一倍，两倍等，系统自动设置倍数)分配内存空间，类似
-于比如有8个字节的属性，先创建一个8字节的内存空间，用完之后，在开辟
-一个，如果最后比如说剩下四个字节，但是只有一个char(一个字节)需要存
-储的时候，则不在开辟了，多余空间就不需要管了。
-定义结构体变量的时候才会分配内存空间
-</code></pre><hr>
-<h1 id="类型定义方式"><a href="#类型定义方式" class="headerlink" title="类型定义方式"></a>类型定义方式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">方式一：基本定义方式</div><div class="line">struct Person&#123;</div><div class="line">    char *name;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125;;</div><div class="line">struct Person p;</div><div class="line">方式二：定义结构体类型同时定义结构体变量</div><div class="line">struct Person&#123;</div><div class="line">    char *name;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125; p;</div><div class="line">方式三：定义结构体类型的同时定义结构体变量，并省略结构体名称</div><div class="line">struct&#123;</div><div class="line">    char *name;</div><div class="line">    int age;</div><div class="line">    double height;</div><div class="line">&#125; p;</div><div class="line">弊端：此时其他地方不能使用该结构体</div><div class="line">有事：只用一次的十分方便</div></pre></td></tr></table></figure>
-<h1 id="结构体作用域"><a href="#结构体作用域" class="headerlink" title="结构体作用域"></a>结构体作用域</h1><blockquote>
-<p>如果结构体定义在函数或者代码块内部，则结构体作用域和变量相同。</p>
-</blockquote>
-<h1 id="指向结构体的指针"><a href="#指向结构体的指针" class="headerlink" title="指向结构体的指针"></a>指向结构体的指针</h1><hr>
-<pre><code>定义指向结构体的指针：
-   struct Person{
-        int age;
-        char *name;
-        double height;
-    };
-    struct Person p={30,&quot;lnj&quot;,1.75};
-    //定义指针
-    struct Person *pp;
-    pp=&amp;p;
-    (*pp).age=40;//必须加括号，因为。运算符的优先级高于*
-    pp-&gt;height=20.0;//还可以通过这种方式赋值修改值
-    printf(&quot;%d\n&quot;,(*pp).age);
-    printf(&quot;%lf\n&quot;,(*pp).height);//lf:针对的是double类型的占位符
-    printf(&quot;%f\n&quot;,pp-&gt;height);
-</code></pre><hr>
-<h1 id="结构体数组"><a href="#结构体数组" class="headerlink" title="结构体数组"></a>结构体数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">struct Bumen&#123;</div><div class="line">    char *name;</div><div class="line">    int count;</div><div class="line">&#125;;</div><div class="line">struct Bumen bumens[3]=&#123;</div><div class="line">    &#123;&quot;ios&quot;,12&#125;,</div><div class="line">    &#123;&quot;android&quot;,20&#125;,</div><div class="line">    &#123;&quot;php&quot;,30&#125;</div><div class="line">&#125;;</div><div class="line">printf(&quot;%d\n&quot;,bumens[0].count);</div></pre></td></tr></table></figure>
-<h1 id="结构体嵌套"><a href="#结构体嵌套" class="headerlink" title="结构体嵌套"></a>结构体嵌套</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    struct Date&#123;</div><div class="line">        int year;</div><div class="line">        int month;</div><div class="line">        int day;</div><div class="line">    &#125;;</div><div class="line">    struct Person&#123;</div><div class="line">        int age;</div><div class="line">        char *name;</div><div class="line">        struct Date birth;</div><div class="line">        struct Date time;</div><div class="line">    &#125;;</div><div class="line">    //赋值方式</div><div class="line">    struct Person p=&#123;</div><div class="line">        20,</div><div class="line">        &quot;lnj&quot;,</div><div class="line">        &#123;</div><div class="line">            1980,</div><div class="line">            1,</div><div class="line">            15</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            1980,</div><div class="line">            1,</div><div class="line">            15</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="结构体和函数"><a href="#结构体和函数" class="headerlink" title="结构体和函数"></a>结构体和函数</h1><hr>
-<pre><code>结构体的属性传递给函数，在函数中修改形参不会影响到实参
-结构体名称作为参数传递，函数中修改形参不会影响到实参，结构体之间是值传递。
-例如把结构体p1赋值给p2，则p1中属性修改不会影响到p2属性值
-案例：函数中参数是结构体的写法
-void change(struct Person p){};//不会修改属性值
-void change(struct Person *p){};//指针，会属性修改值
-</code></pre><hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2597,7 +2568,7 @@ void change(struct Person *p){};//指针，会属性修改值
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2608,7 +2579,7 @@ void change(struct Person *p){};//指针，会属性修改值
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

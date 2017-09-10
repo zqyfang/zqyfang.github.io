@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="变量取值范围 Byte: -128~127  1字节 8bit Short:-32768~32767  2字节 Int:-2147483648~2147483647 4字节 Long:-9223372036854775807~9223372036854775807  8字节 Float:小数，小数点可以精确到6位 Double：小数，小数点可以精确到15-16位 String:字符串，用&amp;quot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin基础">
+<meta property="og:url" content="http://yoursite.com/2017/09/10/Kotlin基础/index.html">
+<meta property="og:site_name" content="飞奔的小猿猴">
+<meta property="og:description" content="变量取值范围 Byte: -128~127  1字节 8bit Short:-32768~32767  2字节 Int:-2147483648~2147483647 4字节 Long:-9223372036854775807~9223372036854775807  8字节 Float:小数，小数点可以精确到6位 Double：小数，小数点可以精确到15-16位 String:字符串，用&amp;quot">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-09-10T12:18:19.585Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin基础">
+<meta name="twitter:description" content="变量取值范围 Byte: -128~127  1字节 8bit Short:-32768~32767  2字节 Int:-2147483648~2147483647 4字节 Long:-9223372036854775807~9223372036854775807  8字节 Float:小数，小数点可以精确到6位 Double：小数，小数点可以精确到15-16位 String:字符串，用&amp;quot">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/10/Kotlin基础/"/>
+
+
+
+
+
+  <title>Kotlin基础 | 飞奔的小猿猴</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">飞奔的小猿猴</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/Kotlin基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kotlin基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-10T11:05:43+08:00">
+                2017-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">Kotlin</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="变量取值范围"><a href="#变量取值范围" class="headerlink" title="变量取值范围"></a>变量取值范围</h1><hr>
+<pre><code>Byte: -128~127  1字节 8bit
+Short:-32768~32767  2字节
+Int:-2147483648~2147483647 4字节
+Long:-9223372036854775807~9223372036854775807  8字节
+Float:小数，小数点可以精确到6位
+Double：小数，小数点可以精确到15-16位
+String:字符串，用&quot;&quot;双引号引起来的字符串都可以存
+</code></pre><hr>
+<h1 id="常量变量"><a href="#常量变量" class="headerlink" title="常量变量"></a>常量变量</h1><blockquote>
+<p>var  变量<br> val  常量</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		var i=100</div><div class="line">	//	i=100000000000  上面(自动类型推断)是Int类型,而此时赋值已经超过了int类型取值范围，报错</div><div class="line">		//显式声明变量类型</div><div class="line">		val j:Long=10000000000</div><div class="line">		println(j)</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">演化案例：</div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		val max_Int:Int=Int.MAX_VALUE</div><div class="line">		val min_Int:Int=Int.MIN_VALUE</div><div class="line">		println(max_Int)</div><div class="line">		println(min_Int)</div><div class="line">		val b:Byte=0b0011</div><div class="line">		println(b)</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>输出：
+2147483647
+-2147483648
+3
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">返回值案例：</div><div class="line">	fun main(args: Array&lt;String&gt;):Unit &#123;</div><div class="line">		println(&quot;a+b=&quot;+add(2,8))</div><div class="line">	&#125;</div><div class="line">	fun add(a:Int,b:Int):Int&#123;</div><div class="line">		return a+b</div><div class="line">	&#125;</div><div class="line">	说明：Unit就是无返回值，可以省略不写</div></pre></td></tr></table></figure>
+<h1 id="字符串模板"><a href="#字符串模板" class="headerlink" title="字符串模板"></a>字符串模板</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		println(test(&quot;曾强&quot;))</div><div class="line">	&#125;</div><div class="line">	fun test(name:String):String&#123;</div><div class="line">		var str=&quot;&quot;&quot;</div><div class="line">				我啊发不是法术反射看不出$&#123;name&#125;啊师范</div><div class="line">	 啊师范就NSA浪费你$&#123;name.length&#125;vksd</div><div class="line">	 &quot;&quot;&quot;</div><div class="line">		return str</div><div class="line">	&#125;</div><div class="line">	说明：三个双引号，是可换行字符串</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">条件判断案例：</div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		println(&quot;传入的大值是$&#123;test(1,2)&#125;&quot;)</div><div class="line">	&#125;</div><div class="line">	fun test(a:Int,b:Int):Int&#123;</div><div class="line">		if (a&gt;b) return a else return b</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">字符串比较案例：</div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		var t1=&quot;Ad&quot;</div><div class="line">		var t2=&quot;ad&quot;</div><div class="line">		println(t1==t2)</div><div class="line">		println(t1.equals(t2))</div><div class="line">		println(t1.equals(t2,true))</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	输出：</div><div class="line">	false</div><div class="line">	false</div><div class="line">	true</div><div class="line">	</div><div class="line">	说明：==和equal效果相同，equal参数二true代表忽略大小写，</div><div class="line">	默认是false。</div></pre></td></tr></table></figure>
+<h1 id="空值处理"><a href="#空值处理" class="headerlink" title="空值处理"></a>空值处理</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		println(test(null))</div><div class="line">	&#125;</div><div class="line">	fun test(str:String?):String&#123;</div><div class="line">		return &quot;热&quot;+str</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	输出：热null，String后面加上?是为了允许传入空值，不加默认传入null</div><div class="line">	会报错，这就是kotlin的null预判断。</div></pre></td></tr></table></figure>
+<h1 id="when表达式"><a href="#when表达式" class="headerlink" title="when表达式"></a>when表达式</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">说明：when表达式是替换java中switch功能</div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		println(test(1))</div><div class="line">	&#125;</div><div class="line">	fun test(num:Int):String&#123;</div><div class="line">		val result=when(num)&#123;</div><div class="line">			1-&gt;&quot;一&quot;</div><div class="line">			2-&gt;&quot;二&quot;</div><div class="line">			else-&gt;&quot;其他数据&quot;</div><div class="line">		&#125;</div><div class="line">		return result</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h1 id="Loop和Range"><a href="#Loop和Range" class="headerlink" title="Loop和Range"></a>Loop和Range</h1><blockquote>
+<p>闭区间：[a,b] a到b,包括a,b<br>  开区间：(a,b) a到b,不包括a，b</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">闭区间基本案例：</div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		var nums=1..100</div><div class="line">		var result=0</div><div class="line">		for(num in nums)&#123;</div><div class="line">			result+=num</div><div class="line">		&#125;</div><div class="line">		println(&quot;结果$&#123;result&#125;&quot;)</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	输出：结果5050</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">半开区间基本案例：</div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">	var nums=1 until 100 [1,100)</div><div class="line">	var result=0</div><div class="line">	for(num in nums)&#123;</div><div class="line">		result+=num</div><div class="line">	&#125;</div><div class="line">	println(&quot;结果$&#123;result&#125;&quot;)</div><div class="line">&#125;</div><div class="line">输出：结果4950</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">其他api案例：</div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		var nums=1 until 10</div><div class="line">		println(&quot;集合长度是$&#123;nums.count()&#125;&quot;)</div><div class="line">		var temp=nums.reversed()//反转集合</div><div class="line">		println(temp)</div><div class="line">		for(t in temp step 2)&#123;  //step步长，输出第一个，然后隔步长在输出</div><div class="line">			println(t)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	输出：</div><div class="line">	集合长度是9</div><div class="line">	9 downTo 1 step 1</div><div class="line">	9</div><div class="line">	7</div><div class="line">	5</div><div class="line">	3</div><div class="line">	1</div></pre></td></tr></table></figure>
+<h1 id="list和Map"><a href="#list和Map" class="headerlink" title="list和Map"></a>list和Map</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">List基本案例：</div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		var lists=listOf(&quot;一&quot;,&quot;二&quot;,&quot;三&quot;)</div><div class="line">		for(list in lists)&#123;</div><div class="line">			println(list)</div><div class="line">		&#125;</div><div class="line">		for((index,value) in lists.withIndex())&#123;</div><div class="line">			println(&quot;$index,$value&quot;)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	输出：</div><div class="line">		一</div><div class="line">		二</div><div class="line">		三</div><div class="line">		0,一</div><div class="line">		1,二</div><div class="line">		2,三</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">Map基本案例：</div><div class="line">	import java.util.TreeMap</div><div class="line"></div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		var map = TreeMap&lt;String, String&gt;()</div><div class="line">		map[&quot;一&quot;]=&quot;一&quot;</div><div class="line">		map[&quot;二&quot;]=&quot;二&quot;</div><div class="line">		map[&quot;三&quot;]=&quot;三&quot;</div><div class="line">		println(map[&quot;一&quot;])</div><div class="line">		for(m in map)&#123;</div><div class="line">			println(m)</div><div class="line">		&#125;</div><div class="line">		for(k in map.keys)&#123;</div><div class="line">			println(k)</div><div class="line">		&#125;</div><div class="line">		for(v in map.values)&#123;</div><div class="line">			println(v)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	输出：</div><div class="line">	一</div><div class="line">	一=一</div><div class="line">	三=三</div><div class="line">	二=二</div><div class="line">	一</div><div class="line">	三</div><div class="line">	二</div><div class="line">	一</div><div class="line">	三</div><div class="line">	二</div><div class="line">	eclipse导包快捷键ctrl+Shift+O</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>补充：函数式表达式
+var i={x:Int,y:Int-&gt;x+y}
+var j:(Int,Int)-&gt;Int={x,y-&gt;x+y}
+</code></pre><hr>
+<h1 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">import java.util.TreeMap</div><div class="line">var Pi=3.14f</div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">	var s=test(r=3f)</div><div class="line">	println(s) //28.26</div><div class="line">&#125;</div><div class="line">fun test(PI:Float=Pi,r:Float):Float&#123;</div><div class="line">	return PI*r*r</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>字符串数字转换：
+var a=13
+    var b=&quot;13&quot;
+    println(&quot;${a.toString()},${b.toInt()}&quot;)
+</code></pre><hr>
+<h1 id="接收输入"><a href="#接收输入" class="headerlink" title="接收输入"></a>接收输入</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">	println(&quot;请输入数字：&quot;)</div><div class="line">	var n1=readLine();</div><div class="line">	println(&quot;请输入数字：&quot;)</div><div class="line">	var n2=readLine()</div><div class="line">	var nn1:Int=n1!!.toInt()</div><div class="line">	var nn2:Int=n2!!.toInt()</div><div class="line">	println(&quot;$&#123;n1&#125;+$&#123;n2&#125;=$&#123;nn1+nn2&#125;&quot;)</div><div class="line">&#125;</div><div class="line">说明：可省略nn1,2的类型，同时n1后面的!!是为确保输入不为空</div></pre></td></tr></table></figure>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">	println(&quot;请输入数字：&quot;)</div><div class="line">	var n1=readLine();</div><div class="line">	println(&quot;请输入数字：&quot;)</div><div class="line">	var n2=readLine()</div><div class="line">	try&#123;</div><div class="line">		var nn1=n1!!.toInt()</div><div class="line">		var nn2=n2!!.toInt()</div><div class="line">		println(&quot;$&#123;n1&#125;+$&#123;n2&#125;=$&#123;nn1+nn2&#125;&quot;)</div><div class="line">	&#125;catch(e:Exception)&#123;</div><div class="line">		println(&quot;输入格式不正确&quot;)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">	import java.math.BigInteger</div><div class="line"></div><div class="line">	fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">		println(test(BigInteger(&quot;70&quot;)))</div><div class="line">	&#125;</div><div class="line">	fun test(num:BigInteger):BigInteger&#123;</div><div class="line">		if(num==BigInteger.ONE)&#123;</div><div class="line">			return BigInteger.ONE</div><div class="line">		&#125;else&#123;</div><div class="line">			return num*test(num-BigInteger.ONE)</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">说明：之所以用BigInteger是因为70阶乘很大，Long都会溢出</div></pre></td></tr></table></figure>
+<h2 id="尾递归优化"><a href="#尾递归优化" class="headerlink" title="尾递归优化"></a>尾递归优化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">	println(test(5,0))</div><div class="line">&#125;</div><div class="line">tailrec fun test(num:Int,result:Int):Int&#123;</div><div class="line">	println(&quot;第$&#123;num&#125;,结果是$&#123;result&#125;&quot;)</div><div class="line">	if(num==1)&#123;</div><div class="line">		return 1</div><div class="line">	&#125;else&#123;</div><div class="line">		return test(num-1,num+result)</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">递归函数前面加上tailrec，同时尾递归的返回值必须是函数本身，所以此时才把加</div><div class="line">运算放到括号内进行</div><div class="line">作用：优化内存，防止栈溢出</div></pre></td></tr></table></figure>
+<h1 id="类"><a href="#类" class="headerlink" title="类"></a>类</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">class Gril(var name:String,var age:Int)&#123;</div><div class="line">    fun say() &#123;</div><div class="line">        println(age)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    var g=Gril(&quot;小强&quot;,12)</div><div class="line">    println(g.name) //小强</div><div class="line">    g.say() //12</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">父类</div><div class="line">open class Father&#123;</div><div class="line">    var name:String=&quot;父亲&quot;</div><div class="line">    open fun action() &#123;</div><div class="line">        println(&quot;大声说话$&#123;name&#125;&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">子类</div><div class="line">class Son:Father()&#123;</div><div class="line">    override fun action() &#123;</div><div class="line">        println(&quot;文明礼貌$&#123;name&#125;&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">调用</div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    var s=Son()</div><div class="line">    s.action()</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">输出：文明礼貌父亲</div></pre></td></tr></table></figure>
+<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">abstract class Human (var name:String)&#123;</div><div class="line">    abstract fun eat()</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Man(name:String):Human(name) &#123;</div><div class="line">    override fun eat() &#123;</div><div class="line">        println(&quot;$&#123;name&#125;大口吃饭&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    var m=Man(&quot;金三胖&quot;)</div><div class="line">    m.eat()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">abstract class Human (var name:String)&#123;</div><div class="line">    abstract fun eat()</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Man(name:String):Human(name) &#123;</div><div class="line">    override fun eat() &#123;</div><div class="line">        println(&quot;$&#123;name&#125;大口吃饭&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">class Woman(name: String):Human(name)&#123;</div><div class="line">    override fun eat() &#123;</div><div class="line">        println(&quot;$&#123;name&#125;小口吃饭&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">   var m1=Man(&quot;张三&quot;)</div><div class="line">    var wm1=Woman(&quot;梦娜丽莎&quot;)</div><div class="line">    var m2=Man(&quot;李四&quot;)</div><div class="line">    var wm2=Woman(&quot;慈禧太后&quot;)</div><div class="line">    var list= listOf&lt;Human&gt;(m1,m2,wm1,wm2)</div><div class="line">    for ( l in list) &#123;</div><div class="line">        l.eat()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="抽象类和接口"><a href="#抽象类和接口" class="headerlink" title="抽象类和接口"></a>抽象类和接口</h2><blockquote>
+<p>抽象类：事物的本质<br>  接口：事物的能力</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">对比案例：</div><div class="line">interface IMan &#123;</div><div class="line">    fun CXY()</div><div class="line">&#125;</div><div class="line"></div><div class="line">abstract class Human (var name:String)&#123;</div><div class="line">    abstract fun eat()</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Man(name:String):Human(name),IMan &#123;</div><div class="line">    override fun CXY() &#123;</div><div class="line">        println(&quot;男人$&#123;name&#125;是程序猿&quot;)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    override fun eat() &#123;</div><div class="line">        println(&quot;$&#123;name&#125;大口吃饭&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Woman(name: String):Human(name)&#123;</div><div class="line">    override fun eat() &#123;</div><div class="line">        println(&quot;$&#123;name&#125;小口吃饭&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">   var m1=Man(&quot;张三&quot;)</div><div class="line">    var wm1=Woman(&quot;梦娜丽莎&quot;)</div><div class="line">    var m2=Man(&quot;李四&quot;)</div><div class="line">    var wm2=Woman(&quot;慈禧太后&quot;)</div><div class="line">    var list= listOf&lt;Human&gt;(m1,m2,wm1,wm2)</div><div class="line">    for ( l in list) &#123;</div><div class="line">        if (l is IMan) &#123;</div><div class="line">            l.CXY()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">输出：</div><div class="line">男人张三是程序猿</div><div class="line">男人李四是程序猿</div></pre></td></tr></table></figure>
+<h2 id="委托和代理"><a href="#委托和代理" class="headerlink" title="委托和代理"></a>委托和代理</h2><hr>
+<pre><code>委托：把事情托付给别人或别的机构办理
+代理：以他人的名义，在授权范围内进行对被代理人直接发生法律效力的行为
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">/**</div><div class="line"> * 洗碗的接口</div><div class="line"> */</div><div class="line">interface IWarsh &#123;</div><div class="line">    fun wash()</div><div class="line">&#125;</div><div class="line"></div><div class="line">class DaSon:IWarsh &#123;</div><div class="line">    override fun wash() &#123;</div><div class="line">        println(&quot;我是大头儿子，我洗碗&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class XiaoFather:IWarsh by DaSon()&#123;</div><div class="line">    override fun wash() &#123;</div><div class="line">        println(&quot;我是小头爸爸&quot;)</div><div class="line">        DaSon().wash()</div><div class="line">        println(&quot;看着小头儿子洗碗了&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    var f=XiaoFather()</div><div class="line">    f.wash()</div><div class="line">&#125;</div><div class="line"></div><div class="line">说明：by关键字就是用来做委托代理的，此时小头爸爸把洗碗工作委托给</div><div class="line">大头儿子，注意by后面是对象，所以要加()，注意，如果爸爸类不重写wash方法</div><div class="line">执行之后，还是小头儿子洗碗，只是没有其前面和后面的输出</div><div class="line">输出：</div><div class="line">我是小头爸爸</div><div class="line">我是大头儿子，我洗碗</div><div class="line">看着小头儿子洗碗了</div></pre></td></tr></table></figure>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">interface IWarsh &#123;</div><div class="line">    fun wash()</div><div class="line">&#125;</div><div class="line"></div><div class="line">object  DaSon:IWarsh &#123;//此时class被替换位object，则DaSon在内存中只存在一份，是单例</div><div class="line">    override fun wash() &#123;</div><div class="line">        println(&quot;我是大头儿子，我洗碗&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class XiaoFather:IWarsh by DaSon&#123;//此处也不需要DaSon()了，因为DaSon只存在一份</div><div class="line">    override fun wash() &#123;</div><div class="line">        println(&quot;我是小头爸爸&quot;)</div><div class="line">        DaSon.wash() //此处使用也是没有()的</div><div class="line">        println(&quot;看着小头儿子洗碗了&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    var f=XiaoFather()</div><div class="line">    f.wash()</div><div class="line">    var f1=DaSon</div><div class="line">    var f2=DaSon</div><div class="line">    println(f1==f2) //true</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">enum class Week&#123;</div><div class="line">    星期一, 星期二, 星期三, 星期四, 星期五</div><div class="line">&#125;</div><div class="line"></div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    println(Week.星期三.ordinal) //2</div><div class="line">&#125;</div><div class="line">说明：ordinal输出前面值在枚举类中的位置，从0开始</div></pre></td></tr></table></figure>
+<h2 id="印章类"><a href="#印章类" class="headerlink" title="印章类"></a>印章类</h2><blockquote>
+<p>Sealed class 子类类型有限的class<br>Sealed class更在意数据类型，枚举更在意数据</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">sealed class Human&#123;</div><div class="line">    fun say()&#123;</div><div class="line">        println(&quot;进入&quot;)</div><div class="line">    &#125;</div><div class="line">    class Man():Human()</div><div class="line">    class WoMan():Human()</div><div class="line">&#125;</div><div class="line"></div><div class="line">fun main(args: Array&lt;String&gt;) &#123;</div><div class="line">    var m:Human=Human.Man()</div><div class="line">    m.say()</div><div class="line">    var w:Human=Human.WoMan()</div><div class="line">    w.say()</div><div class="line">&#125;</div><div class="line"></div><div class="line">说明：sealed添加之后代表印章类，其不能直接创建对象，而且只能创建指定范围内的对象。</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/27/进程和线程/" rel="next" title="Python进程和线程">
+                <i class="fa fa-chevron-left"></i> Python进程和线程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Qiang" />
+          <p class="site-author-name" itemprop="name">Qiang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#变量取值范围"><span class="nav-number">1.</span> <span class="nav-text">变量取值范围</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常量变量"><span class="nav-number">2.</span> <span class="nav-text">常量变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串模板"><span class="nav-number">3.</span> <span class="nav-text">字符串模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#空值处理"><span class="nav-number">4.</span> <span class="nav-text">空值处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#when表达式"><span class="nav-number">5.</span> <span class="nav-text">when表达式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Loop和Range"><span class="nav-number">6.</span> <span class="nav-text">Loop和Range</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#list和Map"><span class="nav-number">7.</span> <span class="nav-text">list和Map</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#默认参数"><span class="nav-number">8.</span> <span class="nav-text">默认参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接收输入"><span class="nav-number">9.</span> <span class="nav-text">接收输入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#异常处理"><span class="nav-number">9.1.</span> <span class="nav-text">异常处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#递归"><span class="nav-number">10.</span> <span class="nav-text">递归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#尾递归优化"><span class="nav-number">10.1.</span> <span class="nav-text">尾递归优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类"><span class="nav-number">11.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">11.1.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象类"><span class="nav-number">11.2.</span> <span class="nav-text">抽象类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">11.3.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象类和接口"><span class="nav-number">11.4.</span> <span class="nav-text">抽象类和接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#委托和代理"><span class="nav-number">11.5.</span> <span class="nav-text">委托和代理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">11.6.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举类"><span class="nav-number">11.7.</span> <span class="nav-text">枚举类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#印章类"><span class="nav-number">11.8.</span> <span class="nav-text">印章类</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qiang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

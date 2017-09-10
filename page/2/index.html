@@ -280,6 +280,291 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/进制相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/进制相关/" itemprop="url">进制相关</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="进制相关说明"><a href="#进制相关说明" class="headerlink" title="进制相关说明"></a>进制相关说明</h1><h2 id="进制转换基础"><a href="#进制转换基础" class="headerlink" title="进制转换基础"></a>进制转换基础</h2><h3 id="八进制"><a href="#八进制" class="headerlink" title="八进制"></a>八进制</h3><h4 id="八进制转十进制"><a href="#八进制转十进制" class="headerlink" title="八进制转十进制"></a>八进制转十进制</h4><blockquote>
+<p>说明：该位数字乘以8和该位的权次方相加即可，小数点之后，权位为负数</p>
+</blockquote>
+<ul>
+<li>案例：八进制72.45转十进制</li>
+</ul>
+<hr>
+<p>7<em>8**1+2</em>8<strong>0+4*8</strong>（-1）+5<em>8*</em>（-2）=58.578125</p>
+<p>注意：此时输出是字符串，而且参数二不加默认是把十进制字符串转十进制。</p>
+<hr>
+<h4 id="八进制转二进制"><a href="#八进制转二进制" class="headerlink" title="八进制转二进制"></a>八进制转二进制</h4><blockquote>
+<p>二进制八进制对照关系表</p>
+</blockquote>
+<hr>
+<pre><code>二进制      八进制
+000                0
+001                1
+010                2
+011                3
+100                4
+101                5
+110                6
+111                7
+八进制125转二进制
+125    001  010 101
+</code></pre><hr>
+<h4 id="八进制转十六进制"><a href="#八进制转十六进制" class="headerlink" title="八进制转十六进制"></a>八进制转十六进制</h4><hr>
+<p>最好按照八进制转二进制，二进制转十六进制转换</p>
+<p>八进制125转十六进制</p>
+<p>125   -&gt;  001 010  101 </p>
+<p>然后把转换的二进制四位一截取，直接按照八四二一码转值，按顺序(拼接)即可</p>
+<p>例如此时：0101   0101  -》  5   5   -》 55<br>故而八进制125值为十六进制55</p>
+<hr>
+<h3 id="二进制"><a href="#二进制" class="headerlink" title="二进制"></a>二进制</h3><hr>
+<p>1.二进制转十进制（八四二一码即可）注意，按顺序（加和）即可<br>例如：10101010   -》   128   32   8   2   =》170</p>
+<p>2.二进制转八进制(三位的二进制值拼接即可)<br>例如：10101010<br>说明：三位一截取，不够的补0<br>010 101 010   -&gt; 2   5   2  -&gt;252</p>
+<p>3.二进制转十六进制（四位的二进制值拼接即可）<br>1010    1010    —&gt;   aa</p>
+<hr>
+<h3 id="十进制"><a href="#十进制" class="headerlink" title="十进制"></a>十进制</h3><hr>
+<p>1.十进制转二进制（除以2余数逆向拼接即可）</p>
+<p>例如：125转二进制   得值 1111101 </p>
+<p>2.十进制转八进制（除以8余数逆向拼接即可）</p>
+<p>例如：125   =》175</p>
+<p>3.十进制转十六进制（除以16余数逆向拼接即可）</p>
+<p>例如： 125   =》7d</p>
+<hr>
+<h3 id="十六进制"><a href="#十六进制" class="headerlink" title="十六进制"></a>十六进制</h3><hr>
+<p>1.十六进制转二进制</p>
+<p>例如：7d转二进制，7对应四位二进制数为（通过8421获取）0111<br>d对应为1101</p>
+<p>7d  -&gt;  0111  1101</p>
+<p>2.十六进制转八进制</p>
+<p>转二进制后，三位截取获取8421码即可<br>001 111  101  -&gt;  1 7  5  -》175</p>
+<p>3.十六进制转十进制</p>
+<p>转二进制后每一位值相加即可</p>
+<p>7d   -&gt;  0111  1101  -&gt;125</p>
+<hr>
+<h2 id="API使用集合"><a href="#API使用集合" class="headerlink" title="API使用集合"></a>API使用集合</h2><hr>
+<p>A、十进制转换其他</p>
+<p>　　十进制转成二进制 </p>
+<p>　　Integer.toBinaryString(int i) </p>
+<p>　　十进制转成八进制 </p>
+<p>　　Integer.toOctalString(int i) </p>
+<p>　　十进制转成十六进制</p>
+<p>　　Integer.toHexString(int i)</p>
+<p>B、其他转换十进制</p>
+<p>　　二进制转十进制 </p>
+<p>　　Integer.valueOf(“1010”,2).toString()</p>
+<p>　　八进制转成十进制 </p>
+<p>　　Integer.valueOf(“125”,8).toString() </p>
+<p>　　十六进制转成十进制 </p>
+<p>　　Integer.valueOf(“ABCDEF”,16).toString() </p>
+<p>C、数字型字符串转数字</p>
+<p>Integer.parseInt(str)</p>
+<p>Float.parseFloat(str)</p>
+<hr>
+<h2 id="移位-针对的是二进制"><a href="#移位-针对的是二进制" class="headerlink" title="移位(针对的是二进制)"></a>移位(针对的是二进制)</h2><hr>
+<p>1.java中左移右移分别对应  &lt;&lt;   &gt;&gt;</p>
+<p>注意：向右移位是有符号操作，java使用最高位来表示数值的正负，负数最高位永远是1，一个以1开头的二进制数移位后仍将以1开头，一个以0开头的移位后仍将以0开头。</p>
+<p>补充：针对有符号向左移动的时候，符号位不变，补充的每一位都是符号位。</p>
+<p>即：-8&lt;<2 -="">   结果为：11111111111111111111111111100000。</2></p>
+<p>2.无符号（只有右移）&gt;&gt;&gt;</p>
+<p>说明：因为左移动是在后面补0，而符号位在最前面，所以左移即可，不需要无符号左移，两者等效。</p>
+<hr>
+<h2 id="原码反码补码"><a href="#原码反码补码" class="headerlink" title="原码反码补码"></a>原码反码补码</h2><blockquote>
+<p>不论正数负数，在内存中都是以补码形式存储</p>
+</blockquote>
+<hr>
+<p>正数：补码原码反码相同，即为计算出来的二进制。</p>
+<p>负数：原码就是二进制，反码就是0，1取反（符号位不变），补码是反码加一。</p>
+<p>总结：也就是说整数无需关心各种码直接二进制即可，只有负数才涉及转换，所谓的补码运算也就只是针对负数而言的。</p>
+<hr>
+<h2 id="byte数组案例"><a href="#byte数组案例" class="headerlink" title="byte数组案例"></a>byte数组案例</h2><hr>
+<p>byte取值范围：-128~127，超过会被截取<br>b[0]= (byte) 129;//注意此处，127以下包括127都不会需要强制转换（针对正数而言）然后打印b[0]会得到-127。</p>
+<p>例如：129超过byte取值范围界限，会被截取为byte类型的一字节</p>
+<p>129对应的二进制是：00000000 00000000 00000000 10000001</p>
+<p>强制转换后，只剩下最后部分一字节  10000001（原码）</p>
+<p>反码：符号位不变其余取反，1  1111110</p>
+<p>补码：反码加一，  &gt;&gt;&gt;  1  1111111  可知符号位1代表负数，后面七项相加为127。</p>
+<p>故而最后结果为-127.</p>
+<p>案例：[0]= (byte) -129输出结果为127.</p>
+<p>-129：因为是负数，所以其在内存中以补码形式存储。</p>
+<p>-129  原码：10000000  00000000 00000000 10000001</p>
+<p>反码：符号位不变，其余取反，11111111 11111111 11111111 01111110</p>
+<p>补码：反码加一  11111111 11111111 11111111 01111111<br>故而11111111 11111111 11111111 01111111才是内存中-129真正的存储形式</p>
+<p>截取之后，01111111   -&gt;然后此时符号位为第一位0 ，为正数，而正数各种码一致也就是127.</p>
+<p>补充：byte取值范围说明（-128~127）</p>
+<p>注意：负数的补码是 其绝对值的原码的反码+1</p>
+<p>最高位为符号位，取值是后面七位的结果</p>
+<p>最大值为：0   111 1111  即为127</p>
+<p>最小值为：1   000 0000  </p>
+<p>又负数的补码是其绝对值的原码的反码加1.</p>
+<p>128的原码 00000000 00000000 00000000 10000000</p>
+<p>反码 ：00000000 00000000 00000000  011111111</p>
+<p>补码：00000000 00000000 00000000  10000000</p>
+<p>截取之后：1000000</p>
+<p>可知10000000就是-128的补码</p>
+<p>步骤：</p>
+<p>1、byte为一字节8位，最高位是符号位，即最大值是01111111，因正数的补码是其本身，即此正数为01111111,十进制表示形式为127</p>
+<p>2、最大正数是01111111，那么最小负是10000000(最大的负数是11111111，即-1)</p>
+<p>3、10000000是最小负数的补码表示形式，我们把补码计算步骤倒过来就即可。10000000减1得01111111然后取反10000000因为负数的补码是其绝对值取反，即10000000为最小负数的绝对值，而10000000的十进制表示是128，所以最小负数是-128</p>
+<p>4、由此可以得出byte的取值范围是-128到+127。</p>
+<hr>
+<h2 id="符号操作"><a href="#符号操作" class="headerlink" title="符号操作"></a>符号操作</h2><blockquote>
+<p>0为假，1为真</p>
+</blockquote>
+<hr>
+<p>~   按位取反</p>
+<p>&amp;   按位与(有假则假)</p>
+<p>^   按位异或(相同为假，不同为真)</p>
+<p>|   按位或(有真则真)</p>
+<hr>
+<hr>
+<p>案例：</p>
+<p> byte[] b=new byte[3];</p>
+<p> b[0]= (byte) 128;</p>
+<p> System.out.println(b[0]);//-128</p>
+<p> System.out.println(b[0]&amp;0xff);//128</p>
+<p> System.out.println(b[0]&amp;0x000000ff);//128，0x000000ff和0xff等效，因为十六进制也是整型，十六进制一位是4个bit，故而会默认补充六个0.</p>
+<p>是因为java的自动转型导致的，原理如下：</p>
+<p>1、 128为int整数32位，前24为全部为0 后8位是1000 0000</p>
+<p>2、（byte)128 转型为byte后首位是1，java认为是负数的补码标识<br>3、在System.out.println调用时，java类型系统会自动将byte类型转换为int，此时进行的是有符号左移操作，前24位全部为1，后8为位1000 0000，仍然是-128.</p>
+<p>4、所以输出的为-128</p>
+<p>tip：java在做字节操作的时候应为会发生自动的类型转换，又不支持无符号整数，要特别注意，通常需要使用 与&amp; 操作屏蔽掉自动扩展导致的错误的bit</p>
+<hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/基于Gulp的自动化工作流/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2481,389 +2766,6 @@ int main(int argc, const char * argv[]) {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/OC笔记_03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Qiang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="飞奔的小猿猴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/OC笔记_03/" itemprop="url">OC语言笔记_03</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Object-C/" itemprop="url" rel="index">
-                    <span itemprop="name">Object C</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="autoreleasepool"><a href="#autoreleasepool" class="headerlink" title="autoreleasepool"></a>autoreleasepool</h1><hr>
-<pre><code> ARC下用 @autoreleasepool {}主要还是为了避免内存峰值。
- 用@autoreleasepool是有用的。正常情况下，你创建的变量会在超出其作用域的时候被释放掉。
- 而如果你的函数写的很长，在你函数运行过程中出现很多中间变量，占据了大量的内存，怎么办？
- 用@autoreleasepool。在@autoreleasepool中创建的变量，会在@autoreleasepool结束的时候执行一次release，进行释放。
- 其实@autoreleasepool就相当于一层作用域。
-其他使用场景：写了子线程的时候。
-</code></pre><hr>
-<h1 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h1><hr>
-<pre><code>是一个编译器特性，而不是运行时特性
-不是其他语言的垃圾回收
-    //强指针，默认情况下都是强指针
-    __strong Person *p=[[Person alloc] init];
-    //弱指针
-    __weak Person *p=[[Person alloc] init];
-注意：在arc模式下，只有没有(强指针)指向对象，则对象就会被回收。
-可以通过p=nil实现回收。//单个对象的内存管理
-在开发中不要使用弱指针保存刚刚创建的对象，不然刚创建就会被释放，而强指针，如果没有
-直接使用nil，则会到作用域一般是大括号结尾处才销毁强指针，也就是释放对象。
-</code></pre><hr>
-<h2 id="对多个对象的内存管理"><a href="#对多个对象的内存管理" class="headerlink" title="对多个对象的内存管理"></a>对多个对象的内存管理</h2><hr>
-<pre><code>arARC模式下，a对象想拥有b对象，那么就需要用一个强指针指向B对象
-@property(nonatomic,strong)Dog *dog;
-此时在person类中声明dog类对象，如果想强制a(person)对象拥有b(dog)对象
-那么必须用strong修饰。这样在person没有被销毁的情况下，dog也不会被销毁
-</code></pre><hr>
-<blockquote>
-<p>在使用的地方代码如下：<br>Dog *d=[Dog new];<br>p.dog=d;<br>注意点：assign是专门用于保存基本数据类型的，如果保存对象用weak。<br>总结：<br>ARC下@property参数<br>strong：用于oc对象，相当于mrc中的retain<br>weak：用于oc对象，相当于mrc中的assign<br>assign：用于基本数据类型，相当于mrc中的assign一样</p>
-</blockquote>
-<h1 id="category"><a href="#category" class="headerlink" title="category"></a>category</h1><blockquote>
-<p>可以再原来类的基础上，为一个类扩充方法<br>一个庞大的类可以分模块开发<br>一个庞大的类可以由多个人来编写，利于团队合作</p>
-</blockquote>
-<h2 id="分类的格式"><a href="#分类的格式" class="headerlink" title="分类的格式"></a>分类的格式</h2><hr>
-<pre><code>分类的声明：
-@interface ClassName (CategoryName)
-NewMethod;//在类别中添加方法
-//不允许在类别中添加变量
-@end
-ClassName:需要给那个类扩充方法
-CategoryName：分类的名称
-分类的实现：
-@implementtation ClassName(CategoryName)
-NewMethod
-@end
-</code></pre><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">例子：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">#import &quot;Person+ZQ.h&quot;//需要导入对应头文件</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Person *p=[[Person alloc] init];</div><div class="line">    p.age=30;</div><div class="line">    [p say];</div><div class="line">    [p play];//扩充的方法</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">_______________</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">@property(nonatomic,assign) int age;</div><div class="line">-(void)say;</div><div class="line">@end</div><div class="line">_______________</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">-(void)say&#123;</div><div class="line">    NSLog(@&quot;%d&quot;,_age);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">_______________</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@interface Person (ZQ)</div><div class="line">-(void)play;</div><div class="line">@end</div><div class="line">_______________</div><div class="line">#import &quot;Person+ZQ.h&quot;</div><div class="line"></div><div class="line">@implementation Person (ZQ)</div><div class="line">-(void)play&#123;</div><div class="line">    NSLog(@&quot;%s&quot;,__func__);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">_______________</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>创建category文件，直接选中oc文件，然后输入category名称，选择category，然后选择要扩充的类
-注意事项：
-只能添加方法，不能添加属性
-分类中@property,只会生成setter/getter方法的声明，不会生成实现以及私有的成员变量。
-可以在分类中访问原有类中.h的属性（.m的属性是私有的，其他类不能访问）
-如果分类中有和原有类同名的方法，会调用分类中的方法
-如果多个分类都有和原有类同名方法，会执行编译器最后编译的分类的方法（结果不一定）
-</code></pre><hr>
-<h2 id="匿名分类（类扩展）"><a href="#匿名分类（类扩展）" class="headerlink" title="匿名分类（类扩展）"></a>匿名分类（类扩展）</h2><hr>
-<pre><code>可以为某个类扩充一些私有的成员变量和方法
-写在.m文件中，英文名是Class Extension
-以前写私有变量和方法，就是在.h文件中不声明变量和方法（因为声明的都是公开的变量或方法）
-然后在.m文件直接写方法实现，和定义变量，才能生成私有的方法或变量，但是通过匿名分类
-可以在.m文件中直接书写私有变量和方法
-</code></pre><hr>
-<hr>
-<pre><code>下面代码就是在person的.m文件中
-#import &quot;Person.h&quot;
-@interface Person(){
-    int _num;
-}
--(void) show;
-@end//这个地方就是匿名分类
-————————————————
-
-@implementation Person
--(void)say{
-    NSLog(@&quot;%d&quot;,_age);
-}
-@end
-补充：取出指定位置的字符[str characterAtIndex:1],取出1位置的字符
-使用场景：比如说给NSString扩展方法
-</code></pre><hr>
-<h1 id="Block"><a href="#Block" class="headerlink" title="Block"></a>Block</h1><blockquote>
-<p>比较特殊的数据类型<br>作用：保存一段代码，可以再恰当的时间再取出调用，功能类似函数和方法</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">void printRose()&#123;</div><div class="line">    printf(&quot;   &#123;@&#125; \n&quot;);</div><div class="line">    printf(&quot;   \\|/  \n&quot;);</div><div class="line">    printf(&quot;    |  \n&quot;);</div><div class="line">&#125;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    /*</div><div class="line">     void代表指向的函数没有返回值</div><div class="line">     ()代表指向的函数没有形参</div><div class="line">     (*roseP)代表roseP是一个指向函数的指针</div><div class="line">     */</div><div class="line">    void(*roseP)();</div><div class="line">    roseP=printRose;</div><div class="line">    roseP();</div><div class="line">    //定义一个block变量，block和函数一样，可以没有返回值也没有形参</div><div class="line">    void(^roseBlock)();</div><div class="line">    /*</div><div class="line">     void代表block将来保存的代码没有返回值</div><div class="line">     ()代表block将来保存的代码没有形参</div><div class="line">     (^roseBlock)是一个block变量，可以用于保存一段block代码</div><div class="line">     */</div><div class="line">    roseBlock=^()&#123;//没有参数可以省略()</div><div class="line">        printf(&quot;   &#123;@&#125; \n&quot;);</div><div class="line">        printf(&quot;   \\|/  \n&quot;);</div><div class="line">        printf(&quot;    |  \n&quot;);</div><div class="line">    &#125;;</div><div class="line">    roseBlock();</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">此案例对比了函数指针和block的使用。</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>有参数案例：
- void(^roseBlock)(int);
-    roseBlock=^(int num){
-        for (int a=0; a&lt;num; a++) {
-            printf(&quot;   {@} \n&quot;);
-            printf(&quot;   \\|/  \n&quot;);
-            printf(&quot;    |  \n&quot;);
-        }
-    };
-roseBlock(10);
-也可以定义同时初始化，直接把下面一部分踢到上面即可。
-</code></pre><hr>
-<h2 id="block和typedef"><a href="#block和typedef" class="headerlink" title="block和typedef"></a>block和typedef</h2><hr>
-<pre><code>利用typedef给block起别名，和指向函数的指针一样，block变量的名称就是别名
-typedef int (^calcAdd)(int ,int);
-int main(int argc, const char * argv[]) {
-    calcAdd add=^(int v1,int v2){
-        return v1+v2;
-    };
-    NSLog(@&quot;%d&quot;,add(1,2));
-    return 0;
-}
-说明：这是以后的推荐写法，此时calcAdd就是一个数据类型了。
-</code></pre><hr>
-<h2 id="block使用场景"><a href="#block使用场景" class="headerlink" title="block使用场景"></a>block使用场景</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">当发现代码的前面和后面都一样的时候，就可以使用block了</div><div class="line">void geToWork(void(^workBlock)())&#123;</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    workBlock();</div><div class="line">//因为block是数据类型，所以可以当做参数传递。</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">    NSLog(@&quot;1&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>注意事项：
-在block中可以访问外部变量
-blocck中可以和外界同名的变量，至于使用，也是就近原则
-默认情况下，不可以在block修改外界的变量，因为block中访问外界变量时候，block会将该变量
-copy一份到堆内存中（不是同一个）。
-如果想在block中修改外界的变量的值，必须在外界变量前面加上__block。
-如果加上__block其实就是地址传递，所以可以修改外界变量的值（不加的话就是值传递）。
-block可以存在堆或栈，默认是存储在栈中，如果对block是进行一个copy操作，block会转移到堆中。
-</code></pre><hr>
-<h1 id="协议protocol"><a href="#协议protocol" class="headerlink" title="协议protocol"></a>协议protocol</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">在java中类似接口</div><div class="line">protocol可以声明一些必须实现的方法和选择实现的方法，这个和java不同</div><div class="line">也就是说protocol是由一系列方法声明组成</div><div class="line">定义：</div><div class="line">@protocol 协议名称</div><div class="line">//方法声明列表</div><div class="line">@end</div><div class="line">使用</div><div class="line">@interface 类名：父类&lt;协议名称1，协议名称2&gt;</div><div class="line">@end</div><div class="line">案例：</div><div class="line">文件名： PersonInterface.h</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@protocol PersonInterface &lt;NSObject&gt;</div><div class="line">-(void)show;</div><div class="line">@end</div><div class="line">文件名：Person.h</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;PersonInterface.h&quot;</div><div class="line">@interface Person : NSObject&lt;PersonInterface&gt;</div><div class="line">@end</div><div class="line">文件名：person.m</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">-(void)show&#123;</div><div class="line">    NSLog(@&quot;%s&quot;,__func__);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">文件名：main.m</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Person *p=[[Person alloc] init];</div><div class="line">    [p show];</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>注意点：
-协议只能声明方法，不能声明属性
-子类也会拥有父类协议的方法声明
-协议的协议又可以租售其他协议，只要遵守了其他协议，那么这个协议就会包含其他协议的声明
-@required和@optional关键字：加在方法的上面
-@required：这个方法必须被实现（默认）
-@optional：这个方法不一定被实现
-</code></pre><hr>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><hr>
-<pre><code>Person *p=[Person new];
-//可以将协议卸载数据类型的右边，明确的标注如果想给该变量赋值，那么该对象必须遵守某个协议
-//如果没有实现方法，会报警告
-Wife&lt;WifeConditon&gt; *w=[Wife new];
-p.wife=w;
-_______________
-@property(nonatomic,strong)Wife&lt;WifeConditon&gt; *wife;
-注意：虽然在接受某一个对象，对这个对象类型进行了限定（限定它必须实现某个协议），但是
-并不意味就真正实现了该方法，如果调用对象协议方法时候要进行一次验证。
-if([self.wife respondsToSelector:@selector(cooking)]){
-        [self.wife.cooking];
-}
-</code></pre><hr>
-<h1 id="oc字符串"><a href="#oc字符串" class="headerlink" title="oc字符串"></a>oc字符串</h1><hr>
-<pre><code>//如何创建字符串对象
-     //1.通过字符串常量创建,存储在常量区中，此种方式创建多个字符串对象（字符串常量一致），指向同一块内存空间
-    NSString *str1=@&quot;lnj&quot;;
-    //2.通过alloc init创建，存储在堆中，在mac平台上(其他平台不一定)，会自动优化(字符串常量一致，会指向同一块内存空间)
-    NSString *str2=[[NSString alloc] initWithFormat:@&quot;lnj&quot;];
-    //3.通过类工厂方法/string WithFormat，存储在堆中，在mac平台上(其他平台(ios)不一定)，会自动优化(字符串常量一致，会指向同一块内存空间)
-    //内部就是封装了[NSString alloc] init
-    NSString *str3=[NSString stringWithFormat:@&quot;lnj&quot;];
-</code></pre><hr>
-<hr>
-<pre><code>注意：一般情况下，只要通过alloc或者通过类工厂方法创建的对象，每次都会在堆内存中开辟一块
-内存空间，但是如果是通过alloc的initWithString方法除外，因为这个方法是通过copy返回一个
-字符串对象给我们。
-而copy分为浅拷贝和深拷贝，深拷贝会创建一个新的对象，如果是浅拷贝不会创建一个新的对象，而是直接返回被拷贝对象的地址给我们。
-而initWithString正好是浅拷贝，所以不论是什么平台，什么编译器都会指向同一块存储空间。
-</code></pre><hr>
-<h2 id="字符串的读写"><a href="#字符串的读写" class="headerlink" title="字符串的读写"></a>字符串的读写</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">读取文件的内容到字符</div><div class="line">  NSString *info=[NSString stringWithContentsOfFile:&lt;#(nonnull NSString *)#&gt; encoding:&lt;#(NSStringEncoding)#&gt; error:&lt;#(NSError * _Nullable __autoreleasing * _Nullable)#&gt;]</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>参数一：是文件的绝对路径
-参数二：NSStringEncoding没有*通过翻看源码可知就是enum枚举类型
-参数三：是读取出错，信息保存在这，成功的时候是nil,此时是指针的指针，所有参数传递如下面代码，是指针的地址
-</code></pre><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    NSError *error=nil;</div><div class="line">    NSString *info=[NSString stringWithContentsOfFile:@&quot;/Users/tjsmc/Desktop/mac快捷键.txt&quot; encoding:NSUTF8StringEncoding error:&amp;error];</div><div class="line">    if (error==nil) &#123;</div><div class="line">      NSLog(@&quot;%@&quot;,info);</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>如果文件不存在等错误，则error直接打印是很多无用信息，需要通过[error localizedDescription]</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">写入文本：</div><div class="line">案例：</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    NSString *info=@&quot;这个是生成的文本&quot;;</div><div class="line">    //atomically:如果是yes，则字符串写入文件过程中没有写入完毕，不生成文件</div><div class="line">    //no:则字符串写入文件过程中没有写入完毕，生成文件</div><div class="line">    BOOL flag=[info writeToFile:@&quot;/Users/tjsmc/Desktop/abc.txt &quot; atomically:YES encoding:NSUTF8StringEncoding error:nil];</div><div class="line">    NSLog(@&quot;%i&quot;,flag);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">开发中常用的读写字符串</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    //1.创建url:注意如果访问的是本级文件，地址192.168.0.112可省略</div><div class="line">    NSString *path=@&quot;file://192.168.0.112/Users/tjsmc/Desktop/1.txt&quot;;</div><div class="line">   // NSString *path=@&quot;http://www.baidu.com&quot;;</div><div class="line">    NSURL *url=[NSURL URLWithString:path];</div><div class="line">    //2.根据url加载文件中的字符串</div><div class="line">    NSError *error=nil;</div><div class="line">    NSString *str=[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&amp;error];</div><div class="line">    NSLog(@&quot;%@&quot;,str);</div><div class="line">    NSLog(@&quot;%@&quot;,[error localizedDescription]);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>其他方式：
-注意：在开发中，读取本机资源，如果直接使用url如果路径包中文，会读取不出来文件内容
-但是如果使用fileURLWithPath就可以系统内部进行处理，依然可以读取出来。
-如果非要使用url中文直接读取文件
-需要：path=[path stringByAddingPercentEscapesUsingEncoding];
-</code></pre><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    //1.创建url</div><div class="line">    NSString *path=@&quot;/Users/tjsmc/Desktop/1.txt&quot;;</div><div class="line">    //注意：使用fileURLWithPath方法的时候，系统会自动加上消息头，如果path前面加上file://会报错</div><div class="line">    NSURL *url=[NSURL fileURLWithPath:path];</div><div class="line">    //2.根据url加载文件中的字符串</div><div class="line">    NSError *error=nil;</div><div class="line">    NSString *str=[NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&amp;error];</div><div class="line">    NSLog(@&quot;%@&quot;,str);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">_______________</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">   NSString *str=@&quot;呵呵呵撒很骄傲和解放初步额e&quot;;</div><div class="line">    NSURL *url=[NSURL URLWithString:@&quot;/Users/tjsmc/Desktop/1.txt&quot;];</div><div class="line">    BOOL flag=[str writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:nil];</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">注意：多次写入文件，后一次会覆盖前一次的</div></pre></td></tr></table></figure>
-<h2 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">isEqualToString:比较两个字符串内容是否相同</div><div class="line"> NSString *str1=@&quot;lnj&quot;;</div><div class="line">    NSString *str2=@&quot;lnj&quot;;</div><div class="line">    BOOL flag=[str1 isEqualToString:str2];</div><div class="line">    NSLog(@&quot;%i&quot;,flag);//1</div><div class="line">注意：str1==str2比较的是字符串的地址</div><div class="line">比较字符串大小</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">   NSString *str1=@&quot;lnj&quot;;</div><div class="line">    NSString *str2=@&quot;lnj&quot;;</div><div class="line">    switch ([str1 compare:str2]) &#123;</div><div class="line">        case NSOrderedAscending://前面小于后面的</div><div class="line">            </div><div class="line">            break;</div><div class="line">        case NSOrderedSame://前面等于后面的</div><div class="line">            </div><div class="line">            break;</div><div class="line">        case NSOrderedDescending://前面大于后面的</div><div class="line">            </div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">忽略大小写进行比较：[str1 caseInsensitiveCompare:str2]</div></pre></td></tr></table></figure>
-<h2 id="字符串搜索"><a href="#字符串搜索" class="headerlink" title="字符串搜索"></a>字符串搜索</h2><hr>
-<pre><code>hasPrefix:字符串是否已什么开头
-    NSString *str=@&quot;http://www.baidu.com&quot;;
-    BOOL falg= [str hasPrefix:@&quot;http&quot;];
-    NSLog(@&quot;%i&quot;,falg);//1
-
- hasSuffix:是否是什么结尾
- rangeOfString：是否包含什么,返回值类型NSRange，其实就是一个结构体（是两个lu类型）一个是起始位置，一个是长度
- 如果没有找到需要查找到字符串，返回的range的length=0,location=NSNotFound
-</code></pre><hr>
-<h2 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"> 案例：</div><div class="line"> int main(int argc, const char * argv[]) &#123;</div><div class="line">  NSString *str=@&quot;&lt;head&gt;小码哥&lt;/head&gt;&quot;;</div><div class="line">    //NSRange;位置、长度</div><div class="line">//    NSRange range=&#123;6,3&#125;;</div><div class="line">    //只要是oc提供的结构体，一般都可以使用NSMakexxx来创建</div><div class="line">//    NSRange range=NSMakeRange(6, 3);//开发中常用</div><div class="line">    //但是上面是写死的，实际开发中，需要动态获取</div><div class="line">    NSUInteger location=[str rangeOfString:@&quot;&gt;&quot;].location+1;//获取第一个&gt;位置</div><div class="line">    NSUInteger length=[str rangeOfString:@&quot;&lt;&quot; options:NSBackwardsSearch].location-location;//从后往前找&lt;</div><div class="line">    NSRange range;</div><div class="line">    range.location=location;</div><div class="line">    range.length=length;</div><div class="line">    NSString *new=[str substringWithRange:range];</div><div class="line">    NSLog(@&quot;%@&quot;,new);//小码哥</div><div class="line">    //注意：生成新字符串，以前字符串不变</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">案例：</div><div class="line"> //从什么地方开始截取，一直截取到最后</div><div class="line">[str substringFromIndex:str1];</div><div class="line">//从开头开始，一直截取到什么位置</div><div class="line">[str substringToIndex:st1];</div></pre></td></tr></table></figure>
-<h2 id="字符串替换"><a href="#字符串替换" class="headerlink" title="字符串替换"></a>字符串替换</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">  NSString *str=@&quot;&lt;head&gt;小码哥&lt;/head&gt;&quot;;</div><div class="line">    NSString *new=[str stringByReplacingOccurrencesOfString:@&quot;小码哥&quot; withString:@&quot;强哥&quot;];</div><div class="line">    NSLog(@&quot;%@&quot;,new);</div><div class="line">    //注意：此方法可以通过替换的方式去除空格</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">去除首尾的空格：</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">  NSString *str=@&quot;   &lt;head&gt;小码哥&lt;/head&gt;&quot;;</div><div class="line">    NSCharacterSet *set=[NSCharacterSet whitespaceCharacterSet];</div><div class="line">    NSString *new=[str stringByTrimmingCharactersInSet:set];</div><div class="line">    NSLog(@&quot;%@&quot;,new);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">去除首尾的大写：</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">  NSString *str=@&quot;   &lt;head&gt;小码哥&lt;/head&gt;&quot;;</div><div class="line">    NSCharacterSet *set=[NSCharacterSet uppercaseLetterCharacterSet];//此处修改还可以去除小写等等</div><div class="line">    NSString *new=[str stringByTrimmingCharactersInSet:set];</div><div class="line">    NSLog(@&quot;%@&quot;,new);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="字符串和路径"><a href="#字符串和路径" class="headerlink" title="字符串和路径"></a>字符串和路径</h2><hr>
-<pre><code>isAbsolutePath：判断是否是绝对路径，本质就是判断字符串是否以/开头
-int main(int argc, const char * argv[]) {
-  NSString *str=@&quot;/Users/tjsmc/Desktop/1.txt &quot;;
-    BOOL flag=[ str isAbsolutePath];
-    NSLog(@&quot;%i&quot;,flag);//1
-       return 0;
-}
-获取文件路径中的最后一个目录：[str lastPathComponent]
-删除文件路径中的最后一个目录：[str stringByDeletingLastPathComponent]
-给文件路径添加一个目录：[str stringByAppendingPathComponent:@&quot;abc&quot;]
-获取路径中文件的扩展名：[str pathExtension]
-删除路径中文件的扩展名：[str stringByDeletingPathExtension]
-给文件路径添加一个扩展名：[str stringByAppendingPathExtension:@&quot;jpg&quot;]
-</code></pre><hr>
-<h2 id="字符串转换"><a href="#字符串转换" class="headerlink" title="字符串转换"></a>字符串转换</h2><blockquote>
-<p>字符串转小写:[str lowercaseString]<br>字符串转大写：[str uppercaseString]<br>字符串首字母转大写：[str capitalizedString]</p>
-</blockquote>
-<h3 id="字符串和基本数据类型的转换"><a href="#字符串和基本数据类型的转换" class="headerlink" title="字符串和基本数据类型的转换"></a>字符串和基本数据类型的转换</h3><hr>
-<pre><code>字符串转数字：
-    NSString *str1=@&quot;110&quot;;
-    int v1=[str1 intValue];
-c语言字符串和oc字符串之间的转换
-char *cStr=&quot;lnj&quot;;
-NSString *ocStr=[NSString stringWithUTF8String:cStr];
-_______________
- NSString *ocStr=@&quot;lnj&quot;;
-char *cStr=[ocStr UTF8String];
-</code></pre><hr>
-<h1 id="NSMutableString-是NSString的子类，是可变字符串"><a href="#NSMutableString-是NSString的子类，是可变字符串" class="headerlink" title="NSMutableString:是NSString的子类，是可变字符串"></a>NSMutableString:是NSString的子类，是可变字符串</h1><hr>
-<pre><code>因为是可变字符串，所以修改都是本身，没有返回值
- //创建一个空字符串
-    NSMutableString *str=[NSMutableString string];
-    [str appendString:@&quot;lnj&quot;];
-    NSLog(@&quot;%@&quot;,str);
-//开发中常用方式：NSMutableString str=[NSMutableString stringWithFormat:@&quot;lnj&quot;];
-</code></pre><hr>
-<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><hr>
-<pre><code>添加：
-[str appendString:@&quot;lnj&quot;];
-[str appendFormat:@&quot;%i&quot;,10];
-删除路径中文件的扩展名：
-[str deleteCharactersInRange:&lt;#(NSRange)#&gt;]
-在某字符前面插入某某字符串
-[str insertString:&lt;#(nonnull NSString *)#&gt; atIndex:&lt;#(NSUInteger)#&gt;]
-替换：此方法返回值是NSUItnger，代表替换了多少个字符串
-[str replaceOccurrencesOfString:&lt;#(nonnull NSString *)#&gt; withString:&lt;#(nonnull NSString *)#&gt; options:&lt;#(NSStringCompareOptions)#&gt; range:&lt;#(NSRange)#&gt;]
-参数分别为：套替换的字符串，新字符串，0（如果枚举参数用不上，传入0即可，代表使用系统默认处理方式），范围。
-</code></pre><hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2914,7 +2816,7 @@ char *cStr=[ocStr UTF8String];
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2925,7 +2827,7 @@ char *cStr=[ocStr UTF8String];
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
