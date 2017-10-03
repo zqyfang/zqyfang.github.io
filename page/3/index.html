@@ -280,6 +280,298 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/OC语言笔记_01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/OC语言笔记_01/" itemprop="url">OC语言笔记_01</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Object-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Object C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="oc与c对比"><a href="#oc与c对比" class="headerlink" title="oc与c对比"></a>oc与c对比</h1><hr>
+<pre><code>oc增加：
+布尔类型
+block类型：代码块数据类型
+指针类型中增加：id类型（动态对象类型，万能指针）和类类型
+SEL:选择器数据类型
+oc增加了增强for循环 for in
+</code></pre><hr>
+<h2 id="杂乱知识点"><a href="#杂乱知识点" class="headerlink" title="杂乱知识点"></a>杂乱知识点</h2><blockquote>
+<p>oc的输出语句：NSLog(@”Hello ,World!”);<br>    特点：<br>    自动加换行<br>    会自动附加一些系统信息<br>    和printf接收参数不一样，printf接收的是oc的字符串类型<br>import和include区别：import(自动防止重复拷贝)自动实现头文件卫士，避免程序员无技术含量重复操作。</p>
+</blockquote>
+<h2 id="oc的类（基本定义）"><a href="#oc的类（基本定义）" class="headerlink" title="oc的类（基本定义）"></a>oc的类（基本定义）</h2><blockquote>
+<p>注意：对象方法和类方法可以相互调用<br>    对象方法调用类方法：直接用类调用即可<br>    类方法调用对象方法：在对应方法内部先创建对象，在调用方法(后期也可以不用先创建对象就可以直接调用self)(不建议使用类方法调用对象方法)<br>    类方法中也可以调用类方法<br>    对象方法也可以调用对象方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">案例说明：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">//类的声明：类名首字母大写</div><div class="line">//类的声明：以@interface开始，@end结尾</div><div class="line">@interface Iphone:NSObject</div><div class="line">//oc类声明中，属性只能写在大括号当中，否则报错，另外建议属性名称前加上_</div><div class="line">&#123;</div><div class="line">    //默认oc中类的属性是不能直接访问的,需要加上@public</div><div class="line">    @public</div><div class="line">    float _model;</div><div class="line">    int _cpu;</div><div class="line">    double _size;</div><div class="line">&#125;</div><div class="line">//行为</div><div class="line">//注意：oc中方法如果没有形参，不需要写圆括号</div><div class="line">//因为oc方法中的()有特殊用途，用来扩住数据类型的，所以所有返回值类型都要用()包裹，包括void</div><div class="line">//oc方法：类方法(只能用类名调用,+表示)，对象方法(只能用对象调用,-表示)</div><div class="line">-(void) about;</div><div class="line">+(char *)getMessage;</div><div class="line">//注意：此时有参数的方法的方法名为call:(包括:)</div><div class="line">-(int)call:(int) num;</div><div class="line">//多参数的对象方法,此时方法名称就是show::</div><div class="line">+(int)show:(int) num1 :(int)num2;</div><div class="line">//其中canshu2是第二个参数的标签，此时方法名就是show:canshu2:</div><div class="line">+(int)show:(int) num1 canshu2:(int)num2;</div><div class="line">@end</div><div class="line">//类的实现：必须和类声明的时候名称相同</div><div class="line">//类的实现：以@implementation开始，@end结束</div><div class="line">@implementation Iphone</div><div class="line">//行为的实现</div><div class="line">//类方法:不会被重复开启内存空间，当多次使用且不适用类的属性的时候，可以使用类方法，类方法效率高(相比于对象方法)</div><div class="line">//类方法：一般用于定义工具方法，因为对象方法会多次开辟内存，所以不适合做工具方法，一方面资源消耗，一方面修改之后对象不同，不能同步更改。</div><div class="line"></div><div class="line">+(char *)getMessage&#123;</div><div class="line">    return &quot;get message&quot;;</div><div class="line">&#125;</div><div class="line">+(int)show:(int) num1 :(int)num2&#123;</div><div class="line">    return num1+num2;</div><div class="line">&#125;</div><div class="line">//对象方法：对象方法可以直接访问属性(成员变量)</div><div class="line">-(int)call:(int) num&#123;//只需要扩住数据类型，oc中圆括号仅仅扩住数据类型,而且在参数数据类型前面必须加上:</div><div class="line">    return num;</div><div class="line">&#125;</div><div class="line">-(void) about&#123;</div><div class="line">    NSLog(@&quot;打印本机信息&quot;);</div><div class="line">&#125;</div><div class="line">@end</div><div class="line"></div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    //通过类创建对象，必须给类发送一个消息，类似于c中调用方法</div><div class="line">    //如果发送消息 [类名/对象名称 方法名称]；</div><div class="line">    //[Iphone new];//但是直接调用new方法没有定义这个方法，此时需要Ipone继承NSObject</div><div class="line">    //[Iphone new];返回的是创建出来对象对应的地址</div><div class="line">    Iphone *p=[Iphone new];//p就被称为iPhone的对象</div><div class="line">    //oc的类本质就是一个结构体，所以p这个指针指向一个结构体</div><div class="line">    p-&gt;_cpu=20;</div><div class="line">    p-&gt;_model=10.1;</div><div class="line">    p-&gt;_size=20.0;</div><div class="line">    NSLog(@&quot;cpu=%i&quot;,p-&gt;_cpu);</div><div class="line">    //调用方法</div><div class="line">    [p about];</div><div class="line">    //oc中的nslog对C语言支持不好，如果返回中文字符串可能输出乱码或不输出，所以后期使用oc字符串</div><div class="line">    char *c=[Iphone getMessage];</div><div class="line">    NSLog(@&quot;%s&quot;,c);</div><div class="line">    int num=[p call:(10086)];</div><div class="line">    NSLog(@&quot;%d&quot;,num);</div><div class="line">    int result=[Iphone show:1 :2];</div><div class="line">    NSLog(@&quot;%d&quot;,result);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="内存说明"><a href="#内存说明" class="headerlink" title="内存说明"></a>内存说明</h2><hr>
+<pre><code> 开辟内存空间，通过new方法创建对象，会在堆内存中开辟空间
+ 初始化属性，也在堆内存中
+ 返回指针地址，指针是变量，在栈中开辟内存空间
+ 创建对象返回的是第0个元素的地址，但是此时不是编写的第一个属性的地址，而是继承NSobject时候系统
+在内部自动添加一个叫isa属性，而且isa是一个指针，占据八个字节。isa会指向创建这个类的那个类（类其
+实也是一个对象），创建对象就是通过一个类对象(系统创建，保存了当前对象的所有方法)去创建了一个对象
+（实例对象），isa指针也就指向这个类对象。
+ 所以创建对象，会在堆内存中开辟一段类对象空间，一段实例对象空间，对象变量指向实例对象的地址，实力
+对象中isa属性指向类对象地址，其中，实例对象空间只存储了自定义属性和isa属性，想要调用方法，需要isa
+属性指向类对象空间，类对象空间有方法列表，从而调用方法，而类方法调用时候直接去找类对象空间，执行对
+应方法，所以效率高。
+</code></pre><hr>
+<h2 id="成员变量和局部变量"><a href="#成员变量和局部变量" class="headerlink" title="成员变量和局部变量"></a>成员变量和局部变量</h2><hr>
+<pre><code>写在类声明的大括号中的变量，称之为成员变量，成员变量不能再定义同事进行初始化，
+成员变量只能通过对象访问，存储在堆内存(当前对象对应的堆内存存储空间)中，不会自动释放，需要手动释放
+局部变量全局变量都类似于C语言的情况，在栈内存中，作用域结束会自动释放。
+</code></pre><hr>
+<h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><h2 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">方式一：NSString*  name=@&quot;lmj&quot;;</div><div class="line">方式二：NSString*  name=[NSString stringWithFormat:@&quot;age=%i,height=%f\n&quot;,30,1.75];</div><div class="line">案例：</div><div class="line">@interface Iphone : NSObject</div><div class="line">-(NSString *)showMessage;</div><div class="line">@end</div><div class="line">@implementation Iphone</div><div class="line"></div><div class="line">-(NSString*)showMessage&#123;</div><div class="line">    return @&quot;返回的信息&quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Iphone *ip=[Iphone new];</div><div class="line">    NSString* info=[ip showMessage];</div><div class="line">    NSLog(@&quot;%@&quot;,info);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">说明 ：oc中字符串是一个对象（所以接收也是利用指针），c语言中是数据类型，oc中利用%@输出对象类型。</div></pre></td></tr></table></figure>
+<h2 id="如何计算字符串长度"><a href="#如何计算字符串长度" class="headerlink" title="如何计算字符串长度"></a>如何计算字符串长度</h2><hr>
+<pre><code>c语言（返回的都是占据多少字节数）：strlen
+                                sizeof
+   oc（计算出来的是个数，而不是字节数）:
+        main(int argc, const char * argv[]) {
+        NSString *str=@&quot;曾强&quot;;
+       NSUInteger ni=[str length];
+       NSLog(@&quot;%lu&quot;,ni);//2,  NSUInteger是unsigned long的别名，翻看源码可知
+</code></pre><hr>
+<h1 id="结构体作为对象属性"><a href="#结构体作为对象属性" class="headerlink" title="结构体作为对象属性"></a>结构体作为对象属性</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">typedef struct&#123;</div><div class="line">    int year;</div><div class="line">    int day;</div><div class="line">&#125; Date;</div><div class="line">@interface  Student: NSObject</div><div class="line">&#123;</div><div class="line">    @public</div><div class="line">    Date d;</div><div class="line">    NSString *name;</div><div class="line">&#125;</div><div class="line">-(void) showInfo;</div><div class="line">@end</div><div class="line">@implementation Student</div><div class="line">-(void) showInfo&#123;</div><div class="line">    NSLog(@&quot;%i&quot;,d.day);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Student *s=[Student new];</div><div class="line">//    s-&gt;d.day=50;这种逐个初始化也可以</div><div class="line">    /*结构体在定义之后，不能一次性初始化，所以</div><div class="line">     s-&gt;d=&#123;30,20&#125;;是错误的，而强制转date类型，是相当于copy(修改不影响原来的值)一份结构体</div><div class="line">     然后赋值过去，此时复制的过程中有了一个定义和初始化一起的过程，所以不报错。</div><div class="line">     */</div><div class="line">    s-&gt;d=(Date)&#123;30,20&#125;;</div><div class="line">    [s showInfo];</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="对象作为方法参数"><a href="#对象作为方法参数" class="headerlink" title="对象作为方法参数"></a>对象作为方法参数</h1><hr>
+<pre><code>此处只写上最基本调用处
+Soldier *sp=[Soldier new];
+Gun *gp=[Gun new];
+[sp fire:gp];
+-(void) fire:(id)gun{
+    //id 类型是一个独特的数据类型。在概念上，类似Java 的Object 类，可以转换为任何数据类型
+    [gun shoot];
+}
+</code></pre><hr>
+<h1 id="pragma的使用"><a href="#pragma的使用" class="headerlink" title="pragma的使用"></a>pragma的使用</h1><blockquote>
+<p>当类比较多的时候(查找类不方便)，在类定义时候，加上#pragma mark - 学生,可以再xcode上面十分明确的出现该类的说明。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">#pragma mark - 学生</div><div class="line">@interface  Student: NSObject</div><div class="line">&#123;</div><div class="line">    @public</div><div class="line">    Date d;</div><div class="line">    NSString *name;</div><div class="line">&#125;</div><div class="line">-(void) showInfo;</div><div class="line">@end</div><div class="line">#pragma mark - 程序入口</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Student *s=[Student new];</div><div class="line">    s-&gt;d=(Date)&#123;30,20&#125;;</div><div class="line">    [s showInfo];</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h1><blockquote>
+<p>在.h和.m文件之间切换快捷键：control+command+向上</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    //1.有名字对象</div><div class="line">    Person *p=[Person new];</div><div class="line">    p-&gt;_age=20;</div><div class="line">    p-&gt;_name=@&quot;lmj&quot;;</div><div class="line">    [p say];//name=lmj,age=20</div><div class="line">    //2.没有名字对象</div><div class="line">    //每次new都会开辟新的存储空间</div><div class="line">    [Person new]-&gt;_age=30;</div><div class="line">    [Person new]-&gt;_name=@&quot;lmj&quot;;</div><div class="line">    [[Person new ] say];//name=(null),age=0</div><div class="line">    //当对象只使用一次的时候，可以使用匿名对象</div><div class="line">    //比如说只是调用一个输出就可以使用匿名对象</div><div class="line">    [[Person new] say];</div><div class="line">    //3.匿名对象作为方法参数</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Gun *g=[Gun new];</div><div class="line">    [g setBullet:200];</div><div class="line">    [g shoot];</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">————————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Gun : NSObject</div><div class="line">&#123;</div><div class="line">    int _bullet;//子弹数量</div><div class="line">&#125;</div><div class="line">-(void)shoot;</div><div class="line">//提供成员方法设置值</div><div class="line">-(void)setBullet:(int) count;</div><div class="line">@end</div><div class="line">——————————————</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line">@implementation Gun</div><div class="line">-(void)shoot&#123;</div><div class="line">    _bullet--;</div><div class="line">    NSLog(@&quot;%i&quot;,_bullet);</div><div class="line">&#125;</div><div class="line">-(void)setBullet:(int)count&#123;</div><div class="line">    _bullet=count;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<h2 id="setter和getter"><a href="#setter和getter" class="headerlink" title="setter和getter"></a>setter和getter</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">只是一个规范：set+属性名称即可</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Gun *g=[Gun new];</div><div class="line">    [g setBullet:300];</div><div class="line">    NSLog(@&quot;%i&quot;,[g getBullet]);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">————————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Gun : NSObject</div><div class="line">&#123;</div><div class="line">    int _bullet;</div><div class="line">&#125;</div><div class="line">-(void)setBullet:(int) count;</div><div class="line">-(int)getBullet;</div><div class="line">@end</div><div class="line">————————————</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line"></div><div class="line">@implementation Gun</div><div class="line">-(void)setBullet:(int)count&#123;</div><div class="line">    _bullet=count;</div><div class="line">&#125;</div><div class="line">-(int)getBullet&#123;</div><div class="line">    return _bullet;</div><div class="line">&#125;</div><div class="line">@end</div><div class="line">补充：点语法,如果set和get语句如下书写可以直接点语法取值和赋值</div><div class="line">点语法一般是给属性取值赋值，其他一般不推荐</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Gun *g=[Gun new];</div><div class="line">    g.bullet=30;</div><div class="line">    NSLog(@&quot;%i&quot;,g.bullet);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">————————————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Gun : NSObject</div><div class="line">&#123;</div><div class="line">    int _bullet;</div><div class="line">&#125;</div><div class="line">-(void)setBullet:(int) bullet;</div><div class="line">-(int)bullet;//注意此处get语句没有get直接属性名称即可</div><div class="line"></div><div class="line">@end</div><div class="line">——————————————————</div><div class="line">#import &quot;Gun.h&quot;</div><div class="line"></div><div class="line">@implementation Gun</div><div class="line"></div><div class="line">-(void)setBullet:(int)bullet&#123;</div><div class="line">    _bullet=bullet;</div><div class="line">&#125;</div><div class="line">-(int)bullet&#123;</div><div class="line">    return _bullet;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<h2 id="self关键字"><a href="#self关键字" class="headerlink" title="self关键字"></a>self关键字</h2><hr>
+<pre><code>self不能离开类，离开类没有任何意义
+self可以调用对象方法和类方法
+self如果在对象方法中，就代表当前对象，所以可以调用对象方法
+self如果在类方法中，就代表调用当前类方法的那个类，所以可以调用类方法
+[self 方法名]==[Iphon 方法名]
+类方法不可以直接调用对象方法
+注意点：
+self会自动区分类方法和对象方法，如果在类方法中使用self调用对象方法会报错。
+如果在对象方法中调用类方法也会报错。
+所以如果在方法中使用self调用自身，会形成死循环
+</code></pre><hr>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><blockquote>
+<p>继承：会具有父类的所有属性和方法(对象方法和类方法)<br>继承中父类的方法可以重写，但是属性不能重写(会报重复定义的错误)。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Student.h&quot;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Student *s=[Student new];</div><div class="line">    s.age=30;</div><div class="line">    NSLog(@&quot;%i&quot;,s.age);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">————————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">#import &quot;Person.h&quot;</div><div class="line">@interface Student : Person</div><div class="line"></div><div class="line">@end</div><div class="line">————————————</div><div class="line">#import &quot;Student.h&quot;</div><div class="line">@implementation Student</div><div class="line"></div><div class="line">@end</div><div class="line">————————————</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line"></div><div class="line">@interface Person : NSObject</div><div class="line">&#123;</div><div class="line">    int _age;</div><div class="line">&#125;</div><div class="line">-(void)setAge:(int)age;</div><div class="line">-(int)age;</div><div class="line">@end</div><div class="line">————————————</div><div class="line">#import &quot;Person.h&quot;</div><div class="line"></div><div class="line">@implementation Person</div><div class="line"></div><div class="line">-(void)setAge:(int) age&#123;</div><div class="line">    _age=age;</div><div class="line">&#125;</div><div class="line">-(int)age&#123;</div><div class="line">    return _age;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<h2 id="super"><a href="#super" class="headerlink" title="super"></a>super</h2><hr>
+<pre><code>super和self一样不是关键字，只是编译器的一个指令符号
+[super 方法名]：会去调用父类的方法，即使当前类有同名方法
+super在对象方法中调用父类的对象方法
+super在类方法中调用父类的类方法
+[self 方法名]：会先在本类找，找不到才去父类找。
+</code></pre><hr>
+<h1 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h1><hr>
+<pre><code>父类指针指向子类对象
+Animal *a1=[Dog d];
+多态中，如果想调用子类特有的方法必须强制类型转换为子类才能调用
+Dog *d1=(Dog*)a1;
+[d1 kanjia];
+</code></pre><hr>
+<h1 id="变量修饰符"><a href="#变量修饰符" class="headerlink" title="变量修饰符"></a>变量修饰符</h1><hr>
+<pre><code>@public：
+本类，子类，其他类都可以访问
+@private:
+不可以在其他类访问被private修饰的成员变量
+可以再本类访问被private修饰的成员变量
+不可以在子类中访问父类中被private修饰的成员变量
+@protected(默认)
+不可以在其他类访问被protected修饰的成员变量
+本类可以访问
+子类可以访问父类被protected访问的成员变量
+@package
+介于public和private之间
+如果在其他包访问就是private
+在其他包访问就是public
+
+作用域：实例变量修饰符作用域，从出现的地位开始，到下一个修饰符出现的，如果没有下一个修饰符，就会修饰后面所有变量
+</code></pre><hr>
+<h1 id="description方法"><a href="#description方法" class="headerlink" title="description方法"></a>description方法</h1><blockquote>
+<p>[Person class]:返回person类的类对象<br>利用%@打印对象，系统会默认调用父类description方法,返回一个字符串<br>字符串默认格式&lt;类名：对象地址&gt;<br>所以可以重写父类的方法，从而实现打印对象所有属性，而不是写一堆占位符一点点输出</p>
+</blockquote>
+<hr>
+<pre><code>案例说明：
+#import &lt;Foundation/Foundation.h&gt;
+#import &quot;Student.h&quot;
+int main(int argc, const char * argv[]) {
+    Student *s=[Student new];
+    s.age=30;
+    NSLog(@&quot;%@&quot;,s);//本来应该输出&lt;Student,0x123612376（地址）&gt;
+    //但是重写了description方法就会输出age=30
+    return 0;
+}
+————————————
+#import &quot;Person.h&quot;
+
+@implementation Person
+
+-(void)setAge:(int) age{
+    _age=age;
+}
+-(int)age{
+    return _age;
+}
+-(NSString *)description{
+    NSString *str=[NSString stringWithFormat:@&quot;age=%i&quot;,_age];
+    return str;
+}
+@end
+</code></pre><hr>
+<hr>
+<pre><code>注意：此处重写了description方法（对象方法）还有一个+description方法
+（类方法），也可以重写，当调用输出[Person class]时候输出的就是+description方法对应的返回值。
+注意点：在description方法方法中不要使用self获取成员变量，如果一不小心写成@&quot;%@&quot;,self的话，输出self会造成死循环。
+因为self代表当前实例对象(如果在对象方法中)，self==实例对象，而%@输出实例对象，会默认调用description方法，然后
+形成死循环。(所以是不推荐在description方法中使用self，如果写成%@输出self会形成死循环)，所以不是一定不能使用，
+开发中不推荐使用self。
+</code></pre><hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/OC笔记_03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2823,162 +3115,6 @@ go();
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/Js闭包/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Qiang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="飞奔的小猿猴">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/06/Js闭包/" itemprop="url">JS闭包</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
-                2017-08-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="闭包形式一："><a href="#闭包形式一：" class="headerlink" title="闭包形式一："></a>闭包形式一：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">function f1() &#123;</div><div class="line">var a=&quot;king&quot;;</div><div class="line">return function () &#123;</div><div class="line">return a;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">var result=f1();</div><div class="line">alert(result());</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：f1返回的函数，是没有函数名的。</p>
-</blockquote>
-<h1 id="闭包形式二："><a href="#闭包形式二：" class="headerlink" title="闭包形式二："></a>闭包形式二：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var n;</div><div class="line">function f1 () &#123;</div><div class="line">var a=&quot;king&quot;;</div><div class="line">n=function () &#123;</div><div class="line">return a;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">f1();</div><div class="line">alert(n());</div></pre></td></tr></table></figure>
-<h1 id="闭包形式三："><a href="#闭包形式三：" class="headerlink" title="闭包形式三："></a>闭包形式三：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">function f1 () &#123;</div><div class="line">var a=456;</div><div class="line">var n=function () &#123;</div><div class="line">return a;</div><div class="line">&#125;</div><div class="line">a++;</div><div class="line">return n;</div><div class="line">&#125;</div><div class="line">var result=f1();</div><div class="line">alert(result());</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<hr>
-<pre><code>输出：457。
-解析：当f1执行时候，最后返回n，时候才会执行n对应的函数，所以，此时a已经++过了，而不是一般理解的var n的时
-候执行对应函数。
-拓展形式：其实闭包就是函数内部函数，其持有外部函数变量的引用。
-</code></pre><hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">(function f1 () &#123;</div><div class="line">var a=0;</div><div class="line">getValue=function () &#123;</div><div class="line">return a;</div><div class="line">&#125;</div><div class="line">setValue=function (x) &#123;</div><div class="line">a=x;</div><div class="line">&#125;</div><div class="line">&#125;)();</div><div class="line">alert(getValue());</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<h1 id="面试题：对比下区别"><a href="#面试题：对比下区别" class="headerlink" title="面试题：对比下区别"></a>面试题：对比下区别</h1><h2 id="方式一："><a href="#方式一：" class="headerlink" title="方式一："></a>方式一：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">function f() &#123;</div><div class="line">var a=[];</div><div class="line">for (var i=0;i&lt;=4;i++) &#123;</div><div class="line">a[i]=(function (x) &#123;</div><div class="line">return x;</div><div class="line">&#125;)(i);</div><div class="line">&#125;</div><div class="line">return a;</div><div class="line">&#125;</div><div class="line">var result=f();</div><div class="line">alert(result[0]);</div><div class="line">alert(result[1]);</div><div class="line">alert(result[2]);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<h2 id="方式二："><a href="#方式二：" class="headerlink" title="方式二："></a>方式二：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">function f() &#123;</div><div class="line">var a=[];</div><div class="line">for (var i=0;i&lt;=4;i++) &#123;</div><div class="line">a[i]=(function (x) &#123;</div><div class="line">return function  () &#123;</div><div class="line">return x;</div><div class="line">&#125;</div><div class="line">&#125;)(i);</div><div class="line">&#125;</div><div class="line">return a;</div><div class="line">&#125;</div><div class="line">var result=f();</div><div class="line">alert(result[0]());</div><div class="line">alert(result[1]());</div><div class="line">alert(result[2]());</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3029,7 +3165,7 @@ go();
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

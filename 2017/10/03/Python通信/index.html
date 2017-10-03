@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="杂乱知识点 在linux系统中，端⼝可以有65536（2的16次⽅）个之多。端口号只有整数，范围是0~65535  端口 端口分为：知名端口和动态端口 知名端口是众所周知的端口号，范围从0到1023 例如：80端口分配给HTTP服务       21端口分配给FTP服务 可以理解为这些端口是常用号码，例如110，10010一样。 一般情况下，如果一个程序需要使用知名端口需要root权限  动态端口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python通信">
+<meta property="og:url" content="http://yoursite.com/2017/10/03/Python通信/index.html">
+<meta property="og:site_name" content="飞奔的小猿猴">
+<meta property="og:description" content="杂乱知识点 在linux系统中，端⼝可以有65536（2的16次⽅）个之多。端口号只有整数，范围是0~65535  端口 端口分为：知名端口和动态端口 知名端口是众所周知的端口号，范围从0到1023 例如：80端口分配给HTTP服务       21端口分配给FTP服务 可以理解为这些端口是常用号码，例如110，10010一样。 一般情况下，如果一个程序需要使用知名端口需要root权限  动态端口">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/tx01.png">
+<meta property="og:image" content="http://yoursite.com/images/tx02.png">
+<meta property="og:updated_time" content="2017-10-03T08:58:29.103Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python通信">
+<meta name="twitter:description" content="杂乱知识点 在linux系统中，端⼝可以有65536（2的16次⽅）个之多。端口号只有整数，范围是0~65535  端口 端口分为：知名端口和动态端口 知名端口是众所周知的端口号，范围从0到1023 例如：80端口分配给HTTP服务       21端口分配给FTP服务 可以理解为这些端口是常用号码，例如110，10010一样。 一般情况下，如果一个程序需要使用知名端口需要root权限  动态端口">
+<meta name="twitter:image" content="http://yoursite.com/images/tx01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/03/Python通信/"/>
+
+
+
+
+
+  <title>Python通信 | 飞奔的小猿猴</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">飞奔的小猿猴</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/03/Python通信/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python通信</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-03T16:33:06+08:00">
+                2017-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="杂乱知识点"><a href="#杂乱知识点" class="headerlink" title="杂乱知识点"></a>杂乱知识点</h1><blockquote>
+<p>在linux系统中，端⼝可以有65536（2的16次⽅）个之多。<br>端口号只有整数，范围是0~65535</p>
+</blockquote>
+<h2 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h2><hr>
+<pre><code>端口分为：知名端口和动态端口
+知名端口是众所周知的端口号，范围从0到1023
+例如：80端口分配给HTTP服务
+      21端口分配给FTP服务
+可以理解为这些端口是常用号码，例如110，10010一样。
+一般情况下，如果一个程序需要使用知名端口需要root权限
+
+动态端口的范围是从1024到65535
+之所以称为动态端口，是因为它一般不固定分配某种服务，而是动态分配
+动态分配是指当一个系统进程或应用程序进程需要网络通信时，它向主机申
+请一个端⼝，主机从可用的端口号中分配一个供它使用。
+当这个进程关闭时，同时也就释放了所占用的端口号。
+linux下可以使用“netstat －an”查看端口状态
+</code></pre><hr>
+<p><img src="/images/tx01.png" alt="网络分层"></p>
+<h2 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h2><blockquote>
+<p>IP地址分为：网络地址和主机地址</p>
+</blockquote>
+<h3 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h3><h4 id="A类IP地址"><a href="#A类IP地址" class="headerlink" title="A类IP地址"></a>A类IP地址</h4><hr>
+<pre><code>一个A类IP地址由1字节的网络地址和3字节主机地址组成，网络地址的最后
+位必须是“0”，
+地址范围1.0.0.1-126.255.255.254
+二进制表示为：00000001 00000000 00000000 00000001 - 01111110
+11111111 11111111 11111110
+可用的A类网络有126个，每个网络能容纳1677214个主机
+</code></pre><hr>
+<h4 id="B类IP地址"><a href="#B类IP地址" class="headerlink" title="B类IP地址"></a>B类IP地址</h4><hr>
+<pre><code>一个B类IP地址由2个字节的网络地址和2个字节的主机地址组成，网络地址
+的最后位必须是“10”，
+地址范围128.1.0.1-191.255.255.254
+二进制表示为：10000000 00000001 00000000 00000001 - 10111111
+11111111 11111111 11111110
+可用的B类网络有16384个，每个网络能容纳65534主机。
+</code></pre><hr>
+<h4 id="C类IP地址"><a href="#C类IP地址" class="headerlink" title="C类IP地址"></a>C类IP地址</h4><hr>
+<pre><code>一个C类IP地址由3字节的⽹络地址和1字节的主机地址组成，网络地址的最
+后位必须是“110”
+范围192.0.1.1-223.255.255.254
+二进制表示为: 11000000 00000000 00000001 00000001 - 11011111
+11111111 11111110 11111110
+C类网络可达2097152个，每个网络能容纳254个主机
+</code></pre><hr>
+<h4 id="D类地址多于多点广播"><a href="#D类地址多于多点广播" class="headerlink" title="D类地址多于多点广播"></a>D类地址多于多点广播</h4><hr>
+<pre><code>D类IP地址第一个字节以“1110”开始，它是一个专们保留的地址。
+它并不指向特定的网络，目前这一类地址被用在多点广播（Multicast）中
+多点广播地址用来一次寻址一组计算机
+地址范围224.0.0.1-239.255.255.254
+</code></pre><hr>
+<h4 id="E类IP地址"><a href="#E类IP地址" class="headerlink" title="E类IP地址"></a>E类IP地址</h4><blockquote>
+<p>以“1111”开始，为将来使用保留<br>  E类地址保留，仅作实验和开发用</p>
+</blockquote>
+<h4 id="私有ip"><a href="#私有ip" class="headerlink" title="私有ip"></a>私有ip</h4><hr>
+<pre><code>在这么多网络IP中，国际规定有一部分IP地址是用于我们的局域网使用，也
+就是属于私网IP，不在公网中使用的，它们的范围是：
+10.0.0.0～10.255.255.255
+172.16.0.0～172.31.255.255
+192.168.0.0～192.168.255.255
+1.2.1.7 注意
+IP地址127．0．0．1~127．255．255．255用于回路测试，
+如：127.0.0.1可以代表本机IP地址，用 http://127.0.0.1  就可以测试本机
+中配置的Web服务器。
+</code></pre><hr>
+<p><img src="/images/tx02.png" alt="网络IP分类"></p>
+<h2 id="UDP相关"><a href="#UDP相关" class="headerlink" title="UDP相关"></a>UDP相关</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">UDP基本通信案例</div><div class="line">from socket import *</div><div class="line"></div><div class="line">sock_udp = socket(AF_INET, SOCK_DGRAM)</div><div class="line">address = (&quot;192.168.142.1&quot;, 60000)</div><div class="line"># info=input(&quot;请输入信息：&quot;)</div><div class="line"># sock_udp.sendto(bytes(info,encoding=&quot;gbk&quot;),address)</div><div class="line">#sock_udp.sendto(info.encode(&quot;gbk&quot;),address)</div><div class="line">sock_udp.sendto(b&quot;sahb&quot;, address) #此种方式不能发送汉字</div><div class="line">#sock_udp.sendto(&quot;haha&quot;，address) 此处在py2下能直接发送，在py3下面不行，必须转换为字节类型</div><div class="line">sock_udp.close()</div><div class="line"></div><div class="line">UDP收发案例：</div><div class="line">from socket import *</div><div class="line"></div><div class="line">sock_udp = socket(AF_INET, SOCK_DGRAM)</div><div class="line">sock_udp.bind((&quot;192.168.0.116&quot;, 60001))#本机绑定的地址和端口号</div><div class="line">address = (&quot;192.168.0.116&quot;, 60000)#要发送给说的地址和端口号</div><div class="line">while True:</div><div class="line">    info = input(&quot;请输入信息：&quot;)</div><div class="line">    sock_udp.sendto(bytes(info, encoding=&quot;gbk&quot;), address)</div><div class="line">    return_info = sock_udp.recvfrom(1024)#1024指的是能接受数据长度</div><div class="line">    print(return_info) #(b&apos;bye&apos;, (&apos;192.168.0.116&apos;, 60000))</div><div class="line">	#可知接受的数据是一个元组，元素0是数据，元素1是对方ip地址和端口号。</div><div class="line">    if str(return_info[0],encoding=&quot;utf-8&quot;) == &quot;bye&quot;:  #比较时候需要把byte类型转换为str</div><div class="line">        break</div><div class="line">sock_udp.close()</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>概念说明：
+单工：只能接收或者发送，而且后期无法选择
+半双工：可以接收或者发送，但是只能干一件事情，后期可以选择
+全双工：可以同时接收和发送。
+UDP和TCP就是全双工，从上面案例可以证明UDP的接收和发送。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">对比上面的案例：</div><div class="line">from socket import *</div><div class="line"></div><div class="line">sock_udp = socket(AF_INET, SOCK_DGRAM)</div><div class="line">sock_udp.bind((&quot;192.168.0.116&quot;, 60001))</div><div class="line">address = (&quot;192.168.0.116&quot;, 60000)</div><div class="line">while True:</div><div class="line">    info = input(&quot;请输入信息：&quot;)</div><div class="line">    sock_udp.sendto(bytes(info, encoding=&quot;gbk&quot;), address)</div><div class="line">    return_info,ip_info = sock_udp.recvfrom(1024)</div><div class="line">    print(return_info)#b&apos;safa&apos;</div><div class="line">    if return_info.decode(&quot;utf-8&quot;) == &quot;bye&quot;:</div><div class="line">        break</div><div class="line">sock_udp.close()</div></pre></td></tr></table></figure>
+<h2 id="大端和小端"><a href="#大端和小端" class="headerlink" title="大端和小端"></a>大端和小端</h2><hr>
+<pre><code>大端：高位数字放在低位，低位数字放在高位
+小端：低位数字放在低位，高位数字放在高位
+补充：
+单播：点对点
+多播：一对多
+广播：一对所有
+192.168.1.0 ----》最后一位是0代表网络号
+192.168.1.255--&gt; 广播地址
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">基本案例：UDP广播</div><div class="line">import socket, sys</div><div class="line"></div><div class="line">dest = (&apos;&lt;broadcast&gt;&apos;, 7788)</div><div class="line">s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</div><div class="line">s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)</div><div class="line">s.sendto(b&quot;Hi&quot;, dest)</div><div class="line">print(&quot;等待对方回复&quot;)</div><div class="line">while True:</div><div class="line">    (buf, address) = s.recvfrom(2048)</div><div class="line">    print(&quot;Received from %s: %s&quot; % (address, buf))import socket, sys</div><div class="line"></div><div class="line">dest = (&apos;&lt;broadcast&gt;&apos;, 7788)</div><div class="line">s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)</div><div class="line">s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)</div><div class="line">s.sendto(b&quot;Hi&quot;, dest)</div><div class="line">print(&quot;等待对方回复&quot;)</div><div class="line">while True:</div><div class="line">    (buf, address) = s.recvfrom(2048)</div><div class="line">    print(&quot;Received from %s: %s&quot; % (address, buf))</div><div class="line"></div><div class="line">说明：s.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)这句话是固定写法</div><div class="line">代表可以进行广播发送，而dest = (&apos;&lt;broadcast&gt;&apos;, 7788)中&lt;broadcast&gt;是代表广播地址</div><div class="line">虽然也可以写成例如192.168.1.255这样的广播地址，但是这样只有1网段才能接收到这个</div><div class="line">广播，而采用&lt;broadcast&gt;可以不论192.168.1/2等等都可以接收到广播。</div></pre></td></tr></table></figure>
+<h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">基本案例：</div><div class="line">from socket import *</div><div class="line"></div><div class="line">#SOCK_STREAM代表是TCP协议</div><div class="line">serverSocket = socket(AF_INET, SOCK_STREAM)</div><div class="line">#本机绑定8899端口</div><div class="line">serverSocket.bind((&quot;&quot;, 8899))</div><div class="line">#此处listen中参数5只是随意一个数字，实际值底层会自动计算</div><div class="line">#本句意义就是启动监听，从上面的被动server变化为下面的主动client</div><div class="line">serverSocket.listen(5)</div><div class="line">#参数一是一个tcp client，参数二是连接上面tcpserver的一个tcpclient的相关信息</div><div class="line">#此句会阻塞，clientInfo也是一个元组</div><div class="line">clientSocket, clientInfo = serverSocket.accept()</div><div class="line">#接收数据，此句会阻塞</div><div class="line">recvData=clientSocket.recv(1024)</div><div class="line">print(&quot;%s:%s&quot;%(str(clientInfo),recvData))</div><div class="line">clientSocket.close()</div><div class="line">serverSocket.close()</div><div class="line">说明：python中如果服务端rec的数据长度是0，则意味着客户端已经关闭</div><div class="line"></div><div class="line">TCP客户端案例：</div><div class="line">from socket import *</div><div class="line"></div><div class="line">tcpClientSocket = socket(AF_INET, SOCK_STREAM)</div><div class="line">serAddr = (&apos;192.168.0.116&apos;, 7788)</div><div class="line">tcpClientSocket.connect(serAddr)</div><div class="line">sendData = input(&quot;请输入数据:&quot;)</div><div class="line">tcpClientSocket.send(bytes(sendData, encoding=&quot;gbk&quot;))</div><div class="line">recvData = tcpClientSocket.recv(1024)</div><div class="line"></div><div class="line">print(recvData.decode(&quot;gbk&quot;))</div><div class="line">tcpClientSocket.close()</div></pre></td></tr></table></figure>
+<h2 id="TCP的多进程服务端"><a href="#TCP的多进程服务端" class="headerlink" title="TCP的多进程服务端"></a>TCP的多进程服务端</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">from socket import *</div><div class="line">from multiprocessing import Process</div><div class="line"></div><div class="line"></div><div class="line"># 处理客户端的请求并为其服务</div><div class="line">def dealWithClient(newSocket, destAddr):</div><div class="line">    while True:</div><div class="line">        recvData = newSocket.recv(1024)</div><div class="line">        if len(recvData) &gt; 0:</div><div class="line">            print(&apos;recv[%s]:%s&apos; % (str(destAddr, recvData)))</div><div class="line">        else:</div><div class="line">            print(&apos;[%s]客户端已经关闭&apos; % str(destAddr))</div><div class="line">    newSocket.close()</div><div class="line"></div><div class="line"></div><div class="line">def main():</div><div class="line">    serSocket = socket(AF_INET, SOCK_STREAM)</div><div class="line">    # MSL当四次挥手时候，每一次挥手时间是msl，但是这中间是有时间限制的</div><div class="line">    # 如果服务器告诉客服端自己要关闭，但是例如第四次挥手没有客户端返回给</div><div class="line">    # 服务端确认数据，这时候服务端实际上并没有结束(也没有超时退出msl时间到了才会超时退出)，</div><div class="line">    # 此时如果服务器端还想新建原先的端口号服务，会报错，因为端口没有被释放</div><div class="line">    # 但是加上此句话，是资源复用的意思，避免这种错误</div><div class="line">    # 其他场景：服务器宕机，服务需要等待msl时间才能重新启用，此句话避免这种情况</div><div class="line">    serSocket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)</div><div class="line">    localAddr = (&apos;&apos;, 7788)</div><div class="line">    serSocket.bind(localAddr)</div><div class="line">    try:</div><div class="line">        while True:</div><div class="line">            # 等待客户端链接</div><div class="line">            newSocket, destAddr = serSocket.accept()</div><div class="line">            # 进程程</div><div class="line">            client = Process(target=dealWithClient, args=(newSocket, destAddr))</div><div class="line">            client.start()</div><div class="line">            # 已经向子进程copy了一份(引用),并且父进程中这个套接字也没有用处了,所以关闭</div><div class="line">            newSocket.close()</div><div class="line">    finally:</div><div class="line">        serSocket.close()</div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    main()</div></pre></td></tr></table></figure>
+<h2 id="TCP多进程服务端"><a href="#TCP多进程服务端" class="headerlink" title="TCP多进程服务端"></a>TCP多进程服务端</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">from socket import *</div><div class="line">from threading import Thread</div><div class="line"></div><div class="line"></div><div class="line"># 处理客户端的请求并为其服务</div><div class="line">def dealWithClient(newSocket, destAddr):</div><div class="line">    while True:</div><div class="line">        recvData = newSocket.recv(1024)</div><div class="line">        if len(recvData) &gt; 0:</div><div class="line">            print(&apos;recv[%s]:%s&apos; % (str(destAddr, recvData)))</div><div class="line">        else:</div><div class="line">            print(&apos;[%s]客户端已经关闭&apos; % str(destAddr))</div><div class="line">    newSocket.close()</div><div class="line"></div><div class="line"></div><div class="line">def main():</div><div class="line">    serSocket = socket(AF_INET, SOCK_STREAM)</div><div class="line">    serSocket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)</div><div class="line">    localAddr = (&apos;&apos;, 7788)</div><div class="line">    serSocket.bind(localAddr)</div><div class="line">    try:</div><div class="line">        while True:</div><div class="line">            newSocket, destAddr = serSocket.accept()</div><div class="line">            # 线程</div><div class="line">            client = Thread(target=dealWithClient, args=(newSocket, destAddr))</div><div class="line">            client.start()</div><div class="line">            #因为线程中共享这个套接字，如果关闭了会导致这个套接字不可用</div><div class="line">            #但是此时在线程中这个套接字可能还在收数据，所以不能关闭</div><div class="line">            # newSocket.close()</div><div class="line">    finally:</div><div class="line">        serSocket.close()</div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    main()</div></pre></td></tr></table></figure>
+<h2 id="单线程非阻塞TCP"><a href="#单线程非阻塞TCP" class="headerlink" title="单线程非阻塞TCP"></a>单线程非阻塞TCP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">from socket import  *</div><div class="line">serSocket=socket(AF_INET,SOCK_STREAM)</div><div class="line">localAddr=(&apos;&apos;,7788)</div><div class="line">serSocket.bind(localAddr)</div><div class="line">serSocket.setblocking(False) #使socket变为非阻塞</div><div class="line">serSocket.listen(5)</div><div class="line">#用于保存已经连接的客户端信息,否则引用计数就是0，则只要关闭客户端连接，</div><div class="line">#则唯一的引用对象就没有了，所以需要保存连接信息，防止一个客户端关闭，就全部客户端关闭的错误</div><div class="line">clientAddrList=[]</div><div class="line">while True:</div><div class="line">    try:#如果设置成非阻塞，则如果一旦没有客户端到来，会异常</div><div class="line">        newSocket,clientAddr=serSocket.accept()</div><div class="line">    except:</div><div class="line">        pass</div><div class="line">    else:</div><div class="line">        print(&quot;一个新的客户端到来:%s&quot;%str(clientAddr))</div><div class="line">        newSocket.setblocking(False)#也设置非阻塞，否则接收数据还是会阻塞</div><div class="line">        clientAddrList.append((newSocket,clientAddr))</div><div class="line"></div><div class="line">    for clientSocket,clientAddr in clientAddrList:</div><div class="line">        try:</div><div class="line">            recvData=clientSocket.recv(1024)</div><div class="line">        except:</div><div class="line">            pass</div><div class="line">        else:#如果接收数据长度为0则证明，该客户端其实已经关闭了</div><div class="line">            if len(recvData)&gt;0:</div><div class="line">                print(&quot;%s:%s&quot;%(str(clientAddr),recvData))</div><div class="line">            else:</div><div class="line">                clientSocket.close()</div><div class="line">                #如果不删除，还是会遍历，其实已经没有必要了</div><div class="line">                clientAddrList.remove((clientSocket,clientAddr))</div><div class="line">                print(&quot;%s已下线&quot;%str(clientAddr))</div></pre></td></tr></table></figure>
+<h2 id="select版本服务器"><a href="#select版本服务器" class="headerlink" title="select版本服务器"></a>select版本服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">select可以实现套接字的检测，可以区分那些套接字可以发送，那些可以接受</div><div class="line">这样避免了上面2.3写法当套接字变多时候，遍历时间长造成的阻塞。</div><div class="line">缺点，select在linux上面一般只能监听1024个套接字，其他有细微区别，</div><div class="line">例如64位可能位2048个套接字，轮询遍历(代表着效率低)</div><div class="line">优点：跨平台</div><div class="line"></div><div class="line">import select</div><div class="line">import socket</div><div class="line">import sys</div><div class="line">server=socket.socket(socket.AF_INET,socket.SOCK_STREAM)</div><div class="line">server.bind(&apos;&apos;,7788)</div><div class="line">server.listen(5)</div><div class="line">inputs=[server,sys.stdin]</div><div class="line">running=True</div><div class="line">while True:# 调用selcet函数，阻塞等待</div><div class="line"># 参数一检测能接收数据套接字，参数二检测能发送数据套接字，参数三检测发生异常套接字</div><div class="line">#这三个参数都是列表，如果传入[]空列表，代表不检测</div><div class="line">    readable,writeable,exception=select.select(inputs,[],[])</div><div class="line">    #数据抵达，循环</div><div class="line">    for sock in readable:</div><div class="line">        #监听到有新的连接</div><div class="line">        if sock==server:</div><div class="line">            conn,addr=server.accept()</div><div class="line">            #selcet监听的socket</div><div class="line">            inputs.append(conn)</div><div class="line">    #监听到键盘有输入</div><div class="line">        elif sock==sys.stdin:</div><div class="line">            cmd=sys.stdin.readline()</div><div class="line">            running=False</div><div class="line">            break</div><div class="line">        #有数据到达</div><div class="line">        else:</div><div class="line">            data=sock.recv(1024)</div><div class="line">            if data:</div><div class="line">                sock.send(data)</div><div class="line">            else:</div><div class="line">            # 移除select监听的socket</div><div class="line">                inputs.remove(sock)</div><div class="line">            sock.close()</div></pre></td></tr></table></figure>
+<h2 id="epoll版服务器"><a href="#epoll版服务器" class="headerlink" title="epoll版服务器"></a>epoll版服务器</h2><hr>
+<pre><code>select =&gt;套接字上线1024，轮询检测
+poll =&gt;套接字无上限，其他和select几乎一样，轮询检测
+epoll  =&gt;使用事件通知机制，不是轮询
+
+补充：sys.in（标准输入）sys.out（标准输出） sys.error（标准错误） 
+EPOLLIN 可读
+EPOLLOUT 可写
+EPOLLET ET模式
+epoll对问价描述符操作分为两种:LT和ET LT为默认模式
+LT：当epoll检测到描述事件发生并将此事件通知应用程序，应用程序可以不立即处理该事件，简单说，LT一直提醒，直到处理完毕
+ET:只通知一次，不管你是否处理完成，所以效率更高。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">import select</div><div class="line">import socket</div><div class="line">import sys</div><div class="line">s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)</div><div class="line">#设置可以重复使用绑定的信息</div><div class="line">s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)</div><div class="line">#绑定本机信息</div><div class="line">s.bind((&quot;&quot;,7788))</div><div class="line">#变为被动</div><div class="line">s.listen(10)</div><div class="line">#创建一个epoll对象</div><div class="line">epoll=select.epoll()</div><div class="line">#测试，用来打印套接字对应的文件描述符</div><div class="line"># print(s.fileno())</div><div class="line"># print(select.Epollin|select.EPOLLET)</div><div class="line">#注册事件到epoll中</div><div class="line"># epoll.register(fd[,eventmask])</div><div class="line">#注意，如果fd已经注册过，则会发生异常</div><div class="line">#将注册的套接字添加到epoll的事件监听中</div><div class="line">#文件描述符，简称fd  s.fileno()就是的</div><div class="line">epoll.register(s.fileno(),select.Epollin|select.EPOLLET)</div><div class="line">connections=&#123;&#125;</div><div class="line">address=&#123;&#125;</div><div class="line">#循环等待客户端到来，或者对方发送数据</div><div class="line">while True:</div><div class="line">    #epoll进行fd扫描的地方--来指定超时时间，则为阻塞等待</div><div class="line">    epoll_list=epoll.poll()</div><div class="line">    #对事件对象判断</div><div class="line">    for fd,events in epoll_list:</div><div class="line">        if fd==s.fileno():</div><div class="line">            conn,addr=s.accept()</div><div class="line">            #将conn和addr信息分别保存起来</div><div class="line">            connections[conn.fileno()]=conn</div><div class="line">            address[conn.fileno()]=addr</div><div class="line">            #将epoll中注册连接socket的可读事件</div><div class="line">            epoll.register(conn.fileno(),select.EPOLLIN|select.EPOLLET)</div><div class="line">        #判断是否是接收数据的事件</div><div class="line">        elif events==select.EPOLLIN:</div><div class="line">            #从激活fd上接收</div><div class="line">            recvData=connections[fd].recv(1024)</div><div class="line">            if len(recvData)&gt;0:</div><div class="line">                print(recvData)</div><div class="line">            else:</div><div class="line">                #从epoll中移除该连接</div><div class="line">                epoll.unregister(fd)</div><div class="line">                #从server侧主动关闭连接，fd</div><div class="line">                connections[fd].close()</div></pre></td></tr></table></figure>
+<h2 id="协程-微线程"><a href="#协程-微线程" class="headerlink" title="协程(微线程)"></a>协程(微线程)</h2><hr>
+<pre><code>cpu密集型:大量计算-》占用cpu资源较多，适合多进程，因为python的gil问题，即使多线程还是只有 一个核载运算
+io密集型：大量io操作 -》大量时间在等待，多线程，协程
+进程内部可以有多个线程，线程内部可以有多个协程，协成可以避免切换和保存的操作，提高效率
+协程的底层就是生成器
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line">import time</div><div class="line">def A():</div><div class="line">    while True:</div><div class="line">        print(&quot;----A------&quot;)</div><div class="line">        yield</div><div class="line">        time.sleep(0.5)</div><div class="line">def B(c):</div><div class="line">    while True:</div><div class="line">        print(&quot;-----B-----&quot;)</div><div class="line">        c.__next__()</div><div class="line">        time.sleep(0.5)</div><div class="line"></div><div class="line">if __name__==&apos;__main__&apos;:</div><div class="line">    a=A()</div><div class="line">    B(a)</div><div class="line">输出：每隔0.5秒输出一次，先是A再是B</div></pre></td></tr></table></figure>
+<h2 id="greenlet"><a href="#greenlet" class="headerlink" title="greenlet"></a>greenlet</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">也是协程实现多任务，只不过更加完善和优美，需要安装greenlet，pip安装即可</div><div class="line"></div><div class="line">from greenlet import greenlet</div><div class="line">import time</div><div class="line">def test1():</div><div class="line">    while True:</div><div class="line">        print(&quot;----A----&quot;)</div><div class="line">        gr2.switch()</div><div class="line">        time.sleep(0.5)</div><div class="line">def test2():</div><div class="line">    while True:</div><div class="line">        print(&quot;----B----&quot;)</div><div class="line">        gr1.switch()</div><div class="line">        time.sleep(0.5)</div><div class="line">gr1=greenlet(test1)</div><div class="line">gr2=greenlet(test2)</div><div class="line">#切换到gr1中运行</div><div class="line">gr1.switch()</div><div class="line"></div><div class="line">输出：a,b切换输出，效果同上。</div></pre></td></tr></table></figure>
+<h2 id="gevent版本服务器"><a href="#gevent版本服务器" class="headerlink" title="gevent版本服务器"></a>gevent版本服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">gevent是对greenlet的封装</div><div class="line">基本使用案例：</div><div class="line">import gevent</div><div class="line">def f(n):</div><div class="line">    for i in range(n):</div><div class="line">        print(gevent.getcurrent(),i)</div><div class="line">        #用来模拟一个耗时操作，注意不是time模块里面的sleep</div><div class="line">        #如果不加这句话，就会先执行完一个协程的五次操作，才会去执行第二个协程</div><div class="line">        #之所以这样做，是因为gevent遇到耗时操作时候，会切换到其他协程</div><div class="line">        gevent.sleep(1)</div><div class="line"></div><div class="line"></div><div class="line">g1=gevent.spawn(f,5)</div><div class="line">g2=gevent.spawn(f,5)</div><div class="line">g3=gevent.spawn(f,5)</div><div class="line">g1.join()</div><div class="line">g2.join()</div><div class="line">g3.join()</div><div class="line"></div><div class="line">基于gevent的tcp服务器：</div><div class="line">import sys</div><div class="line">import time</div><div class="line">import gevent</div><div class="line">from gevent import socket,monkey</div><div class="line">monkey.patch_all()</div><div class="line">def handle_request(conn):</div><div class="line">    while True:</div><div class="line">        data=conn.recv(1024)</div><div class="line">        if not data:</div><div class="line">            conn.close()</div><div class="line">            break</div><div class="line">        print(&quot;recv:&quot;,data)</div><div class="line">        conn.send(data)</div><div class="line">def server(port):</div><div class="line">    s=socket.socket()</div><div class="line">    s.bind((&apos;&apos;,port))</div><div class="line">    s.listen(5)</div><div class="line">    while True:</div><div class="line">        cli,addr=s.accept()</div><div class="line">        gevent.spawn(handle_request,cli)</div><div class="line"></div><div class="line">if __name__==&apos;__main__&apos;:</div><div class="line">    server(7788)</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/10/Kotlin基础/" rel="next" title="Kotlin基础">
+                <i class="fa fa-chevron-left"></i> Kotlin基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Qiang" />
+          <p class="site-author-name" itemprop="name">Qiang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#杂乱知识点"><span class="nav-number">1.</span> <span class="nav-text">杂乱知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#端口"><span class="nav-number">1.1.</span> <span class="nav-text">端口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IP地址"><span class="nav-number">1.2.</span> <span class="nav-text">IP地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址分类"><span class="nav-number">1.2.1.</span> <span class="nav-text">IP地址分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A类IP地址"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">A类IP地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B类IP地址"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">B类IP地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C类IP地址"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">C类IP地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D类地址多于多点广播"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">D类地址多于多点广播</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#E类IP地址"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">E类IP地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#私有ip"><span class="nav-number">1.2.1.6.</span> <span class="nav-text">私有ip</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UDP相关"><span class="nav-number">1.3.</span> <span class="nav-text">UDP相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大端和小端"><span class="nav-number">1.4.</span> <span class="nav-text">大端和小端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP"><span class="nav-number">2.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP的多进程服务端"><span class="nav-number">2.1.</span> <span class="nav-text">TCP的多进程服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP多进程服务端"><span class="nav-number">2.2.</span> <span class="nav-text">TCP多进程服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单线程非阻塞TCP"><span class="nav-number">2.3.</span> <span class="nav-text">单线程非阻塞TCP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#select版本服务器"><span class="nav-number">2.4.</span> <span class="nav-text">select版本服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#epoll版服务器"><span class="nav-number">2.5.</span> <span class="nav-text">epoll版服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协程-微线程"><span class="nav-number">2.6.</span> <span class="nav-text">协程(微线程)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#greenlet"><span class="nav-number">2.7.</span> <span class="nav-text">greenlet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gevent版本服务器"><span class="nav-number">2.8.</span> <span class="nav-text">gevent版本服务器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qiang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

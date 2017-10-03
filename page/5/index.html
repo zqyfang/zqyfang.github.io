@@ -280,6 +280,294 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/C语言笔记_06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Qiang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="飞奔的小猿猴">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/06/C语言笔记_06/" itemprop="url">C语言笔记_06</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-06T21:22:10+08:00">
+                2017-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C语言/" itemprop="url" rel="index">
+                    <span itemprop="name">C语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="枚举：就是用来表示几种固定类型的取值"><a href="#枚举：就是用来表示几种固定类型的取值" class="headerlink" title="枚举：就是用来表示几种固定类型的取值"></a>枚举：就是用来表示几种固定类型的取值</h1><blockquote>
+<p>枚举的本质就是基本数据类型，整型</p>
+</blockquote>
+<h2 id="枚举的定义"><a href="#枚举的定义" class="headerlink" title="枚举的定义"></a>枚举的定义</h2><hr>
+<pre><code>enum 枚举类型名称{
+    取值，
+};
+例子：
+//定义枚举类型
+enum Gender{
+    kGenderMale,//命名规范，最好如此
+    kGenderFemale
+};
+//定义枚举变量
+enum Gender sex;
+sex=male;
+sex=female;
+</code></pre><hr>
+<blockquote>
+<p>注意点：枚举类型本质是整型，所以枚举类型除了可以接受枚举的固定取值之外<br>（此时为male和female），还可以接受其他整型的值，也就是说枚举类型可以<br>当做int类型变量使用。默认枚举的第一个取值就是0，第二个就是1，后面取值递增。</p>
+</blockquote>
+<h1 id="全局变量和局部变量"><a href="#全局变量和局部变量" class="headerlink" title="全局变量和局部变量"></a>全局变量和局部变量</h1><h2 id="全局变量-存储在静态区中，随着程序的启动而创建，随着程序结束而结束"><a href="#全局变量-存储在静态区中，随着程序的启动而创建，随着程序结束而结束" class="headerlink" title="全局变量(存储在静态区中，随着程序的启动而创建，随着程序结束而结束)"></a>全局变量(存储在静态区中，随着程序的启动而创建，随着程序结束而结束)</h2><hr>
+<pre><code>写在函数，代码块，形参列表之外的变量
+全局变量没有进行初始化，系统默认将全局变量初始化为0
+作用域：从定义的哪一行到文件末尾
+extern int num:extern用来声明一个全局变量，但是不会开辟内存空间
+也就是说，int num；这种和上面extern声明的全局变量都是外部全局变量，只是有没有默认初
+始值的区别，而且即使extern修饰还是能在其他文件修改这个值，因为是同一段内存空间，所以
+出现static关键字，这样就是内部全局变量了。
+</code></pre><hr>
+<h3 id="外部全局变量，可以被其他文件访问的全局变量"><a href="#外部全局变量，可以被其他文件访问的全局变量" class="headerlink" title="外部全局变量，可以被其他文件访问的全局变量"></a>外部全局变量，可以被其他文件访问的全局变量</h3><pre><code>&gt; 可以定义多个同名的外部全局变量
+ 多个同名的外部全局变量指向同一块存储空间
+</code></pre><h3 id="内部全局变量，给全局变量加上static关键字，只能被当前文件访问"><a href="#内部全局变量，给全局变量加上static关键字，只能被当前文件访问" class="headerlink" title="内部全局变量，给全局变量加上static关键字，只能被当前文件访问"></a>内部全局变量，给全局变量加上static关键字，只能被当前文件访问</h3><pre><code>&gt; 可以定义多个同名的外部全局变量
+ 多个同名的外部全局变量如果不在同一个文件中，那么指向不同存储空间
+</code></pre><h2 id="局部变量-存储在栈中，作用域结束会自动释放"><a href="#局部变量-存储在栈中，作用域结束会自动释放" class="headerlink" title="局部变量(存储在栈中，作用域结束会自动释放)"></a>局部变量(存储在栈中，作用域结束会自动释放)</h2><hr>
+<pre><code>局部变量就是定义在函数，代码块和函数形参列表中的变量
+相同作用于，不能出现同名的局部变量
+局部变量如果没有初始化，那么局部变量是一些随机值
+static修饰局部变量：会延长局部变量的生命周期，并且会更改局部变量存储的位置，将局部变量从栈转移到静态区中。
+static修饰时候：执行定义布局变量的代码的时候就会分配存储空间，程序结束释放该空间(只是比全局变量稍弱，全局变量。程序启动就分配空间)。
+</code></pre><hr>
+<h1 id="extern和static对函数的作用"><a href="#extern和static对函数的作用" class="headerlink" title="extern和static对函数的作用"></a>extern和static对函数的作用</h1><hr>
+<pre><code>函数也分为，内部函数(只能在当前文件访问的函数)和外部函数(函数默认为内部函数)
+内部函数：返回值前加上关键字static
+static void demo(){};//定义一个内部函数
+static void demo();//声明一个内部函数，注意此声明不要放到头文件里面，没有任何意义，因为即使别人引用了头文件，内部函数还是不能使用该函数。
+extern关键字：加在函数返回值前，就是外部函数，但是一般不写，因为默认就是外部函数。
+</code></pre><hr>
+<h1 id="预处理指令，把文件翻译成0，1之前的操作，一般都是以-开头"><a href="#预处理指令，把文件翻译成0，1之前的操作，一般都是以-开头" class="headerlink" title="预处理指令，把文件翻译成0，1之前的操作，一般都是以#开头"></a>预处理指令，把文件翻译成0，1之前的操作，一般都是以#开头</h1><blockquote>
+<p>源代码-&gt;预处理-&gt;汇编-&gt;二进制-&gt;可执行程序</p>
+</blockquote>
+<h2 id="宏定义-不带分号-，发生在预处理期间"><a href="#宏定义-不带分号-，发生在预处理期间" class="headerlink" title="宏定义(不带分号)，发生在预处理期间"></a>宏定义(不带分号)，发生在预处理期间</h2><blockquote>
+<p>作用：程序翻译成0，1之前，会将所有宏名替换为值</p>
+</blockquote>
+<h3 id="不带参数的宏定义"><a href="#不带参数的宏定义" class="headerlink" title="不带参数的宏定义"></a>不带参数的宏定义</h3><pre><code>&gt; #define 宏名 值
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">案例：</div><div class="line">#define COUNT 5</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int arr[COUNT]=&#123;1,2,3,4,5&#125;;</div><div class="line">    for (int a=0; a&lt;COUNT; a++) &#123;</div><div class="line">        printf(&quot;%d\n&quot;,arr[a]);</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>注意：一般宏名都大写，多个单词之间用下划线隔开，宏定义不加；
+宏定义作用域：从定义哪一行开始到文件末尾。
+可提前结束宏定义作用域，在要结束的地方加上#undef COUNT即可。
+</code></pre><hr>
+<h3 id="带参数的宏定义"><a href="#带参数的宏定义" class="headerlink" title="带参数的宏定义"></a>带参数的宏定义</h3><hr>
+<pre><code>#define SUM(v1,v2) v1+v2:此时不需要写数据类型
+注意：宏定义不会做任何运算，只是做替换而已。
+下面直接类似函数使用即可
+函数和宏定义：当功能比较简单的时候推荐宏定义，效率更高。
+案例：注意结果
+#define SUM(v1,v2) v1*v2
+int main(int argc,const char *argv[]) {
+    printf(&quot;%d\n&quot;,SUM(5+5,4+4));//输出29
+    return 0;
+}
+解析：因为宏定义只是替换，不进行任何运算，此时真的执行时5+5*4+4结果为29
+所以可以更改如下：
+#define SUM(v1,v2) (v1)*(v2)
+int main(int argc,const char *argv[]) {
+    printf(&quot;%d\n&quot;,SUM(5+5,4+4));//输出80
+    return 0;
+}
+但是当进行多次运算的时候，因为优先级的原因，建议最好把结果也加上圆括号。
+#define SUM(v1,v2) （(v1)*(v2)）
+int main(int argc,const char *argv[]) {
+    printf(&quot;%d\n&quot;,SUM(5+5,4+4)/SUM(5+5,4+4)*SUM(5+5,4+4));
+    return 0;
+}
+这样结果就是正确结果。
+</code></pre><hr>
+<h2 id="条件编译：缩小应用程序大小"><a href="#条件编译：缩小应用程序大小" class="headerlink" title="条件编译：缩小应用程序大小"></a>条件编译：缩小应用程序大小</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">写法一：</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    int score=100;</div><div class="line">#if score==100 //末尾没有符号</div><div class="line">    printf(&quot;厉害&quot;);</div><div class="line">#elif score==90</div><div class="line">    printf(&quot;加油&quot;);</div><div class="line">#else </div><div class="line">    printf(&quot;加油&quot;);//输出的是加油</div><div class="line">#endif  //必须有此行,省略的话，会将满足之后的所有都清除，包括return 0和大括号。</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>解析：条件编译也是预处理指令，在编译之前就已经执行，但是上面定义的int socre=100是在代<br>码执行到这里时候才分配内存空间，所以下面的条件编译其实是0==100所以不符合，所以socre最<br>好用宏定义，这样就执行正确了。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">写法二：</div><div class="line">#ifdef SCORE  //判断是否定义了score这个宏</div><div class="line">#elif COUNT  //判断是否定义了count这个宏</div><div class="line">#else</div><div class="line">#endif</div><div class="line">写法三：</div><div class="line">#ifndef SCORE  //判断是不是没有定义了score这个宏</div><div class="line">#elif COUNT  //判断是不是没有定义了count这个宏</div><div class="line">#else</div><div class="line">#endif</div></pre></td></tr></table></figure>
+<h1 id="文件包含注意事项"><a href="#文件包含注意事项" class="headerlink" title="文件包含注意事项"></a>文件包含注意事项</h1><hr>
+<pre><code>引入头文件的时候，相当于把函数声明赋值到要使用的文件中，也就类似于函数声明，函数声明
+可以重复，但是会降低效率，所以多次引入头文件也会降低效率，为了防止效率降低，在.h文件中书
+写如下即可：
+#ifndef test_h
+#define test_h
+int sum(int v1,int v2);
+void say();
+#endif
+</code></pre><hr>
+<h1 id="typedef-给一个已知的数据类型（包括自定义数据类型）起别名"><a href="#typedef-给一个已知的数据类型（包括自定义数据类型）起别名" class="headerlink" title="typedef:给一个已知的数据类型（包括自定义数据类型）起别名"></a>typedef:给一个已知的数据类型（包括自定义数据类型）起别名</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">typedof 原有类型 别名;</div><div class="line">typedef int Interger;</div><div class="line">typedef Interger myInt;</div><div class="line">int main(int argc,const char *argv[]) &#123;</div><div class="line">    myInt num=30;</div><div class="line">    printf(&quot;%d\n&quot;,num);</div><div class="line">    return 0;</div><div class="line">&#125;</div><div class="line">同理也可以给构造类型起别名：typedef struct Person p;</div><div class="line">则struct Person==p;</div><div class="line">定义类型方式：</div><div class="line">typedef struct Person&#123;</div><div class="line">    int age;</div><div class="line">&#125; p;</div><div class="line">这种方式相当于在创建结构体同时创建了对应的别名。</div><div class="line">同理可以删除Person(结构体类型)，这就是另一种写法。</div></pre></td></tr></table></figure>
+<hr>
+<pre><code>枚举别名：
+方式一：
+enum Gender{
+    kGenderMale,
+    kGenderFemale
+} g;
+typedef enum Gender g;
+方式二：
+typedef enum Gender{
+    kGenderMale,
+    kGenderFemale
+} g;
+方式三：
+typedef enum{
+    kGenderMale,
+    kGenderFemale
+} g;
+</code></pre><hr>
+<blockquote>
+<p>指针别名：<br>typedef char * String;<br>String str=”lnj”;</p>
+</blockquote>
+<hr>
+<pre><code>函数别名：
+typedef int(*funcPointer)(int,int);
+注意：如果给指向函数的指针起别名，那么指向函数的指针的指针名称就是他的别名，不需要加到最后。
+使用：funcPointer mp=sum;
+然后直接把sum()传入参数即可。
+</code></pre><hr>
+<h1 id="const关键字：类型修饰符"><a href="#const关键字：类型修饰符" class="headerlink" title="const关键字：类型修饰符"></a>const关键字：类型修饰符</h1><hr>
+<pre><code>被const修饰的变量就是常量，不能修改了
+两种写法：
+const int num=1;
+int const num=2;
+</code></pre><hr>
+<hr>
+<pre><code>案例：
+如果const写在指针类型左边或指针类型和*之间，意味着指针的指向可以改变，但是指向的内存空间
+中的值不能改变。
+如果const写在指针的右边(数据类型 * const)，意味着指针的指向不可以改变，但是指向的内存空
+间中的值可以改变。因为const此时离变量名最近，就在const后面，也就是说const修饰的是p,p的
+值就是地址可以改变。
+</code></pre><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">例子：指针指向内存空间的值可以改变</div><div class="line">int num=800;</div><div class="line">    int * const name=&amp;num;</div><div class="line">    *name = 300;</div><div class="line">    printf(&quot;%d\n&quot;,num);//300</div><div class="line">例子：指针的指向可以改变</div><div class="line">int num=800;</div><div class="line">    int const *name=&amp;num;</div><div class="line">    printf(&quot;%p\n&quot;,name);//0x7fff5fbff82c</div><div class="line">    int age=300;</div><div class="line">    name = &amp;age;</div><div class="line">    printf(&quot;%p\n&quot;,name);//0x7fff5fbff81c</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/06/C语言笔记_05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2295,7 +2583,7 @@ public static void test2(params int[] num){}
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">48</span>
+                <span class="site-state-item-count">49</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
